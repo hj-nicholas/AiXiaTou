@@ -1,0 +1,9 @@
+F:\XiaTou\Project\XT\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+F:\XiaTou\Project\XT\BLL\bin\Debug\BLL.dll
+F:\XiaTou\Project\XT\BLL\bin\Debug\BLL.pdb
+F:\XiaTou\Project\XT\BLL\bin\Debug\ClassLibrary1.dll
+F:\XiaTou\Project\XT\BLL\bin\Debug\Model.dll
+F:\XiaTou\Project\XT\BLL\bin\Debug\ClassLibrary1.pdb
+F:\XiaTou\Project\XT\BLL\bin\Debug\Model.pdb
+F:\XiaTou\Project\XT\BLL\obj\Debug\BLL.dll
+F:\XiaTou\Project\XT\BLL\obj\Debug\BLL.pdb

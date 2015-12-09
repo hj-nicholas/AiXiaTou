@@ -1,0 +1,4 @@
+F:\XiaTou\Project\XT\Model\bin\Debug\Model.dll
+F:\XiaTou\Project\XT\Model\bin\Debug\Model.pdb
+F:\XiaTou\Project\XT\Model\obj\Debug\Model.dll
+F:\XiaTou\Project\XT\Model\obj\Debug\Model.pdb

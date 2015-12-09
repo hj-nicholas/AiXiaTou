@@ -1,0 +1,5 @@
+F:\XiaTou\Project\XT\Model\bin\Release\Model.dll
+F:\XiaTou\Project\XT\Model\bin\Release\Model.pdb
+F:\XiaTou\Project\XT\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
+F:\XiaTou\Project\XT\Model\obj\Release\Model.dll
+F:\XiaTou\Project\XT\Model\obj\Release\Model.pdb
