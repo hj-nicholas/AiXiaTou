@@ -12,3 +12,10 @@ F:\XiaTou\Project\XT\DAL\bin\Debug\Model.pdb
 F:\XiaTou\Project\XT\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 F:\XiaTou\Project\XT\DAL\obj\Debug\ClassLibrary1.dll
 F:\XiaTou\Project\XT\DAL\obj\Debug\ClassLibrary1.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Debug\Model.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Debug\Model.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Debug\DAL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Debug\DAL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\obj\Debug\DAL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\obj\Debug\DAL.pdb

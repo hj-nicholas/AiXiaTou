@@ -27,7 +27,7 @@ namespace DAL
                     {
                         ShowOrderModel showOrder = new ShowOrderModel();
                         showOrder.CommentContent = Convert.ToString(rdr["CommentContent"]);
-                        showOrder.CommentDatet = Convert.ToDateTime(rdr["CommentDatet"]);
+                        showOrder.CommentDate = Convert.ToDateTime(rdr["CommentDate"]);
                         showOrder.CommentID = Convert.ToInt32(rdr["CommentID"]);
                         showOrder.CommentNum = Convert.ToInt32(rdr["CommentNum"]);
                         showOrder.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
@@ -35,6 +35,7 @@ namespace DAL
                         showOrder.ProductName = Convert.ToString(rdr["ProductName"]);
                         showOrder.SupportNum = Convert.ToInt32(rdr["SupportNum"]);
                         showOrder.UserName = Convert.ToString(rdr["UserName"]);
+                        showOrder.PeriodID = Convert.ToInt32(rdr["PeriodId"]);
 
                         lstShowOrder.Add(showOrder);
                     }
@@ -47,5 +48,6 @@ namespace DAL
                 throw ex;
             }
         }
+
     }
 }

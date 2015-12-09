@@ -91,11 +91,11 @@ namespace Model
         /// <summary>
         /// CommentDatet
         /// </summary>		
-        private DateTime _commentdatet;
-        public DateTime CommentDatet
+        private DateTime _commentdate;
+        public DateTime CommentDate
         {
-            get { return _commentdatet; }
-            set { _commentdatet = value; }
+            get { return _commentdate; }
+            set { _commentdate = value; }
         }
 
     }
