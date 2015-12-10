@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT", "XT\XT.csproj", "{D14AF7CB-D4F9-475B-BCC3-6165DCB088B0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{4B0D177D-4F33-477E-AF79-9D32E74B17CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{BC0AA85D-FA5E-4D42-809E-2EC18EB86517}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D14AF7CB-D4F9-475B-BCC3-6165DCB088B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D14AF7CB-D4F9-475B-BCC3-6165DCB088B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D14AF7CB-D4F9-475B-BCC3-6165DCB088B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D14AF7CB-D4F9-475B-BCC3-6165DCB088B0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B0D177D-4F33-477E-AF79-9D32E74B17CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B0D177D-4F33-477E-AF79-9D32E74B17CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B0D177D-4F33-477E-AF79-9D32E74B17CD}.Release|Any CPU.ActiveCfg = Release|Any CPU

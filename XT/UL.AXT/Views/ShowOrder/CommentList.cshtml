@@ -1,0 +1,33 @@
+﻿@model List<Model.T_Comment>
+@{
+    ViewBag.Title = "CommentList";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<div class="mainM">
+    <div class="commentP white_bg">
+        <div class="commentPT pf white_bg">
+            <a class="fl hover">评论 4</a>
+            <a class="fr">羡慕 12</a>
+        </div>
+        <div class="commentPM">
+            <ul>
+                @{
+                    foreach (var comment in Model)
+                    {
+                        <li class="pr">
+                            <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
+                            <p class="oh"><span class="fl">@comment.UserId</span></p>
+                            <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
+                            <a class="pa br2">回复</a>
+                            <b class="fn block">@comment.CommentContent</b>
+                        </li>
+
+                    }
+                }
+                
+            </ul>
+        </div>
+
+        </div>
+</div>
