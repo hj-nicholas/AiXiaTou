@@ -21,36 +21,29 @@ namespace UL.AXT.Controllers
         public ActionResult CommentList(int periodId)
         {
             BLL.Comment comment = new Comment();
-            List<T_Comment> lst = comment.GetCommentListByPeroid(periodId).ToList();
+            List<CommentDTO> lst = comment.GetCommentListByPeroid(periodId).ToList();
+            //定义排序完成后的评论记录
+            List<CommentDTO> lstCommentInOrder = new List<CommentDTO>();
+            //第一级评论
+            List<CommentDTO> lstFirstLev =
+                lst.Where(c => c.CommentRefID == 0).OrderBy(c => c.CommentDate).ToList();
 
-            List<T_Comment> lstCommentInOrder = new List<T_Comment>();
-            int commentId = lst.Where(c => c.CommentRefID == 0).FirstOrDefault().CommentID;
-            List<T_Comment> lstFirst =
-                lst.Where(c => c.CommentRefID == commentId).OrderBy(c => c.CommentDate).ToList();
-
-            foreach (var comm in lstFirst)
-            {
-                //添加第一条记录
-                lstCommentInOrder.Add(comm);
-                PackageComment(comm.CommentID, lstCommentInOrder, lst);
-            }
+            PackageComment(0, lstCommentInOrder, lst);
+            
             return View(lstCommentInOrder);
         }
 
         //递归添加回复它的记录
-        public void PackageComment(int CommentRefID, List<T_Comment> lstCommentInOrder, List<T_Comment> lst)
+        public void PackageComment(int CommentRefID, List<CommentDTO> lstCommentInOrder, List<CommentDTO> lst)
         {
             
-            List<T_Comment> lstcommRef = lst.Where(c => c.CommentRefID == CommentRefID).OrderBy(c=>c.CommentDate).ToList();
-            if (lstcommRef.Count > 0)
-            {
-                lstCommentInOrder.Add(lstcommRef[0]);
-                PackageComment(lstcommRef[0].CommentID, lstCommentInOrder,lst);
+            List<CommentDTO> lstcommRef = lst.Where(c => c.CommentRefID == CommentRefID).OrderBy(c=>c.CommentDate).ToList();
+            foreach (var commRef in lstcommRef)
+           {
+                lstCommentInOrder.Add(commRef);
+                PackageComment(commRef.CommentID, lstCommentInOrder,lst);
             }
-            else
-            {
-                lstCommentInOrder.Add(lstcommRef[0]);
-            }
+            
         }
     }
 }
