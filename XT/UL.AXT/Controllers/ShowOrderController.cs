@@ -22,7 +22,35 @@ namespace UL.AXT.Controllers
         {
             BLL.Comment comment = new Comment();
             List<T_Comment> lst = comment.GetCommentListByPeroid(periodId).ToList();
-            return View(lst);
+
+            List<T_Comment> lstCommentInOrder = new List<T_Comment>();
+            int commentId = lst.Where(c => c.CommentRefID == 0).FirstOrDefault().CommentID;
+            List<T_Comment> lstFirst =
+                lst.Where(c => c.CommentRefID == commentId).OrderBy(c => c.CommentDate).ToList();
+
+            foreach (var comm in lstFirst)
+            {
+                //添加第一条记录
+                lstCommentInOrder.Add(comm);
+                PackageComment(comm.CommentID, lstCommentInOrder, lst);
+            }
+            return View(lstCommentInOrder);
+        }
+
+        //递归添加回复它的记录
+        public void PackageComment(int CommentRefID, List<T_Comment> lstCommentInOrder, List<T_Comment> lst)
+        {
+            
+            List<T_Comment> lstcommRef = lst.Where(c => c.CommentRefID == CommentRefID).OrderBy(c=>c.CommentDate).ToList();
+            if (lstcommRef.Count > 0)
+            {
+                lstCommentInOrder.Add(lstcommRef[0]);
+                PackageComment(lstcommRef[0].CommentID, lstCommentInOrder,lst);
+            }
+            else
+            {
+                lstCommentInOrder.Add(lstcommRef[0]);
+            }
         }
     }
 }
