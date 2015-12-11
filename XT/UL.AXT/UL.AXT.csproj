@@ -270,6 +270,7 @@
     <Content Include="Views\Shared\Main.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\ShowOrder\CommentList.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

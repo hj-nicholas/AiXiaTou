@@ -9,7 +9,7 @@ namespace BLL
 {
     public class Comment
     {
-        public IList<T_Comment> GetCommentListByPeroid(int periodId)
+        public IList<CommentDTO> GetCommentListByPeroid(int periodId)
         {
             DAL.Comment comment = new DAL.Comment();
             return comment.GetCommentListByPeroid(periodId);

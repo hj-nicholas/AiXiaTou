@@ -5,7 +5,7 @@ using System.Data;
 namespace Model
 {
     //T_Comment
-    public class T_Comment
+    public partial class CommentDTO
     {
 
         /// <summary>
@@ -72,6 +72,15 @@ namespace Model
             set { _commentdate = value; }
         }
 
+    }
+
+    public partial class CommentDTO
+    {
+        //发起 评论的人
+        public string Commenter { get; set; }
+
+        //被评论的人
+        public string CommentRefer { get; set; }
     }
 }
 

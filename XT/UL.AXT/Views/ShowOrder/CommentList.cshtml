@@ -1,4 +1,4 @@
-﻿@model List<Model.T_Comment>
+﻿@model List<Model.CommentDTO>
 @{
     ViewBag.Title = "CommentList";
     Layout = "~/Views/Shared/Main.cshtml";
@@ -15,13 +15,23 @@
                 @{
                     foreach (var comment in Model)
                     {
-                        <li class="pr">
-                            <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                            <p class="oh"><span class="fl">@comment.UserId</span></p>
-                            <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
-                            <a class="pa br2">回复</a>
-                            <b class="fn block">@comment.CommentContent</b>
-                        </li>
+                       
+                            <li class="pr">
+                                <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
+                                <p class="oh"><span class="fl">@comment.Commenter</span></p>
+                                <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
+                                <a class="pa br2">回复</a>
+                                @{if(comment.CommentRefID==0)
+                                {
+                                <b class="fn block">@comment.CommentContent</b>
+                                }
+                                else
+                                {
+                                <b class="fn block">回复 @comment.CommentRefer: @comment.CommentContent</b>
+                                    }
+                                }
+                            </li>
+                       
 
                     }
                 }
