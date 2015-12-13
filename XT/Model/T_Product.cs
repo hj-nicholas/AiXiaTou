@@ -53,6 +53,16 @@ namespace Model
             get { return _producttype; }
             set { _producttype = value; }
         }
+        /// <summary>
+		/// IsActual
+        /// </summary>		
+		private int _isactual;
+        public int IsActual
+        {
+            get { return _isactual; }
+            set { _isactual = value; }
+        }
+
 
     }
 }

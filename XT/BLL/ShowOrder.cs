@@ -12,7 +12,7 @@ namespace BLL
     {
         public IList<ShowOrderModel> GetShowingOrders()
         {
-            Product pro = new Product();
+           DAL.Product pro = new DAL.Product();
             IList<ShowOrderModel> lst = pro.GetShowingOrders();
             return lst;
         }

@@ -215,6 +215,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\AiXiaTou.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Common\common.js" />
     <Content Include="Scripts\Common\touchwipe.js" />
@@ -231,6 +232,7 @@
     <Content Include="Scripts\ShowingOrder\ShowingOrder.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\CommentPhotos\20151209\img01.jpg" />
+    <Content Include="Uploads\ProductPhotos\20151209\img01.jpg" />
     <Content Include="Uploads\UserImages\img01.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -271,10 +273,11 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\ShowOrder\CommentList.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Product\_OneDoller.cshtml" />
+    <Content Include="Views\Product\_Thousand.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\ProductPhotos\20151209\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

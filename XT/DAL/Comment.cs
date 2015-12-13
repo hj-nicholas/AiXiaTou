@@ -19,7 +19,6 @@ namespace DAL
             {
                 IList<CommentDTO> lstComment = new List<CommentDTO>();
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetCommentListByPeriodId", strConn);
-                //cmd.Parameters.Add(new SqlParameter ( "@i_periodId", SqlDbType.Int));
                 cmd.Parameters["@i_periodId"].Value = periodId.ToString();
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {

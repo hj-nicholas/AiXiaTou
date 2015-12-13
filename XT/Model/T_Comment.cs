@@ -76,11 +76,13 @@ namespace Model
 
     public partial class CommentDTO
     {
-        //·¢Æğ ÆÀÂÛµÄÈË
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½
         public string Commenter { get; set; }
 
-        //±»ÆÀÂÛµÄÈË
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½
         public string CommentRefer { get; set; }
+        
+        public string getEel{get;set;}
     }
 }
 

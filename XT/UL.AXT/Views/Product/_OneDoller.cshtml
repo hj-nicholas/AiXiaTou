@@ -1,0 +1,40 @@
+﻿@model List<Model.ProductModel>
+<div class="index">
+    <ul>
+
+        @foreach(var prod in Model)
+        { 
+        <li>
+            <div class="index_T">
+                <a class="pa collection_s  icon_s margin_t5"></a>
+                <a href="Shrimp_head_detail.html" class="block oh">
+                    <img src="~/Uploads/ProductPhotos/20151209/img01.jpg" class="fr br4" />
+                    <p class="oh">
+                        <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
+                        <span class="f14 lh25 block gray6 oh "><em class="fl fsn">价值：@prod.ProductPrice 元</em></span>
+                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn">期数：@prod.PeriodNum , @prod.ProductDesc</em></span>
+                    </p>
+
+                </a>
+            </div>
+            <div class="index_M">
+                <div class="index_MR fr">
+                    <a href="Submit_order.html" class="red_bg white block br4 lh30 tc f16 margin_t5">参与众投</a>
+                </div>
+                <div class="index_ML">
+                    <h3 class="grayC_bg"><b class="orange_bg block" style="width:40%;"></b></h3>
+
+                    <p class="oh">
+                        <span class="fl"><b class="red fn block">@prod.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                        <span class="fl tc"><b class="red fn block">@prod.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                        <span class="fl tr"><b class="red fn block">@(prod.ProductPrice- prod.JoinedNum)</b><i class="grayC block">剩余</i></span>
+                    </p>
+                </div>
+            </div>
+        </li>
+        }
+       
+
+
+    </ul>
+</div>

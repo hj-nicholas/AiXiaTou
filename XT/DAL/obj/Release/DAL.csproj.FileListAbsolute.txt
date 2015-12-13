@@ -5,3 +5,10 @@ F:\XiaTou\Project\XT\ClassLibrary1\bin\Release\Model.pdb
 F:\XiaTou\Project\XT\ClassLibrary1\obj\Release\DAL.csprojResolveAssemblyReference.cache
 F:\XiaTou\Project\XT\ClassLibrary1\obj\Release\ClassLibrary1.dll
 F:\XiaTou\Project\XT\ClassLibrary1\obj\Release\ClassLibrary1.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Release\DAL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Release\DAL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Release\Model.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\bin\Release\Model.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\obj\Release\DAL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\DAL\obj\Release\DAL.pdb

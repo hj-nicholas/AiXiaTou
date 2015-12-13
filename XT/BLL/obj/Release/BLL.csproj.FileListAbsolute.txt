@@ -7,3 +7,12 @@ F:\XiaTou\Project\XT\BLL\bin\Release\Model.pdb
 F:\XiaTou\Project\XT\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
 F:\XiaTou\Project\XT\BLL\obj\Release\BLL.dll
 F:\XiaTou\Project\XT\BLL\obj\Release\BLL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Release\BLL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Release\BLL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Release\DAL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Release\Model.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Release\DAL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Release\Model.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\obj\Release\BLL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\obj\Release\BLL.pdb

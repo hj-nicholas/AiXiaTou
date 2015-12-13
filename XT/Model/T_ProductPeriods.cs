@@ -98,6 +98,15 @@ namespace Model
             get { return _isshoworder; }
             set { _isshoworder = value; }
         }
+        /// <summary>
+		/// 创建时间
+        /// </summary>		
+		private DateTime _createtime;
+        public DateTime CreateTime
+        {
+            get { return _createtime; }
+            set { _createtime = value; }
+        }
 
     }
 }
