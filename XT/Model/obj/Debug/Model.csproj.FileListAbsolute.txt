@@ -6,4 +6,3 @@ F:\XiaTou\Project\AiXiaTou.git\XT\Model\bin\Debug\Model.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\Model\bin\Debug\Model.pdb
 F:\XiaTou\Project\AiXiaTou.git\XT\Model\obj\Debug\Model.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\Model\obj\Debug\Model.pdb
-F:\XiaTou\Project\AiXiaTou.git\XT\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

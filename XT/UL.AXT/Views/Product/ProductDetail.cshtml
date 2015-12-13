@@ -1,4 +1,5 @@
-﻿
+﻿@using Model
+@model Model.ProductModel
 @{
     Layout = "../Shared/Main.cshtml";
 }
@@ -11,13 +12,13 @@
         </div>
         <div class="detailXM">
             <h1 class="lh30 f20">Apple Watch</h1>
-            <h2 class="lh25 fn f14">抢购价：1999 元<span class="grayC"> 价值：2899元</span></h2>
+            <h2 class="lh25 fn f14">抢购价：@Model.ProductPrice 元<span class="grayC"> 价值：2899元</span></h2>
             <div class="index_ML">
-                <h3 class="grayC_bg"><b class="orange_bg block" style="width:40%;"></b></h3>
+                <h3 class="grayC_bg"><b class="orange_bg block" style="width:@(decimal.Round(Model.JoinedNum*100/Model.ProductPrice,0))%;"></b></h3>
                 <p class="oh">
-                    <span class="fl"><b class="red fn block">406</b><i class=" grayC block">已参与</i></span>
-                    <span class="fl tc"><b class="red fn block">1000</b><i class="grayC block">总需人次</i></span>
-                    <span class="fl tr"><b class="red fn block">594</b><i class="grayC block">剩余</i></span>
+                    <span class="fl"><b class="red fn block">@Model.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                    <span class="fl tc"><b class="red fn block">@Model.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                    <span class="fl tr"><b class="red fn block">@(Model.ProductPrice- Model.JoinedNum)</b><i class="grayC block">剩余</i></span>
                 </p>
             </div>
         </div>
@@ -27,9 +28,23 @@
                 <span class="fl"><i class="right_s  icon_s fl"></i><b class="fl fn">正品保障</b></span>
                 <span class="fl"><i class="right_s  icon_s fl"></i><b class="fl fn">全国免费送</b></span>
             </p>
-            <a class="orange_bg gray3_border1 h20 lh20 br4 fl">第4期进行中</a>
-            <a class=" gray3_border1 h20 lh20 br4 fl">第3期已开奖</a>
-            <a class=" gray3_border1 h20 lh20 br4 fl">第2期已开奖</a>
+            @{
+                var lstPeriod = ViewBag.Periods;
+                for (int i = 0; i < lstPeriod.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        <a class="orange_bg gray3_border1 h20 lh20 br4 fl">@lstPeriod[i].PeriodNum 进行中</a>
+                    }
+                    else
+                    {
+                        <a class=" gray3_border1 h20 lh20 br4 fl">@lstPeriod[i].PeriodNum 已开奖</a>
+                    }
+
+
+                }
+            }
+            
             <a href="Shrimp_head_of.html" class="pa arrow_s  icon_s"></a>
         </div>
     </div>

@@ -86,5 +86,71 @@ namespace DAL
             }
         }
 
+        public ProductModel GetProductByPeriodId(int periodId)
+        {
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetProductByPeriodId", strConn);
+                cmd.Parameters["@p_PeriodId"].Value = periodId;
+                ProductModel prod = new ProductModel();
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        prod.ProductName = Convert.ToString(rdr["ProductName"]);
+                        prod.ProductExpires = Convert.ToDateTime(rdr["ProductExpires"]);
+                        prod.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
+                        prod.ProductId = Convert.ToInt32(rdr["ProductId"]);
+                        prod.ProductType = Convert.ToInt32(rdr["ProductType"]);
+                        prod.ProductDesc = Convert.ToString(rdr["ProductDesc"]);
+                        prod.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        prod.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
+                        prod.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
+                        prod.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+                        
+                    }
+                }
+
+                return prod;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IList<T_ProductPeriods> GetPeriods(int productId)
+        {
+            try
+            {
+                IList<T_ProductPeriods> lstPeriod = new List<T_ProductPeriods>();
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetProdProgress", strConn);
+                cmd.Parameters["@p_productId"].Value = productId;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        T_ProductPeriods period = new T_ProductPeriods();
+                        period.PeriodID = Convert.ToInt32(rdr["PeriodID"]);
+                        period.ProductExpires = Convert.ToDateTime(rdr["ProductExpires"]);
+                        period.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
+                        period.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
+                        period.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
+                        period.ProductId = Convert.ToInt32(rdr["ProductId"]);
+                        period.ProductPrice = Convert.ToInt32(rdr["ProductPrice"]);
+                        lstPeriod.Add(period);
+                    }
+                }
+
+                return lstPeriod;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

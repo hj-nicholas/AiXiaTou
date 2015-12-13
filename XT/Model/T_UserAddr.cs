@@ -45,6 +45,22 @@ namespace Model
             set { _valid = value; }
         }
 
+        //收件人
+        private string _receiver;
+        public string Receiver
+        {
+            get { return _receiver; }
+            set { _receiver = value; }
+        }
+
+        //收件人电话
+        private string _phone;
+        public string Phone
+        {
+            get { return _phone; }
+            set { _phone = value; }
+        }
+
     }
 }
 

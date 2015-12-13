@@ -9,11 +9,24 @@ namespace BLL
 {
     public class Product
     {
+        DAL.Product pro = new DAL.Product();
         public IList<ProductModel> GetProducts(int proType)
         {
-            DAL.Product pro = new DAL.Product();
             IList<ProductModel> lst = pro.GetProducts(proType);
             return lst;
+        }
+
+        public ProductModel GetProductByPeriodId(int periodId)
+        {
+            var product = pro.GetProductByPeriodId(periodId);
+            return product;
+
+        }
+
+        public IList<T_ProductPeriods> GetPeriods(int productId)
+        {
+            var periods = pro.GetPeriods(productId);
+            return periods;
         }
     }
 }

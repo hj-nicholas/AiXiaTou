@@ -21,7 +21,18 @@ namespace UL.AXT.Controllers
 
         public ActionResult ProductDetail(int periodId)
         {
-            return View();
+            //1.产品相关信息
+            var product = prod.GetProductByPeriodId(periodId);
+            //2.该类型产品进行进度
+            var periods = prod.GetPeriods(product.ProductId).Take(3).ToList();
+            //3.晒单记录
+            //4.抢购记录
+            //5.赠送记录
+
+            ViewBag.Product = product;
+            ViewBag.Periods = periods;
+
+            return View(product);
         }
 
     }

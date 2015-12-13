@@ -174,6 +174,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShowOrderController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +197,7 @@
     <Content Include="Content\images\banner02.jpg" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\img01.jpg" />
+    <Content Include="Content\images\img02.jpg" />
     <Content Include="Content\images\pay.png" />
     <Content Include="Content\images\play.png" />
     <Content Include="Content\images\share_img01.jpg" />
@@ -235,6 +237,7 @@
     <Content Include="Uploads\ProductPhotos\20151209\img01.jpg" />
     <Content Include="Uploads\ProductPhotos\20151209\img02.jpg" />
     <Content Include="Uploads\UserImages\img01.jpg" />
+    <Content Include="Uploads\UserImages\user_in.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -277,6 +280,8 @@
     <Content Include="Views\Product\_OneDoller.cshtml" />
     <Content Include="Views\Product\_Thousand.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\ReceiveAddrs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

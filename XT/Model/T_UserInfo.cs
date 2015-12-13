@@ -5,7 +5,7 @@ using System.Data;
 namespace Model
 {
     //T_UserInfo
-    public class T_UserInfo
+    public partial class UserDTO
     {
 
         /// <summary>
@@ -72,6 +72,21 @@ namespace Model
             set { _valid = value; }
         }
 
+        private string _cellphone;
+        public string Cellphone
+        {
+            get { return _cellphone; }
+            set { _cellphone = value; }
+        }
+
+    }
+
+    public  partial class  UserDTO
+    {
+        //用户地址
+         public List<T_UserAddr> UserAddrs { get; set; }
+        //用户参加数量
+        public int JoinedNum { get; set; }
     }
 }
 

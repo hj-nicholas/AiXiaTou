@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="Comment.cs" />
     <Compile Include="Product.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHelper.cs" />
+    <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
