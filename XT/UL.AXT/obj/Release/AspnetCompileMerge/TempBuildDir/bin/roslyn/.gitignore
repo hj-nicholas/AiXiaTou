@@ -1,0 +1,12 @@
+/Microsoft.Build.Tasks.CodeAnalysis.dll
+/Microsoft.CSharp.Core.targets
+/Microsoft.CodeAnalysis.CSharp.dll
+/Microsoft.CodeAnalysis.VisualBasic.dll
+/Microsoft.CodeAnalysis.dll
+/Microsoft.VisualBasic.Core.targets
+/System.Collections.Immutable.dll
+/System.Reflection.Metadata.dll
+/VBCSCompiler.exe
+/VBCSCompiler.exe.config
+/csc.exe
+/vbc.exe
