@@ -233,6 +233,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\CommentPhotos\20151209\img01.jpg" />
     <Content Include="Uploads\ProductPhotos\20151209\img01.jpg" />
+    <Content Include="Uploads\ProductPhotos\20151209\img02.jpg" />
     <Content Include="Uploads\UserImages\img01.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -275,6 +276,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Product\_OneDoller.cshtml" />
     <Content Include="Views\Product\_Thousand.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

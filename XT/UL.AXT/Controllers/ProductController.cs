@@ -18,5 +18,11 @@ namespace UL.AXT.Controllers
             List<ProductModel> lst = prod.GetProducts(proType).ToList();
             return View(lst);
         }
+
+        public ActionResult ProductDetail(int periodId)
+        {
+            return View();
+        }
+
     }
 }

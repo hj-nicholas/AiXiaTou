@@ -7,7 +7,7 @@
         <li>
             <div class="index_T">
                 <a class="pa collection_s  icon_s margin_t5"></a>
-                <a href="Shrimp_head_detail.html" class="block oh">
+                <a href="/Product/ProductDetail?periodId=@prod.PeriodId" class="block oh">
                     <img src="~/Uploads/ProductPhotos/20151209/img01.jpg" class="fr br4" />
                     <p class="oh">
                         <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
@@ -22,7 +22,7 @@
                     <a href="Submit_order.html" class="red_bg white block br4 lh30 tc f16 margin_t5">参与众投</a>
                 </div>
                 <div class="index_ML">
-                    <h3 class="grayC_bg"><b class="orange_bg block" style="width:40%;"></b></h3>
+                    <h3 class="grayC_bg"><b class="orange_bg block" style="width:@(decimal.Round(prod.JoinedNum*100/prod.ProductPrice,0))%;"></b></h3>
 
                     <p class="oh">
                         <span class="fl"><b class="red fn block">@prod.JoinedNum</b><i class=" grayC block">已参与</i></span>

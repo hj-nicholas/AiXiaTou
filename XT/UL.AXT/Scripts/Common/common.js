@@ -152,3 +152,9 @@ function selectTag(showContent,selfObj,a,b){
     document.getElementById(showContent).style.display = "block";	
 }
 
+//add by hoo 2015-12-13
+$(function() {
+    //$("i[type='footerBtn']").click(function() {
+    //    if($(this).hasClass("shaidan"))
+    //});
+});
