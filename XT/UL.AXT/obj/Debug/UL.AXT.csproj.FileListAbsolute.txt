@@ -85,3 +85,9 @@ F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\DAL.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\BLL.pdb
 F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\Model.pdb
 F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\DAL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Net.Http.Formatting.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.WebHost.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Net.Http.Formatting.xml
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.xml
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.WebHost.xml

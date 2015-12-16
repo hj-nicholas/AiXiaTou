@@ -153,8 +153,49 @@ function selectTag(showContent,selfObj,a,b){
 }
 
 //add by hoo 2015-12-13
-$(function() {
-    //$("i[type='footerBtn']").click(function() {
-    //    if($(this).hasClass("shaidan"))
-    //});
+$(function () {
+    //切换底部菜单高亮显示
+    $("i[type='footerBtn']").click(function () {
+        var a_H = $(this).parent();
+        if (!a_H.hasClass("icon_H")) {
+            a_H.siblings().removeClass("icon_H");
+            a_H.addClass("icon_H");
+            SetCookie("footerBtn", a_H.prop("id"));
+            
+        }
+    });
 });
+
+/*
+功能：保存cookies函数 
+参数：name，cookie名字；value，值
+*/
+function SetCookie(name, value) {
+    var cookieDays = 30 * 12;   //cookie 将被保存一年
+    var exp = new Date();  //获得当前时间
+    exp.setTime(exp.getTime() + cookieDays * 24 * 60 * 60 * 1000);  //换成毫秒
+    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
+}
+/*
+功能：获取cookies函数 
+参数：name，cookie名字
+*/
+function getCookie(name) {
+    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+    if (arr != null) {
+        return unescape(arr[2]);
+    } else {
+        return null;
+    }
+}
+/*
+功能：删除cookies函数 
+参数：name，cookie名字
+*/
+
+function delCookie(name) {
+    var exp = new Date();  //当前时间
+    exp.setTime(exp.getTime() - 1);
+    var cval = getCookie(name);
+    if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+}

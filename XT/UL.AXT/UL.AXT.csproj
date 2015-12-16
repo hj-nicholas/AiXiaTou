@@ -52,6 +52,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -59,6 +63,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -168,21 +180,59 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\JSONHelp.cs" />
+    <Compile Include="Common\Log.cs" />
+    <Compile Include="Common\WeChat\Message.cs" />
+    <Compile Include="Common\WeChat\RequestBaseMessage.cs" />
+    <Compile Include="Common\WeChat\RequestClickMessage.cs" />
+    <Compile Include="Common\WeChat\RequestEventMessage.cs" />
+    <Compile Include="Common\WeChat\RequestEx.cs" />
+    <Compile Include="Common\WeChat\RequestImageMessage.cs" />
+    <Compile Include="Common\WeChat\RequestKfCloseSessionMessage.cs" />
+    <Compile Include="Common\WeChat\RequestKfCreateSessionMessage.cs" />
+    <Compile Include="Common\WeChat\RequestKfSwitchSessionMessage.cs" />
+    <Compile Include="Common\WeChat\RequestLinkMessage.cs" />
+    <Compile Include="Common\WeChat\RequestLocationMessage.cs" />
+    <Compile Include="Common\WeChat\RequestLocationSelectMessage.cs" />
+    <Compile Include="Common\WeChat\RequestMassSendJobFinishMessage.cs" />
+    <Compile Include="Common\WeChat\RequestMessageHelper.cs" />
+    <Compile Include="Common\WeChat\RequestMessageTypeEnum.cs" />
+    <Compile Include="Common\WeChat\RequestPicMessage.cs" />
+    <Compile Include="Common\WeChat\RequestReportLocationMessage.cs" />
+    <Compile Include="Common\WeChat\RequestScanCodeMessage.cs" />
+    <Compile Include="Common\WeChat\RequestScanMessage.cs" />
+    <Compile Include="Common\WeChat\RequestSubscribeMessage.cs" />
+    <Compile Include="Common\WeChat\RequestTemplateSendJobFinishMessage.cs" />
+    <Compile Include="Common\WeChat\RequestTextMessage.cs" />
+    <Compile Include="Common\WeChat\RequestUnsubscribeMessage.cs" />
+    <Compile Include="Common\WeChat\RequestVideoMessage.cs" />
+    <Compile Include="Common\WeChat\RequestViewMessage.cs" />
+    <Compile Include="Common\WeChat\RequestVoiceMessage.cs" />
+    <Compile Include="Common\WeChat\ResponseBaseMessage.cs" />
+    <Compile Include="Common\WeChat\ResponseMessageTypeEnum.cs" />
+    <Compile Include="Common\WeChat\ResponseTextMessage.cs" />
+    <Compile Include="Common\WeChat\ScanCodeInfo.cs" />
+    <Compile Include="Common\WeChat\SendLocationInfo.cs" />
+    <Compile Include="Common\WeChat\SendPicsInfo.cs" />
+    <Compile Include="Common\WeChat\Utility.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShowOrderController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WeChatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\WeChatModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Wechat\WeChatApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -228,6 +278,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MainFrame\MainFrame.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -282,6 +333,7 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ReceiveAddrs.cshtml" />
+    <Content Include="Views\WeChat\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

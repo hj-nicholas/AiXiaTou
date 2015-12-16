@@ -185,26 +185,26 @@ input {vertical-align: middle;line-height: normal;}
 .icon{width:30px; height:30px;background: url(../images/icon.png) no-repeat;}
 	.wrong{background-position:-1px -1px;}
 	.right{background-position:-51px -1px;}
-	.plus{background-position:-101px -1px;}
+	.icon_H .plus{background-position:-101px -1px;}
 	.question{background-position:-151px -1px;}
 	.user{background-position:-201px -1px;}
-	.collection{background-position:-251px -1px;}
-	.collection_H{background-position:-251px -51px;}
+	.icon_H .collection{background-position:-251px -1px;}
+	.collection{background-position:-251px -51px;}
 	.locate{background-position:-301px -1px;}
 	.shopping{background-position:-351px -1px;}
 	.telephone{background-position:-401px -1px;}
 	.paper{background-position:-451px -1px;}
 	
-	.gift{background-position:-1px -51px;}
-	.gift_H{background-position:-1px -101px;}
-	.shrimp{background-position:-51px -51px;}
-	.shrimp_H{background-position:-51px -101px;}
-	.money{background-position:-101px -51px;}
-	.money_H{background-position:-101px -101px;}
-	.smile{background-position:-151px -51px;}
-	.smile_H{background-position:-151px -101px;}
-	.time{background-position:-201px -51px;}
-	.time_H{background-position:-201px -101px;}
+	.icon_H .gift{background-position:-1px -51px;}
+	.gift{background-position:-1px -101px;}
+	.icon_H .shrimp{background-position:-51px -51px;}
+	.shrimp{background-position:-51px -101px;}
+	.icon_H .money{background-position:-101px -51px;}
+	.money{background-position:-101px -101px;}
+	.icon_H .smile{background-position:-151px -51px;}
+	.smile{background-position:-151px -101px;}
+	.icon_H .time{background-position:-201px -51px;}
+	.time{background-position:-201px -101px;}
 	.flagY{background-position:-301px -51px;}
 	.flagG{background-position:-351px -51px;}
 	.flagB{background-position:-401px -51px;}
@@ -217,12 +217,12 @@ input {vertical-align: middle;line-height: normal;}
 	.shrimpG{background-position:-451px -101px;}
 	
 	.arrow{background-position:-1px -151px;}
-	.plus_H{background-position:-51px -151px;}
+	.plus{background-position:-51px -151px;}
 	.minus{background-position:-101px -151px;}
 	.pen{background-position:-151px -151px;}
 	
-	.shaidan{background-position:-401px -151px;}
-	.shaidan_H{background-position:-401px -201px;}
+	.icon_H .shaidan{background-position:-401px -151px;}
+	.shaidan{background-position:-401px -201px;}
 	
 	.yuanx{background-position:-201px -201px;}
 	
@@ -230,26 +230,26 @@ input {vertical-align: middle;line-height: normal;}
 	
 	.wrong_s{background-position:0px 0px;}
 	.right_s{background-position:-30px 0px;}
-	.plus_s{background-position:-60px 0px;}
+	.icon_H .plus_s{background-position:-60px 0px;}
 	.question_s{background-position:-90px 0px;}
 	.user_s{background-position:-120px 0px;}
-	.collection_s{background-position:-150px 0px;}
-	.collection_s_H{background-position:-150px -30px;}
+	.icon_H .collection_s{background-position:-150px 0px;}
+	.collection_s{background-position:-150px -30px;}
 	.locate_s{background-position:-180px 0px;}
 	.shopping_s{background-position:-210px 0px;}
 	.telephone_s{background-position:-240px 0px;}
 	.paper_s{background-position:-270px 0px;}
 	
-	.gift_s{background-position:0px -30px;}
-	.gift_s_H{background-position:0px -60px;}
-	.shrimp_s{background-position:-30px -30px;}
-	.shrimp_s_H{background-position:-30px -60px;}
-	.money_s{background-position:-60px -30px;}
-	.money_s_H{background-position:-60px -60px;}
-	.smile_s{background-position:-90px -30px;}
-	.smile_s_H{background-position:-90px -60px;}
-	.time_s{background-position:-120px -30px;}
-	.time_s_H{background-position:-120px -60px;}
+	.icon_H .gift_s{background-position:0px -30px;}
+	.gift_s{background-position:0px -60px;}
+	.icon_H .shrimp_s{background-position:-30px -30px;}
+	.shrimp_s{background-position:-30px -60px;}
+	.icon_H .money_s{background-position:-60px -30px;}
+	.money_s{background-position:-60px -60px;}
+	.icon_H .smile_s{background-position:-90px -30px;}
+	.smile_s{background-position:-90px -60px;}
+	.icon_H .time_s{background-position:-120px -30px;}
+	.time_s{background-position:-120px -60px;}
 	.flagY_s{background-position:-180px -30px;}
 	.flagG_s{background-position:-210px -30px;}
 	.flagB_s{background-position:-240px -30px;}
@@ -262,27 +262,27 @@ input {vertical-align: middle;line-height: normal;}
 	.shrimpG_s{background-position:-270px -60px;}
 	
 	.arrow_s{background-position:0px -90px;}
-	.plus_s_H{background-position:-30px -90px;}
+	.plus_s{background-position:-30px -90px;}
 	.minus_s{background-position:-60px -90px;}
 	.pen_s{background-position:-90px -90px;}
 	.arrow_ss{background-position:-120px -90px;}
 	.top_s{background-position:-150px -90px;}
 	.share_s{background-position:-180px -90px;}
 	.yuan_s{background-position:-210px -90px;}
-	.shaidan_s{background-position:-240px -90px;}
-	.shaidan_s_H{background-position:-240px -120px;}
+	.icon_H .shaidan_s{background-position:-240px -90px;}
+	.shaidan_s{background-position:-240px -120px;}
 	.wenhao_s{background-position:-270px -90px;}
 	
-	.liaotian_s{background-position:-0px -120px;}
-	.liaotian_s_H{background-position:-0px -150px;}
-	.dianzan_s{background-position:-30px -120px;}
-	.dianzan_s_H{background-position:-30px -150px;}
-	.choose_s{background-position:-60px -120px;}
-	.choose_s_H{background-position:-60px -150px;}
+	.icon_H .liaotian_s{background-position:-0px -120px;}
+	.liaotian_s{background-position:-0px -150px;}
+	.icon_H .dianzan_s{background-position:-30px -120px;}
+	.dianzan_s{background-position:-30px -150px;}
+	.icon_H .choose_s{background-position:-60px -120px;}
+	.choose_s{background-position:-60px -150px;}
 	.jisuanqi_s{background-position:-90px -120px;}
 	.yuanx_s{background-position:-120px -120px;}
-	.xiazi_s_H{background-position:-150px -120px;}
-	.xiazi_s{background-position:-180px -120px;}
+	.xiazi_s{background-position:-150px -120px;}
+	.icon_H .xiazi_s{background-position:-180px -120px;}
 	
 
 /*********icon**************/
