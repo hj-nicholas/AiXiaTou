@@ -1,0 +1,86 @@
+﻿@model Model.UserDTO
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<div class="mainM mine">
+    <div class="mineT white_bg">
+        <a href="Homepage.html" class="green_bg">
+            <img src="~/Uploads/UserImages/user_in.png" class="fl" />
+            <i class="arrow_s fr icon_s "></i>
+            <p>
+                <span class="f16 oh">@Model.UserName</span>
+                <span class="f14 oh">@Model.Cellphone</span>
+
+            </p>
+
+        </a>
+    </div>
+    <div class="mineM white_bg margin_t15">
+        <ul class="oh">
+            <li><a href="Account_details.html"><h3><span class="f20 fn">@Model.AccountBalance</span><i class="fn gray9"> 只</i></h3><p class="gray6">虾米</p></a></li>
+            <li><a href="I_attended_1.html"><h3><span class="f20 fn">@Model.JoinedNum</span><i class="fn gray9"> 个</i></h3><p class="gray6">参与</p></a></li>
+            <li><a href="My_gifts.html"><h3><span class="f20 fn">0</span><i class="fn gray9"> 个</i></h3><p class="gray6">礼物</p></a></li>
+        </ul>
+    </div>
+    <div class="mineB margin_t15">
+        <ul class="white_bg">
+            <li>
+                <a href="share_polite.html" class="oh">
+                    <i class="share_s icon_s fl margin_r10"></i>
+                    <p class="fl f16">免费拿虾米</p>
+                </a>
+            </li>
+            <!--
+            <li>
+            <a class="oh">
+            <i class="shopping_s icon_s fl margin_r10"></i>
+            <p class="fl f16">海货市场</p>
+            </a>
+            </li>
+            -->
+            <li>
+                <a href="Shrimp_gifts.html" class="oh">
+                    <i class="gift_s icon_s fl margin_r10"></i>
+                    <p class="fl f16">虾米送礼</p>
+                    <span class="fr red_bg white br4">首单立减20</span>
+                </a>
+            </li>
+            <li>
+                <a href="my_collection.html" class="oh">
+                    <i class="collection_s  icon_s fl margin_r10"></i>
+                    <p class="fl f16">我的收藏</p>
+                </a>
+            </li>
+            <li>
+                <a href="/User/ReceiveAddrs" class="oh">
+                    <i class="locate_s icon_s fl margin_r10"></i>
+                    <p class="fl f16">收货地址</p>
+                </a>
+            </li>
+
+        </ul>
+        <ul class="margin_t15 white_bg">
+            <li>
+                <a class="oh">
+                    <i class="telephone_s icon_s fl margin_r10"></i>
+                    <p class="fl f16">服务电话</p>
+                </a>
+            </li>
+            <li>
+                <a class="oh">
+                    <i class="paper_s icon_s fl margin_r10"></i>
+                    <p class="fl f16">合作协议</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+
+</div>
+
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")
+

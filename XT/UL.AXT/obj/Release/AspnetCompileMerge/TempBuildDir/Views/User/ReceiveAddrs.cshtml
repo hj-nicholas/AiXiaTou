@@ -1,0 +1,30 @@
+﻿@model List<Model.T_UserAddr>
+@{
+    ViewBag.Title = "ReceiveAddrs";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<div class="mainM address">
+    <div class="addressT white_bg">
+        <a href="Shipping_address_edit.html" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
+    </div>
+    <div class="addressB">
+        @foreach (var addr in Model)
+        {
+            <a href="Shipping_address_edit.html" id="@addr.AddressId" class="block white_bg">
+                <i class="pen_s icon_s pa margin_t15"></i>
+                <p class="oh lh25">
+                    <b class="fl f16">@addr.Receiver</b><i class="fr f14">@addr.Phone</i>
+                </p>
+                <p class="lh20 gray9">@addr.AddressDesc</p>
+            </a>
+        } 
+       
+       
+    </div>
+
+
+</div>
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")
+ 

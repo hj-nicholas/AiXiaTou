@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "../Shared/Main.cshtml";
+}
+
+<div class="mainT orderT h40 white_bg">
+    <ul class="oh" id="tags">
+        <li class="hover">
+            <a class="red" onClick="selectTag('tagContent0',this,'tags','tagContent')"
+               href="javascript:void(0)">一元夺宝</a>
+        </li>
+        <li>
+            <a class="red" onClick="selectTag('tagContent1',this,'tags','tagContent')"
+               href="javascript:void(0)">千元投资</a>
+        </li>
+        <li>
+            <a class="red" onClick="selectTag('tagContent2',this,'tags','tagContent')"
+               href="javascript:void(0)">房产众投</a>
+        </li>
+    </ul>
+
+</div>
+<div class="mainM" id="tagContent">
+    <div id="tagContent0">
+        @RenderPage("_OneDoller.cshtml")
+
+        
+    </div>
+    <div class="none" id="tagContent1">
+        @RenderPage("_Thousand.cshtml")
+        
+
+    </div>
+    <div class="none" id="tagContent2">
+
+
+    </div>
+</div>
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")

@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $.ajax({
+                type: "POST",
+                url: "/WeChat/CheckSignature",
+                async: false,
+                success:function(result) {
+                    alert(1);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    验证页面
+    <input type="button"  value="confirm"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,268 @@
+/* CSS Document */
+
+/*******common******/
+
+
+/*******common******/
+.main{width:100%; height:auto;   padding-bottom:60px;}
+	.mainT{width:100%; height:auto;}
+	.mainM{width:100%; height:auto;}
+	.mainB{ width:100%; height:auto; padding-top:5px; position:fixed; bottom:0; z-index:9999; border-top:1px solid #ccc;}
+	.mainB a{ width:33%; height:50px;  line-height:20px; text-align:center; color:#999; font-size:12px;}
+	.mainB a i{ margin:0 auto;}
+	
+.footer{ width:100%; height:auto; line-height:25px;background-color:#f4f4f4; padding-top:20px; padding-bottom:10px;}
+
+.banner{ width:100%; height:auto;}
+.index{ width:100%; height:auto;}
+	.index ul{ width:100%; height:auto; overflow:hidden;}
+	.index ul li{ width:auto; height:auto; padding:10px 10px 0px 10px; margin-bottom:10px; border:1px solid #ddd; border-width:1px 0 1px 0; background-color:#fff;}
+	.index_T{ width:100%; height:80px; margin-bottom:10px;}
+	.index_T a.pa{ left:10px;}
+	.index_T a.oh{ width:100%; height:80px;}
+	.index_T a.oh img{ height:80px; width:auto;}
+	.index_T a.oh p.oh{ width:auto; height:80px; margin-right:120px;}
+	.index_T a.oh p.oh b{ padding-left:25px;}
+	.index_B{ width:100%; height:auto; border-top:1px solid #ddd;}
+	.index_B  span{ width:31%; height:20px; line-height:20px; padding:5px 0; border-left:1px solid #ddd;}
+	.index_B  span:first-child{ border-width:0; width:36%;}
+	.index_M{ width:100%; height:auto; padding-bottom:5px;}
+	.index_ML{width:auto; height:40px; margin-right:120px;}
+	.index_ML p span{ width:33%; height:auto;}
+	.index_ML h3{ width:100%; height:5px;}
+	.index_ML h3 b{ width:auto; height:5px;}
+	.index_MR{ width:107px; height:40px;}
+	
+
+.detail{ width:auto; height:auto; margin-bottom:10px;}
+	.detailT{ width:auto; padding:10px; height:auto;}
+	.detailT a{ width:100%; height:20px; line-height:20px; display:block;}
+
+	.detailM{ width:auto; padding:0 10px; height:auto; color:#666;}
+	.detailX{ width:auto; height:auto;}
+		.detailXT{ width:100%; height:auto;}
+			.detailXT img{ width:100%; height:auto; border-bottom:1px solid #eee;}
+		.detailXM{ width:auto; height:auto; padding:10px;border-bottom:1px solid #eee;}
+			.detailXM h2 span{text-decoration: line-through; padding-left:10px;}
+			.detailXM .index_ML{ margin-right:0; padding-top:10px;}
+		.detailXB{ width:auto; height:auto; padding:0 10px 10px 10px;}
+			.detailXB p{ width:100%; height:20px; line-height:20px; padding:10px 0 5px; border-bottom:1px solid #eee; margin-bottom:10px;}
+			.detailXB p span{ width:33%;}
+			.detailXB p span b{ margin-left:5px;}
+			.detailXB a.fl{ width:auto; height:auto; padding:0 5px; margin-right:10px;}
+			.detailXB a.pa{ right:0px; padding-right:10px;}
+	
+	.detail .comment ul li{ margin-bottom:0;}	
+		
+.record{width:100%; height:auto; margin-bottom:5px;}
+	.record ul{ width:100%; height:auto;}
+	.record ul li{ width:100%; height:auto; padding:6px 0; border-top:1px solid #ddd;}
+	.record ul li img.fl{ width:30px; height:30px; border-radius:20px; margin-right:10px;}
+	.record ul li p{ width:auto; height:15px; line-height:15px;}
+	.record ul li i{ right:0px; top:15px;}
+	
+.rule{ width:100%; height:auto; border-top:1px solid #ddd; padding:10px 0;}
+	.rule p{ width:100%; height:auto; line-height:15px; padding-bottom:5px;}
+
+.comment{ width:100%; height:auto;}
+.comment ul{ width:100%; height:auto;}
+.comment ul li{ width:auto; height:auto; border-top:1px solid #ddd; padding:10px; margin-bottom:10px; background-color:#fff; }
+	.commentT{ width:100%; height:auto;}
+	.commentT img{ width:30px; height:30px; border-radius:20px; margin-right:10px;}
+	.commentT p{ width:auto; height:15px; line-height:15px;}
+	
+	.commentM{ width:100%; height:auto;padding:10px 0;}
+	.commentM p{ width:100%; height:auto; line-height:15px; padding-bottom:10px; color:#999;}
+	.commentM a{ width:48%; height:auto; border:1px solid #ccc; margin-right:1%;}
+	.commentM a img{ width:100%;}
+	
+	.commentB{ width:100%; height:auto; border-top:1px solid #eee;}
+	.commentB a{ width:49%; height:20px; margin-top:10px; border-left:1px solid #eee; color:#999;}
+	.commentB a:first-child{ border-width:0;}
+	.commentB a i{ margin-left:30%; margin-right:5px;}
+
+.commentX{ width:100%; height:auto;}
+	.commentX textarea{ width:96%; height:160px; line-height:20px; padding:10px 2%; border-width:0;}
+	.commentX ul{ width:96%; height:auto; padding:10px 2% 0;}
+	.commentX ul li{ width:69px; margin-right:2%; border:1px solid #ccc; height:69px; float:left; overflow:hidden; background-color:#fff;}
+	.commentX ul li a{ width:100%; height:50px; font-size:20px;}
+	.commentX ul li a i{ width:50px; height:1px; top:35px; left:10px;}
+	.commentX ul li a B{ width:1px; height:50px; left:35px; top:10px;}
+	.commentX ul li img{ height:100%; margin:0 auto; display:block;}
+	.commentX p{ padding-top:50px;}
+
+.commentP{ width:100%; height:auto;}
+.commentP .padding_b10{ bottom:0;}
+	.commentPT{ width:100%; height:35px; border-bottom:1px solid #ddd; top:0; z-index:999;}
+	.commentPT a{ width:auto; height:33px; padding:0 20px; line-height:33px; border-bottom:2px solid #fff; font-size:14px;}
+	.commentPT a.fl{ margin-left:10px; }
+	.commentPT a.fr{ margin-right:10px;}
+	.commentPT a.hover{border-bottom-color:#bc2226;}
+	
+	.commentPM{ width:100%; height:auto; margin-top:45px;}
+	.commentPM ul{ width:auto; height:auto; padding:0 10px;}
+	.commentPM ul li{ width:100%; height:auto; padding:10px 0 5px 0; border-top:1px solid #ddd;}
+	.commentPM ul li:first-child{ border-width:0;}
+	.commentPM ul li img{ width:30px; height:30px; border-radius:20px; margin-right:10px;}
+	.commentPM ul li p{ width:auto; height:15px; line-height:15px;}
+	.commentPM ul li a{ width:auto; height:20px; line-height:20px; border:1px solid #ccc; color:#999; padding:0 10px; top:10px; right:0;}
+	.commentPM ul li b{ width:auto; height:auto; padding:5px 0 5px 40px;}
+	
+.orderT ul{ width:100%; height:39px; border-bottom:1px solid #ccc;}
+	.orderT ul li{ width:33%; height:39px; float:left; border-left:1px solid #e1e1e1;}
+	.orderT ul li:first-child{border-width:0;}
+	.orderT ul li a{ width:70%; height:37px; line-height:37px; margin:0 auto; text-align:center; display:block; font-size:16px; color:#666;}
+	.orderT ul li.hover a.orange{ color:#333; border-bottom:2px solid #f7dc4e;}
+	.orderT ul li.hover a.blue{ color:#333; border-bottom:2px solid #58bcea;}
+	.orderT ul li.hover a.red{ color:#333; border-bottom:2px solid #bc2226;}
+.orderB{ width:100%; height:auto; margin-bottom:10px;}
+	.orderBT{ width:auto; height:30px; padding:5px 10px; background-color:#f9f9f9;}
+	.orderBT a{ width:auto; height:auto; padding:0 5px; height:24px; line-height:24px; margin-top:3px; margin-left:10px;}
+	.orderBB{ width:auto; height:auto; padding:0px 10px 0 10px; background-color:#fff;}
+		.orderBB a i{ margin-top:3px;}
+		.orderBB p.block{ width:100%; height:auto; border-top:1px solid #ddd; margin-top:5px;}
+		.orderBB p.block span{ width:24%; height:45px; padding:5px 0; border-left:1px solid #ddd;}
+		.orderBB p.block span:first-child{ border-width:0; width:26%;}
+.pay{ width:100%; height:40px;line-height:40px; border-top:1px solid #ccc; bottom:0;}
+.pay p{ width:auto; height:40px;}
+.pay p.fl{ margin-left:10px;}
+.pay p.fr{ margin-right:5px;}
+.pay a{ width:45%; height:40px;}
+.pay .icon_s{ margin:10px 0 0 7px;}
+
+.order_submit{ width:100%; height:auto;}
+	.order_submit h3{width:90%; height:30px; line-height:30px; font-weight:normal; padding:0 5%;background-color:#ddd;}
+	.order_submit p{ width:90%; padding:5px 5%;}
+	.order_submit ul{ width:100%; height:auto;}
+	.order_submit ul li{ width:90%; padding:10px 5%; border-bottom:1px solid #eee;}
+	.order_submit ul li input.block{ width:100%; border-width:0;}
+	.order_submit ul li a.button{ right:10px; height:25px; line-height:25px; font-size:12px; width:70px;}
+	.order_submit ul li i.icon_s{ left:20px; margin-top:5px;}
+	
+	.order_submit ul li.oh span{ width:auto; height:30px; line-height:30px;}
+	.order_submit ul li.oh input[type="text"]{ width:50px; height:26px; margin:0 5px;}
+	.order_submit ul li.oh input[type="checkbox"]{ width:25px; height:25px;}
+	.order_submit ul li.oh select{ width:30%;height:25px; line-height:25px;float:left; margin:5px 1%;}
+	
+.order_submit_share{ width:auto; height:auto; padding:10px;}
+	.order_submit_shareT{ width:100%; height:auto; }
+	.order_submit_shareT img{ margin-left:20px; margin-right:5px;}
+	.order_submit_shareT h3{ padding-top:10px;}
+	.order_submit_shareM{ width:90%; height:auto; padding:20px 5% 0px 5%;}
+	.order_submit_shareM h2{ width:100%; height:40px; line-height:40px; border-top:1px solid #ddd; }
+	
+
+.mine{}
+	.mineT{ width:100%; height:100px; border-bottom:1px solid #ccc; }
+		.mineT a { width:90%; padding:0 5%; height:100px; display:block;}
+		.mineT img.fl{ width:60px; height:60px;  border-radius:30px;margin-top:20px; border:1px solid #ccc;}
+		.mineT i.fr{  margin-top:45px;}
+		.mineT p{ width:auto; height:auto; padding-top:20px; margin-left:70px;margin-right:70px;}
+		.mineT p span{ width:100%; height:30px; line-height:30px; display:block;} 
+	
+	.mineM{ width:100%; height:auto; border-bottom:1px solid #ccc;border-top:1px solid #ccc;}
+		.mineM ul{ width:90%; height:auto; padding:10px 5%;}
+		.mineM ul li{ width:33%; height:auto; border-left:1px solid #eee; float:left; text-align:center;}
+		.mineM ul li:first-child{ border-left-width:0;}
+		.mineM ul li a{ width:100%; height:auto; display:block;}
+
+	.mineB{ width:100%; height:auto;}
+		.mineB ul{ width:90%; height:auto; padding:0 5%;}
+		.mineB ul li{ width:100%; height:auto; border-top:1px solid #eee;}
+		.mineB ul li:first-child{ border-top-width:0;}
+		.mineB ul li a{ width:100%; height:20px; line-height:20px; display:block; padding:15px 0;}
+		.mineB ul li a span{ padding:0 5px;}
+		
+.user_case{ width:100%; height:auto; padding-top:10px;}
+	.user_caseT{ width:86%; height:auto; margin:0 auto; padding:10px;}
+		.user_caseT h3{ width:100%; height:20px; line-height:20px;}
+		.user_caseT h3{ width:}
+		.user_caseT h2{ width:100%; height:50px; line-height:50px; font-size:30px; font-weight:normal;}
+		.user_caseT h2 a{ font-size:12px;}
+		.user_caseT a{ width:45%; font-size:14px;}
+	
+	.user_caseM{ width:100%; height:auto; margin-top:10px;}
+		.user_caseM h3{ width:90%; height:30px; line-height:30px; font-weight:normal; padding:0 5%; background-color:#ddd;}
+		.user_caseM ul{ width:90%; height:auto; padding:0 5%;}
+		.user_caseM ul li{ width:100%; height:auto; padding:10px 0 5px; border-top:1px solid #eee;}
+		.user_caseM ul li:first-child{ border-top-width:0;}
+		.user_caseM ul li p{ width:100%; height:25px; line-height:25px;}
+		.user_caseM ul li p i{ line-height:20px;}
+	.user_caseB{ width:100%; height:auto; }
+		.user_caseB p{ width:90%; height:20px; line-height:20px; padding:5px 5%; float:left;}
+		.user_caseB p a.block{ width:50%; margin:0 0;}
+		.user_caseB a{width:90%;margin:0 5%; float:left; font-size:14px;}
+
+.address{width:100%; height:auto;}
+	.addressT{ width:90%; height:auto; padding:10px 5%; border-bottom:1px solid #ddd; border-top:1px solid #ddd;}
+		.addressT a{ width:100%; height:auto;}
+
+	.addressB{ width:100%; height:auto;}
+		.addressB a{ width:80%; height:auto; padding:10px 15% 10px 5%; margin-top:10px;}
+		.addressB a i{right:10px;}
+
+.share{ width:100%; height:auto;}
+.share_T{ width:auto; height:auto; padding:15px; margin:20px 10px 0 10px; }
+.share_T p{ width:100%; height:auto; line-height:25px; padding-bottom:10px;}
+.share_T img.pa{ top:0px; right:0px;}
+.share_T span{ width:100%; height:auto;}
+.share_M{ width:auto; margin:0 10px; height:10px;background:url(../images/share_img02_bg.png) repeat-x; background-size:10px;}
+
+.share_B{ width:auto; height:auto; padding:10px;}
+
+
+.share_red_bg{ background:url(../images/share_img01.jpg) no-repeat; background-size:100%;background-color:#d8232c;padding-bottom:100px;}
+.share_red_bg img{ width:90%; height:auto; margin:20px  5% 0; }
+.share0{width:80%; height:auto; padding:30px 5%; margin:0 5%; background-color:#f7dc4e; border-radius:4px 4px 0 0}
+	.share01{ width:100%; height:90px;}
+	.share01L{ width:70px; height:90px; float:left;}
+	.share01L img{width:60px; height:60px; border-radius:100px; border:3px solid #fff; margin:0; display:block;}
+	.share01L p{ width:60px; height:30px; line-height:30px;}
+	.share01R{ width:auto; height:70px; margin-left:80px; position:relative; }
+	.share01R p{ line-height:25px; height:45px;padding:5px 10px;}
+	.share01R img{ width:20px; height:20px; margin:0;}
+	.share01R i{ display:block; position:absolute; top:25px;px; left:-12px;}
+	
+	.share02{ width:100%; height:auto; }
+	.share02 a{ width:100%; height:40px; line-height:40px;}
+	.share02 h3{ width:100%; height:30px; line-height:30px; margin-top:40px;}
+	.share02 p{ width:100%; height:auto; line-height:20px;}
+	.share02 h2{ width:80%; height:auto; border:2px solid #ff0000; margin:0 auto; padding:5px 5%;}
+
+
+.user0{ width:100%; height:auto;}
+.user0T{ width:100%; height:auto; padding-top:20px;}
+.user0T img{ width:70px; height:70px; position:absolute; left:50%; margin-left:-35px;}
+.user0T img.br20{ width:65px; height:65px; border-radius:50px; z-index:999; left:50%; margin-left:-33px;}
+.user0T p{ padding:80px 0 10px 0;}
+
+
+
+.user0M ul{ width:100%; height:39px; border-bottom:1px solid #ccc;}
+	.user0M ul li{ width:25%; height:39px; float:left;}
+	.user0M ul li:first-child{border-width:0;}
+	.user0M ul li a{ width:70%; height:37px; line-height:37px; margin:0 auto; text-align:center; display:block; font-size:16px; color:#666;}
+	.user0M ul li i{ width:15px; height:15px; line-height:15px; top:5px; right:-5px;}
+	.user0M ul li.hover a.orange{ color:#333; border-bottom:2px solid #f7dc4e;}
+	.user0M ul li.hover a.blue{ color:#333; border-bottom:2px solid #58bcea;}
+	.user0M ul li.hover a.red{ color:#333; border-bottom:2px solid #bc2226;}
+.user0B{ padding-top:5px;}
+.user0B .commentPM{ margin-top:0;}
+
+
+.present{ width:100%; height:auto;}
+	.present ul{ width:100%; height:auto;}
+	.present ul li{ width:90%; height:auto; padding:5px 5% 10px; border-bottom:1px solid #ddd;}
+	.present ul li:first-child{ border-top:1px solid #ddd;}
+	.present ul li p.f16{ width:100%; height:30px; line-height:30px;}
+	.present ul li p.f16 a{ padding:0 15px; height:30px; line-height:30px; top:10px; right:0;}
+	.present ul li p.f12{ width:100%; height:20px; line-height:20px;}
+	.present ul li p.f12 i{ margin-left:5px; padding:0 5px;}
+
+.present_share{ width:90%; height:auto; padding:30px 5%; background:url(../images/share_img05.jpg) #ff7a81 no-repeat;background-size:100%;}
+
+
+
+
+
+
