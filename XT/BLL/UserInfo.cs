@@ -22,5 +22,11 @@ namespace BLL
             var addrs = user.GetReceiveAddrs(userId);
             return addrs;
         }
+
+        public UserDTO UpdOrInsertUser(UserDTO userDto)
+        {
+            var newUserDto = user.UpdOrInsertUser(userDto);
+            return newUserDto;
+        }
     }
 }
