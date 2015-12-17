@@ -79,6 +79,20 @@ namespace Model
             set { _cellphone = value; }
         }
 
+        private string _city;
+        public string City
+        {
+            get { return _city; }
+            set { _city = value; }
+        }
+
+        private string _openId;
+        public string OpenId
+        {
+            get { return _openId; }
+            set { _openId = value; }
+        }
+
     }
 
     public  partial class  UserDTO

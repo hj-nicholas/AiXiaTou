@@ -73,5 +73,39 @@ namespace DAL
                 throw ex;
             }
         }
+
+        public UserDTO UpdOrInsertUser(UserDTO userDto)
+        {
+            try
+            {
+                UserDTO user = new UserDTO();
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pUpdOrInsertUser", strConn);
+                cmd.Parameters["@p_OpenId"].Value = userDto.OpenId;
+                cmd.Parameters["@p_WeChatName"].Value = userDto.WeChatName;
+                cmd.Parameters["@p_City"].Value = userDto.City;
+                cmd.Parameters["@p_PhotoPath"].Value = userDto.PhotoPath;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    
+                    while (rdr.Read())
+                    {
+                        user.UserID = Convert.ToInt32(rdr["UserId"]);
+                        user.UserName = Convert.ToString(rdr["UserName"]);
+                        //user.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
+                        user.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
+                        user.City = Convert.ToString(rdr["City"]);
+                    }
+
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
