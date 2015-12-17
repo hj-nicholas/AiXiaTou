@@ -129,11 +129,11 @@ namespace Hoo.Common.WeChat
         ///// <typeparam name="T">实现了IParsable接口的类</typeparam>
         ///// <param name="json">json字符串</param>
         ///// <returns>返回对象</returns>
-        //public static T Parse<T>(string json)
-        //    where T : IParsable, new()
-        //{
-        //    return Parse<T>(JObject.Parse(json));
-        //}
+        public static T Parse<T>(string json)
+            where T : IParsable, new()
+        {
+            return Parse<T>(JObject.Parse(json));
+        }
 
         ///// <summary>
         ///// 从JObject对象解析对象
@@ -141,12 +141,12 @@ namespace Hoo.Common.WeChat
         ///// <typeparam name="T">实现了IParsable接口的类</typeparam>
         ///// <param name="jo">JObject对象</param>
         ///// <returns>返回对象</returns>
-        //public static T Parse<T>(JObject jo)
-        //    where T : IParsable, new()
-        //{
-        //    T t = new T();
-        //    t.Parse(jo);
-        //    return t;
-        //}
+        public static T Parse<T>(JObject jo)
+            where T : IParsable, new()
+        {
+            T t = new T();
+            t.Parse(jo);
+            return t;
+        }
     }
 }

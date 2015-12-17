@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using BLL;
+using Hoo.Common.WeChat;
 using Model;
+using UL.AXT.Common;
 
 namespace UL.AXT.Controllers
 {
     public class ShowOrderController : Controller
     {
         // GET: ShowOrder
-        public ActionResult Index()
+        public ActionResult Index(string code = "")
         {
+
+            WeChatBusiness business = new WeChatBusiness();
+            Hoo.Common.WeChat.UserInfo userInfo = business.GetWeChatUser(code);
+            if (userInfo != null)
+            {
+                UserDTO userDto = business.ChangeUserByWeChatInfo(userInfo);
+                //Log.WriteLog("","");
+            }
+
+
             BLL.ShowOrder showOrder = new BLL.ShowOrder();
             List<ShowOrderModel> lst = showOrder.GetShowingOrders().ToList();
             return View(lst);
@@ -29,21 +42,21 @@ namespace UL.AXT.Controllers
                 lst.Where(c => c.CommentRefID == 0).OrderBy(c => c.CommentDate).ToList();
 
             PackageComment(0, lstCommentInOrder, lst);
-            
+
             return View(lstCommentInOrder);
         }
 
         //递归添加回复它的记录
         public void PackageComment(int CommentRefID, List<CommentDTO> lstCommentInOrder, List<CommentDTO> lst)
         {
-            
-            List<CommentDTO> lstcommRef = lst.Where(c => c.CommentRefID == CommentRefID).OrderBy(c=>c.CommentDate).ToList();
+
+            List<CommentDTO> lstcommRef = lst.Where(c => c.CommentRefID == CommentRefID).OrderBy(c => c.CommentDate).ToList();
             foreach (var commRef in lstcommRef)
-           {
+            {
                 lstCommentInOrder.Add(commRef);
-                PackageComment(commRef.CommentID, lstCommentInOrder,lst);
+                PackageComment(commRef.CommentID, lstCommentInOrder, lst);
             }
-            
+
         }
     }
 }

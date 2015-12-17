@@ -183,7 +183,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\JSONHelp.cs" />
     <Compile Include="Common\Log.cs" />
+    <Compile Include="Common\WeChatBusiness.cs" />
+    <Compile Include="Common\WeChat\AccessToken.cs" />
+    <Compile Include="Common\WeChat\AccountInfo.cs" />
+    <Compile Include="Common\WeChat\AccountInfoCollection.cs" />
+    <Compile Include="Common\WeChat\ErrorMessage.cs" />
+    <Compile Include="Common\WeChat\HttpHelper.cs" />
+    <Compile Include="Common\WeChat\IParsable.cs" />
     <Compile Include="Common\WeChat\Message.cs" />
+    <Compile Include="Common\WeChat\OAuthAccessToken.cs" />
     <Compile Include="Common\WeChat\RequestBaseMessage.cs" />
     <Compile Include="Common\WeChat\RequestClickMessage.cs" />
     <Compile Include="Common\WeChat\RequestEventMessage.cs" />
@@ -215,6 +223,7 @@
     <Compile Include="Common\WeChat\ScanCodeInfo.cs" />
     <Compile Include="Common\WeChat\SendLocationInfo.cs" />
     <Compile Include="Common\WeChat\SendPicsInfo.cs" />
+    <Compile Include="Common\WeChat\UserInfo.cs" />
     <Compile Include="Common\WeChat\Utility.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
