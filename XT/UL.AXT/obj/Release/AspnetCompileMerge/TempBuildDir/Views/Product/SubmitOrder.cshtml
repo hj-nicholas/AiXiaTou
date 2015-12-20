@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = "../Shared/Main.cshtml";
+}
+@model Model.ProductModel
+
+<script type="text/javascript">
+    $(function() {
+        var openId = getCookie("OpenId");
+        //获取用户信息
+        //alert(openId);
+        $("#PayUser").val(getCookie("UserName"));
+        $("#probability").text(Math.round(@(1 / Model.ProductPrice * 100)));
+
+        $("a[name='turnPropbality']").click(function() {
+            var num = Math.round($("#portionNum").val());
+            var perProp =Math.round( @(1/Model.ProductPrice*100));
+            if ($(this).hasClass("minus_s")) {
+                if (num > 1) {
+                    $("#portionNum").val(num - 1);
+                    $("#probability").text(perProp * $("#portionNum").val());
+                } else {
+                    $("#portionNum").val(0);
+                    $("#probability").val(0);
+                }
+            } else if($(this).hasClass("plus_s")){
+                $("#portionNum").val(num + 1);
+                $("#probability").text(perProp * $("#portionNum").val());
+            }
+        });
+
+    });
+</script>
+<div class="mainM">
+
+    <div class="index">
+        <ul>
+            <li style="margin-bottom:0;">
+                <div class="index_T">
+                    <a class="pa collection_s  icon_s margin_t5"></a>
+                    <a class="block oh">
+                        <img src="~/Uploads/CommentPhotos/20151209/img01.jpg" class="fr br4" />
+                        <p class="oh">
+                            <b class="f18 lh30 h30 block fn oh" id="proName">@Model.ProductName</b>
+                            <span class="f14 lh25 block gray6 oh "><em class="fl fsn" id="proPrice">价值：@Model.ProductPrice 元</em></span>
+                            <span class="f12 lh25 block gray6 oh"><em class="fl fsn" id="proDesc">@Model.ProductDesc</em></span>
+                        </p>
+
+                    </a>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <div class="order_submit">
+        <p class="h20 lh20 gray9">*一只虾仔，成就更多可能！</p>
+        <ul>
+            <li class="white_bg oh f14">
+                <span class="fl margin_r10">@Model.ProductPrice 份数</span>
+                <a class="minus_s fl icon_s margin_t5 margin_l5" href="#" name="turnPropbality"></a>
+                <input type="text" class="fl h20 lh20 tc" value="1" id="portionNum" />
+                <a class="plus_s fl icon_s margin_t5" href="#" name="turnPropbality"></a>
+                %概率<span class="fr red" id="probability"></span>
+            </li>
+            <li class="white_bg">
+                <a class="button orange_bg tc fr gray3_border br4 pa">随机生成</a>
+                <input type="text" class="block Ntext h30 lh30" /><input type="hidden" value="虾仔，四位数字" />
+            </li>
+            <li class="white_bg"><input type="text" class="block Ntext h30 lh30" /><input type="hidden" value="联系邮箱，将用于接收项目全部虾仔" /></li>
+            <li class="white_bg"><input type="text" class="block Ntext h30 lh30" /><input type="hidden" value="推荐人手机号（选填）" /></li>
+            <li class="white_bg oh f14">
+                <span class="fl f16">账户余额可支付 0 只</span>
+                <input type="checkbox" class="fr h20 lh20 tc" />
+            </li>
+        </ul>
+    </div>
+
+    <div class="addressB">
+        <a href="Shipping_address_edit.html" class="block white_bg">
+            <i class="pen_s icon_s pa margin_t15"></i>
+            <p class="oh lh25"><b class="fl f16" id="PayUser">余小卡</b><i class="fr f14">15002089654</i></p>
+            <p class="lh20 gray9">广东省深圳市南山区科苑北18号科兴科学园B2单元1702号</p>
+        </a>
+    </div>
+    <div class="addressT white_bg">
+        <a href="Shipping_address.html" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f14 lh20">收货地址(选填)</span></a>
+    </div>
+    <div class="pf pay white_bg">
+        <p class="fl gray9 f12">已抵扣￥0</p>
+        <a href="/Product/PayOrder" class="orange_bg tc fr f16" style>提交订单</a>
+        <p class="fr f18 red">￥0</p>
+        <p class="fr gray6 f14">待支付</p>
+    </div>
+</div>

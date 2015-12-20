@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = "../Shared/Main.cshtml";
+}
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    
+    //wx.chooseWXPay({
+    //    timestamp: 0, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+    //    nonceStr: '', // 支付签名随机串，不长于 32 位
+    //    package: '', // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+    //    signType: '', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+    //    paySign: '', // 支付签名
+    //    success: function (res) {
+    //        // 支付成功后的回调函数
+    //    }
+    //});
+</script>
+<div class="mainM">
+
+    <div class="order_submit">
+        <ul>
+            <li class="white_bg">
+                <input type="text" class="block h30 lh30" value="虾仔：5892，6658，4528" />
+            </li>
+            <li class="white_bg"><input type="text" class="block h30 lh30" value="联系邮箱：yandong99@163.com" /></li>
+            <li class="white_bg"><input type="text" class="block h30 lh30" value="联系手机号：15002089460" /></li>
+        </ul>
+
+        <p class="h20 lh20 f12" style="height:auto;">项目完成后将会把<b class="red">全部参与的虾仔发送到你的邮箱，以此体现本平台的公平性。</b>如获得礼品，虾兵（工作人员）会即刻联系您，协助处理相关事宜。</p>
+    </div>
+
+
+
+    <div class="user_caseB oh margin_t20 margin_b20">
+        <a href="Payment_order.html" class="button orange_bg tc block gray3_border br4" style>支付</a>
+    </div>
+</div>
+@RenderPage("~/Views/Shared/_Footer.cshtml")
