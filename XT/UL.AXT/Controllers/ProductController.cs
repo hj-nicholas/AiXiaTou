@@ -35,5 +35,21 @@ namespace UL.AXT.Controllers
             return View(product);
         }
 
+        public ActionResult SubmitOrder(int periodId)
+        {
+            var product = prod.GetProductByPeriodId(periodId);
+            return View(product);
+        }
+
+        public ActionResult PayOrder()
+        {
+            return View();
+        }
+
+        public ActionResult PaySuccess()
+        {
+            return View();
+        }
+
     }
 }

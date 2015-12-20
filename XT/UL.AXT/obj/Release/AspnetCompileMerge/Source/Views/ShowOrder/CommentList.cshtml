@@ -3,41 +3,50 @@
     ViewBag.Title = "CommentList";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
+<script src="~/Scripts/ShowingOrder/ShowingOrder.js"></script>
 <div class="mainM">
     <div class="commentP white_bg">
         <div class="commentPT pf white_bg">
-            <a class="fl hover">评论 4</a>
-            <a class="fr">羡慕 12</a>
+            <a class="fl hover">评论 @ViewBag.CommNum</a>
+            <a class="fr">羡慕 @ViewBag.SuppNum</a>
         </div>
         <div class="commentPM">
             <ul>
                 @{
                     foreach (var comment in Model)
                     {
-                       
-                            <li class="pr">
-                                <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
-                                <p class="oh"><span class="fl">@comment.Commenter</span></p>
-                                <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
-                                <a class="pa br2">回复</a>
-                                @{if(comment.CommentRefID==0)
-                                {
-                                <b class="fn block">@comment.CommentContent</b>
-                                }
-                                else
-                                {
-                                <b class="fn block">回复 @comment.CommentRefer: @comment.CommentContent</b>
-                                    }
-                                }
-                            </li>
-                       
+
+                        <li class="pr">
+                            <img src="@comment.UserImage" class="fl"/>
+                            <p class="oh"><span class="fl">@comment.Commenter</span></p>
+                            <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
+                            <a class="pa br2" href="#" name="showReply" id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">回复</a>
+                            @{if (comment.CommentRefID == 0)
+                              {
+                                  <b class="fn block">@comment.CommentContent</b>
+                              }
+                              else
+                              {
+                                  <b class="fn block">回复 @comment.CommentRefer: @comment.CommentContent</b>
+                              }
+                            }
+                        </li>
+
 
                     }
                 }
-                
+
             </ul>
         </div>
-
+        <div class="commentB oh padding_b10 pf white_bg">
+            <a class="fl"><i class="liaotian_s block icon_s fl "></i>
+                <p class="fl">评论 @ViewBag.CommNum</p></a>
+            <a class="fl"><i class="dianzan_s block icon_s fl "></i>
+                <p class="fl">羡慕 @ViewBag.SuppNum</p></a>
         </div>
+    </div>
+</div>
+<div style="display: none" id="divReply">
+    <label>回复内容</label> <input type="text" id="replyContent" value=""/><input type="button" id="btnReply" value="回复"/>
+    <input type="hidden" value="" id="txtCommentId" />
 </div>

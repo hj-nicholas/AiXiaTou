@@ -154,6 +154,12 @@ function selectTag(showContent,selfObj,a,b){
 
 //add by hoo 2015-12-13
 $(function () {
+
+    //判断是否微信登录
+    //if (!is_weixn()) {
+    //    window.location.href = "http://www.uuulink.com/ixiatou/";
+    //}
+    
     //切换底部菜单高亮显示
     $("i[type='footerBtn']").click(function () {
         var a_H = $(this).parent();
@@ -165,6 +171,16 @@ $(function () {
         }
     });
 });
+
+//判断是否微信登录
+function is_weixn() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 /*
 功能：保存cookies函数 
@@ -198,4 +214,19 @@ function delCookie(name) {
     exp.setTime(exp.getTime() - 1);
     var cval = getCookie(name);
     if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+}
+
+function jsonDateFormat(jsonDate) {//json日期格式转换为正常格式
+    try {//出自http://www.cnblogs.com/ahjesus 尊重作者辛苦劳动成果,转载请注明出处,谢谢!
+        var date = new Date(parseInt(jsonDate.replace("/Date(", "").replace(")/", ""), 10));
+        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var milliseconds = date.getMilliseconds();
+        return date.getFullYear() + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+    } catch (ex) {//出自http://www.cnblogs.com/ahjesus 尊重作者辛苦劳动成果,转载请注明出处,谢谢!
+        return "";
+    }
 }

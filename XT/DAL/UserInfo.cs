@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Common;
 using Model;
 
 namespace DAL
@@ -96,6 +97,7 @@ namespace DAL
                         //user.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
                         user.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
                         user.City = Convert.ToString(rdr["City"]);
+                        user.OpenId = Convert.ToString(rdr["OpenId"]);
                     }
 
                 }

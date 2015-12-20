@@ -343,9 +343,13 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\ReceiveAddrs.cshtml" />
     <Content Include="Views\WeChat\Index.cshtml" />
+    <Content Include="Views\Product\SubmitOrder.cshtml" />
+    <Content Include="Views\Product\PayOrder.cshtml" />
+    <Content Include="Views\Product\PaySuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

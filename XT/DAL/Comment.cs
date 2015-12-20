@@ -34,6 +34,7 @@ namespace DAL
                         comm.PeriodID = Convert.ToInt32(rdr["PeriodId"]);
                         comm.Commenter= Convert.ToString(rdr["Commenter"]);
                         comm.CommentRefer = Convert.ToString(rdr["CommentRefer"]);
+                        comm.UserImage = Convert.ToString(rdr["UserImage"]);
 
                         lstComment.Add(comm);
                     }
@@ -46,5 +47,52 @@ namespace DAL
                 throw ex;
             }
         }
+
+        //添加点赞
+        public BaseResult AddSupport(int userId, int periodId)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddSupport", strConn);
+                cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@o_count"].Value = 0;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.Succeeded = true;
+                br.ResultId = cmd.Parameters["@o_count"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+
+        public BaseResult AddReply(int userId,int commRefId, int periodId,string replyContent)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddReply", strConn);
+                cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@p_commRefId"].Value = commRefId;
+                cmd.Parameters["@p_replyContent"].Value = replyContent;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.Succeeded = true;
+                
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+
     }
 }

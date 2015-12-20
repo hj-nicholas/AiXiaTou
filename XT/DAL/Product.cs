@@ -37,6 +37,7 @@ namespace DAL
                         showOrder.SupportNum = Convert.ToInt32(rdr["SupportNum"]);
                         showOrder.UserName = Convert.ToString(rdr["UserName"]);
                         showOrder.PeriodID = Convert.ToInt32(rdr["PeriodId"]);
+                        showOrder.UserImage = Convert.ToString(rdr["PhotoPath"]);
 
                         lstShowOrder.Add(showOrder);
                     }

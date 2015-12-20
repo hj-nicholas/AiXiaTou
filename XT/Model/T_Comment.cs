@@ -83,6 +83,8 @@ namespace Model
         public string CommentRefer { get; set; }
         
         public string getEel{get;set;}
+
+        public string UserImage { get; set; }
     }
 }
 

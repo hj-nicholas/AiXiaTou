@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Model
 {
-   public class ShowOrderModel
+   public partial class ShowOrderModel
     {
         /// <summary>
         /// UserID
@@ -71,9 +71,7 @@ namespace Model
             set { _productname = value; }
         }
 
-        //晒单照片
-       public List<T_Photo> Photos { get; set; }
-
+       
        public int CommentNum { get; set; }
        public int SupportNum { get; set; }
 
@@ -96,5 +94,13 @@ namespace Model
             set { _commentdate = value; }
         }
 
+    }
+
+    public partial class ShowOrderModel
+    {
+        //晒单照片
+        public List<T_Photo> Photos { get; set; }
+
+        public string UserImage { get; set; }
     }
 }

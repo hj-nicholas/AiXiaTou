@@ -1,4 +1,10 @@
 ﻿@model List<Model.ProductModel>
+
+<script type="text/javascript">
+    $(function() {
+       
+    });
+</script>
 <div class="index">
     <ul>
 
@@ -19,7 +25,7 @@
             </div>
             <div class="index_M">
                 <div class="index_MR fr">
-                    <a href="Submit_order.html" class="red_bg white block br4 lh30 tc f16 margin_t5">参与众投</a>
+                    <a id="gotoOrderPage" href="/Product/SubmitOrder?periodId=@prod.PeriodId" class="red_bg white block br4 lh30 tc f16 margin_t5">立即夺宝</a>
                 </div>
                 <div class="index_ML">
                     <h3 class="grayC_bg"><b class="orange_bg block" style="width:@(decimal.Round(prod.JoinedNum*100/prod.ProductPrice,0))%;"></b></h3>
