@@ -91,3 +91,4 @@ F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.WebHost.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Net.Http.Formatting.xml
 F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.xml
 F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\System.Web.Http.WebHost.xml
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT\bin\LitJson.dll

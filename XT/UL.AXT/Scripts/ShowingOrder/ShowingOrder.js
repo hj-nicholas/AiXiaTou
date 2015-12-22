@@ -21,8 +21,9 @@ $(function () {
     });
 
     $("a[name='showReply']").click(function () {
-        $("#divReply").show();
-        $("#replyContent").focus();
+        //$("#divReply").show();
+        AlertDiv('#alert_pinglun');
+        //$("#replyContent").focus();
         $("#txtCommentId").val($(this).prop("id"));
     });
 
@@ -35,6 +36,7 @@ $(function () {
             success: function (result) {
                 if (result != null) {
                     //$(".dianzan_s").next("p").text(result.ResultId);
+                    AlertClose(this);
                     window.location.reload();
                     //href("/ShowOrder/CommentList?periodId=" + objCom.attr("tagPeriod") + "&commNum=0&suppNum=0");
                 }

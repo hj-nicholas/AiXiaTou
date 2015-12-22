@@ -7,18 +7,19 @@
 <div class="mainM">
     <div class="detailX white_bg">
         <div class="detailXT">
-            <img src="~/Uploads/ProductPhotos/20151209/img02.jpg" />
-            
+            <img src="~/Uploads/ProductPhotos/20151209/img02.jpg"/>
+
         </div>
         <div class="detailXM">
             <h1 class="lh30 f20">Apple Watch</h1>
             <h2 class="lh25 fn f14">抢购价：@Model.ProductPrice 元<span class="grayC"> 价值：2899元</span></h2>
             <div class="index_ML">
-                <h3 class="grayC_bg"><b class="orange_bg block" style="width:@(decimal.Round(Model.JoinedNum*100/Model.ProductPrice,0))%;"></b></h3>
+                <h3 class="grayC_bg"><b class="orange_bg block" style="width: @(decimal.Round(Model.JoinedNum*100/Model.ProductPrice, 0))%;"></b>
+                </h3>
                 <p class="oh">
                     <span class="fl"><b class="red fn block">@Model.JoinedNum</b><i class=" grayC block">已参与</i></span>
                     <span class="fl tc"><b class="red fn block">@Model.ProductPrice</b><i class="grayC block">总需人次</i></span>
-                    <span class="fl tr"><b class="red fn block">@(Model.ProductPrice- Model.JoinedNum)</b><i class="grayC block">剩余</i></span>
+                    <span class="fl tr"><b class="red fn block">@(Model.ProductPrice - Model.JoinedNum)</b><i class="grayC block">剩余</i></span>
                 </p>
             </div>
         </div>
@@ -44,16 +45,67 @@
 
                 }
             }
-            
+
             <a href="Shrimp_head_of.html" class="pa arrow_s  icon_s"></a>
         </div>
     </div>
     <div class="detail grayC_border white_bg margin_t10">
         <div class="detailT">
+            <a href="Buy_records.html" class="oh"><span class="fl lh20 f14">抢购记录（406）</span><i class="arrow_s fr  icon_s"></i></a>
+        </div>
+        <div class="detailM">
+            <div class="record">
+                <ul>
+                    <li>
+                        <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
+                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
+                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                    </li>
+                    <li>
+                        <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
+                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
+                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                    </li>
+                    <li>
+                        <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
+                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
+                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="detail grayC_border white_bg">
+        <div class="detailT">
+            <a href="Gifts_records.html" class="oh"><span class="fl lh20 f14">赠送记录（406）</span><i class="arrow_s fr  icon_s"></i></a>
+        </div>
+        <div class="detailM">
+            <div class="record">
+                <ul>
+                    <li>
+                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
+                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
+                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                    </li>
+                    <li>
+                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
+                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
+                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                    </li>
+                    <li>
+                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
+                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
+                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="detail grayC_border white_bg">
+        <div class="detailT">
             <a href="http://www.apple.com/hk/watch/" class="oh"><span class="fl lh20 f14">查看礼品介绍</span><i class="arrow_s fr  icon_s"></i></a>
         </div>
     </div>
-
     <div class="detail grayC_border white_bg">
         <div class="detailT">
             <a class="oh"><i class="wenhao_s fl  icon_s margin_r5"></i><span class="fl lh20 f14">怎么玩儿</span></a>
@@ -115,52 +167,10 @@
         </div>
 
     </div>
-    <div class="detail grayC_border white_bg">
-        <div class="detailT">
-            <a href="Buy_records.html" class="oh"><span class="fl lh20 f14">抢购记录（406）</span><i class="arrow_s fr  icon_s"></i></a>
-        </div>
-        <div class="detailM">
-            <div class="record">
-                <ul>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="detail grayC_border white_bg">
-        <div class="detailT">
-            <a href="Gifts_records.html" class="oh"><span class="fl lh20 f14">赠送记录（406）</span><i class="arrow_s fr  icon_s"></i></a>
-        </div>
-        <div class="detailM">
-            <div class="record">
-                <ul>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+   </div>
 <div class="pf pay white_bg">
     <i class="collection_s_H  icon_s fl"></i>
-    <a href="Submit_order.html" class="red_bg white tc fr f16" style>参与夺宝</a>
-    <a href="Gift_order.html" class="orange_bg tc fr f16" style>送给朋友</a>
+    <a href="/Product/SubmitOrder?periodId=@Model.PeriodId" class="red_bg white tc fr f16" >参与夺宝</a>
+    <a href="Gift_order.html" class="orange_bg tc fr f16" >送给朋友</a>
 
 </div>

@@ -17,20 +17,23 @@
                     {
 
                         <li class="pr">
-                            <img src="@comment.UserImage" class="fl"/>
-                            <p class="oh"><span class="fl">@comment.Commenter</span></p>
-                            <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
-                            <a class="pa br2" href="#" name="showReply" id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">回复</a>
-                            @{if (comment.CommentRefID == 0)
-                              {
-                                  <b class="fn block">@comment.CommentContent</b>
-                              }
-                              else
-                              {
-                                  <b class="fn block">回复 @comment.CommentRefer: @comment.CommentContent</b>
-                              }
-                            }
-                        </li>
+                            <a href="Homepage_F.html" class="fl">
+                            <img src="@comment.UserImage" class="fl"/></a>
+                                <p class="oh"><span class="fl">@comment.Commenter</span></p>
+                                <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
+                            @*<a class="pa br2" href="#" name="showReply" id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">回复</a>*@
+                            <a class="block" name="showReply"  id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">
+                                @{if (comment.CommentRefID == 0)
+                                    {
+                                        <b class="fn block">@comment.CommentContent</b>
+                                    }
+                                    else
+                                    {
+                                        <b class="fn block">回复 @comment.CommentRefer: @comment.CommentContent</b>
+                                    }
+                                }
+                                </a>
+</li>
 
 
                     }
@@ -47,6 +50,25 @@
     </div>
 </div>
 <div style="display: none" id="divReply">
-    <label>回复内容</label> <input type="text" id="replyContent" value=""/><input type="button" id="btnReply" value="回复"/>
+    <label>回复内容</label> <input type="text"  value=""/><input type="button"  value="回复"/>
+   
+</div>
+
+<div class="alert" id="alert_pinglun">
     <input type="hidden" value="" id="txtCommentId" />
+    <div class="alertCT oh">
+        <p class="fl f16">评论</p>
+        <i class="icon alert_close fr wrong" onclick="AlertClose(this)"></i>
+    </div>
+    <div class="alertCB">
+        <div class="mainM commentX">
+            <textarea class="Ntext" id="replyContent"></textarea>
+            <input type="hidden" value="不得超过140个字" />
+        </div>
+    </div>
+    <div class="alertCM">
+        <a class="fr orange_bg br2 f16 tc" id="btnReply" href="#">确认</a>
+        <a class="fr br2 tc" onclick="AlertClose(this)">取消</a>
+    </div>
+
 </div>

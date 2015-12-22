@@ -22,18 +22,18 @@ namespace UL.AXT.Controllers
             ViewBag.UserCode = code;
             //获取登录微信用户信息
             UserDTO userDto = new UserDTO();
-            if (!string.IsNullOrEmpty(code))
-            {
-                WeChatBusiness business = new WeChatBusiness();
-                Hoo.Common.WeChat.UserInfo userInfo = business.GetWeChatUser(code);
-                if (userInfo != null)
-                {
-                    userDto = business.ChangeUserByWeChatInfo(userInfo);
-                    //Log.WriteLog("","");
-                }
-            }
-            //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("orIUqxN88RpM6MLpS8K45cM8qNOc");
-            //userDto = business.ChangeUserByWeChatInfo(userInfo);
+            //if (!string.IsNullOrEmpty(code))
+            //{
+               WeChatBusiness business = new WeChatBusiness();
+            //    Hoo.Common.WeChat.UserInfo userInfo = business.GetWeChatUser(code);
+            //    if (userInfo != null)
+            //    {
+            //        userDto = business.ChangeUserByWeChatInfo(userInfo);
+            //        //Log.WriteLog("","");
+            //    }
+            //}
+            Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("orIUqxN88RpM6MLpS8K45cM8qNOc");
+            userDto = business.ChangeUserByWeChatInfo(userInfo);
             //Log.WriteLog("username:", userDto.UserName);
             ViewBag.UserInfo = userDto;
             

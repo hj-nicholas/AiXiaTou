@@ -148,6 +148,10 @@ input {vertical-align: middle;line-height: normal;}
 .blue{color:#58bcea;}
 .blue_bg{background-color:#58bcea;}
 
+.blueF_bg{background-color:#d7eefe;}
+
+.opa7{ opacity:0.7;}
+
 
 .white_border{ border:1px solid #fff;}
 .grayC_border{ border:1px solid #ccc;}
@@ -286,18 +290,6 @@ input {vertical-align: middle;line-height: normal;}
 	
 
 /*********icon**************/
-/*********alertABC**************/
-.alertABC{ width:100%; height:auto; display:none;}
-	.alert_ABC{ width:auto; height:auto; margin:5px 10px;}
-	.alert_ABC h3{ width:100%; height:35px; line-height:35px; font-size:16px;} 
-	.alert_ABC ul{ width:100%; height:auto; overflow:hidden;}
-	.alert_ABC ul li{ width:auto; height:25px; float:left; margin:5px 10px 5px 0; }  
-	.alert_ABC ul li a{ width:auto; height:23px; line-height:23px; padding:0 5px; display:block; font-size:14px; }  
-	.alert_ABC ul li input{ width:100px; height:23px; line-height:23px;} 
-	
-.alertABC .pf{ width:100%; height:40px; bottom:0;}
-.alertABC .pf a{ width:50%; height:40px; line-height:40px;} 
-.alertABC .pf a:active{ background-color:#999;}
 
 /*********common**************/
 
@@ -307,5 +299,24 @@ input {vertical-align: middle;line-height: normal;}
 .error p a{ padding:5px; background-color:#95a8c6; color:#fff;}
 .error p a:active{ background-color:#999;}
 
-
-
+/***********tanchu********/
+.alert{ width:100%; height:auto; min-height:100%;  top:0; left:0; z-index:999999;display:none; position:absolute; background-color:#fff;}
+	.alertCT{ width:90%; height:50px; padding:0 5%; background-color:#f7f7f7; border-bottom:1px solid #ccc; border-radius:2px; position:fixed; top:0; z-index:999999;}
+	.alertCT p{ width:auto; height:50px; line-height:50px; cursor:auto;}
+	.alertCT i{ margin-top:10px; cursor:pointer;}
+	.alertCB{width:100%; height:auto; padding-top:51px;padding-bottom:40px;}
+	.alertCM{ width:100%; height:40px; overflow:hidden; background-color:#fff; border-top:1px solid #ccc; position:fixed; bottom:0;}
+	.alertCM a{ width:auto; height:40px; line-height:40px; padding:0 30px; }
+	
+.Dalert{ width:100%; height:auto; padding:0; top:0; left:0; z-index:999999;display:none; position:fixed;}
+	
+	.DalertZ{ width:100%; height:10000px; position:absolute; top:0; z-index:99; background-color:#000;filter:alpha(opacity=70);-moz-opacity:0.7;-khtml-opacity: 0.7;opacity: 0.7;  }
+	.DalertC{ width:auto; height:auto; margin:0 auto; background-color:#fff;position:absolute; z-index:99999; border-radius:2px; padding-bottom:10px;}
+	.DalertCT{ width:auto; height:40px; padding:0 10px; background-color:#f7f7f7; border-bottom:1px solid #999; border-radius:2px; cursor:move;}
+	.DalertCT p{ width:auto; height:40px; line-height:40px; cursor:auto;}
+	.DalertCT i{ margin-top:10px; cursor:pointer;}
+	.DalertCB{width:auto; height:auto; margin:0 auto; padding:20px 20px 10px;}
+	.DalertCB p{ width:200px; height:auto; line-height:25px; font-size:14px;}
+	
+	
+	

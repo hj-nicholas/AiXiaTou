@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LitJson, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\LitJson.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -225,6 +229,13 @@
     <Compile Include="Common\WeChat\SendPicsInfo.cs" />
     <Compile Include="Common\WeChat\UserInfo.cs" />
     <Compile Include="Common\WeChat\Utility.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\Config.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\Data.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\Exception.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\HttpService.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\JsApiPay.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\Log.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\WxPayApi.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -254,6 +265,7 @@
     <Content Include="Content\css\page960.css" />
     <Content Include="Content\images\banner01.jpg" />
     <Content Include="Content\images\banner02.jpg" />
+    <Content Include="Content\images\banner03.jpg" />
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\img01.jpg" />
     <Content Include="Content\images\img02.jpg" />
@@ -266,9 +278,13 @@
     <Content Include="Content\images\share_img03.png" />
     <Content Include="Content\images\share_img04.jpg" />
     <Content Include="Content\images\share_img05.jpg" />
+    <Content Include="Content\images\share_img06.png" />
+    <Content Include="Content\images\share_img07.png" />
+    <Content Include="Content\images\share_img08.png" />
     <Content Include="Content\images\smile.jpg" />
     <Content Include="Content\images\user0T_bg.png" />
     <Content Include="Content\images\user_in.png" />
+    <Content Include="DLL\LitJson.dll" />
     <Content Include="DLL\Newtonsoft.Json.dll" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
