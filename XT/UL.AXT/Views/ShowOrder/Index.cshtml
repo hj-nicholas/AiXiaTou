@@ -6,18 +6,26 @@
 <script type="text/javascript" src="~/Scripts/ShowingOrder/ShowingOrder.js"></script>
 <script type="text/javascript">
 
-    $(function () {
+    $(function() {
 
         //if (@ViewBag.UserInfo != null) {
-        SetCookie("UserName", '@ViewBag.UserInfo.UserName');
-        SetCookie("UserId", '@ViewBag.UserInfo.UserID');
-        SetCookie("OpenId", '@ViewBag.UserInfo.OpenId');
-        SetCookie("PhotoPath", '@ViewBag.UserInfo.PhotoPath');
-        SetCookie("City", '@ViewBag.UserInfo.City');
+        
+        saveToCookie("UserName", '@ViewBag.UserInfo.UserName');
+        saveToCookie("UserId", '@ViewBag.UserInfo.UserID');
+        saveToCookie("OpenId", '@ViewBag.UserInfo.OpenId');
+        saveToCookie("PhotoPath", '@ViewBag.UserInfo.PhotoPath');
+        saveToCookie("City", '@ViewBag.UserInfo.City');
+
         //}
 
-       
+
     });
+    //保存cookie信息
+    function saveToCookie(cookieName, val) {
+        if (val != "") {
+            SetCookie(cookieName, val);
+        }
+    }
 </script>
 
 <div class="mainM">
@@ -37,16 +45,22 @@
 
                     <div class='commentM oh'>
                         <p class='block'> @order.CommentContent </p>
-                        <a class='fl'><img src='~/Uploads/CommentPhotos/20151209/img01.jpg' /></a>
+                        @foreach (var photo in order.Photos)
+                        {
+                            var imgPath=@ViewBag.UploadPath+ @photo.PhotoPath;
+
+                                    <a class='fl'><img src=@imgPath /></a>
+                        }
+                        
                     </div>
                     <div class='commentB oh'>
-                        <a class='fl'  href='/ShowOrder/CommentList?periodId=@order.PeriodID&commNum=@order.CommentNum&suppNum=@order.SupportNum' >
+                        <a class='fl'  href='/ShowOrder/CommentList?periodId=@order.PeriodID' >
                             <i class='liaotian_s block icon_s fl '></i>
                             评论 <p class='fl' > @order.CommentNum </p>
                         </a>
                         <a class='fl' href="#">
                             <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
-                            羡慕<p class='fl'> @order.SupportNum </p>
+                            <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
                         </a>
                     </div>
                 </li>

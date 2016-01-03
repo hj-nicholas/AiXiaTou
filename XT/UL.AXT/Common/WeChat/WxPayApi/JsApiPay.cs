@@ -143,21 +143,22 @@ namespace Hoo.WeChat.WxPayAPI
          * @return 统一下单结果
          * @失败时抛异常WxPayException
          */
-        public WxPayData GetUnifiedOrderResult()
+        public WxPayData GetUnifiedOrderResult(string body,string attach,string goods_tag)
         {
             //统一下单
             WxPayData data = new WxPayData();
-            data.SetValue("body", "test");
-            data.SetValue("attach", "test");
+            data.SetValue("body", body);
+            data.SetValue("attach", attach);
             data.SetValue("out_trade_no", WxPayApi.GenerateOutTradeNo());
             data.SetValue("total_fee", total_fee);
             data.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));
             data.SetValue("time_expire", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss"));
-            data.SetValue("goods_tag", "test");
+            data.SetValue("goods_tag", goods_tag);
             data.SetValue("trade_type", "JSAPI");
             data.SetValue("openid", openid);
-
+            
             WxPayData result = WxPayApi.UnifiedOrder(data);
+            
             if (!result.IsSet("appid") || !result.IsSet("prepay_id") || result.GetValue("prepay_id").ToString() == "")
             {
                 Log.Error(this.GetType().ToString(), "UnifiedOrder response error!");
@@ -189,7 +190,8 @@ namespace Hoo.WeChat.WxPayAPI
             Log.Debug(this.GetType().ToString(), "JsApiPay::GetJsApiParam is processing...");
 
             WxPayData jsApiParam = new WxPayData();
-            jsApiParam.SetValue("appId", unifiedOrderResult.GetValue("appid"));
+            //jsApiParam.SetValue("appId", unifiedOrderResult.GetValue("appid"));
+            jsApiParam.SetValue("appId",WxPayConfig.APPID);
             jsApiParam.SetValue("timeStamp", WxPayApi.GenerateTimeStamp());
             jsApiParam.SetValue("nonceStr", WxPayApi.GenerateNonceStr());
             jsApiParam.SetValue("package", "prepay_id=" + unifiedOrderResult.GetValue("prepay_id"));

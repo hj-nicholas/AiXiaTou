@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -13,37 +14,39 @@ namespace UL.AXT.Controllers
 {
     public class ShowOrderController : Controller
     {
-        BLL.Comment comment = new Comment();
+        private string strUploadPath = ConfigurationManager.AppSettings["UploadFilePath"].ToString();
 
+        BLL.Comment comment = new Comment();
+        private BLL.Product product = new Product();
         // GET: ShowOrder
         public ActionResult Index(string code = "")
         {
-            
-            ViewBag.UserCode = code;
+
             //获取登录微信用户信息
             UserDTO userDto = new UserDTO();
-            //if (!string.IsNullOrEmpty(code))
-            //{
-               WeChatBusiness business = new WeChatBusiness();
-            //    Hoo.Common.WeChat.UserInfo userInfo = business.GetWeChatUser(code);
-            //    if (userInfo != null)
-            //    {
-            //        userDto = business.ChangeUserByWeChatInfo(userInfo);
-            //        //Log.WriteLog("","");
-            //    }
-            //}
-            Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("orIUqxN88RpM6MLpS8K45cM8qNOc");
-            userDto = business.ChangeUserByWeChatInfo(userInfo);
+            if (!string.IsNullOrEmpty(code))
+            {
+                WeChatBusiness business = new WeChatBusiness();
+                Hoo.Common.WeChat.UserInfo userInfo = business.GetWeChatUser(code);
+                if (userInfo != null)
+                {
+                    userDto = business.ChangeUserByWeChatInfo(userInfo);
+
+                }
+            }
+
+            //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
+            //userDto = business.ChangeUserByWeChatInfo(userInfo);
             //Log.WriteLog("username:", userDto.UserName);
             ViewBag.UserInfo = userDto;
-            
+            ViewBag.UploadPath =  strUploadPath;
            
             BLL.ShowOrder showOrder = new BLL.ShowOrder();
-            List<ShowOrderModel> lst = showOrder.GetShowingOrders().ToList();
+            List<ShowOrderModel> lst = showOrder.GetShowingOrders(0).ToList();
             return View(lst);
         }
 
-        public ActionResult CommentList(int periodId,int CommNum, int suppNum)
+        public ActionResult CommentList(int periodId)
         {
             List<CommentDTO> lst = comment.GetCommentListByPeroid(periodId).ToList();
            //定义排序完成后的评论记录
@@ -53,6 +56,10 @@ namespace UL.AXT.Controllers
                 lst.Where(c => c.CommentRefID == 0).OrderBy(c => c.CommentDate).ToList();
 
             PackageComment(0, lstCommentInOrder, lst);
+
+            int CommNum = 0;
+            int suppNum = 0;
+            product.GetRelPeriodInfo(periodId, out suppNum,out  CommNum);
             ViewBag.CommNum = CommNum;
             ViewBag.SuppNum = suppNum;
             return View(lstCommentInOrder);

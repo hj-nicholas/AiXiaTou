@@ -5,7 +5,7 @@ using System.Data;
 namespace Model
 {
     //T_User_Order
-    public class T_User_Order
+    public partial class UserOrderDTO
     {
 
         /// <summary>
@@ -63,6 +63,24 @@ namespace Model
             set { _lotterynum = value; }
         }
 
+        /// <summary>
+        /// LotteryNum
+        /// </summary>		
+        private DateTime _createtime;
+        public DateTime CreateTime
+        {
+            get { return _createtime; }
+            set { _createtime = value; }
+        }
+
     }
+
+    public partial class UserOrderDTO
+    {
+        public string UserName { get; set; }
+        public string City { get; set; }
+        public string PhotoPath { get; set; }
+    }
+
 }
 

@@ -33,8 +33,9 @@ namespace Hoo.Common.WeChat
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0}\r\n菜单KEY值：{1}",
-                base.ToString(), EventKey);
+            //hoo modify 2015-12-30
+            return EventKey;
+            //return string.Format("{0}\r\n菜单KEY值：{1}",base.ToString(), EventKey);
         }
     }
 }

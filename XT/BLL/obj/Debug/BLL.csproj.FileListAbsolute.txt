@@ -9,10 +9,10 @@ F:\XiaTou\Project\XT\BLL\obj\Debug\BLL.dll
 F:\XiaTou\Project\XT\BLL\obj\Debug\BLL.pdb
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\BLL.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\BLL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\DAL.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\Model.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\DAL.pdb
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\Model.pdb
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\obj\Debug\BLL.dll
 F:\XiaTou\Project\AiXiaTou.git\XT\BLL\obj\Debug\BLL.pdb
-F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\DAL.dll
-F:\XiaTou\Project\AiXiaTou.git\XT\BLL\bin\Debug\DAL.pdb

@@ -95,8 +95,8 @@ namespace UL.AXT.Controllers
         /// <returns>返回响应消息</returns>
         private ResponseBaseMessage HandleRequestMessage(RequestBaseMessage requestMessage)
         {
-            ResponseTextMessage response = new ResponseTextMessage(requestMessage.FromUserName, requestMessage.ToUserName,
-                DateTime.Now, string.Format("自动回复，请求内容如下：\r\n{0}", requestMessage));
+            //ResponseTextMessage response = new ResponseTextMessage(requestMessage.FromUserName, requestMessage.ToUserName,DateTime.Now, string.Format("自动回复，请求内容如下：\r\n{0}", requestMessage));
+            ResponseTextMessage response = new ResponseTextMessage(requestMessage.FromUserName, requestMessage.ToUserName, DateTime.Now, string.Format("{0}", requestMessage));
             //response.Content += "\r\n<a href=\"http://xrwang.cnblogs.com\">博客园</a>";
             //ErrorMessage errorMessage = CustomerService.SendMessage(new ResponseTextMessage(requestMessage.FromUserName, requestMessage.ToUserName, DateTime.Now, string.Format("自动回复客服消息，请求内容如下：\r\n{0}", requestMessage.ToString())));
             //if (!errorMessage.IsSuccess)

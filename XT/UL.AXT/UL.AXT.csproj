@@ -362,6 +362,11 @@
     <Content Include="Views\Product\SubmitOrder.cshtml" />
     <Content Include="Views\Product\PayOrder.cshtml" />
     <Content Include="Views\Product\PaySuccess.cshtml" />
+    <Content Include="Views\Product\PayResult.cshtml" />
+    <Content Include="Views\Product\ShrimpHeadOf.cshtml" />
+    <Content Include="Views\Product\BuyRecords.cshtml" />
+    <Content Include="Views\Product\GiftsRecords.cshtml" />
+    <Content Include="Views\Product\ShowHisOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

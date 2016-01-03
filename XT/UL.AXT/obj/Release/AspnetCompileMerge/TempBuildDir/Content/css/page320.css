@@ -74,8 +74,9 @@
 	
 	.commentM{ width:100%; height:auto;padding:10px 0;}
 	.commentM p{ width:100%; height:auto; line-height:15px; padding-bottom:10px; color:#999;}
-	.commentM a{ width:48%; height:auto; border:1px solid #ccc; margin-right:1%;}
-	.commentM a img{ width:100%;}
+	.commentM a{ width:32%; height:80px; border:1px solid #ccc; margin-right:1%; overflow:hidden; background-color:#fff;}
+	.commentM a:last-child{ width:31%;}
+	.commentM a img{ height:100%; margin:0 auto; display:block;}
 	
 	.commentB{ width:100%; height:auto; border-top:1px solid #eee;}
 	.commentB a{ width:49%; height:20px; margin-top:10px; border-left:1px solid #eee; color:#999;}

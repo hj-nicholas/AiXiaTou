@@ -4,6 +4,13 @@
     Layout = "../Shared/Main.cshtml";
 }
 
+<script type="text/javascript">
+    $(function() {
+        $("#joined").click(function() {
+            window.location.href = "/Product/SubmitOrder?periodId=@Model.PeriodId" + "&userId=" + getCookie("UserId");
+        });
+    });
+</script>
 <div class="mainM">
     <div class="detailX white_bg">
         <div class="detailXT">
@@ -46,57 +53,53 @@
                 }
             }
 
-            <a href="Shrimp_head_of.html" class="pa arrow_s  icon_s"></a>
+            <a href="/Product/ShrimpHeadOf?productId=@Model.ProductId" class="pa arrow_s  icon_s"></a>
         </div>
     </div>
     <div class="detail grayC_border white_bg margin_t10">
         <div class="detailT">
-            <a href="Buy_records.html" class="oh"><span class="fl lh20 f14">抢购记录（406）</span><i class="arrow_s fr  icon_s"></i></a>
+            <a href="/Product/BuyRecords?periodId=@Model.PeriodId" class="oh"><span class="fl lh20 f14">抢购记录（@ViewBag.Orders.Count）</span><i class="arrow_s fr  icon_s"></i></a>
         </div>
         <div class="detailM">
             <div class="record">
                 <ul>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl"/>
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
+                    @{
+                        var lstOrder = ((List<UserOrderDTO>)@ViewBag.Orders ).Take(3);
+                    }
+                    @foreach (var order in lstOrder)
+                    {
+                        <li>
+                            <img src="@order.PhotoPath" class="fl"/>
+                            <p class="oh"><span class="fl">@order.UserName</span><span class="fr">2人次 @order.City</span></p>
+                            <p class="oh"><span class="fl gray9">@order.CreateTime</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                        </li>
+                    }
+
+
+                    
                 </ul>
             </div>
         </div>
     </div>
     <div class="detail grayC_border white_bg">
         <div class="detailT">
-            <a href="Gifts_records.html" class="oh"><span class="fl lh20 f14">赠送记录（406）</span><i class="arrow_s fr  icon_s"></i></a>
+            <a href="/Product/GiftsRecords?periodId=@Model.PeriodId" class="oh"><span class="fl lh20 f14">赠送记录（@ViewBag.Donater.Count）</span><i class="arrow_s fr  icon_s"></i></a>
         </div>
         <div class="detailM">
             <div class="record">
                 <ul>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
-                    <li>
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">linkincar</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl gray9">2015-11-15 17:50:28</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
-                    </li>
+                    @{
+                        var lstDonate = ((List<DonateModel>)@ViewBag.Donater).Take(3);
+                    }
+                    @foreach (var donate in lstDonate)
+                    {
+                        <li>
+                            <img src="@donate.PhotoPath" class="fl" />
+                            <p class="oh"><span class="fl">@donate.UserName</span><span class="fr">2人次 @donate.City</span></p>
+                            <p class="oh"><span class="fl gray9">@donate.CreateTime</span><span class="fr grayC">IP地址：192.168.1.1</span></p>
+                        </li>
+                    }
+                   
                 </ul>
             </div>
         </div>
@@ -140,28 +143,49 @@
     </div>
     <div class="detail grayC_border white_bg">
         <div class="detailT">
-            <a href="Sun_single.html" class="oh"><i class="shaidan_s fl  icon_s margin_r5"></i><span class="fl lh20 f14">往期晒单</span><i class="arrow_s fr  icon_s"></i></a>
+            <a href="/Product/ShowHisOrder?productId=@Model.ProductId" class="oh"><i class="shaidan_s fl  icon_s margin_r5"></i><span class="fl lh20 f14">往期晒单</span><i class="arrow_s fr  icon_s"></i></a>
         </div>
 
         <div class="comment">
             <ul>
-                <li>
-                    <div class="commentT">
-                        <img src="~/Uploads/UserImages/img01.jpg" class="fl" />
-                        <p class="oh"><span class="fl">lin***</span><span class="fr">2人次 深圳</span></p>
-                        <p class="oh"><span class="fl red">Apple Watch(21期)</span><span class="fr gray9">2015-11-25</span></p>
-                    </div>
-                    <div class="commentM oh">
-                        <p class="block">开心啊，居然中了居然中了居然中了居然中了居然中了居然中了居然中了居然中了居然中了居然中了</p>
-                        <a class="fl"><img src="~/Uploads/ProductPhotos/20151209/img01.jpg" /></a>
-                        <a class="fl"><img src="~/Uploads/ProductPhotos/20151209/img01.jpg" /></a>
-                    </div>
-                    <div class="commentB oh">
-                        <a class="fl" href="review.html"><i class="liaotian_s block icon_s fl "></i><p class="fl">评论 4</p></a>
-                        <a class="fl"><i class="dianzan_s block icon_s fl "></i><p class="fl">羡慕 13</p></a>
-                    </div>
+                @{
+                    var lstShowOrder = ((List<ShowOrderModel>)@ViewBag.ShowOrder).Take(1);
+                }
+                @foreach (var order in lstShowOrder)
+                {
+                    <li>
+                        <div class='commentT'>
+                            <img src='@order.UserImage' class='fl'/>
+                            <p class='oh'><span class='fl'> @order.UserName </span><span class='fr'>2人次</span></p>
+                            <p class='oh'><span class='fl red'> @order.ProductName   @order.PeriodNum </span><span class='fr gray9'>@order.CommentDate  </span></p>
+                        </div>
 
-                </li>
+                        <div class='commentM oh'>
+                            <p class='block'> @order.CommentContent </p>
+                            @foreach (var photo in order.Photos)
+                            {
+                                var imgPath = @ViewBag.UploadPath + @photo.PhotoPath;
+
+                                <a class='fl'><img src=@imgPath ></a>
+                            }
+
+                        </div>
+                        <div class='commentB oh'>
+                            <a class='fl' href='/ShowOrder/CommentList?periodId=@order.PeriodID'>
+                                <i class='liaotian_s block icon_s fl '></i>
+                                评论
+                                <p class='fl'> @order.CommentNum </p>
+                            </a>
+                            <a class='fl' href="#">
+                                <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
+                                <p class='fl'>羡慕</p>
+                                <p class='fl'> @order.SupportNum </p>
+                            </a>
+                        </div>
+                    </li>
+
+                }
+                
 
             </ul>
         </div>
@@ -170,7 +194,7 @@
    </div>
 <div class="pf pay white_bg">
     <i class="collection_s_H  icon_s fl"></i>
-    <a href="/Product/SubmitOrder?periodId=@Model.PeriodId" class="red_bg white tc fr f16" >参与夺宝</a>
+    <a href="#" class="red_bg white tc fr f16" id="joined">参与夺宝</a>
     <a href="Gift_order.html" class="orange_bg tc fr f16" >送给朋友</a>
 
 </div>

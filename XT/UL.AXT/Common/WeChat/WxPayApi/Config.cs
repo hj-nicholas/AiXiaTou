@@ -18,7 +18,7 @@ namespace Hoo.WeChat.WxPayAPI
         */
         public const string APPID = "wxc2f9b0e146533762";
         public const string MCHID = "1291399301";
-        public const string KEY = "e10adc3849ba56abbe56e056f20f883e";
+        public const string KEY = "56A23BC66UUUlink888VC223MIdanG99";
         public const string APPSECRET = "a783530c3617187dd3f02690c98add75";
 
         //=======【证书路径设置】===================================== 
@@ -32,7 +32,7 @@ namespace Hoo.WeChat.WxPayAPI
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public const string NOTIFY_URL = "http://paysdk.weixin.qq.com/example/ResultNotifyPage.aspx";
+        public const string NOTIFY_URL = "http://www.ixiatou.cn/Product/PayResult";
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取

@@ -347,7 +347,7 @@ namespace Hoo.WeChat.WxPayAPI
         * @throws WxPayException
         * @return 成功时返回，其他抛异常
         */
-        public static WxPayData UnifiedOrder(WxPayData inputObj, int timeOut = 6)
+        public static WxPayData UnifiedOrder(WxPayData inputObj, int timeOut = 30)
         {
             string url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
             //检测必填参数

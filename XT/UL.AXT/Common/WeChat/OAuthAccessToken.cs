@@ -4,6 +4,7 @@ using System.Net;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UL.AXT.Common;
 
 namespace Hoo.Common.WeChat
 {
@@ -159,7 +160,7 @@ namespace Hoo.Common.WeChat
         public static OAuthAccessToken Get(string userName, string code, out ErrorMessage errorMessage)
         {
             OAuthAccessToken token = null;
-            if (string.IsNullOrWhiteSpace(code))
+           if (string.IsNullOrWhiteSpace(code))
             {
                 errorMessage = new ErrorMessage(ErrorMessage.ExceptionCode, "用户授权后的code不能为空。");
                 return token;
@@ -170,6 +171,10 @@ namespace Hoo.Common.WeChat
                 errorMessage = new ErrorMessage(ErrorMessage.ExceptionCode, "获取公众号信息失败。");
                 return token;
             }
+            Log.WriteLog("AppId", account.AppId);
+            Log.WriteLog("AppSecret", account.AppSecret);
+            Log.WriteLog("code", code);
+
             string url = string.Format(urlForGettingAccessToken, account.AppId, account.AppSecret, code);
             string responseContent;
             if (!HttpHelper.Request(url, out responseContent, httpMethod, (string)null))

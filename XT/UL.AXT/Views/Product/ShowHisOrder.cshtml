@@ -1,0 +1,50 @@
+﻿@model List<Model.ShowOrderModel>
+
+@{
+    Layout = "../Shared/Main.cshtml";
+}
+<script type="text/javascript" src="~/Scripts/ShowingOrder/ShowingOrder.js"></script>
+
+
+<div class="mainM">
+
+    <div class="comment">
+        <ul>
+            @foreach (var order in Model)
+            {
+                <li>
+                    <div class='commentT'>
+                        <img src='@order.UserImage' class='fl' />
+                        <p class='oh'><span class='fl'> @order.UserName </span><span class='fr'>2人次</span></p>
+                        <p class='oh'><span class='fl red'> @order.ProductName   @order.PeriodNum </span><span class='fr gray9'>@order.CommentDate  </span></p>
+                    </div>
+
+                    <div class='commentM oh'>
+                        <p class='block'> @order.CommentContent </p>
+                        @foreach (var photo in order.Photos)
+                        {
+                            var imgPath = @ViewBag.UploadPath + @photo.PhotoPath;
+
+                            <a class='fl'><img src=@imgPath /></a>
+                        }
+
+                    </div>
+                    <div class='commentB oh'>
+                        <a class='fl' href='/ShowOrder/CommentList?periodId=@order.PeriodID'>
+                            <i class='liaotian_s block icon_s fl '></i>
+                            评论 <p class='fl'> @order.CommentNum </p>
+                        </a>
+                        <a class='fl' href="#">
+                            <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
+                            <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
+                        </a>
+                    </div>
+                </li>
+
+            }
+        </ul>
+    </div>
+
+</div>
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")

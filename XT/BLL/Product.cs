@@ -28,5 +28,23 @@ namespace BLL
             var periods = pro.GetPeriods(productId);
             return periods;
         }
+
+        public BaseResult GetRelPeriodInfo(int periodId, out int suppNum, out int commNum)
+        {
+            var result = pro.GetRelPeriodInfo(periodId, out suppNum, out commNum);
+            return result;
+        }
+
+        public IList<UserOrderDTO> GetOrderList(int periodId)
+        {
+            var lst = pro.GetOrderList(periodId);
+            return lst;
+        }
+
+        public IList<DonateModel> GetDonaterList(int periodId)
+        {
+            var lst = pro.GetDonaterList(periodId);
+            return lst;
+        }
     }
 }

@@ -8,6 +8,18 @@
 
 
         $("#btnPay").click(function() {
+
+            @*$.ajax({
+                url: "/Product/UpdOrderSts",
+                type: "POST",
+                data:{orderId:'@ViewBag.OrderId',sts:1},
+                sucess:function(data) {
+                    if (data["Succeeded"]) {
+                        window.location.href = "/Product/PaySuccess";
+                    }
+                }
+            });*@
+
             if (typeof WeixinJSBridge == "undefined") {
                 if (document.addEventListener) {
                     document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
@@ -22,22 +34,40 @@
             }
         });
     });
-    
+
     //调用微信JS api 支付
-    function jsApiCall()
-    {
+    function jsApiCall() {
+        //var obj = eval(@Html.Raw(ViewBag.WxJSParam));
+        //alert(obj.appId);
         WeixinJSBridge.invoke(
                     'getBrandWCPayRequest',
-                "",//josn串
-            function (res)
-            {
-                WeixinJSBridge.log(res.err_msg);
-                alert(res.err_code + res.err_desc + res.err_msg);
+                @Html.Raw(ViewBag.WxJSParam),//josn串
+            function (res) {
+
+                //WeixinJSBridge.log(res.err_msg);
+                //alert(res.err_code + res.err_desc + res.err_msg);
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    //更新订单状态
+                    $.ajax({
+                        url: "/Product/UpdOrderSts",
+                        type: "POST",
+                        data:{orderId:'@ViewBag.OrderId',sts:1},
+                        sucess:function(data) {
+                            if (data["Succeeded"]) {
+                                window.location.href = "/Product/PaySuccess";
+                            }
+                        }
+                    });
+                   
+                }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                else if (res.err_msg == "get_brand_wcpay_request:fail") {
+                    alert("支付失败");
+                }
             }
     );
     }
 
-   
+
 </script>
 <div class="mainM">
 
@@ -47,7 +77,8 @@
                 <input type="text" class="block h30 lh30" value="虾仔：@ViewBag.Lottery" />
             </li>
             <li class="white_bg"><input type="text" class="block h30 lh30" value="联系邮箱：@ViewBag.Phone" /></li>
-            <li class="white_bg"><input type="text" class="block h30 lh30" value="联系手机号：@ViewBag.Email" /></li>
+            <li class="white_bg"><input type="text" class="block h30 lh30" value="联系手机号：@ViewBag.Email"/></li>
+            <li class="white_bg"><input type="text" class="block h30 lh30" value="待支付：@ViewBag.NeedPay 元" /></li>
         </ul>
 
         <p class="h20 lh20 f12" style="height:auto;">项目完成后将会把<b class="red">全部参与的虾仔发送到你的邮箱，以此体现本平台的公平性。</b>如获得礼品，虾兵（工作人员）会即刻联系您，协助处理相关事宜。</p>

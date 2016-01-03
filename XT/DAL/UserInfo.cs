@@ -94,7 +94,7 @@ namespace DAL
                     {
                         user.UserID = Convert.ToInt32(rdr["UserId"]);
                         user.UserName = Convert.ToString(rdr["UserName"]);
-                        //user.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
+                        user.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
                         user.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
                         user.City = Convert.ToString(rdr["City"]);
                         user.OpenId = Convert.ToString(rdr["OpenId"]);
