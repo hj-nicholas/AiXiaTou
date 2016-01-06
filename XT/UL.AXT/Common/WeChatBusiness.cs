@@ -60,6 +60,7 @@ namespace UL.AXT.Common
             UserDTO newUserDto = new UserDTO();
             if (user != null)
             {
+                Log.WriteLog("test user:", "222");
                 UserDTO userDto = new UserDTO();
                 userDto.WeChatName = user.nickname;
                 userDto.PhotoPath = user.headimgurl;
@@ -70,6 +71,7 @@ namespace UL.AXT.Common
                 //userDto.PhotoPath = "http://wx.qlogo.cn/mmopen/ajNVdqHZLLCR4ZVgDNqFmrpJvmtLkpVg0jU5etngPK98SohUpriaWJtR2Mma4gdnSmolsf9SkY4oVoic8SyQ7BwA/0";
                 //userDto.City = "ShenZhen";
                 //更新用户信息并查询出该用户ID
+                Log.WriteLog("test user:", "333");
                 newUserDto = userInfo.UpdOrInsertUser(userDto);
             }
 

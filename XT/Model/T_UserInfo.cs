@@ -101,6 +101,7 @@ namespace Model
          public List<T_UserAddr> UserAddrs { get; set; }
         //用户参加数量
         public int JoinedNum { get; set; }
+        public int DonateNum { get; set; }
     }
 }
 

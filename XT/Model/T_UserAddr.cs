@@ -61,6 +61,14 @@ namespace Model
             set { _phone = value; }
         }
 
+        //收件人电话
+        private string _postcode;
+        public string PostCode
+        {
+            get { return _postcode; }
+            set { _postcode = value; }
+        }
+
     }
 }
 

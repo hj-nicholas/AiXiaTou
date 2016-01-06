@@ -171,9 +171,9 @@ namespace Hoo.Common.WeChat
                 errorMessage = new ErrorMessage(ErrorMessage.ExceptionCode, "获取公众号信息失败。");
                 return token;
             }
-            Log.WriteLog("AppId", account.AppId);
-            Log.WriteLog("AppSecret", account.AppSecret);
-            Log.WriteLog("code", code);
+            //Log.WriteLog("AppId", account.AppId);
+            //Log.WriteLog("AppSecret", account.AppSecret);
+            //Log.WriteLog("code", code);
 
             string url = string.Format(urlForGettingAccessToken, account.AppId, account.AppSecret, code);
             string responseContent;
@@ -275,6 +275,7 @@ namespace Hoo.Common.WeChat
                 return info;
             }
             string url = string.Format(urlForGettingUserInfo, accessToken, openId, language);
+           
             string responseContent;
             if (!HttpHelper.Request(url, out responseContent, httpMethod, (string)null))
                 errorMessage = new ErrorMessage(ErrorMessage.ExceptionCode, "请求失败。");

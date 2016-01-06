@@ -180,7 +180,7 @@ function AlertDivD(seletor) {
     $(seletor).find(".DalertC").css("left", x)
 }
 function AlertCloseD(seletor) {
-    $(seletor).closest(".Dalert").css("display", "none")
+    $(seletor).closest(".Dalert").css("display", "none");
 }
 
 
@@ -201,6 +201,11 @@ $(function () {
             SetCookie("footerBtn", a_H.prop("id"));
 
         }
+    });
+
+    $("#smile").click(function() {
+        var userId = getCookie("UserId");
+        window.location.href="/User/Index?userId="+userId;
     });
 });
 

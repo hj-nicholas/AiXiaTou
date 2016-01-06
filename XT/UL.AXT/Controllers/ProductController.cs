@@ -19,7 +19,7 @@ namespace UL.AXT.Controllers
         public ActionResult Index(int proType = 1)
         {
 
-            List<ProductModel> lst = prod.GetProducts(proType).ToList();
+            List<ProductModel> lst = prod.GetProducts(proType,0).ToList();
             return View(lst);
         }
 
@@ -37,7 +37,7 @@ namespace UL.AXT.Controllers
             var donate = prod.GetDonaterList(periodId).ToList();
 
             //5.晒单记录
-            var showOrder = show.GetShowingOrders(product.ProductId);
+            var showOrder = show.GetShowingOrders(product.ProductId,0);
 
             ViewBag.Product = product;
             ViewBag.Periods = periods;
@@ -189,7 +189,7 @@ namespace UL.AXT.Controllers
         {
             BLL.ShowOrder show = new ShowOrder();
 
-            var showOrder = show.GetShowingOrders(productId);
+            var showOrder = show.GetShowingOrders(productId,0);
             ViewBag.UploadPath = strUploadPath;
 
             return View(showOrder);

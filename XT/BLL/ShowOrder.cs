@@ -10,10 +10,10 @@ namespace BLL
 {
     public class ShowOrder
     {
-        public IList<ShowOrderModel> GetShowingOrders(int productId)
+        public IList<ShowOrderModel> GetShowingOrders(int productId,int userId)
         {
            DAL.Product pro = new DAL.Product();
-            IList<ShowOrderModel> lst = pro.GetShowingOrders(productId);
+            IList<ShowOrderModel> lst = pro.GetShowingOrders(productId, userId);
             return lst;
         }
     }

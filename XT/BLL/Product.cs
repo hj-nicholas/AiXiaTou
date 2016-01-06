@@ -10,9 +10,9 @@ namespace BLL
     public class Product
     {
         DAL.Product pro = new DAL.Product();
-        public IList<ProductModel> GetProducts(int proType)
+        public IList<ProductModel> GetProducts(int proType,int userId)
         {
-            IList<ProductModel> lst = pro.GetProducts(proType);
+            IList<ProductModel> lst = pro.GetProducts(proType, userId);
             return lst;
         }
 
@@ -44,6 +44,12 @@ namespace BLL
         public IList<DonateModel> GetDonaterList(int periodId)
         {
             var lst = pro.GetDonaterList(periodId);
+            return lst;
+        }
+
+        public IList<ProductModel> GetEnshrineProducts(int  userId)
+        {
+            IList<ProductModel> lst = pro.GetEnshrineProducts( userId);
             return lst;
         }
     }

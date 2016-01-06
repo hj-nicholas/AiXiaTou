@@ -30,7 +30,9 @@ namespace DAL
                         userInfo.UserName = Convert.ToString(rdr["UserName"]);
                         userInfo.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
                         userInfo.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
+                        userInfo.DonateNum = Convert.ToInt32(rdr["DonateNum"]);
                         userInfo.Cellphone = Convert.ToString(rdr["Cellphone"]);
+                        userInfo.PhotoPath= Convert.ToString(rdr["PhotoPath"]);
                     }
                 }
 
@@ -61,6 +63,7 @@ namespace DAL
                         addr.AddressDesc = Convert.ToString(rdr["AddressDesc"]);
                         addr.Receiver = Convert.ToString(rdr["Receiver"]);
                         addr.Phone = Convert.ToString(rdr["Phone"]);
+                        addr.PostCode = Convert.ToString(rdr["PostCode"]);
 
                         lstAddrs.Add(addr);
                     }
@@ -80,13 +83,11 @@ namespace DAL
             try
             {
                 UserDTO user = new UserDTO();
-
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pUpdOrInsertUser", strConn);
                 cmd.Parameters["@p_OpenId"].Value = userDto.OpenId;
                 cmd.Parameters["@p_WeChatName"].Value = userDto.WeChatName;
                 cmd.Parameters["@p_City"].Value = userDto.City;
                 cmd.Parameters["@p_PhotoPath"].Value = userDto.PhotoPath;
-
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     
@@ -101,13 +102,39 @@ namespace DAL
                     }
 
                 }
-
                 return user;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public BaseResult EditAddr(T_UserAddr addr, int type)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pEditAddress", strConn);
+                cmd.Parameters["@p_AddressDesc"].Value = addr.AddressDesc;
+                cmd.Parameters["@p_AddressId"].Value = addr.AddressId;
+                cmd.Parameters["@p_Phone"].Value = addr.Phone;
+                cmd.Parameters["@p_PostCode"].Value = addr.PostCode;
+                cmd.Parameters["@p_Receiver"].Value = addr.Receiver;
+                cmd.Parameters["@p_UserID"].Value = addr.UserID;
+                cmd.Parameters["@p_type"].Value = type;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
         }
     }
 }

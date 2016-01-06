@@ -4,19 +4,19 @@
 }
 @using Model
 @model Model.ProductModel
-
+<script src="~/Scripts/Product/SubmitOrder.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         var openId = getCookie("OpenId");
         //获取用户信息
         //alert(openId);
         //$("#PayUser").text(getCookie("UserName"));
 
-        $("#probability").text(Math.round(@(1 / Model.ProductPrice * 100)) + " %概率");
+        $("#probability").text(Math.round(@(1/Model.ProductPrice*100)) + " %概率");
 
-        $("a[name='turnPropbality']").click(function () {
+        $("a[name='turnPropbality']").click(function() {
             var num = Math.round($("#portionNum").val());
-            var perProp = Math.round( @(1/Model.ProductPrice*100));
+            var perProp = Math.round(@(1/Model.ProductPrice*100));
             if ($(this).hasClass("minus_s")) {
                 if (num > 1) {
                     $("#portionNum").val(num - 1);
@@ -34,7 +34,7 @@
         });
 
         //提交订单操作
-        $("#submitOrder").click(function () {
+        $("#submitOrder").click(function() {
 
             var lotterys = $("#txtLotterys").val();
             var tel = $("#txtPhone").val();
@@ -42,10 +42,10 @@
             //window.location.href = "/Product/PayOrder?lottery=" + lotterys + "&phone=" + tel + "&email=" + email;
             $.ajax({
                 url: "/Product/AddOrder",
-                type:"POST",
+                type: "POST",
                 data: { lottery: lotterys, phone: tel, email: email, periodId: '@Model.PeriodId', userName: getCookie("UserName"), addr: "123", userId: getCookie("UserId") },
                 //data:{payFee:$("#needPay").val(),userOpenId:getCookie("OpenId")},
-                success:function(data) {
+                success: function(data) {
                     if (data["Succeeded"]) {
                         window.location.href = "/Product/PayOrder?lottery=" + lotterys + "&phone=" + tel + "&email=" + email + "&needPay=" + $("#needPay").text() + "&userOpenId=" + getCookie("OpenId") + "&orderId=" + data["ResultId"];
                     }
@@ -59,15 +59,15 @@
                 url: "/Product/GetShrimpCode",
                 type: "POST",
                 data: { periodId: '@Model.PeriodId', codeNum: $("#portionNum").val() },
-                success:function(datas) {
+                success: function(datas) {
                     $("#txtLotterys").val(datas);
                 }
             });
         });
 
         //使用余额支付
-        $("#useYE").change(function () {
-            var ded=Math.round('@ViewBag.UserInfo.AccountBalance');
+        $("#useYE").change(function() {
+            var ded = Math.round('@ViewBag.UserInfo.AccountBalance');
             var totalPay = Math.round($("#portionNum").val());
             if ($("#useYE").prop("checked")) {
                 if (ded >= totalPay) {
@@ -84,9 +84,116 @@
             }
         });
 
+        $("#btnEditAddr").click(function() {
+
+            $("#txtRecieverEdit").val($("#receiver").text());
+            $("#txtPhoneEdit").val($("#phone").text());
+            $("#txtAddrEdit").val($("#address").text());
+            $("#txtPostCodeEdit").val($("#postCode").val());
+            $("#txtAddrId").val($("#addressId").val());
+
+            AlertDiv('#alert_address_edit');
+        });
+
+        $("#btnConfirmAddr").click(function () {
+            var chk = $(".addressB").find("input[type='checkbox']:checked");
+            var addrId = chk.attr("id").substring(3, 1);
+            var receiver = chk.parent().find("b").text();
+            var phone = chk.parent().find("i[name='phone']").text();
+            var addressDesc = chk.parent().find("p[name='addressDesc']").text();
+
+            $("#receiver").text(receiver);
+            $("#phone").text(phone);
+            $("#address").text(addressDesc);
+            $("#addressId").val(addrId);
+
+            AlertClose("#alert_address");
+        });
+
+        $("#newAddr").click(function () {
+            AlertClose("#alert_address");
+            AlertDiv("#alert_address_new");
+        });
+
+        $("#btnAddNewAddr").click(function () {
+
+            $.ajax({
+                url: "/User/EditAddr",
+                type: "POST",
+                data: { AddressId: $("#txtAddrIdN").val(), AddressDesc: $("#txtAddrEditN").val(), Receiver: $("#txtRecieverEditN").val(), Phone: $("#txtPhoneEditN").val(), PostCode: $("#txtPostCodeEditN").val(), type: 0, UserID: getCookie("UserId") },
+                success: function(data) {
+
+                    AlertClose("#alert_address_new");
+                }
+            });
+
+            $("#addrList").remove();
+            $.ajax({
+                url: "/User/GetAddrs",
+                type: "POST",
+                data: { userId: getCookie("UserId") },
+                success: function (data) {
+
+                    var html = '';
+                    if (data != null) {
+                        html += ' <div class="addressB" id="addrList"> <ul>';
+                        $(data).each(function (index) {
+                            //alert(data[index].AddressDesc);
+                            html += '<li class="white_bg">';
+                            html += '   <input type="checkbox" class="fl" id="chk' + data[index].AddressId + '"/>';
+                            html += '   <a  class="block">';
+                            html += '    <i class="pen_s icon_s pa margin_t15"></i>';
+                            html += '     <p class="oh lh25"><b class="fl f16" name="receiver">' + data[index].Receiver + '</b><i class="fr f14"  name="phone">' + data[index].Phone + '</i></p>';
+                            html += '   <p class="lh20 gray9"  name="addressDesc">' + data[index].AddressDesc + '</p>';
+                            html += '   </a> </li>';
+
+                        });
+
+                        html += ' </ul></div>';
+                        $("#addrsMain").append(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+
+            AlertDiv('#alert_address');
+        });
+       
+
     });
 
-    
+    function EdidAddress(type) {
+        $.ajax({
+            url: "/User/EditAddr",
+            type: "Post",
+            data: { AddressId: $("#txtAddrId").val(), AddressDesc: $("#txtAddrEdit").val(), Receiver: $("#txtRecieverEdit").val(), Phone: $("#txtPhoneEdit").val(), PostCode: $("#txtPostCodeEdit").val(), type: type, UserID: getCookie("UserId") },
+        success:function(data) {
+            if (data["Succeeded"]) {
+                if (type == 1) {
+                   
+                    $("#receiver").text($("#txtRecieverEdit").val());
+                    $("#phone").text($("#txtPhoneEdit").val());
+                    $("#address").text($("#txtAddrEdit").val());
+                    $("#postCode").val($("#txtPostCodeEdit").val());
+
+                   
+                }
+                else if (type == 2) {
+                    $("#receiver").text("");
+                    $("#phone").text("");
+                    $("#address").text("");
+                    $("#postCode").val("");
+                    $("#addressId").val(0);
+                }
+                AlertClose(this);
+            }
+        }
+
+    });
+    }
+
 </script>
 <div class="mainM">
 
@@ -121,7 +228,7 @@
             </li>
             <li class="white_bg">
                 <a class="button orange_bg tc fr gray3_border br4 pa" id="btnGenerate">随机生成</a>
-                <input type="text" class="block Ntext h30 lh30" id="txtLotterys" /><input type="hidden" value="虾仔，四位数字" />
+                <input type="text" class="block Ntext h30 lh30" id="txtLotterys"  readonly="readonly"/><input type="hidden" value="虾仔，四位数字" />
             </li>
             <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtMail" /><input type="hidden" value="联系邮箱，将用于接收项目全部虾仔" /></li>
             <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhone" /><input type="hidden" value="推荐人手机号（选填）" /></li>
@@ -135,31 +242,38 @@
 
     <div class="addressB">
         <ul>
+@{
+    var addrs = (List<T_UserAddr>)ViewBag.Addrs;
+    var addr = "";
+    var addrId = 0;
+    var receiver = "";
+    var phone = "";
+    var postCode = "";
+    if (addrs.Count > 0)
+    {
+        addr = addrs[0].AddressDesc;
+        addrId = addrs[0].AddressId;
+        receiver = addrs[0].Receiver;
+        phone = addrs[0].Phone;
+        postCode = addrs[0].PostCode;
+    }
             <li class="white_bg">
-                <a href="Shipping_address_edit.html" class="block">
+                <a  class="block" id="btnEditAddr">
                     <i class="pen_s icon_s pa margin_t15"></i>
                     <p class="oh lh25">
-                        <b class="fl f16" id="PayUser">@ViewBag.UserInfo.UserName</b><i class="fr f14">@ViewBag.UserInfo.Cellphone</i>
+                        <b class="fl f16" id="receiver">@receiver</b><i class="fr f14" id="phone">@phone</i>
                     </p>
-                    @{
-                        var addrs = (List<T_UserAddr>)ViewBag.Addrs;
-                        if (addrs.Count > 0)
-                        {
-                            <p class="lh20 gray9">@addrs[0].AddressDesc</p>
-                        }
-                        else
-                        {
-                            <p class="lh20 gray9"></p>
-                        }
-                    }
-
+                            <p class="lh20 gray9" id="address">@addr</p>
                 </a>
+                <input type="text" value="@postCode" id="postCode" style="display: none"/>
+                <input type="text" value="@addrId" id="addressId" style="display:none" />
             </li>
+}
         </ul>
 
     </div>
     <div class="addressT white_bg">
-        <a class="oh block" onclick="AlertDiv('#alert_address')"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f14 lh20">收货地址(选填)</span></a>
+        <a class="oh block"  id="alertRevAddrs"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f14 lh20">收货地址(选填)</span></a>
     </div>
     <div class="pf pay white_bg">
         已抵扣￥<p class="fl gray9 f12" id="deduction">0</p>
@@ -168,64 +282,114 @@
         <p class="fr gray6 f14">待支付￥</p>
     </div>
 </div>
+<div class="alert" id="alert_address_edit">
+    <div class="mainM address">
+        <div class="order_submit">
+            <ul>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEdit"/><input type="hidden" value="收货人姓名"/></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEdit"/><input type="hidden" value="手机号码"/></li>
 
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEdit"/><input type="hidden" value="详细地址"/></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEdit"/><input type="hidden" value="邮政编码"/></li>
+               
+            </ul>
+            <p class="h20 lh20 red"></p>
+            <input type="text" style="display:none" id="txtAddrId"/>
+        </div>
+
+        <div class="mineB">
+            <ul class="white_bg">
+                <li>
+                    <a onclick="EdidAddress(1)" class="oh block">
+                        <i class="right_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">保存修改</p>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="EdidAddress(2)" class="oh block">
+                        <i class="wrong_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">删除此地址</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    
+    </div>
+
+<div class="alert" id="alert_address_new">
+    <div class="mainM address">
+        <div class="order_submit">
+            <ul>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEditN" /><input type="hidden" value="收货人姓名" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEditN" /><input type="hidden" value="手机号码" /></li>
+
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEditN" /><input type="hidden" value="详细地址" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEditN" /><input type="hidden" value="邮政编码" /></li>
+
+            </ul>
+            <p class="h20 lh20 red"></p>
+            <input type="text" style="display:none" id="txtAddrIdN" />
+        </div>
+
+        <div class="mineB">
+            <ul class="white_bg">
+                <li>
+                    <a  id="btnAddNewAddr" class="oh block">
+                        <i class="right_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">保存修改</p>
+                    </a>
+                </li>
+                @*<li>
+                    <a onclick="EdidAddress(2)" class="oh block">
+                        <i class="wrong_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">删除此地址</p>
+                    </a>
+                </li>*@
+
+            </ul>
+        </div>
+    </div>
+
+</div>
 <div class="alert" id="alert_address">
 
-    <div class="alertCT oh">
-        <p class="fl f16">选择地址</p>
-        <i class="icon alert_close fr wrong" onclick="AlertClose(this)"></i>
-    </div>
-    <div class="alertCB">
-        <div class="address">
-            <div class="addressT white_bg">
-                <a href="Shipping_address_edit.html" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
-            </div>
-            <div class="addressB">
-                <ul>
-                    <li class="white_bg">
-                        <input type="checkbox" class="fl" />
-                        <a href="Shipping_address_edit.html" class="block">
-                            <i class="pen_s icon_s pa margin_t15"></i>
-                            <p class="oh lh25"><b class="fl f16">余小卡</b><i class="fr f14">15002089654</i></p>
-                            <p class="lh20 gray9">广东省深圳市南山区科苑北18号科兴科学园B2单元1702号</p>
-                        </a>
-                    </li>
-                    <li class="white_bg">
-                        <input type="checkbox" class="fl" />
-                        <a href="Shipping_address_edit.html" class="block">
-                            <i class="pen_s icon_s pa margin_t15"></i>
-                            <p class="oh lh25"><b class="fl f16">余小卡</b><i class="fr f14">15002089654</i></p>
-                            <p class="lh20 gray9">广东省深圳市南山区科苑北18号科兴科学园B2单元1702号</p>
-                        </a>
-                    </li>
+        <div class="alertCT oh">
+            <p class="fl f16">选择地址</p>
+            <i class="icon alert_close fr wrong" onclick="AlertClose(this)"></i>
+        </div>
+        <div class="alertCB">
+            <div class="address" id="addrsMain">
+                <div class="addressT white_bg">
+                    <a id="newAddr" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
+                </div>
+                <div class="addressB" id="addrList">
+                    
+                </div>
 
-
-                </ul>
 
             </div>
-
-
         </div>
-    </div>
-    <div class="alertCM">
-        <a class="fr orange_bg br2 f16 tc">确认</a>
-        <a class="fr br2 tc" onclick="AlertClose(this)">取消</a>
-    </div>
-
-</div>
-
-
-<div class="Dalert" id="Dalert_tishi">
-    <div class="DalertZ"></div>
-    <div class="DalertC">
-
-        <div class="DalertCT oh">
-            <p class="fl f14">提示</p>
-            <i class="icon_s alert_close fr wrong_s" onclick="AlertCloseD(this)"></i>
-        </div>
-        <div class="DalertCB alertCB_S">
-            <p>大哥，你的输入有问题的呢</p>
+        <div class="alertCM">
+            <a class="fr orange_bg br2 f16 tc" id="btnConfirmAddr">确认</a>
+            <a class="fr br2 tc" onclick="AlertClose(this)">取消</a>
         </div>
 
     </div>
-</div>
+
+
+    <div class="Dalert" id="Dalert_tishi">
+        <div class="DalertZ"></div>
+        <div class="DalertC">
+
+            <div class="DalertCT oh">
+                <p class="fl f14">提示</p>
+                <i class="icon_s alert_close fr wrong_s" onclick="AlertCloseD(this)"></i>
+            </div>
+            <div class="DalertCB alertCB_S">
+                <p>大哥，你的输入有问题的呢</p>
+            </div>
+
+        </div>
+    </div>

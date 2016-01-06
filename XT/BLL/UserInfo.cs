@@ -28,5 +28,11 @@ namespace BLL
             var newUserDto = user.UpdOrInsertUser(userDto);
             return newUserDto;
         }
+
+        public BaseResult EditAddr(T_UserAddr addr, int type)
+        {
+            var result = user.EditAddr(addr, type);
+            return result;
+        }
     }
 }

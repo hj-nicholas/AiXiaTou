@@ -1,0 +1,111 @@
+﻿@model List<Model.ProductModel>
+@{
+    ViewBag.Title = "Joined";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<div class="mainT orderT h40 white_bg">
+    <ul class="oh" id="tags">
+        <li class="hover">
+            <a class="orange" onClick="selectTag('tagContent0',this,'tags','tagContent')"
+               href="javascript:void(0)">活动中</a>
+        </li>
+        <li>
+            <a class="blue" onClick="selectTag('tagContent1',this,'tags','tagContent')"
+               href="javascript:void(0)">已结束</a>
+        </li>
+        <li>
+            <a class="red" onClick="selectTag('tagContent2',this,'tags','tagContent')"
+               href="javascript:void(0)">已中奖</a>
+        </li>
+    </ul>
+</div>
+<div class="mainM" id="tagContent">
+    <div id="tagContent0">
+
+@foreach (var prod in Model.Where(p => p.UserName == ""))
+{
+    <div class="orderB">
+        <div class="orderBT lh30 oh fn">
+            <i class="flagY_s fl icon_s margin_r5 margin_t5"></i>
+            <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
+            <h3 class="fr fn">已购买</h3>
+        </div>
+        <div class="orderBB">
+            <a class="block oh padding_b5">
+                <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
+                <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：1234567</em></span>
+
+            </a>
+            <div class="index_M">
+                <div class="index_ML" style="margin-right: 0">
+                    <h3 class="grayC_bg"><b class="orange_bg block" style="width:@(decimal.Round(prod.JoinedNum*100/prod.ProductPrice,0))%;"></b></h3>
+
+                    <p class="oh">
+                        <span class="fl"><b class="red fn block">@prod.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                        <span class="fl tc"><b class="red fn block">@prod.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                        <span class="fl tr"><b class="red fn block">@(prod.ProductPrice - prod.JoinedNum)</b><i class="grayC block">剩余</i></span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+    </div>
+    <div class="none" id="tagContent1">
+        @foreach (var prod in Model.Where(p => p.UserName != ""))
+        {
+            <div class="orderB">
+                <div class="orderBT lh30 oh fn">
+                    <i class="flagB_s fl icon_s margin_r5 margin_t5"></i>
+                    <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
+                    <h3 class="fr fn">已开奖</h3>
+                </div>
+                <div class="orderBB">
+                    <a class="block oh padding_b5">
+                        <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
+                        <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：1234567</em></span>
+                        <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em><em class="fr fsn">获得者：@prod.UserName</em></span>
+                        <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：2015年11月28日 12点40分30秒</em></span>
+
+                    </a>
+
+                </div>
+            </div>
+
+        }
+    </div>
+    <div class="none" id="tagContent2">
+        @foreach (var prod in Model.Where(p => p.UserName != ""))
+        {
+            <div class="orderB">
+                <div class="orderBT lh30 oh fn">
+                    <i class="flagR_s fl icon_s margin_r5 margin_t5"></i>
+                    <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
+                    <a href="Shipping_address.html" class="fr br4 blue_bg white f14">领取奖品</a>
+                    <a href="Sun_single_polite.html" class="fr br4 blue_bg white f14">晒单有米</a>
+
+
+
+                </div>
+                <div class="orderBB">
+                    <a class="block oh padding_b5">
+                        <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
+                        <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em></span>
+                        <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：2015年11月28日 12点40分30秒</em></span>
+
+                        <span class="f14 lh25 block gray6 oh"><i class="transport_s fl icon_s margin_r5"></i><em class="fl fsn">物流单号：顺丰5215248865</em></span>
+                    </a>
+
+                </div>
+            </div>
+        }
+       
+    </div>
+</div>
+
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")

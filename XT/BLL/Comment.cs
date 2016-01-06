@@ -25,5 +25,10 @@ namespace BLL
         {
             return comment.AddReply(userId, commRefId, periodId, replyContent);
         }
+
+        public IList<CommentDTO> GetCommentListByUserid(int userId)
+        {
+            return comment.GetCommentListByUserid(userId);
+        }
     }
 }

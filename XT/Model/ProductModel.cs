@@ -19,5 +19,9 @@ namespace Model
 
         public DateTime CreateTime { get; set; }
         public DateTime ProductExpires { get; set; }
+
+        public string ProLotteryNum { get; set; }
+
+        public string UserName { get; set; }
     }
 }

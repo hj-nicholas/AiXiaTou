@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Gifts";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+
+<div class="mainT orderT h40 white_bg">
+    <ul class="oh" id="tags">
+        <li class="hover" style="width:49%;">
+            <a class="red" onClick="selectTag('tagContent0',this,'tags','tagContent')"
+               href="javascript:void(0)">送出礼物</a>
+        </li>
+        <li style="width:49%;">
+            <a class="red" onClick="selectTag('tagContent1',this,'tags','tagContent')"
+               href="javascript:void(0)">收到礼物</a>
+        </li>
+
+    </ul>
+
+</div>
+<div class="mainM" id="tagContent">
+    <div id="tagContent0">
+        <div class="present">
+            <ul>
+                <li class="white_bg">
+                    <a href="Gift_share.html">
+                        <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">2015年12月28日 14时51分12秒</span></p>
+                        <p class="f16 pr"><span class="fl">30元话费充值卡</span><i class="fr br4 f12">已抢：3/10</i></p>
+                        <p class="f12 oh"><span class="fl gray9">价格：10虾米</span><i class="fr grayC_bg white br4">未开奖</i></p>
+                    </a>
+                </li>
+                <li class="white_bg">
+                    <a href="Gift_share2.html">
+                        <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">2015年12月28日 14时51分12秒</span></p>
+                        <p class="f16 pr"><span class="fl">30元话费充值卡</span><i class="fr br4 f12">已抢光</i></p>
+                        <p class="f12 oh"><span class="fl gray9">价格：10虾米</span><i class="fr grayC_bg white br4">未开奖</i></p>
+                    </a>
+                </li>
+                <li class="white_bg">
+                    <a href="Gift_share3.html">
+                        <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">2015年12月28日 14时51分12秒</span></p>
+                        <p class="f16 pr"><span class="fl">30元话费充值卡</span><i class="fr br4 f12">幸运虾：严冬了</i></p>
+                        <p class="f12 oh"><span class="fl gray9">价格：10虾米</span><i class="fr orange_bg br4">已开奖</i></p>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div id="tagContent1" class="none">
+        <div class="present">
+            <ul>
+                <li class="white_bg">
+                    <a href="Gift_share1.html">
+                        <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">2015年12月28日 14时51分12秒</span></p>
+                        <p class="f16 pr"><span class="fl">30元话费充值卡</span><i class="fr br4 f12">虾仔：999</i></p>
+                        <p class="f12 oh"><span class="fl gray9">价格：10虾米</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">余小卡</i></p>
+                    </a>
+                </li>
+                <li class="white_bg">
+                    <a href="Gift_share3.html">
+                        <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">2015年12月28日 14时51分12秒</span></p>
+                        <p class="f16 pr"><span class="fl">30元话费充值卡</span><i class="fr br4 f12">幸运虾：严冬了</i></p>
+                        <p class="f12 oh"><span class="fl gray9">价格：10虾米</span><i class="fr grayC_bg white br4">已开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">余小卡</i></p>
+                    </a>
+                </li>
+                <li class="white_bg">
+                    <a href="Gift_share3.html">
+                        <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">2015年12月11日 14时51分12秒</span></p>
+                        <p class="f16 pr"><span class="fl">50元话费充值卡</span><i class="fr br4 f12">虾仔：999</i></p>
+                        <p class="f12 oh"><span class="fl gray9">价格：30虾米</span><i class="fr red_bg white br4">领取奖品</i><i class="fr orange_bg br4">赠</i><i class="fr orange_bg br4">余小卡</i></p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")

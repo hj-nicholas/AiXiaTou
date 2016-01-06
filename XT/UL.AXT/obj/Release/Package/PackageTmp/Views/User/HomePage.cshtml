@@ -1,0 +1,201 @@
+﻿@model List<Model.ProductModel>
+@{
+    ViewBag.Title = "HomePage";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<div class="mainM user0">
+    <div class="user0T orange_bg pr">
+        <img src="images/banner01.jpg" class="br20" />
+        <img src="@ViewBag.UserInfo.PhotoPath" class="" />
+        <p class="tc"><span class="lh30 f18">@ViewBag.UserInfo.UserName</span><br /><span class="lh25 f12">注册时间：2015年11月30日</span></p>
+    </div>
+    <div class="user0M white_bg">
+        <ul class="oh" id="tags">
+            <li class="hover">
+                <a class="red" onClick="selectTag('tagContent0',this,'tags','tagContent')"
+                   href="javascript:void(0)">参与</a>
+            </li>
+            <li>
+                <a class="red" onClick="selectTag('tagContent1',this,'tags','tagContent')"
+                   href="javascript:void(0)">中奖</a>
+            </li>
+            <li>
+                <a class="red" onClick="selectTag('tagContent2',this,'tags','tagContent')"
+                   href="javascript:void(0)">晒单</a>
+            </li>
+            <li>
+                <a class="red pr" onClick="selectTag('tagContent3',this,'tags','tagContent')"
+                   href="javascript:void(0)">消息<i class="red_bg pa br20 white tc f12">9</i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="user0B" id="tagContent">
+        <div id="tagContent0">
+            <div class="index">
+                <ul>
+                   
+                    @foreach (var prod in Model.Where(p=>p.UserName==""))
+                    {
+                        <li>
+                            <div class="index_T">
+                                <a class="pa collection_s  icon_s margin_t5"></a>
+                                <a href="/Product/ProductDetail?periodId=@prod.PeriodId" class="block oh">
+                                    <img src="~/Uploads/ProductPhotos/20151209/img01.jpg" class="fr br4" />
+                                    <p class="oh">
+                                        <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
+                                        <span class="f14 lh25 block gray6 oh "><em class="fl fsn">价值：@prod.ProductPrice 元</em></span>
+                                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn">期数：@prod.PeriodNum , @prod.ProductDesc</em></span>
+                                    </p>
+
+                                </a>
+                            </div>
+                            <div class="index_M">
+                                <div class="index_MR fr">
+                                    <a id="gotoOrderPage" href="/Product/ProductDetail?periodId=@prod.PeriodId" class="red_bg white block br4 lh30 tc f16 margin_t5">查看详情</a>
+                                </div>
+                                <div class="index_ML">
+                                    <h3 class="grayC_bg"><b class="orange_bg block" style="width:@(decimal.Round(prod.JoinedNum*100/prod.ProductPrice,0))%;"></b></h3>
+
+                                    <p class="oh">
+                                        <span class="fl"><b class="red fn block">@prod.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                                        <span class="fl tc"><b class="red fn block">@prod.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                                        <span class="fl tr"><b class="red fn block">@(prod.ProductPrice - prod.JoinedNum)</b><i class="grayC block">剩余</i></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+
+        </div>
+        <div id="tagContent1" class="none">
+            <div class="index">
+                <ul>
+                    @foreach (var prod in Model.Where(p => p.UserName != ""))
+                    {
+                        <li>
+                            <div class="index_T">
+                                <a class="pa collection_s  icon_s margin_t5"></a>
+                                <a href="/Product/ProductDetail?periodId=@prod.PeriodId" class="block oh">
+                                    <img src="~/Uploads/ProductPhotos/20151209/img01.jpg" class="fr br4" />
+<p class="oh">
+                                        <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
+                                        <span class="f14 lh25 block gray6 oh "><em class="fl fsn">价值：@prod.ProductPrice 元</em></span>
+                                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn red">@prod.PeriodNum 已结束，中奖人：@prod.UserName</em></span>
+                                    </p>
+
+                                </a>
+                            </div>
+                            <div class="index_M">
+                                <div class="index_MR fr">
+                                    <a href="/Product/ProductDetail?periodId=@prod.PeriodId" class="red_bg white block br4 lh30 tc f14 margin_t5">幸运 @prod.ProLotteryNum</a>
+                                </div>
+                                <div class="index_ML">
+                                    <h3 class="grayC_bg"><b class="orange_bg block" style="width: 40%;"></b>
+                                    </h3>
+
+                                    <p class="oh">
+                                        <span class="fl"><b class="red fn block">@prod.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                                        <span class="fl tc"><b class="red fn block">@prod.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                                        <span class="fl tr"><b class="red fn block">@(prod.ProductPrice - prod.JoinedNum)</b><i class="grayC block">剩余</i></span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </li>
+                    }
+
+
+
+                </ul>
+            </div>
+
+        </div>
+        <div id="tagContent2" class="none">
+            <div class="comment">
+                <ul>
+                    @foreach (var order in ViewBag.showOrders)
+            {
+                        <li>
+                            <div class='commentT'>
+                                <img src='@order.UserImage' class='fl' />
+                                <p class='oh'><span class='fl'> @order.UserName </span><span class='fr'>2人次</span></p>
+                                <p class='oh'><span class='fl red'> @order.ProductName   @order.PeriodNum </span><span class='fr gray9'>@order.CommentDate  </span></p>
+                            </div>
+
+                            <div class='commentM oh'>
+                                <p class='block'> @order.CommentContent </p>
+                                @foreach (var photo in order.Photos)
+                                {
+                                    var imgPath = @ViewBag.UploadPath + @photo.PhotoPath;
+
+                                    <a class='fl'><img src=@imgPath /></a>
+                                }
+
+                            </div>
+                            <div class='commentB oh'>
+                                <a class='fl' href='/ShowOrder/CommentList?periodId=@order.PeriodID'>
+                                    <i class='liaotian_s block icon_s fl '></i>
+                                    评论 <p class='fl'> @order.CommentNum </p>
+                                </a>
+                                <a class='fl' href="#">
+                                    <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
+                                    <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
+                                </a>
+                            </div>
+                        </li>
+
+                    }
+                   
+
+                </ul>
+            </div>
+        </div>
+        <div id="tagContent3" class="none">
+            <div class="commentPM white_bg">
+                <ul>
+                    @{
+                        foreach (var comment in ViewBag.Comments)
+                        {
+
+                            <li class="pr">
+                                <a href="Homepage_F.html" class="fl">
+                                    <img src="@comment.UserImage" class="fl" />
+                                </a>
+                                <p class="oh"><span class="fl">@comment.Commenter</span></p>
+                                <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
+                                @*<a class="pa br2" href="#" name="showReply" id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">回复</a>*@
+                                <a class="block" name="showReply" id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">
+                                    @{if (comment.CommentRefID == 0)
+                                        {
+                                            <b class="fn block">@comment.CommentContent</b>
+                                        }
+                                        else
+                                        {
+                                            <b class="fn block">回复 @comment.CommentRefer: @comment.CommentContent</b>
+                                        }
+                                    }
+                                </a>
+                            </li>
+
+
+                                        }
+                    }
+                    <li class="pr">
+                        <p class="tc f14 gray9">加载更早消息</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")
+

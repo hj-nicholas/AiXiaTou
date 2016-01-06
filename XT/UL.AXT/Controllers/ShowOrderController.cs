@@ -21,7 +21,7 @@ namespace UL.AXT.Controllers
         // GET: ShowOrder
         public ActionResult Index(string code = "")
         {
-
+            //code = "0211e2a86877e52f073a3dad2042c25b";
             //获取登录微信用户信息
             UserDTO userDto = new UserDTO();
             if (!string.IsNullOrEmpty(code))
@@ -31,7 +31,6 @@ namespace UL.AXT.Controllers
                 if (userInfo != null)
                 {
                     userDto = business.ChangeUserByWeChatInfo(userInfo);
-
                 }
             }
 
@@ -42,7 +41,7 @@ namespace UL.AXT.Controllers
             ViewBag.UploadPath =  strUploadPath;
            
             BLL.ShowOrder showOrder = new BLL.ShowOrder();
-            List<ShowOrderModel> lst = showOrder.GetShowingOrders(0).ToList();
+            List<ShowOrderModel> lst = showOrder.GetShowingOrders(0,0).ToList();
             return View(lst);
         }
 

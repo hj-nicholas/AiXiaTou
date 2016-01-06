@@ -15,13 +15,14 @@ namespace DAL
         private string strConn = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
         
         //晒单数据
-        public IList<ShowOrderModel> GetShowingOrders(int productId)
+        public IList<ShowOrderModel> GetShowingOrders(int productId,int userId=0)
        {
             try
             {
                 IList<ShowOrderModel> lstShowOrder = new List<ShowOrderModel>();
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetShowOrder", strConn);
                 cmd.Parameters["@p_productId"].Value = productId;
+                cmd.Parameters["@p_userId"].Value = userId;
 
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
@@ -54,13 +55,14 @@ namespace DAL
         }
 
         //产品列表
-        public IList<ProductModel> GetProducts(int proType)
+        public IList<ProductModel> GetProducts(int proType,int userId=0)
         {
             try
             {
                 IList<ProductModel> lstProd = new List<ProductModel>();
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetProducts", strConn);
                 cmd.Parameters["@p_ProType"].Value = proType;
+                cmd.Parameters["@p_UserId"].Value = userId;
 
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
@@ -77,6 +79,8 @@ namespace DAL
                         prod.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
                         prod.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
                         prod.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+                        prod.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
+                        prod.UserName = Convert.ToString(rdr["UserName"]);
                         lstProd.Add(prod);
                     }
                 }
@@ -268,6 +272,44 @@ namespace DAL
                 }
 
                 return lstDonate;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //产品列表
+        public IList<ProductModel> GetEnshrineProducts(int  userId = 0)
+        {
+            try
+            {
+                IList<ProductModel> lstProd = new List<ProductModel>();
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetEnshrineProducts", strConn);
+                cmd.Parameters["@p_UserId"].Value = userId;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        ProductModel prod = new ProductModel();
+                        prod.ProductName = Convert.ToString(rdr["ProductName"]);
+                        prod.ProductExpires = Convert.ToDateTime(rdr["ProductExpires"]);
+                        prod.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
+                        prod.ProductId = Convert.ToInt32(rdr["ProductId"]);
+                        prod.ProductType = Convert.ToInt32(rdr["ProductType"]);
+                        prod.ProductDesc = Convert.ToString(rdr["ProductDesc"]);
+                        prod.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        prod.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
+                        prod.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
+                        prod.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+                        prod.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
+                        prod.UserName = Convert.ToString(rdr["UserName"]);
+                        lstProd.Add(prod);
+                    }
+                }
+
+                return lstProd;
             }
             catch (Exception ex)
             {

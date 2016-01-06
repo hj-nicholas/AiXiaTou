@@ -305,9 +305,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MainFrame\MainFrame.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Product\SubmitOrder.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ShowingOrder\ShowingOrder.js" />
+    <Content Include="Scripts\User\UserAddress.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Uploads\CommentPhotos\20151209\img01.jpg" />
     <Content Include="Uploads\ProductPhotos\20151209\img01.jpg" />
@@ -367,10 +369,14 @@
     <Content Include="Views\Product\BuyRecords.cshtml" />
     <Content Include="Views\Product\GiftsRecords.cshtml" />
     <Content Include="Views\Product\ShowHisOrder.cshtml" />
+    <Content Include="Views\User\HomePage.cshtml" />
+    <Content Include="Views\User\MyEnshrine.cshtml" />
+    <Content Include="Views\User\AccountDetail.cshtml" />
+    <Content Include="Views\User\Joined.cshtml" />
+    <Content Include="Views\User\Gifts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

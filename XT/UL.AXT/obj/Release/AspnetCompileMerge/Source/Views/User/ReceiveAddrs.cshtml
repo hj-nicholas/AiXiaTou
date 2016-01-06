@@ -3,10 +3,10 @@
     ViewBag.Title = "ReceiveAddrs";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
+<script src="~/Scripts/User/UserAddress.js"></script>
 <div class="mainM address">
     <div class="addressT white_bg">
-        <a href="Shipping_address_edit.html" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
+        <a id="newAddr" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
     </div>
     <div class="addressB">
         @foreach (var addr in Model)
@@ -26,5 +26,41 @@
 
 </div>
 
+
+<div class="alert" id="alert_address_edit">
+    <div class="mainM address">
+        <div class="order_submit">
+            <ul>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEdit" /><input type="hidden" value="收货人姓名" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEdit" /><input type="hidden" value="手机号码" /></li>
+
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEdit" /><input type="hidden" value="详细地址" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEdit" /><input type="hidden" value="邮政编码" /></li>
+
+            </ul>
+            <p class="h20 lh20 red"></p>
+            <input type="text" style="display:none" id="txtAddrId" />
+        </div>
+
+        <div class="mineB">
+            <ul class="white_bg">
+                <li>
+                    <a onclick="EdidAddress(0)" class="oh block">
+                        <i class="right_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">保存修改</p>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="EdidAddress(2)" class="oh block">
+                        <i class="wrong_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">删除此地址</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
 @RenderPage("~/Views/Shared/_Footer.cshtml")
  
