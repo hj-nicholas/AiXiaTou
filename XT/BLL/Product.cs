@@ -52,5 +52,41 @@ namespace BLL
             IList<ProductModel> lst = pro.GetEnshrineProducts( userId);
             return lst;
         }
+
+        public UserOrderDTO ConfirmLottery(string lotteryTicket, int periodId)
+        {
+            var userOrder = pro.ConfirmLottery(lotteryTicket,periodId);
+            return userOrder;
+        }
+
+        public BaseResult AddGift(T_User_Share shareDto)
+        {
+            var result =  pro.AddGift(shareDto);
+            return result;
+        }
+
+        public BaseResult UpdGiftSts(int shareId, int sts)
+        {
+            var result = pro.UpdGiftSts(shareId,sts);
+            return result;
+        }
+
+        public T_User_Share GetShareById(int shareId)
+        {
+            var shareDto = pro.GetShareById(shareId);
+            return shareDto;
+        }
+
+        public bool isRevGift(int shareId, int userId)
+        {
+            var flag = pro.isRevGift(shareId, userId);
+            return flag;
+        }
+
+        public BaseResult UpdRevGiftInfo(int shareId, int userId, int RevNum, int periodId, string lotteryNO)
+        {
+            var result = pro.UpdRevGiftInfo(shareId, userId, RevNum,periodId,lotteryNO);
+            return result;
+        }
     }
 }

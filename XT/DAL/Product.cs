@@ -316,5 +316,158 @@ namespace DAL
                 throw ex;
             }
         }
+
+        //确认中奖号码
+       public UserOrderDTO ConfirmLottery(string lotteryTicket, int periodId)
+       {
+            try
+            {
+                UserOrderDTO userOrder = new UserOrderDTO();
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pConfirmLottery", strConn);
+                cmd.Parameters["@p_lotteryTicket"].Value = lotteryTicket;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                       
+                        userOrder.PeriodID= Convert.ToInt32(rdr["PeriodID"]);
+                        userOrder.LotteryNum = Convert.ToString(rdr["LotteryNum"]);
+                    }
+                }
+
+                return userOrder;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //分享礼物
+        public BaseResult AddGift(T_User_Share shareDto)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddGift", strConn);
+                cmd.Parameters["@p_userId"].Value = shareDto.ShareUserId;
+                cmd.Parameters["@p_periodId"].Value = shareDto.PeriodId;
+                cmd.Parameters["@p_IsPay"].Value = shareDto.IsPay;
+                cmd.Parameters["@p_PeopleNum"].Value = shareDto.PeopleNum;
+                cmd.Parameters["@p_ShareNum"].Value = shareDto.ShareNum;
+               
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.Succeeded = true;
+                br.ResultId = cmd.Parameters["@o_shareId"].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+        //更改礼物支付状态
+        public BaseResult UpdGiftSts(int shareId, int sts)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pUpdShareSts", strConn);
+                cmd.Parameters["@p_shareId"].Value = shareId;
+                cmd.Parameters["@p_sts"].Value = sts;
+
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.Succeeded = true;
+
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+
+       public T_User_Share GetShareById(int shareId)
+       {
+           T_User_Share shareDto = new T_User_Share();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetShareById", strConn);
+                cmd.Parameters["@p_shareId"].Value = shareId;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+
+                        shareDto.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        shareDto.PeopleNum = Convert.ToInt32(rdr["PeopleNum"]);
+                        shareDto.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        shareDto.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
+                        shareDto.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
+                        shareDto.RevPeopleNum = Convert.ToInt32(rdr["RevPeopleNum"]);
+                        shareDto.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                shareDto = new T_User_Share();
+            }
+            return shareDto;
+        }
+
+       public bool isRevGift(int shareId, int userId)
+       {
+            bool flag = true;
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pIsRevGift", strConn);
+                cmd.Parameters["@p_shareId"].Value = shareId;
+                cmd.Parameters["@p_userId"].Value = userId;
+
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+                int count =Convert.ToInt32(cmd.Parameters["@o_count"].Value);
+                if (count == 0)
+                    flag = false;
+            }
+            catch (Exception ex)
+            {
+                flag = true;
+            }
+           return flag;
+       }
+
+        public BaseResult UpdRevGiftInfo(int shareId, int userId,int RevNum,int periodId,string lotteryNO)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pUpdRevGiftInfo", strConn);
+                cmd.Parameters["@p_shareId"].Value = shareId;
+                cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_RevNum"].Value = RevNum;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@p_LotteryNO"].Value = lotteryNO;
+
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.Succeeded = true;
+
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
     }
 }

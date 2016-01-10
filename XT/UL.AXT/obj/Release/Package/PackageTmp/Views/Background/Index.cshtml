@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<script type="text/javascript">
+    $(function() {
+
+        //开奖操作
+        $("#btnOpen").click(function() {
+            $.ajax({
+                url: "/Background/OpenLottery",
+                data: { lotteryTicket: "123", periodId: "123" },
+                type: "POST",
+                success:function() {
+                    
+                }
+        });
+        });
+    });
+</script>
+
+<input id="periodId" type="text" value="10"/>
+<input id="btnOpen" type="button"  value="开奖"/>

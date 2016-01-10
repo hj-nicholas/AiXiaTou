@@ -1,0 +1,96 @@
+﻿@model Model.ProductModel
+@{
+    ViewBag.Title = "SubmitOrderS";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+
+        //使用余额支付
+        $("#useYE").change(function () {
+            var ded = Math.round('@ViewBag.UserInfo.AccountBalance');
+            var totalPay = Math.round($("#buyPortion").val());
+            if ($("#useYE").prop("checked")) {
+                if (ded >= totalPay) {
+                    $("#deduction").text(totalPay);
+                    $("#needPay").text(0);
+                } else {
+                    $("#deduction").text(ded);
+                    $("#needPay").text(totalPay - ded);
+                }
+
+            } else {
+                $("#deduction").text(0);
+                $("#needPay").text(totalPay);
+            }
+        });
+
+        $("#buyPortion").change(function() {
+            $("#needPay").text($("#buyPortion").val());
+        });
+
+        //提交订单操作
+        $("#SubmitGift").click(function () {
+
+            $.ajax({
+                url: "/Product/AddGift",
+                type: "POST",
+                data: { peopleNum: $("#peopleNum").val(), giftNum: $("#buyPortion").val(), periodId: '@Model.PeriodId', userId: getCookie("UserId") },
+                success: function (data) {
+                    if (data["Succeeded"]) {
+                        window.location.href = "/Product/PayGift?shareId=" + data["ResultId"]  + "&needPay=" + $("#needPay").text() + "&userOpenId=" + getCookie("OpenId") ;
+                    }
+                }
+            });
+        });
+    });
+    
+</script>
+<div class="mainM">
+
+    <div class="detailXM white_bg">
+        <h1 class="lh30 f20">Apple Watch</h1>
+        <h2 class="lh25 fn f14">虾头价：@Model.ProductPrice 元<span class="grayC"> 价值：2899元</span></h2>
+        <div class="index_ML">
+            <h3 class="grayC_bg">
+                <b class="orange_bg block" style="width: @(decimal.Round(Model.JoinedNum*100/Model.ProductPrice, 0))%;"></b>
+            </h3>
+            <p class="oh">
+                <span class="fl"><b class="red fn block">@Model.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                <span class="fl tc"><b class="red fn block">@Model.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                <span class="fl tr"><b class="red fn block">@(Model.ProductPrice - Model.JoinedNum)</b><i class="grayC block">剩余</i></span>
+ </p>
+        </div>
+    </div>
+    <div class="order_submit">
+        <p class="h20 lh20 gray9">*当前为购买送朋友，抢完立刻开奖啦！！！</p>
+        <ul>
+            <li class="white_bg oh f14">
+                <span class="fl margin_r10">购买份数</span>
+                <span class="fr">份</span>
+                <input type="text" class="fr h20 lh20 tr Ntext" id="buyPortion" /><input type="hidden" value="填写份数" />
+            </li>
+            <li class="white_bg oh f14">
+                <span class="fl margin_r10">送礼人数</span>
+                <span class="fr">人</span>
+                <input type="text"  class="fr h20 lh20 tr Ntext" id="peopleNum"/><input type="hidden" value="填写人数，不能超过购买份数" />
+            </li>
+            <li class="white_bg oh f14 margin_t20">
+                <span class="fl f14">账户余额可支付 @ViewBag.UserInfo.AccountBalance 只</span>
+                <input type="checkbox" class="fr h20 lh20 tc" id="useYE"/>
+            </li>
+        </ul>
+        <p class="h20 lh20 red"></p>
+    </div>
+
+
+
+    <div class="pf pay white_bg">
+        <p class="fl gray9 f12" id="deduction">0</p>已抵扣￥
+        <a id="SubmitGift" class="orange_bg tc fr f16" >支付订单</a>
+        <p class="fr f18 red" id="needPay">0</p> 
+        <p class="fr gray6 f14">待支付￥</p>
+    </div>
+</div>
+
+

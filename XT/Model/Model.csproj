@@ -50,11 +50,13 @@
     <Compile Include="T_Product.cs" />
     <Compile Include="T_ProductPeriods.cs" />
     <Compile Include="T_ProductType.cs" />
+    <Compile Include="T_Share_Get.cs" />
     <Compile Include="T_UserAddr.cs" />
     <Compile Include="T_UserInfo.cs" />
     <Compile Include="T_User_Enshrine.cs" />
     <Compile Include="T_User_Order.cs" />
     <Compile Include="T_User_Order_Desc.cs" />
+    <Compile Include="T_User_Share.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

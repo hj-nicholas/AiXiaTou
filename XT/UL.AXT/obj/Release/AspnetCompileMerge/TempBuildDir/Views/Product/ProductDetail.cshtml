@@ -9,6 +9,10 @@
         $("#joined").click(function() {
             window.location.href = "/Product/SubmitOrder?periodId=@Model.PeriodId" + "&userId=" + getCookie("UserId");
         });
+
+        $("#shareFriends").click(function() {
+            window.location.href = "/Product/SubmitOrderS?periodId=@Model.PeriodId" + "&userId=" + getCookie("UserId");
+        });
     });
 </script>
 <div class="mainM">
@@ -195,6 +199,6 @@
 <div class="pf pay white_bg">
     <i class="collection_s_H  icon_s fl"></i>
     <a href="#" class="red_bg white tc fr f16" id="joined">参与夺宝</a>
-    <a href="Gift_order.html" class="orange_bg tc fr f16" >送给朋友</a>
+    <a href="#" class="orange_bg tc fr f16" id="shareFriends" >送给朋友</a>
 
 </div>

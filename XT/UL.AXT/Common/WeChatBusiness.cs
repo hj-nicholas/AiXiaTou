@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Configuration;
@@ -60,22 +61,30 @@ namespace UL.AXT.Common
             UserDTO newUserDto = new UserDTO();
             if (user != null)
             {
-                Log.WriteLog("test user:", "222");
                 UserDTO userDto = new UserDTO();
-                userDto.WeChatName = user.nickname;
-                userDto.PhotoPath = user.headimgurl;
-                userDto.City = user.city;
-                userDto.OpenId = user.openid;
-                //userDto.OpenId = "ooSaOwsnQbC52N-srS25TaEV-DeU";
-                //userDto.WeChatName = "$天门琴痴$";
-                //userDto.PhotoPath = "http://wx.qlogo.cn/mmopen/ajNVdqHZLLCR4ZVgDNqFmrpJvmtLkpVg0jU5etngPK98SohUpriaWJtR2Mma4gdnSmolsf9SkY4oVoic8SyQ7BwA/0";
-                //userDto.City = "ShenZhen";
+                //userDto.WeChatName = user.nickname;
+                //userDto.PhotoPath = user.headimgurl;
+                //userDto.City = user.city;
+                //userDto.OpenId = user.openid;
+                userDto.OpenId = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+                userDto.WeChatName = "$天门琴痴$";
+                userDto.PhotoPath = "http://wx.qlogo.cn/mmopen/ajNVdqHZLLCR4ZVgDNqFmrpJvmtLkpVg0jU5etngPK98SohUpriaWJtR2Mma4gdnSmolsf9SkY4oVoic8SyQ7BwA/0";
+                userDto.City = "ShenZhen";
                 //更新用户信息并查询出该用户ID
-                Log.WriteLog("test user:", "333");
+
                 newUserDto = userInfo.UpdOrInsertUser(userDto);
             }
 
             return newUserDto;
+        }
+
+        public string GetAuthCodeUrl(string redirectUrl)
+        {
+            //添加微信公众账号
+            AccountInfo account = AccountInfoCollection.GetAccountInfo(PublicAccount);
+            if (account == null)
+                AddPublicAccount();
+          return   OAuthAccessToken.GetOAuthUrl(PublicAccount, redirectUrl, OAuthScopeEnum.snsapi_userinfo, "1");
         }
     }
 }

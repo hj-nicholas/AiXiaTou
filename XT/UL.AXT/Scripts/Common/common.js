@@ -253,6 +253,13 @@ function delCookie(name) {
     if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
 }
 
+//保存cookie信息
+function saveToCookie(cookieName, val) {
+    if (val != "") {
+        SetCookie(cookieName, val);
+    }
+}
+
 function jsonDateFormat(jsonDate) {//json日期格式转换为正常格式
     try {//出自http://www.cnblogs.com/ahjesus 尊重作者辛苦劳动成果,转载请注明出处,谢谢!
         var date = new Date(parseInt(jsonDate.replace("/Date(", "").replace(")/", ""), 10));

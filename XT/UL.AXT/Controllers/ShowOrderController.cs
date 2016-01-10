@@ -21,6 +21,7 @@ namespace UL.AXT.Controllers
         // GET: ShowOrder
         public ActionResult Index(string code = "")
         {
+            //HOO Test-1
             //code = "0211e2a86877e52f073a3dad2042c25b";
             //获取登录微信用户信息
             UserDTO userDto = new UserDTO();
@@ -33,7 +34,7 @@ namespace UL.AXT.Controllers
                     userDto = business.ChangeUserByWeChatInfo(userInfo);
                 }
             }
-
+            Session["open_id"] = "ooSaOwsnQbC52N-srS25TaEV-DeU";
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
             //userDto = business.ChangeUserByWeChatInfo(userInfo);
             //Log.WriteLog("username:", userDto.UserName);

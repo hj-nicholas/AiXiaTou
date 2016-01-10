@@ -237,6 +237,7 @@
     <Compile Include="Common\WeChat\WxPayApi\Log.cs" />
     <Compile Include="Common\WeChat\WxPayApi\WxPayApi.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -374,6 +375,10 @@
     <Content Include="Views\User\AccountDetail.cshtml" />
     <Content Include="Views\User\Joined.cshtml" />
     <Content Include="Views\User\Gifts.cshtml" />
+    <Content Include="Views\Background\Index.cshtml" />
+    <Content Include="Views\Product\SubmitOrderS.cshtml" />
+    <Content Include="Views\Product\PayGift.cshtml" />
+    <Content Include="Views\Product\GetGift.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
