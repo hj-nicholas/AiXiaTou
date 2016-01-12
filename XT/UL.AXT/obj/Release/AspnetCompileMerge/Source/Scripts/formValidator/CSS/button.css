@@ -1,0 +1,31 @@
+﻿/*蓝色按钮样式*/
+.ButtonCss {
+    font-family: "Tahoma", "宋体";
+    font-size: 12px; color:Black;
+    height:25px;
+    width:65px;
+    /*border: 0px #b5d6e6 solid;*/
+    BORDER-BOTTOM: #b5d6e6 1px solid; 
+    BORDER-LEFT: #b5d6e6 1px solid; 
+    BORDER-RIGHT: #b5d6e6 1px solid; 
+    BORDER-TOP: #b5d6e6 1px solid;
+    background-image:url('../Images/button.gif');
+    background-color: #b5d6e6;
+    CURSOR: hand;
+    font-style: normal ;
+    
+}
+
+.handleImage
+{
+	width:16px;
+	height:16px;
+	background-image:url('help.gif');
+	overflow:hidden;
+	cursor:se-resize;
+}
+
+.resizingPanel
+{
+	border:2px solid #7391BA;
+}

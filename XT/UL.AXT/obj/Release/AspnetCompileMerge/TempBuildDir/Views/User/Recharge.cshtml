@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Recharge";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+<script type="text/javascript">
+    $(function() {
+        $("#btnSubmitCharge").click(function () {
+            window.location.href = "/User/PayRecharge?chareNum=" + $("#rechargeNum").val() + "&userOpenId=" + getCookie("OpenId");
+            //$.ajax({
+            //    url: "/User/SubmitRecharge",
+            //    type: "POST",
+            //    data: {  userId: getCookie("UserId"), },
+            //    //data:{payFee:$("#needPay").val(),userOpenId:getCookie("OpenId")},
+            //    success: function (data) {
+            //        if (data["Succeeded"]) {
+            //            window.location.href = "/User/PayRecharge?lottery=" + lotterys + "&phone=" + tel + "&email=" + email + "&needPay=" + $("#needPay").text() + "&userOpenId=" + getCookie("OpenId") + "&orderId=" + data["ResultId"];
+            //        }
+            //    }
+            //});
+        });
+    });
+</script>
+<h2>Recharge</h2>
+
+<input id="rechargeNum" type="text" value=""/>
+<input type="button" value="提交订单" id="btnSubmitCharge"/>

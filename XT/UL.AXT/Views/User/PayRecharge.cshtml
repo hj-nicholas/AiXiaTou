@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "PayRecharge";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+<script type="text/javascript">
+    $(function() {
+
+
+        $("#btnPay").click(function() {
+
+          
+
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }
+                else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }
+        else {
+                jsApiCall();
+        }
+        });
+    });
+
+    //调用微信JS api 支付
+    function jsApiCall() {
+        //var obj = eval(@Html.Raw(ViewBag.WxJSParam));
+        //alert(obj.appId);
+        WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                @Html.Raw(ViewBag.WxJSParam),//josn串
+            function (res) {
+
+                //WeixinJSBridge.log(res.err_msg);
+                //alert(res.err_code + res.err_desc + res.err_msg);
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    window.location.href = "User/PayChargeSuccess?userId="+getCookie("UserId")+"&chargeNum="+ @Viewbag.ChargeNum;
+                   
+
+                }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                else if (res.err_msg == "get_brand_wcpay_request:fail") {
+                    alert("支付失败");
+                }
+            }
+    );
+    }
+</script>
+<h2>PayRecharge</h2>
+
+<input type="button" id="btnPay" value="确认支付"/>
