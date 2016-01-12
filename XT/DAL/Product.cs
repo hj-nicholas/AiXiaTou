@@ -15,7 +15,7 @@ namespace DAL
         private string strConn = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
         
         //晒单数据
-        public IList<ShowOrderModel> GetShowingOrders(int productId,int userId=0)
+        public IList<ShowOrderModel> GetShowingOrders(int productId,int userId,int ViewUserId)
        {
             try
             {
@@ -23,6 +23,7 @@ namespace DAL
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetShowOrder", strConn);
                 cmd.Parameters["@p_productId"].Value = productId;
                 cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_ViewUser"].Value = ViewUserId;
 
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
@@ -39,6 +40,8 @@ namespace DAL
                         showOrder.UserName = Convert.ToString(rdr["UserName"]);
                         showOrder.PeriodID = Convert.ToInt32(rdr["PeriodId"]);
                         showOrder.UserImage = Convert.ToString(rdr["PhotoPath"]);
+                        showOrder.IsSupp = Convert.ToInt32(rdr["IsSupp"]);
+                        showOrder.City = Convert.ToString(rdr["City"]);
                         //照片信息
                         showOrder.Photos = GetImageByType(1, showOrder.PeriodID).ToList();
 
@@ -64,6 +67,43 @@ namespace DAL
                 cmd.Parameters["@p_ProType"].Value = proType;
                 cmd.Parameters["@p_UserId"].Value = userId;
 
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        ProductModel prod = new ProductModel();
+                        prod.ProductName = Convert.ToString(rdr["ProductName"]);
+                        prod.ProductExpires = Convert.ToDateTime(rdr["ProductExpires"]);
+                        prod.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
+                        prod.ProductId = Convert.ToInt32(rdr["ProductId"]);
+                        prod.ProductType = Convert.ToInt32(rdr["ProductType"]);
+                        prod.ProductDesc = Convert.ToString(rdr["ProductDesc"]);
+                        prod.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        prod.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
+                        prod.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
+                        prod.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+                        prod.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
+                        prod.UserName = Convert.ToString(rdr["UserName"]);
+                        lstProd.Add(prod);
+                    }
+                }
+
+                return lstProd;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //查询某个产品的历史期数
+        public IList<ProductModel> GetProductsByProId(int productId)
+        {
+            try
+            {
+                IList<ProductModel> lstProd = new List<ProductModel>();
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetProductsByProId", strConn);
+                cmd.Parameters["@p_productId"].Value = productId;
+                
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     while (rdr.Read())

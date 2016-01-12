@@ -4,6 +4,40 @@
     Layout = "~/Views/Shared/Main.cshtml";
 }
 
-<h2>GetGift</h2>
 
-@ViewBag.Code
+<script type="text/javascript">
+
+    $(function() {
+
+        //if (@ViewBag.UserInfo != null) {
+
+        saveToCookie("UserName", '@ViewBag.UserInfo.UserName');
+        saveToCookie("UserId", '@ViewBag.UserInfo.UserID');
+        saveToCookie("OpenId", '@ViewBag.UserInfo.OpenId');
+        saveToCookie("PhotoPath", '@ViewBag.UserInfo.PhotoPath');
+        saveToCookie("City", '@ViewBag.UserInfo.City');
+
+        //}
+
+        //接受礼物
+        $("#btnReceive").click(function() {
+            $.ajax({
+                url:"/Product/RevGift",
+                type: "POST",
+                data: {shareId:'@ViewBag.ShareId',userId:getCookie("UserId")},
+                success:function(data) {
+                    if (data["Succeeded"]) {
+                        alert("成功");
+                    } else {
+                        alert(data["ErrMsg"]);
+                    }
+                }
+            });
+        });
+    });
+
+    
+</script>
+
+<h2>GetGift</h2>
+<input id="btnReceive" type="button" value="接受"/>

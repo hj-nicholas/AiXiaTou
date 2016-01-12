@@ -34,5 +34,29 @@ namespace BLL
             var result = user.EditAddr(addr, type);
             return result;
         }
+
+        public List<T_Account> GetAccountByUserId(int userId)
+        {
+            var lst = user.GetAccountByUserId(userId);
+            return lst;
+        }
+
+        public BaseResult RechargeAcc(int userId, int chargeNum)
+        {
+            var result = user.RechargeAcc(userId, chargeNum);
+            return result;
+        }
+
+        public List<T_User_Share> GetSendGifyByUserId(int userId)
+        {
+            var lst = user.GetSendGifyByUserId(userId);
+            return lst;
+        }
+
+        public List<T_User_Share> GetRevGifyByUserId(int userId)
+        {
+            var lst = user.GetRevGifyByUserId(userId);
+            return lst;
+        }
     }
 }

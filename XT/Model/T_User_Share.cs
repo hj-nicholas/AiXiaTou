@@ -81,6 +81,16 @@ namespace Model
             set { _ispay = value; }
         }
 
+        /// <summary>
+        /// CreateTime
+        /// </summary>		
+        private DateTime _createtime;
+        public DateTime CreateTime
+        {
+            get { return _createtime; }
+            set { _createtime = value; }
+        }
+
     }
 
     public partial class T_User_Share
@@ -89,6 +99,16 @@ namespace Model
         public int RevPeopleNum { get; set; }
         //领取礼物数量
         public int RevGiftNum { get; set; }
+
+        public string ProductName { get; set; }
+        public decimal ProductPrice { get; set; }
+        public string ProLotteryNum { get; set; }
+
+        public string LotteryNum { get; set; }
+        //中奖人
+        public string Winner { get; set; }
+        //赠送礼物的人
+        public string SendUser { get; set; }
     }
 }
 

@@ -5,6 +5,8 @@
 @using Model
 @model Model.ProductModel
 <script src="~/Scripts/Product/SubmitOrder.js"></script>
+<script src="~/Scripts/formValidator/formValidator-4.1.3.js"></script>
+<script src="~/Scripts/formValidator/formValidatorRegex.js"></script>
 <script type="text/javascript">
     $(function() {
         var openId = getCookie("OpenId");
@@ -33,8 +35,17 @@
             $("#needPay").text($("#portionNum").val());
         });
 
+        $("#portionNum").change(function() {
+            var perProp = Math.round(@(1/Model.ProductPrice*100));
+            $("#probability").text(perProp * $("#portionNum").val() + " %概率");
+            $("#needPay").text($("#portionNum").val());
+        });
+
         //提交订单操作
-        $("#submitOrder").click(function() {
+        $("#submitOrder").click(function () {
+            //校验填写信息
+            if (!$.formValidator.pageIsValid('1'))
+                return false;
 
             var lotterys = $("#txtLotterys").val();
             var tel = $("#txtPhone").val();
@@ -95,7 +106,7 @@
             AlertDiv('#alert_address_edit');
         });
 
-        $("#btnConfirmAddr").click(function () {
+        $("#btnConfirmAddr").click(function() {
             var chk = $(".addressB").find("input[type='checkbox']:checked");
             var addrId = chk.attr("id").substring(3, 1);
             var receiver = chk.parent().find("b").text();
@@ -110,12 +121,15 @@
             AlertClose("#alert_address");
         });
 
-        $("#newAddr").click(function () {
+        $("#newAddr").click(function() {
             AlertClose("#alert_address");
             AlertDiv("#alert_address_new");
         });
 
-        $("#btnAddNewAddr").click(function () {
+        $("#btnAddNewAddr").click(function() {
+            //校验填写信息
+            if (!$.formValidator.pageIsValid('3'))
+                return false;
 
             $.ajax({
                 url: "/User/EditAddr",
@@ -132,12 +146,12 @@
                 url: "/User/GetAddrs",
                 type: "POST",
                 data: { userId: getCookie("UserId") },
-                success: function (data) {
+                success: function(data) {
 
                     var html = '';
                     if (data != null) {
                         html += ' <div class="addressB" id="addrList"> <ul>';
-                        $(data).each(function (index) {
+                        $(data).each(function(index) {
                             //alert(data[index].AddressDesc);
                             html += '<li class="white_bg">';
                             html += '   <input type="checkbox" class="fl" id="chk' + data[index].AddressId + '"/>';
@@ -153,47 +167,82 @@
                         $("#addrsMain").append(html);
                     }
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
 
                 }
             });
 
             AlertDiv('#alert_address');
         });
-       
+
 
     });
 
     function EdidAddress(type) {
+        //校验填写信息
+        if (!$.formValidator.pageIsValid('2'))
+            return false;
+
         $.ajax({
             url: "/User/EditAddr",
             type: "Post",
             data: { AddressId: $("#txtAddrId").val(), AddressDesc: $("#txtAddrEdit").val(), Receiver: $("#txtRecieverEdit").val(), Phone: $("#txtPhoneEdit").val(), PostCode: $("#txtPostCodeEdit").val(), type: type, UserID: getCookie("UserId") },
-        success:function(data) {
-            if (data["Succeeded"]) {
-                if (type == 1) {
-                   
-                    $("#receiver").text($("#txtRecieverEdit").val());
-                    $("#phone").text($("#txtPhoneEdit").val());
-                    $("#address").text($("#txtAddrEdit").val());
-                    $("#postCode").val($("#txtPostCodeEdit").val());
+            success: function(data) {
+                if (data["Succeeded"]) {
+                    if (type == 1) {
 
-                   
+                        $("#receiver").text($("#txtRecieverEdit").val());
+                        $("#phone").text($("#txtPhoneEdit").val());
+                        $("#address").text($("#txtAddrEdit").val());
+                        $("#postCode").val($("#txtPostCodeEdit").val());
+
+
+                    } else if (type == 2) {
+                        $("#receiver").text("");
+                        $("#phone").text("");
+                        $("#address").text("");
+                        $("#postCode").val("");
+                        $("#addressId").val(0);
+                    }
+                    AlertClose(this);
                 }
-                else if (type == 2) {
-                    $("#receiver").text("");
-                    $("#phone").text("");
-                    $("#address").text("");
-                    $("#postCode").val("");
-                    $("#addressId").val(0);
-                }
-                AlertClose(this);
             }
-        }
 
-    });
+        });
     }
 
+</script>
+<script type="text/javascript">
+    var restShp=0;
+    $(function() {
+         restShp=@(Model.ProductPrice - Model.JoinedNum);
+        //验证提示
+        $.formValidator.initConfig({ validatorGroup:"1", formID: "form1", onError: function () { alert("请查看错误信息"); } });
+        $("#portionNum").formValidator({validatorGroup:"1", onShow: "", onCorrect: "", empty: false }).regexValidator({ regExp: "intege1", dataType: "enum", onError: "整数格式不正确" }).functionValidator({ fun: checkInt });
+        $("#txtMail").formValidator({ validatorGroup:"1",onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "email", dataType: "enum", onError: "email格式不正确" });
+        $("#txtPhone").formValidator({ validatorGroup:"1",onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
+        
+        $.formValidator.initConfig({ validatorGroup:"2", formID: "form2", onError: function () { alert("请查看错误信息"); } });
+        $("#txtPhoneEdit").formValidator({validatorGroup:"2", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
+        $("#txtRecieverEdit").formValidator({ validatorGroup: "2", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        $("#txtAddrEdit").formValidator({ validatorGroup: "2", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        $("#txtPostCodeEdit").formValidator({ validatorGroup: "2", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        
+        $.formValidator.initConfig({ validatorGroup:"3", formID: "form3", onError: function () { alert("请查看错误信息"); } });
+        $("#txtPhoneEditN").formValidator({validatorGroup:"3", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
+        $("#txtRecieverEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        $("#txtAddrEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        $("#txtPostCodeEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
+    });
+
+    //输入值的校验func
+    function checkInt(val, elem) {
+        
+        if ($(elem).val() > restShp ||$(elem).val()<0)
+            return "虾仔数不能小于0或者超过"+restShp;
+        else
+        return true;
+    }
 </script>
 <div class="mainM">
 
@@ -237,7 +286,7 @@
                 <input type="checkbox" class="fr h20 lh20 tc" id="useYE"/>
             </li>
         </ul>
-        <p class="h20 lh20 red"> </p>
+        <p class="h20 lh20 red"><div id="portionNumTip"></div><div id="txtMailTip"></div> <div id="txtPhoneTip"></div>  </p>
     </div>
 
     <div class="addressB">
@@ -293,7 +342,7 @@
                 <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEdit"/><input type="hidden" value="邮政编码"/></li>
                
             </ul>
-            <p class="h20 lh20 red"></p>
+            <p class="h20 lh20 red"><div id="txtPhoneEditTip"></div><div id="txtRecieverEditTip"></div><div id="txtAddrEditTip"></div><div id="txtPostCodeEditTip"></div></p>
             <input type="text" style="display:none" id="txtAddrId"/>
         </div>
 
@@ -329,7 +378,7 @@
                 <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEditN" /><input type="hidden" value="邮政编码" /></li>
 
             </ul>
-            <p class="h20 lh20 red"></p>
+            <p class="h20 lh20 red"><div id="txtPhoneEditNTip"></div><div id="txtRecieverEditNTip"></div><div id="txtAddrEditNTip"></div><div id="txtPostCodeEditNTip"></div></p>
             <input type="text" style="display:none" id="txtAddrIdN" />
         </div>
 

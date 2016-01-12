@@ -3,6 +3,9 @@
     ViewBag.Title = "ReceiveAddrs";
     Layout = "~/Views/Shared/Main.cshtml";
 }
+
+<script src="~/Scripts/formValidator/formValidator-4.1.3.js"></script>
+<script src="~/Scripts/formValidator/formValidatorRegex.js"></script>
 <script src="~/Scripts/User/UserAddress.js"></script>
 <div class="mainM address">
     <div class="addressT white_bg">
@@ -11,12 +14,12 @@
     <div class="addressB">
         @foreach (var addr in Model)
         {
-            <a href="Shipping_address_edit.html" id="@addr.AddressId" class="block white_bg">
+            <a href="#" id="@addr.AddressId" class="block white_bg" name="editAddr">
                 <i class="pen_s icon_s pa margin_t15"></i>
                 <p class="oh lh25">
-                    <b class="fl f16">@addr.Receiver</b><i class="fr f14">@addr.Phone</i>
+                    <b class="fl f16" name="receiver">@addr.Receiver</b><i class="fr f14" name="phone">@addr.Phone</i>
                 </p>
-                <p class="lh20 gray9">@addr.AddressDesc</p>
+                <p class="lh20 gray9" name="address">@addr.AddressDesc</p>
             </a>
         } 
        
@@ -31,21 +34,21 @@
     <div class="mainM address">
         <div class="order_submit">
             <ul>
-                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEdit" /><input type="hidden" value="收货人姓名" /></li>
-                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEdit" /><input type="hidden" value="手机号码" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEdit"/><input type="hidden" value="收货人姓名"/></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEdit"/><input type="hidden" value="手机号码"/></li>
 
-                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEdit" /><input type="hidden" value="详细地址" /></li>
-                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEdit" /><input type="hidden" value="邮政编码" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEdit"/><input type="hidden" value="详细地址"/></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEdit"/><input type="hidden" value="邮政编码"/></li>
 
             </ul>
-            <p class="h20 lh20 red"></p>
-            <input type="text" style="display:none" id="txtAddrId" />
+            <p class="h20 lh20 red"><div id="txtPhoneEditTip"></div><div id="txtRecieverEditTip"></div><div id="txtAddrEditTip"></div><div id="txtPostCodeEditTip"></div></p>
+            <input type="text" style="display: none" id="txtAddrId"/>
         </div>
 
         <div class="mineB">
             <ul class="white_bg">
                 <li>
-                    <a onclick="EdidAddress(0)" class="oh block">
+                    <a onclick="EdidAddress(1)" class="oh block">
                         <i class="right_s icon_s fl margin_r10"></i>
                         <p class="fl f16">保存修改</p>
                     </a>
@@ -56,6 +59,37 @@
                         <p class="fl f16">删除此地址</p>
                     </a>
                 </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="alert" id="alert_address_new">
+    <div class="mainM address">
+        <div class="order_submit">
+            <ul>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEditN" /><input type="hidden" value="收货人姓名" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEditN" /><input type="hidden" value="手机号码" /></li>
+
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEditN" /><input type="hidden" value="详细地址" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEditN" /><input type="hidden" value="邮政编码" /></li>
+
+            </ul>
+            <p class="h20 lh20 red"><div id="txtPhoneEditNTip"></div><div id="txtRecieverEditNTip"></div><div id="txtAddrEditNTip"></div><div id="txtPostCodeEditNTip"></div></p>
+            <input type="text" style="display:none" id="txtAddrIdN" />
+        </div>
+
+        <div class="mineB">
+            <ul class="white_bg">
+                <li>
+                    <a onclick="EdidAddress(0)" class="oh block">
+                        <i class="right_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">保存修改</p>
+                    </a>
+                </li>
+                
 
             </ul>
         </div>

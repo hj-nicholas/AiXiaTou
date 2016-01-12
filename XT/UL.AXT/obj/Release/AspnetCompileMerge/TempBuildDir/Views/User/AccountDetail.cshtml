@@ -1,4 +1,4 @@
-﻿@model Model.UserDTO
+﻿@model List<Model.T_Account>
 @{
     ViewBag.Title = "AccountDetail";
     Layout = "~/Views/Shared/Main.cshtml";
@@ -7,25 +7,25 @@
 <div class="mainM user_case">
     <div class="user_caseT white_bg br4 oh">
         <h3 class="gray9 fn">当前数量<a class="fr"><span class="fr">余额说明</span><i class="question_s fr icon_s "></i></a></h3>
-        <h2 class="red">@Model.AccountBalance<i class="gray6"> 只</i><span class="gray9">（可提现 @Model.AccountBalance 元）</span></h2>
-        <a href="Withdrawal_request.html" class="button orange_bg tc fl gray3_border br4">提现</a>
-        <a class="button orange_bg tc fr gray3_border br4">充值</a>
+        <h2 class="red">@ViewBag.Account<i class="gray6"> 只</i><span class="gray9">（可提现 @ViewBag.Account 元）</span></h2>
+        <a href="#" class="button orange_bg tc fl gray3_border br4">提现</a>
+        <a href="/User/Recharge" class="button orange_bg tc fr gray3_border br4">充值</a>
     </div>
     <div class="user_caseM white_bg">
         <h3 class="grayC_bg f12">最近30天收支明细</h3>
         <ul>
-            <li>
-                <p class="oh"><b class="fl f16 fn">提现（申请）</b><i class="fr f12 grayC">2015-11-11</i></p>
-                <p class="oh"><i class="fl gray9 f12">余额：1000只</i><b class="fr green f12 fn">-1000元</b></p>
-            </li>
-            <li>
-                <p class="oh"><b class="fl f16 fn">定期</b><i class="fr f12 grayC">2015-11-11</i></p>
-                <p class="oh"><i class="fl gray9 f12">余额：2000只</i><b class="fr green f12 fn">-1000只</b></p>
-            </li>
-            <li>
-                <p class="oh"><b class="fl f16 fn">充值</b><i class="fr f12 grayC">2015-11-11</i></p>
-                <p class="oh"><i class="fl gray9 f12">余额：0只</i><b class="fr red f12 fn">+2000元</b></p>
-            </li>
+            @foreach (var acc in Model)
+            {
+                <li>
+                    <p class="oh">
+                        <b class="fl f16 fn">@acc.AccountDesc </b><i class="fr f12 grayC">@acc.ConsumeTime</i>
+                    </p>
+                    <p class="oh">
+                        <i class="fl gray9 f12">余额：@acc.AccountYE 只</i><b class="fr green f12 fn">@acc.CosteAmount 元</b>
+                    </p>
+                </li>
+            }
+            
         </ul>
     </div>
 </div>

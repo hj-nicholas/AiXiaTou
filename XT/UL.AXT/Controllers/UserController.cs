@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BLL;
+using Hoo.WeChat.WxPayAPI;
 using Model;
 
 namespace UL.AXT.Controllers
@@ -39,7 +40,7 @@ namespace UL.AXT.Controllers
             List<ProductModel> lst = prod.GetProducts(1,userId).ToList();
 
             BLL.ShowOrder showOrder = new BLL.ShowOrder();
-            List<ShowOrderModel> showOrders = showOrder.GetShowingOrders(0,userId).ToList();
+            List<ShowOrderModel> showOrders = showOrder.GetShowingOrders(0,userId, userId).ToList();
 
             BLL.Comment comment = new Comment();
             List<CommentDTO> comments= comment.GetCommentListByUserid(userId).ToList();
@@ -73,9 +74,10 @@ namespace UL.AXT.Controllers
 
         public ActionResult AccountDetail(int userId)
         {
-
             var userInfo = user.GetUserInfo(userId);
-            return View(userInfo);
+            var accInfo = user.GetAccountByUserId(userId);
+            ViewBag.Account = userInfo.AccountBalance;
+            return View(accInfo);
         }
 
         public ActionResult Joined(int userId)
@@ -86,7 +88,44 @@ namespace UL.AXT.Controllers
 
         public ActionResult Gifts(int userId)
         {
+            var sendGift= user.GetSendGifyByUserId(userId);
+            var revGift = user.GetRevGifyByUserId(userId);
+            ViewBag.RevGift = revGift;
+            return View(sendGift);
+        }
+
+        public ActionResult Recharge()
+        {
             return View();
+        }
+
+        public ActionResult PayRecharge(int chargeNum, string userOpenId)
+        {
+            //若传递了相关参数，则调统一下单接口，获得后续相关接口的入口参数
+            JsApiPay jsApiPay = new JsApiPay();
+            //jsApiPay.openid = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+            jsApiPay.openid = userOpenId;
+            jsApiPay.total_fee = chargeNum;
+            ////JSAPI支付预处理
+            try
+            {
+                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult("充值订单", chargeNum.ToString() + "只", "充值订单");
+                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数   
+                ViewBag.WxJSParam = wxJsApiParam;
+                ViewBag.ChargeNum = chargeNum;
+            }
+            catch (Exception ex)
+            {
+                //Response.Write("<span style='color:#FF0000;font-size:20px'>" + "下单失败，请返回重试" + "</span>");
+                //submit.Visible = false;
+            }
+            return View();
+        }
+
+        public ActionResult PayChargeSuccess(int userId,int chargeNum)
+        {
+            var result = user.RechargeAcc(userId, chargeNum);
+            return View("User/AccountDetail?userId="+userId);
         }
     }
 }

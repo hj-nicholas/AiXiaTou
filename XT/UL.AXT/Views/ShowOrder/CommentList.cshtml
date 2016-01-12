@@ -42,7 +42,7 @@
             </ul>
         </div>
         <div class="commentB oh padding_b10 pf white_bg">
-            <a class="fl"><i class="liaotian_s block icon_s fl "></i>
+            <a class="fl" id="commShowUser" tagPeriod="@ViewBag.PeriodId"><i class="liaotian_s block icon_s fl "></i>
                 <p class="fl">评论 @ViewBag.CommNum</p></a>
             <a class="fl"><i class="dianzan_s block icon_s fl "></i>
                 <p class="fl">羡慕 @ViewBag.SuppNum</p></a>
@@ -55,7 +55,7 @@
 </div>
 
 <div class="alert" id="alert_pinglun">
-    <input type="hidden" value="" id="txtCommentId" />
+    <input type="hidden" value="0" id="txtCommentId" />
     <div class="alertCT oh">
         <p class="fl f16">评论</p>
         <i class="icon alert_close fr wrong" onclick="AlertClose(this)"></i>

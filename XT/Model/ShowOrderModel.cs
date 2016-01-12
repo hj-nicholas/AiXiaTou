@@ -102,5 +102,9 @@ namespace Model
         public List<T_Photo> Photos { get; set; }
 
         public string UserImage { get; set; }
+        //是否点赞
+        public int IsSupp { get; set; }
+       
+        public string City { get; set; }
     }
 }

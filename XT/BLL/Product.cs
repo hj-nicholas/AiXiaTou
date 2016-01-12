@@ -16,6 +16,12 @@ namespace BLL
             return lst;
         }
 
+        public IList<ProductModel> GetProductsByProId(int productId)
+        {
+            IList<ProductModel> lst = pro.GetProductsByProId(productId);
+            return lst;
+        }
+
         public ProductModel GetProductByPeriodId(int periodId)
         {
             var product = pro.GetProductByPeriodId(periodId);

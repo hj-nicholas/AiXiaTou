@@ -39,7 +39,7 @@
                 <li>
                     <div class='commentT'>
                         <img src='@order.UserImage' class='fl' />
-                        <p class='oh'><span class='fl'> @order.UserName </span><span class='fr'>2人次</span></p>
+                        <p class='oh'><span class='fl'> @order.UserName </span><span class='fr'>  @order.City</span></p>
                         <p class='oh'><span class='fl red'> @order.ProductName   @order.PeriodNum </span><span class='fr gray9'>@order.CommentDate  </span></p>
                     </div>
 
@@ -54,14 +54,25 @@
                         
                     </div>
                     <div class='commentB oh'>
-                        <a class='fl'  href='/ShowOrder/CommentList?periodId=@order.PeriodID' >
+                        <a class='fl' href='/ShowOrder/CommentList?periodId=@order.PeriodID'>
                             <i class='liaotian_s block icon_s fl '></i>
-                            评论 <p class='fl' > @order.CommentNum </p>
+                            评论
+                            <p class='fl'> @order.CommentNum </p>
                         </a>
-                        <a class='fl' href="#">
+                        @if (order.IsSupp > 0)
+                        { <a class='fl icon_H' href="#">
                             <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
                             <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
                         </a>
+                        }
+                        else
+                        { <a class='fl' href="#">
+                            <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
+                            <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
+                        </a>
+
+                        }
+                       
                     </div>
                 </li>
 

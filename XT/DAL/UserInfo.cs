@@ -136,5 +136,139 @@ namespace DAL
             }
             return result;
         }
+
+        //根据用户id查询账户信息
+        public List<T_Account> GetAccountByUserId(int userId)
+        {
+            List<T_Account> lstAcc = new List<T_Account>();
+            SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetAccountByUserId", strConn);
+            cmd.Parameters["@p_userId"].Value = userId;
+            try
+            {
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+
+                    while (rdr.Read())
+                    {
+                        T_Account acc = new T_Account();
+                        acc.UserId = Convert.ToInt32(rdr["UserId"]);
+                        acc.AccountId = Convert.ToInt32(rdr["AccountId"]);
+                        acc.AccountDesc = Convert.ToString(rdr["AccountDesc"]);
+                        acc.AccountYE = Convert.ToInt32(rdr["AccountYE"]);
+                        acc.ConsumeTime = Convert.ToDateTime(rdr["ConsumeTime"]);
+                        acc.CosteAmount = Convert.ToInt32(rdr["CosteAmount"]);
+
+                        lstAcc.Add(acc);
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                lstAcc = new List<T_Account>();
+                throw ex;
+            }
+            return lstAcc;
+           
+        }
+
+        public BaseResult RechargeAcc(int userId,int chargeNum)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pRechargeAcc", strConn);
+                cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_chargeNum"].Value = chargeNum;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
+
+        //用户送出礼物列表
+        public List<T_User_Share> GetSendGifyByUserId(int userId)
+        {
+            List<T_User_Share> lstShare = new List<T_User_Share>();
+            SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetSentGift", strConn);
+            cmd.Parameters["@p_userId"].Value = userId;
+            try
+            {
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+
+                    while (rdr.Read())
+                    {
+                        T_User_Share share = new T_User_Share();
+
+                        share.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
+                        share.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
+                        share.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
+                        share.ProductName = Convert.ToString(rdr["ProductName"]);
+                        share.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
+                        share.LotteryNum = Convert.ToString(rdr["LotteryNum"]);
+                        share.Winner = Convert.ToString(rdr["Winner"]);
+                        share.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+
+                        lstShare.Add(share);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lstShare = new List<T_User_Share>();
+                throw ex;
+            }
+            return lstShare;
+
+        }
+
+        public List<T_User_Share> GetRevGifyByUserId(int userId)
+        {
+            List<T_User_Share> lstShare = new List<T_User_Share>();
+            SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetRevGift", strConn);
+            cmd.Parameters["@p_userId"].Value = userId;
+            try
+            {
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+
+                    while (rdr.Read())
+                    {
+                        T_User_Share share = new T_User_Share();
+
+                        share.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
+                        share.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
+                        share.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
+                        share.ProductName = Convert.ToString(rdr["ProductName"]);
+                        share.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
+                        share.LotteryNum = Convert.ToString(rdr["LotteryNum"]);
+                        share.Winner = Convert.ToString(rdr["Winner"]);
+                        share.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+                        share.SendUser = Convert.ToString(rdr["SendUser"]);
+
+                        lstShare.Add(share);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lstShare = new List<T_User_Share>();
+                throw ex;
+            }
+            return lstShare;
+
+        }
     }
 }
+

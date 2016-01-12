@@ -34,7 +34,9 @@ namespace UL.AXT.Controllers
                     userDto = business.ChangeUserByWeChatInfo(userInfo);
                 }
             }
-            Session["open_id"] = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+            Session["open_id"] = userDto.OpenId;
+            //Session["open_id"] = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
             //userDto = business.ChangeUserByWeChatInfo(userInfo);
             //Log.WriteLog("username:", userDto.UserName);
@@ -42,7 +44,7 @@ namespace UL.AXT.Controllers
             ViewBag.UploadPath =  strUploadPath;
            
             BLL.ShowOrder showOrder = new BLL.ShowOrder();
-            List<ShowOrderModel> lst = showOrder.GetShowingOrders(0,0).ToList();
+            List<ShowOrderModel> lst = showOrder.GetShowingOrders(0,0,userDto.UserID).ToList();
             return View(lst);
         }
 
@@ -62,6 +64,7 @@ namespace UL.AXT.Controllers
             product.GetRelPeriodInfo(periodId, out suppNum,out  CommNum);
             ViewBag.CommNum = CommNum;
             ViewBag.SuppNum = suppNum;
+            ViewBag.PeriodId = periodId;
             return View(lstCommentInOrder);
         }
 

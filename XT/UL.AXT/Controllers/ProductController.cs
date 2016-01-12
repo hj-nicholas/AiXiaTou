@@ -38,7 +38,7 @@ namespace UL.AXT.Controllers
             var donate = prod.GetDonaterList(periodId).ToList();
 
             //5.晒单记录
-            var showOrder = show.GetShowingOrders(product.ProductId, 0);
+            var showOrder = show.GetShowingOrders(product.ProductId, 0,0);
 
             ViewBag.Product = product;
             ViewBag.Periods = periods;
@@ -85,7 +85,6 @@ namespace UL.AXT.Controllers
             orderDto.OrderEmail = email;
             orderDto.OrderNO = DateTime.Now.ToString("yyyyMMddHHmmssfff");
             orderDto.PeriodId = periodId;
-            orderDto.IsPay = 0;
             orderDto.UserAddr = addr;
             orderDto.UserPhone = phone;
             orderDto.UserDesc = "";
@@ -109,16 +108,28 @@ namespace UL.AXT.Controllers
 
             return Json(result);
         }
+        public ActionResult PayOrderSuccess(int orderId)
+        {
+            BLL.Order order = new Order();
+            BaseResult br = order.updOrderSts(orderId, 1);
 
-        public ActionResult PaySuccess(int shareId)
+            return View();
+        }
+
+        public ActionResult PayGiftSuccess( int shareId)
         {
             if (Session["open_id"] == null)
             {
                 //HOO Test-2
                 Common.WeChatBusiness weChat = new Common.WeChatBusiness();
-                //string url = weChat.GetAuthCodeUrl("http://www.ixiatou.cn/Product/GetGift?shareId=" + shareId);
-                string url = "http://localhost:54726/Product/GetGift?shareId=" + shareId;
+                string url = weChat.GetAuthCodeUrl("http://www.ixiatou.cn/Product/GetGift?shareId=" + shareId);
+                //string url = "http://localhost:54726/Product/GetGift?shareId=" + shareId;
                 Response.Redirect(url);
+            }
+            else
+            {
+                BaseResult br = prod.UpdGiftSts(shareId, 1);
+
             }
             return View();
         }
@@ -130,18 +141,18 @@ namespace UL.AXT.Controllers
 
             //ViewBag.Code = code;
             Common.WeChatBusiness weChat = new Common.WeChatBusiness();
-            //Hoo.Common.WeChat.UserInfo userInfo = weChat.GetWeChatUser(code);
+            Hoo.Common.WeChat.UserInfo userInfo = weChat.GetWeChatUser(code);
             //Common.Log.WriteLog("get code:", code);
-            //if (userInfo != null)
-            //{
-            //    userDto = weChat.ChangeUserByWeChatInfo(userInfo);
-            //    Session["open_id"] = userInfo.openid;
-            //}
+            if (userInfo != null)
+            {
+                userDto = weChat.ChangeUserByWeChatInfo(userInfo);
+                Session["open_id"] = userInfo.openid;
+            }
 
-            Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
-            userDto = weChat.ChangeUserByWeChatInfo(userInfo);
+            //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
+            //userDto = weChat.ChangeUserByWeChatInfo(userInfo);
 
-            
+
 
 
             ViewBag.UserInfo = userDto;
@@ -279,6 +290,7 @@ namespace UL.AXT.Controllers
         {
             BLL.Order order = new Order();
             BaseResult br = order.updOrderSts(orderId, sts);
+
             return Json(br);
         }
 
@@ -290,7 +302,7 @@ namespace UL.AXT.Controllers
 
         public ActionResult ShrimpHeadOf(int productId)
         {
-            var periods = prod.GetPeriods(productId).ToList();
+            var periods = prod.GetProductsByProId(productId);
             return View(periods);
         }
 
@@ -312,7 +324,7 @@ namespace UL.AXT.Controllers
         {
             BLL.ShowOrder show = new ShowOrder();
 
-            var showOrder = show.GetShowingOrders(productId, 0);
+            var showOrder = show.GetShowingOrders(productId, 0,0);
             ViewBag.UploadPath = strUploadPath;
 
             return View(showOrder);
