@@ -217,6 +217,8 @@ namespace DAL
                         share.LotteryNum = Convert.ToString(rdr["LotteryNum"]);
                         share.Winner = Convert.ToString(rdr["Winner"]);
                         share.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
+                        if(!DBNull.Value.Equals(rdr["ActualPrice"]))
+                            share.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
 
                         lstShare.Add(share);
                     }
@@ -255,6 +257,8 @@ namespace DAL
                         share.Winner = Convert.ToString(rdr["Winner"]);
                         share.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
                         share.SendUser = Convert.ToString(rdr["SendUser"]);
+                        if (!DBNull.Value.Equals(rdr["ActualPrice"]))
+                            share.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
 
                         lstShare.Add(share);
                     }
@@ -269,6 +273,30 @@ namespace DAL
             return lstShare;
 
         }
+
+        public BaseResult AddShow(string content,int periodId,int userId)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddShowOrder", strConn);
+                cmd.Parameters["@p_content"].Value = content;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@p_userId"].Value = userId;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
+
     }
 }
 

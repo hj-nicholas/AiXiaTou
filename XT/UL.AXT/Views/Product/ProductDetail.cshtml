@@ -23,7 +23,7 @@
         </div>
         <div class="detailXM">
             <h1 class="lh30 f20">Apple Watch</h1>
-            <h2 class="lh25 fn f14">抢购价：@Model.ProductPrice 元<span class="grayC"> 价值：2899元</span></h2>
+            <h2 class="lh25 fn f14">抢购价：@Model.ProductPrice 元<span class="grayC"> 价值：@Model.ActualPrice 元</span></h2>
             <div class="index_ML">
                 <h3 class="grayC_bg"><b class="orange_bg block" style="width: @(decimal.Round(Model.JoinedNum*100/Model.ProductPrice, 0))%;"></b>
                 </h3>
@@ -110,7 +110,7 @@
     </div>
     <div class="detail grayC_border white_bg">
         <div class="detailT">
-            <a href="http://www.apple.com/hk/watch/" class="oh"><span class="fl lh20 f14">查看礼品介绍</span><i class="arrow_s fr  icon_s"></i></a>
+            <a href="@Model.ProductDesc" class="oh"><span class="fl lh20 f14">查看礼品介绍</span><i class="arrow_s fr  icon_s"></i></a>
         </div>
     </div>
     <div class="detail grayC_border white_bg">

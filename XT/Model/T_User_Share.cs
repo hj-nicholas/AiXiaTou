@@ -109,6 +109,14 @@ namespace Model
         public string Winner { get; set; }
         //赠送礼物的人
         public string SendUser { get; set; }
+
+        public string PhotoPath { get; set; }
+
+        public string WinPhoto { get; set; }
+
+        public decimal ActualPrice { get; set; }
+
+
     }
 }
 

@@ -94,5 +94,61 @@ namespace BLL
             var result = pro.UpdRevGiftInfo(shareId, userId, RevNum,periodId,lotteryNO);
             return result;
         }
+
+        public BaseResult AddProdStock(int prodType, string prodName, decimal stockPrice, int stockNum,
+            string productUrl)
+        {
+            var result = pro.AddProdStock(prodType, prodName, stockPrice, stockNum, productUrl);
+            return result;
+        }
+
+        public List<T_Product> GetAllProds()
+        {
+            var lst = pro.GetAllProds();
+            return lst;
+        }
+
+        public BaseResult PublishProdData(decimal totalPrice, int unitPrice, int needNum, decimal prodAC, int prodType,
+            int prodId)
+        {
+            var result = pro.PublishProdData(totalPrice, unitPrice, needNum, prodAC, prodType, prodId);
+            return result;
+        }
+
+        public List<T_Product> GetAllProdPeriods()
+        {
+            var lst = pro.GetAllProdPeriods();
+            return lst;
+        }
+
+        public BaseResult OpenLot(int periodId, string lotteryNo)
+        {
+            var result = pro.OpenLot(periodId, lotteryNo);
+            return result;
+        }
+
+        public BaseResult AddPic(int periodId, string picPath, int picType)
+        {
+            var result = pro.AddPic(periodId, picPath,picType);
+            return result;
+        }
+
+        public ProductModel GetProdByOrder(int orderId)
+        {
+            var prodModel = pro.GetProdByOrder(orderId);
+            return prodModel;
+        }
+
+        public ProductModel GetProdByShare(int orderId)
+        {
+            var prodModel = pro.GetProdByShare(orderId);
+            return prodModel;
+        }
+
+        public List<T_Share_Get> GetRevGiftByShareId(int shareId)
+        {
+            var lst = pro.GetRevGiftByShareId(shareId);
+            return lst;
+        }
     }
 }

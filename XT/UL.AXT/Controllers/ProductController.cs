@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -111,14 +112,25 @@ namespace UL.AXT.Controllers
         public ActionResult PayOrderSuccess(int orderId)
         {
             BLL.Order order = new Order();
+            ProductModel prodModel = new ProductModel();
             BaseResult br = order.updOrderSts(orderId, 1);
-
-            return View();
+            if (br.Succeeded)
+                prodModel = prod.GetProdByOrder(orderId);
+            return View(prodModel);
         }
 
         public ActionResult PayGiftSuccess( int shareId)
         {
-            if (Session["open_id"] == null)
+            ProductModel prodModel = new ProductModel();
+
+            bool flag = true;
+            if (Session["UserId"] != null)
+            {//分享用户id与接受用户id不一致
+                var userId = Convert.ToInt32(Session["UserId"]);
+                T_User_Share share = prod.GetShareById(shareId);
+                flag = share.ShareUserId == userId ? true : false;
+            }
+            if (Session["UserId"] == null || !flag)
             {
                 //HOO Test-2
                 Common.WeChatBusiness weChat = new Common.WeChatBusiness();
@@ -129,8 +141,23 @@ namespace UL.AXT.Controllers
             else
             {
                 BaseResult br = prod.UpdGiftSts(shareId, 1);
+                if (br.Succeeded)
+                    prodModel = prod.GetProdByShare(shareId);
 
+                List<T_Share_Get> lst = prod.GetRevGiftByShareId(shareId);
+            if (lst.Count > 0)
+            {
+               T_User_Share userShare=  prod.GetShareById(shareId);
+                ViewBag.UserShare = userShare;
+                    return View("ShareGiftResult", lst);
             }
+                
+            }
+            return View(prodModel);
+        }
+
+        public ActionResult ShareGiftResult()
+        {
             return View();
         }
 
@@ -146,21 +173,31 @@ namespace UL.AXT.Controllers
             if (userInfo != null)
             {
                 userDto = weChat.ChangeUserByWeChatInfo(userInfo);
-                Session["open_id"] = userInfo.openid;
+                Session["UserId"] = userDto.UserID;
             }
 
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
             //userDto = weChat.ChangeUserByWeChatInfo(userInfo);
 
-
-
-
             ViewBag.UserInfo = userDto;
             ViewBag.ShareId = shareId;
-            return View();
+
+            //抢虾仔
+            BaseResult br= RevGift(shareId, userDto.UserID);
+
+            List<T_Share_Get> lstGet = prod.GetRevGiftByShareId(shareId);
+            T_User_Share userShare = prod.GetShareById(shareId);
+            ViewBag.UserShare = userShare;
+
+            var lst = lstGet.Where(s=>s.GetUserId==userDto.UserID).ToList();
+            if (lst.Count > 0)
+                ViewBag.SCode = lst[0].LotNum;
+            else
+                ViewBag.SCode = "";
+            return View(lstGet);
         }
 
-        public JsonResult RevGift(int shareId, int userId)
+        public BaseResult RevGift(int shareId, int userId)
         {
             BaseResult br = new BaseResult();
             //判断该用户是否领取过该礼物
@@ -182,7 +219,7 @@ namespace UL.AXT.Controllers
                 br= prod.UpdRevGiftInfo(shareId, userId, revNum, shareDto.PeriodId, codes);
                 //br.Succeeded = true;
             }
-            return Json(br);
+            return br;
         }
 
         public ActionResult PayResult()
@@ -190,11 +227,7 @@ namespace UL.AXT.Controllers
             return View();
         }
 
-        public JsonResult GetImagesByType(int type, int periodId)
-        {
-            return Json("");
-        }
-
+        
         //生成虾头code
         public JsonResult GetShrimpCode(int periodId, int codeNum)
         {
@@ -328,6 +361,37 @@ namespace UL.AXT.Controllers
             ViewBag.UploadPath = strUploadPath;
 
             return View(showOrder);
+        }
+
+        public ActionResult AddShowOrder(int periodId)
+        {
+            ViewBag.Period = periodId;
+            return View();
+        }
+
+        public ActionResult UpdPic(int period, int picType)
+        {
+            HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+            string imgPath = "";
+            string relPath = "";
+            BaseResult result = new BaseResult();
+            if (hfc.Count > 0)
+            {
+                 relPath =  "/CommentPhotos/" + DateTime.Now.ToString("yyyyMMdd")+"/";
+                string path = AppDomain.CurrentDomain.BaseDirectory + strUploadPath+ relPath;
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                imgPath = strUploadPath+relPath + hfc[0].FileName;
+                string PhysicalPath = Server.MapPath(imgPath);
+                hfc[0].SaveAs(PhysicalPath);
+
+                //添加照片
+                result = prod.AddPic(period, relPath+ hfc[0].FileName, 1);
+            }
+            return Json(new { Succeeded=result.Succeeded,errMsg=result.ErrMsg, imgPath1 = imgPath }, "text/html", JsonRequestBehavior.AllowGet);
+
         }
     }
 }

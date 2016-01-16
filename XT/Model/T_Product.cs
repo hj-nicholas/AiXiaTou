@@ -5,7 +5,7 @@ using System.Data;
 namespace Model
 {
     //T_Product
-    public class T_Product
+    public partial class T_Product
     {
 
         /// <summary>
@@ -63,7 +63,49 @@ namespace Model
             set { _isactual = value; }
         }
 
+        /// <summary>
+        /// ProductUrl
+        /// </summary>		
+        private string _producturl;
+        public string ProductUrl
+        {
+            get { return _producturl; }
+            set { _producturl = value; }
+        }
 
+        /// <summary>
+        /// ProductUrl
+        /// </summary>		
+        private string _productno;
+        public string ProductNO
+        {
+            get { return _productno; }
+            set { _productno = value; }
+        }
+        /// <summary>
+        /// IsActual
+        /// </summary>		
+        private int _inventorynum;
+        public int InventoryNum
+        {
+            get { return _inventorynum; }
+            set { _inventorynum = value; }
+        }
+
+        /// <summary>
+        /// IsActual
+        /// </summary>		
+        private int _incomingprice;
+        public int IncomingPrice
+        {
+            get { return _incomingprice; }
+            set { _incomingprice = value; }
+        }
+    }
+
+    public partial class T_Product
+    {
+        public List<Model.T_ProductPeriods> prodPeriods { get; set; }
     }
 }
 

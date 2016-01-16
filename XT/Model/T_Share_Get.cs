@@ -5,7 +5,7 @@ using System.Data;
 namespace Model
 {
     //T_Share_Get
-    public class T_Share_Get
+    public partial class T_Share_Get
     {
 
         /// <summary>
@@ -45,6 +45,26 @@ namespace Model
             set { _getnum = value; }
         }
 
+        /// <summary>
+        /// GetNum
+        /// </summary>		
+        private DateTime _revtime;
+        public DateTime RevTime
+        {
+            get { return _revtime; }
+            set { _revtime = value; }
+        }
+
+    }
+
+    public partial class T_Share_Get
+    {
+        //用户姓名
+        public string UserName { get; set; }
+        //用户头像
+        public string PhotoPath { get; set; }
+        //抢到虾仔码
+        public string LotNum { get; set; }
     }
 }
 

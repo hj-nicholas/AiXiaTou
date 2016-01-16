@@ -16,5 +16,12 @@ namespace BLL
             IList<ShowOrderModel> lst = pro.GetShowingOrders(productId, userId, ViewUserId);
             return lst;
         }
+
+        public BaseResult AddShow(string content, int periodId, int userId)
+        {
+            DAL.UserInfo user = new DAL.UserInfo();
+            BaseResult result= user.AddShow(content, periodId, userId);
+            return result;
+        }
     }
 }

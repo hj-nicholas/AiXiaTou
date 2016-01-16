@@ -83,6 +83,7 @@ namespace UL.AXT.Controllers
         public ActionResult Joined(int userId)
         {
             List<ProductModel> lst = prod.GetProducts(1, userId).ToList();
+            ViewBag.UserId = userId;
             return View(lst);
         }
 

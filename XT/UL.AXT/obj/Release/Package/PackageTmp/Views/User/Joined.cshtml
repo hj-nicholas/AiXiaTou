@@ -3,7 +3,9 @@
     ViewBag.Title = "Joined";
     Layout = "~/Views/Shared/Main.cshtml";
 }
-
+<script type="text/javascript">
+   
+</script>
 <div class="mainT orderT h40 white_bg">
     <ul class="oh" id="tags">
         <li class="hover">
@@ -25,16 +27,25 @@
 
 @foreach (var prod in Model.Where(p => p.UserName == ""))
 {
+    var lot = prod.UserLots;
     <div class="orderB">
         <div class="orderBT lh30 oh fn">
             <i class="flagY_s fl icon_s margin_r5 margin_t5"></i>
             <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
-            <h3 class="fr fn">已购买</h3>
+            @if (prod.ProductPrice == prod.JoinedNum )
+            {
+                <h3 class="fr fn">开奖中</h3>
+            }
+            else
+            {
+                <h3 class="fr fn">已购买</h3>
+            }
+            
         </div>
         <div class="orderBB">
             <a class="block oh padding_b5">
                 <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
-                <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：1234567</em></span>
+                <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：@lot[0]</em></span>
 
             </a>
             <div class="index_M">
@@ -58,6 +69,7 @@
     <div class="none" id="tagContent1">
         @foreach (var prod in Model.Where(p => p.UserName != ""))
         {
+            var lot=prod.UserLots;
             <div class="orderB">
                 <div class="orderBT lh30 oh fn">
                     <i class="flagB_s fl icon_s margin_r5 margin_t5"></i>
@@ -67,9 +79,9 @@
                 <div class="orderBB">
                     <a class="block oh padding_b5">
                         <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
-                        <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：1234567</em></span>
+                        <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：@lot[0]</em></span>
                         <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em><em class="fr fsn">获得者：@prod.UserName</em></span>
-                        <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：2015年11月28日 12点40分30秒</em></span>
+                        <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：@prod.OpenTime</em></span>
 
                     </a>
 
@@ -79,23 +91,29 @@
         }
     </div>
     <div class="none" id="tagContent2">
-        @foreach (var prod in Model.Where(p => p.UserName != ""))
+        @foreach (var prod in Model.Where(p => p.UserId == @ViewBag.UserId))
         {
             <div class="orderB">
                 <div class="orderBT lh30 oh fn">
                     <i class="flagR_s fl icon_s margin_r5 margin_t5"></i>
                     <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
-                    <a href="Shipping_address.html" class="fr br4 blue_bg white f14">领取奖品</a>
-                    <a href="Sun_single_polite.html" class="fr br4 blue_bg white f14">晒单有米</a>
-
-
+                    @if (prod.IsShowOrder == 1)
+                    {
+                        <a href="Shipping_address.html" class="fr br4 blue_bg white f14">领取奖品</a>
+                        <a href="/Product/AddShowOrder?periodId=@prod.PeriodId" class="fr br4 blue_bg white f14">晒单有米</a>
+                    }
+                    else
+                    {
+                        <a href="/User/ReceiveAddrs?userId=@ViewBag.UserId" class="fr br4 grayC_bg white f14">收货地址</a>
+                        <a href="/User/HomePage?userId=@ViewBag.UserId" class="fr br4 grayC_bg white f14">我的晒单</a>
+                    }
 
                 </div>
                 <div class="orderBB">
                     <a class="block oh padding_b5">
                         <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
                         <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em></span>
-                        <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：2015年11月28日 12点40分30秒</em></span>
+                        <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：@prod.OpenTime</em></span>
 
                         <span class="f14 lh25 block gray6 oh"><i class="transport_s fl icon_s margin_r5"></i><em class="fl fsn">物流单号：顺丰5215248865</em></span>
                     </a>
@@ -103,7 +121,7 @@
                 </div>
             </div>
         }
-       
+       <input type="text" value="" id="userId" style="display:none"/>
     </div>
 </div>
 

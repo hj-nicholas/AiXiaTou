@@ -56,17 +56,17 @@
                     <div class='commentB oh'>
                         <a class='fl' href='/ShowOrder/CommentList?periodId=@order.PeriodID'>
                             <i class='liaotian_s block icon_s fl '></i>
-                            评论
-                            <p class='fl'> @order.CommentNum </p>
+                            <p class='fl'>评论</p>
+<p class='fl'> @order.CommentNum </p>
                         </a>
                         @if (order.IsSupp > 0)
-                        { <a class='fl icon_H' href="#">
+                        { <a class='fl icon_H' href="">
                             <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
                             <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
                         </a>
                         }
                         else
-                        { <a class='fl' href="#">
+                        { <a class='fl' href="">
                             <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
                             <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
                         </a>

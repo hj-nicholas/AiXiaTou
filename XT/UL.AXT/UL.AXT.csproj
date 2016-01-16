@@ -291,6 +291,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\AiXiaTou.pubxml" />
@@ -467,6 +468,8 @@
     <Content Include="Views\User\Recharge.cshtml" />
     <Content Include="Views\User\PayRecharge.cshtml" />
     <Content Include="Views\User\PayChargeSuccess.cshtml" />
+    <Content Include="Views\Product\AddShowOrder.cshtml" />
+    <Content Include="Views\Product\ShareGiftResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

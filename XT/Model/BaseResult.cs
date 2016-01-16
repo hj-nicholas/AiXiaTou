@@ -17,6 +17,7 @@ namespace Model
        public string ErrMsg { get; set; }
        public List<string> Errors { get; set; }
         public string ResultId { get; set; }
+        public string ResultId2 { get; set; }
 
     }
 }

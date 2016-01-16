@@ -34,8 +34,8 @@ namespace UL.AXT.Controllers
                     userDto = business.ChangeUserByWeChatInfo(userInfo);
                 }
             }
-            Session["open_id"] = userDto.OpenId;
-            //Session["open_id"] = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+            Session["UserId"] = userDto.UserID;
+            //Session["UserId"] = "6";
 
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
             //userDto = business.ChangeUserByWeChatInfo(userInfo);
@@ -65,7 +65,7 @@ namespace UL.AXT.Controllers
             ViewBag.CommNum = CommNum;
             ViewBag.SuppNum = suppNum;
             ViewBag.PeriodId = periodId;
-            return View(lstCommentInOrder);
+            return View(lstCommentInOrder.Where(c=>c.CommentRefID !=0).ToList());
         }
 
         //递归添加回复它的记录
@@ -92,6 +92,15 @@ namespace UL.AXT.Controllers
         {
             BaseResult br = new BaseResult();
             br = comment.AddReply(userId, commRefId, periodId, replyContent);
+
+            return Json(br);
+        }
+
+        public JsonResult AddShow(string content, int periodId, int userId)
+        {
+            BLL.ShowOrder show = new ShowOrder();
+            BaseResult br = new BaseResult();
+            br = show.AddShow(content, periodId, userId);
 
             return Json(br);
         }

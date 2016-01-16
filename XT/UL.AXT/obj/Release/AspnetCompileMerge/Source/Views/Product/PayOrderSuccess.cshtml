@@ -1,41 +1,69 @@
 ﻿
-@{
-    Layout = "../Shared/Main.cshtml";
-}
+@model Model.ProductModel
+    @{
+        Layout = null;
+    }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>爱虾投</title>
+    <meta content="" name="Keywords" />
+    <meta content="" name="Description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--允许全屏模式浏览-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--iphone中safari顶端的状条的样式-->
+    @*<meta content="telephone=no" name="format-detection" />*@
+    <!--忽略将页面中的数字识别为电话号码-->
 
-<div class="mainM">
+    <link href="~/Content/css/Animate.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/Layout.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/Common/touchwipe.js"></script>
+    <script type="text/javascript" src="~/Scripts/Common/common.js"></script>
 
-    <div class="order_submit_share">
-        <div class="order_submit_shareT oh margin_b20">
-            <img src="images/pay.png" width="50" class="fl" />
-            <h3 class="fl f16">支付成功，请耐心等待开奖！</h3>
-        </div>
-        <div class="order_submit_shareM white_bg">
-            <div class="index_ML" style="margin-right:0;">
-                <h3 class="grayC_bg"><b class="orange_bg block" style="width:40%;"></b></h3>
+    <script type="text/javascript" src="~/Scripts/MainFrame/MainFrame.js"></script>
 
-                <p class="oh">
-                    <span class="fl"><b class="red fn block">406</b><i class=" grayC block">已参与</i></span>
-                    <span class="fl tc"><b class="red fn block">1000</b><i class="grayC block">总需人次</i></span>
-                    <span class="fl tr"><b class="red fn block">594</b><i class="grayC block">剩余</i></span>
-                </p>
+    <link href="" rel="stylesheet" type="text/css" id="mediaWidth" />
+</head>
+<body class="blueF_bg">
+
+    <div class="main">
+        <div class="mainM">
+
+            <div class="order_submit_share">
+                <div class="order_submit_shareT oh margin_b20">
+                    <img src="/Content/images/pay.png" width="50" class="fl" />
+                    <h3 class="fl f16">支付成功，请耐心等待开奖！</h3>
+                </div>
+                <div class="order_submit_shareM white_bg">
+                    <div class="index_ML" style="margin-right: 0;">
+                        <h3 class="grayC_bg">
+                            <b class="orange_bg block" style="width: 40%;"></b>
+                        </h3>
+
+                        <p class="oh">
+                            <span class="fl"><b class="red fn block">@Model.JoinedNum</b><i class=" grayC block">已参与</i></span>
+                            <span class="fl tc"><b class="red fn block">@Model.ProductPrice</b><i class="grayC block">总需人次</i></span>
+                            <span class="fl tr"><b class="red fn block">@(Model.ProductPrice - Model.JoinedNum)</b><i class="grayC block">剩余</i></span>
+                        </p>
+                    </div>
+                    <h2 class="f12 fn tc margin_t10">还剩 @(Model.ProductPrice - Model.JoinedNum) 人次才能开奖，邀请小伙伴一起抢吧！</h2>
+                </div>
+
             </div>
-            <h2 class="f12 fn tc margin_t10">还剩 594 人次才能开奖，邀请小伙伴一起抢吧！</h2>
+            <img src="/Content/images/share_img08.png" style="width: 100%; margin-top: 40px;" />
         </div>
 
-        <div class="share_T white_bg pr">
-            <img src="images/share_img03.png" class="pa" />
-            <p>
-                1.点击右上角向朋友发送爱虾头邀请。<br />2.您的朋友通过您分享的连接注册爱虾头，他获得一只虾米，你也将免费获赠虾米一只。<br />3.虾米可以直接提现
-                、抵扣现金、参与微信红包抽奖活动。
-            </p>
-            <img src="images/share_img02.png" style="width:100%;" />
 
-        </div>
-        <div class="share_M">
 
-        </div>
-
-    </div>
+      
 </div>
-@RenderPage("~/Views/Shared/_Footer.cshtml")
+
+</body>
+</html>
+
+

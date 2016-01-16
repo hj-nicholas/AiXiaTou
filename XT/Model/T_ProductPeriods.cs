@@ -5,7 +5,7 @@ using System.Data;
 namespace Model
 {
     //T_ProductPeriods
-    public class T_ProductPeriods
+    public partial class T_ProductPeriods
     {
 
         /// <summary>
@@ -107,6 +107,20 @@ namespace Model
             get { return _createtime; }
             set { _createtime = value; }
         }
+        /// <summary>
+        /// IsShowOrder
+        /// </summary>		
+        private int _unitprice;
+        public int UnitPrice
+        {
+            get { return _unitprice; }
+            set { _unitprice = value; }
+        }
+
+    }
+
+    public partial class T_ProductPeriods
+    {
 
     }
 }

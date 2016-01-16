@@ -35,7 +35,7 @@
                                     <span class="fl">@send.ProductName</span><i class="fr br4 f12">已抢：@send.RevGiftNum/@send.ShareNum</i>
                                 </p>
                                 <p class="f12 oh">
-                                    <span class="fl gray9">价格：@send.ProductPrice 虾米</span><i class="fr grayC_bg white br4">未开奖</i>
+                                    <span class="fl gray9">价值：@send.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i>
                                 </p>
                             }
                             else
@@ -69,19 +69,19 @@
                             @if (!string.IsNullOrEmpty(rev.LotteryNum))
                             {
                                 <p class="f16 pr">
-                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.Winner</i>
+                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">幸运虾：@rev.Winner</i>
                                 </p>
                                     <p class="f12 oh">
-                                        <span class="fl gray9">价格：@rev.ProductPrice 虾米</span><i class="fr grayC_bg white br4">已开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
+                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">已开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
                                     </p>
                             }
                             else
                             {
                                 <p class="f16 pr">
-                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.ShareNum</i>
+                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.LotteryNum</i>
                                 </p>
                                     <p class="f12 oh">
-                                        <span class="fl gray9">价格：@rev.ProductPrice 虾米</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
+                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
                                     </p>
                             }
 
