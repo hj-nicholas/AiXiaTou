@@ -92,6 +92,7 @@ namespace UL.AXT.Controllers
             var sendGift= user.GetSendGifyByUserId(userId);
             var revGift = user.GetRevGifyByUserId(userId);
             ViewBag.RevGift = revGift;
+            ViewBag.UserId = userId;
             return View(sendGift);
         }
 
@@ -125,8 +126,102 @@ namespace UL.AXT.Controllers
 
         public ActionResult PayChargeSuccess(int userId,int chargeNum)
         {
-            var result = user.RechargeAcc(userId, chargeNum);
-            return View("User/AccountDetail?userId="+userId);
+            //var result = user.RechargeAcc(userId, chargeNum);
+            return Redirect("AccountDetail?userId="+userId);
         }
+
+        public ActionResult RevGiftDetail(int shareId,int userId)
+        {
+            ViewBag.UserInfo = user.GetUserInfo(userId);
+            ViewBag.ShareId = shareId;
+
+            //抢虾仔
+            //BaseResult br = RevGift(shareId, userDto.UserID);
+
+            List<T_Share_Get> lstGet = prod.GetRevGiftByShareId(shareId);
+            T_User_Share userShare = prod.GetShareById(shareId);
+            ViewBag.UserShare = userShare;
+
+            var lst = lstGet.Where(s => s.GetUserId == userId).ToList();
+            if (lst.Count > 0)
+                ViewBag.SCode = lst[0].LotNum;
+            else
+                ViewBag.SCode = "";
+            return View(lstGet);
+        }
+
+        public ActionResult SendGiftDetail(int shareId, int userId)
+        {
+            ViewBag.UserInfo = user.GetUserInfo(userId);
+            ViewBag.ShareId = shareId;
+
+            //抢虾仔
+            //BaseResult br = RevGift(shareId, userDto.UserID);
+
+            List<T_Share_Get> lstGet = prod.GetRevGiftByShareId(shareId);
+            T_User_Share userShare = prod.GetShareById(shareId);
+            ViewBag.UserShare = userShare;
+
+            var lst = lstGet.Where(s => s.GetUserId == userId).ToList();
+            if (lst.Count > 0)
+                ViewBag.SCode = lst[0].LotNum;
+            else
+                ViewBag.SCode = "";
+            return View(lstGet);
+        }
+
+        public ActionResult SharePolite(int shareUserId)
+        {
+            //if (Session["UserId"] != null)
+            //{
+            //    var loginUser = Convert.ToInt32(Session["UserId"]);
+            //    if (loginUser != shareUserId)
+            //    {
+            //        //领取虾仔
+            //        //return View("/Share?shareUserId=" + shareUserId);
+            //        Response.Redirect("/User/Share?shareUserId=" + shareUserId);
+            //    }
+            //}
+            //else
+            //{
+            //    Common.WeChatBusiness weChat = new Common.WeChatBusiness();
+            //    string url = weChat.GetAuthCodeUrl("http://www.ixiatou.cn/User/Share?shareUserId=" + shareUserId);
+            //    Response.Redirect(url);
+            //}
+            var lst = user.GetRedEnvelopeByUser(shareUserId);
+            return View(lst);
+        }
+
+        public ActionResult Share(int shareUserId, string code)
+        {
+            UserDTO userDto = new UserDTO();
+            if (string.IsNullOrEmpty(code))
+            {
+                userDto = user.GetUserInfo(Convert.ToInt32(Session["UserId"]));
+            }
+            else
+            {
+                Common.WeChatBusiness weChat = new Common.WeChatBusiness();
+                Hoo.Common.WeChat.UserInfo userInfo = weChat.GetWeChatUser(code);
+                if (userInfo != null)
+                {
+                    userDto = weChat.ChangeUserByWeChatInfo(userInfo);
+                    Session["UserId"] = userDto.UserID;
+                }
+            }
+
+
+            ViewBag.UserInfo = userDto;
+            ViewBag.ShareUserId = shareUserId;
+            return View();
+        }
+
+        public JsonResult RevRedEnvelope(int shareUserId, int revUserId)
+        {
+            BaseResult result = user.RevShrimp(shareUserId, revUserId);
+            return Json(result);
+        }
+
+       
     }
 }

@@ -35,6 +35,8 @@ namespace Model
         public decimal ActualPrice { get; set; }
 
         public string ProductUrl { get; set; }
+        //产品图片
+        public string ProductPhoto { get; set; }
 
     }
 }

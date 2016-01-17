@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL.Common;
 using Model;
 
 namespace DAL
@@ -85,6 +86,7 @@ namespace DAL
                         prod.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
                         prod.UserName = Convert.ToString(rdr["UserName"]);
                         prod.ProductUrl = Convert.ToString(rdr["ProductUrl"]);
+                        prod.ProductPhoto = Convert.ToString(rdr["PhotoPath"]);
                         if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             prod.ActualPrice = Convert.ToInt32(rdr["ActualPrice"]);
                         if (!DBNull.Value.Equals(rdr["IsShowOrder"]))
@@ -289,6 +291,7 @@ namespace DAL
                         prod.PeriodNum = Convert.ToString(rdr["PeriodNum"]);
                         prod.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
                         prod.ProductUrl = Convert.ToString(rdr["ProductUrl"]);
+                        prod.ProductPhoto = Convert.ToString(rdr["PhotoPath"]);
                         if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             prod.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
 
@@ -411,6 +414,10 @@ namespace DAL
                         order.UserName = Convert.ToString(rdr["UserName"]);
                         order.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
                         order.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
+                        if(!DBNull.Value.Equals(rdr["BuyNum"]))
+                            order.BuyNum = Convert.ToInt32(rdr["BuyNum"]);
+                        if (!DBNull.Value.Equals(rdr["CreateTime"]))
+                            order.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
 
                         lstOrder.Add(order);
                     }
@@ -442,6 +449,7 @@ namespace DAL
                         donate.UserName = Convert.ToString(rdr["UserName"]);
                         donate.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
                         donate.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
+                        donate.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
 
                         lstDonate.Add(donate);
                     }
@@ -533,7 +541,8 @@ namespace DAL
                 cmd.Parameters["@p_IsPay"].Value = shareDto.IsPay;
                 cmd.Parameters["@p_PeopleNum"].Value = shareDto.PeopleNum;
                 cmd.Parameters["@p_ShareNum"].Value = shareDto.ShareNum;
-               
+                cmd.Parameters["@p_UsedYE"].Value = shareDto.UsedYE;
+
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 br.Succeeded = true;
@@ -594,7 +603,6 @@ namespace DAL
                         shareDto.WinPhoto = Convert.ToString(rdr["WinPhoto"]);
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -651,7 +659,7 @@ namespace DAL
 
       
 
-        public BaseResult AddProdStock(int prodType, string prodName, decimal stockPrice, int stockNum,string productUrl)
+        public BaseResult AddProdStock(int prodType, string prodName, decimal stockPrice, int stockNum,string productUrl, string prodDesc)
         {
             BaseResult br = new BaseResult();
             try
@@ -662,11 +670,13 @@ namespace DAL
                 cmd.Parameters["@p_stockPrice"].Value = stockPrice;
                 cmd.Parameters["@p_stockNum"].Value = stockNum;
                 cmd.Parameters["@p_productUrl"].Value = productUrl;
+                cmd.Parameters["@p_prodDesc"].Value = prodDesc;
+                cmd.Parameters["@o_prodId"].Value = 0;
 
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 br.Succeeded = true;
-
+                br.ResultId = cmd.Parameters["@o_prodId"].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -722,7 +732,7 @@ namespace DAL
                 cmd.Parameters["@p_prodAC"].Value = prodAC;
                 cmd.Parameters["@p_prodType"].Value = prodType;
                 cmd.Parameters["@p_prodId"].Value = prodId;
-
+                
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 br.Succeeded = true;
@@ -872,6 +882,33 @@ namespace DAL
                 cmd.Parameters["@p_periodId"].Value = periodId;
                 cmd.Parameters["@p_picPath"].Value = picPath;
                 cmd.Parameters["@p_picType"].Value = picType;
+
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.Succeeded = true;
+
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+        #endregion
+
+        #region X用户操作
+        //后台用户购买操作
+        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddLotByXUser", strConn);
+               cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_RevNum"].Value = addNum;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@p_LotteryNO"].Value = lotteryNO;
 
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 

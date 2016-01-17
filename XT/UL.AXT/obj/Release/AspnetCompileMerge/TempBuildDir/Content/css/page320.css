@@ -84,7 +84,7 @@
 	.commentB a i{ margin-left:30%; margin-right:5px;}
 
 .commentX{ width:100%; height:auto;}
-	.commentX textarea{ width:96%; height:160px; line-height:20px; padding:10px 2%; border-width:0;}
+	.commentX textarea{ width:96%; height:160px; line-height:20px; padding:10px 2%; border-width:0; font-size:14px;}
 	.commentX ul{ width:96%; height:auto; padding:10px 2% 0;}
 	.commentX ul li{ width:69px; margin-right:2%; border:1px solid #ccc; height:69px; float:left; overflow:hidden; background-color:#fff;}
     .commentX ul li input{ width:70px; height:70px; opacity:0; position:absolute;}
@@ -146,7 +146,7 @@
 	.order_submit p{ width:90%; padding:5px 5%;}
 	.order_submit ul{ width:100%; height:auto;}
 	.order_submit ul li{ width:90%; padding:10px 5%; border-bottom:1px solid #eee;}
-	.order_submit ul li input.block{ width:100%; border-width:0;}
+	.order_submit ul li input.block{ width:100%; border-width:0;font-size:14px;}
 	.order_submit ul li a.button{ right:10px; height:25px; line-height:25px; font-size:12px; width:70px;}
 	.order_submit ul li i.icon_s{ left:20px; margin-top:5px;}
 	

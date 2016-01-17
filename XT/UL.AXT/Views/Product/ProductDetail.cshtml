@@ -18,11 +18,11 @@
 <div class="mainM">
     <div class="detailX white_bg">
         <div class="detailXT">
-            <img src="~/Uploads/ProductPhotos/20151209/img02.jpg"/>
+            <img src="~/Uploads/@Model.ProductPhoto"/>
 
         </div>
         <div class="detailXM">
-            <h1 class="lh30 f20">Apple Watch</h1>
+            <h1 class="lh30 f20">@Model.ProductName</h1>
             <h2 class="lh25 fn f14">抢购价：@Model.ProductPrice 元<span class="grayC"> 价值：@Model.ActualPrice 元</span></h2>
             <div class="index_ML">
                 <h3 class="grayC_bg"><b class="orange_bg block" style="width: @(decimal.Round(Model.JoinedNum*100/Model.ProductPrice, 0))%;"></b>
@@ -46,11 +46,11 @@
                 {
                     if (i == 0)
                     {
-                        <a class="orange_bg gray3_border1 h20 lh20 br4 fl">@lstPeriod[i].PeriodNum 进行中</a>
+                        <a class="orange_bg gray3_border1 h20 lh20 br4 fl">第 @lstPeriod[i].PeriodNum 期进行中</a>
                     }
                     else
                     {
-                        <a class=" gray3_border1 h20 lh20 br4 fl">@lstPeriod[i].PeriodNum 已开奖</a>
+                        <a class=" gray3_border1 h20 lh20 br4 fl">第 @lstPeriod[i].PeriodNum 期已开奖</a>
                     }
 
 
@@ -75,7 +75,7 @@
                         <li>
                             <img src="@order.PhotoPath" class="fl"/>
                             <p class="oh"><span class="fl">@order.UserName</span><span class="fr">  @order.City</span></p>
-                            <p class="oh"><span class="fl gray9">@order.CreateTime</span><span class="fr grayC"> </span></p>
+                            <p class="oh"><span class="fl gray9">@order.CreateTime</span><span class="fr grayC">@order.BuyNum 人次</span></p>
                         </li>
                     }
 
@@ -100,7 +100,7 @@
                         <li>
                             <img src="@donate.PhotoPath" class="fl" />
                             <p class="oh"><span class="fl">@donate.UserName</span><span class="fr"> @donate.City</span></p>
-                            <p class="oh"><span class="fl gray9">@donate.CreateTime</span><span class="fr grayC"> </span></p>
+                            <p class="oh"><span class="fl gray9">@donate.CreateTime</span><span class="fr grayC">@donate.ShareNum 人次</span></p>
                         </li>
                     }
                    
@@ -110,7 +110,7 @@
     </div>
     <div class="detail grayC_border white_bg">
         <div class="detailT">
-            <a href="@Model.ProductDesc" class="oh"><span class="fl lh20 f14">查看礼品介绍</span><i class="arrow_s fr  icon_s"></i></a>
+            <a href="@Model.ProductUrl" class="oh"><span class="fl lh20 f14">查看礼品介绍</span><i class="arrow_s fr  icon_s"></i></a>
         </div>
     </div>
     <div class="detail grayC_border white_bg">

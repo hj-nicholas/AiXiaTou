@@ -100,6 +100,18 @@ namespace Model
             set { _ispay = value; }
         }
 
+        /// <summary>
+        /// OrderId
+        /// </summary>		
+        private int _buyNum;
+        public int BuyNum
+        {
+            get { return _buyNum; }
+            set { _buyNum = value; }
+        }
+
+        //使用的余额
+        public int UsedYE { get; set; }
     }
 }
 

@@ -96,9 +96,9 @@ namespace BLL
         }
 
         public BaseResult AddProdStock(int prodType, string prodName, decimal stockPrice, int stockNum,
-            string productUrl)
+            string productUrl, string prodDesc)
         {
-            var result = pro.AddProdStock(prodType, prodName, stockPrice, stockNum, productUrl);
+            var result = pro.AddProdStock(prodType, prodName, stockPrice, stockNum, productUrl, prodDesc);
             return result;
         }
 
@@ -149,6 +149,12 @@ namespace BLL
         {
             var lst = pro.GetRevGiftByShareId(shareId);
             return lst;
+        }
+
+        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO)
+        {
+            var result = pro.AddLotByXUser(userId, addNum, periodId, lotteryNO);
+            return result;
         }
     }
 }

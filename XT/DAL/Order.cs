@@ -27,6 +27,8 @@ namespace DAL
                 cmd.Parameters["@p_UserPhone"].Value = order.UserPhone;
                 cmd.Parameters["@p_OrderEmail"].Value = order.OrderEmail;
                 cmd.Parameters["@p_IsPay"].Value = order.IsPay;
+                cmd.Parameters["@p_BuyNum"].Value = order.BuyNum;
+                cmd.Parameters["@p_UsedYE"].Value = order.UsedYE;
                 cmd.Parameters["@o_orderId"].Value = 0;
 
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);

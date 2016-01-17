@@ -10,11 +10,12 @@
         var receiver = obj.find("b[name='receiver']").text();
         var phone = obj.find("i[name='phone']").text();
         var address = obj.find("p[name='address']").text();
+        var post = obj.find("input[name='post']").val();
 
         $("#txtRecieverEdit").val(receiver);
         $("#txtPhoneEdit").val(phone);
         $("#txtAddrEdit").val(address);
-        $("#txtPostCodeEdit").val("");
+        $("#txtPostCodeEdit").val(post);
         $("#txtAddrId").val(obj.attr("id"));
 
         AlertDiv('#alert_address_edit');

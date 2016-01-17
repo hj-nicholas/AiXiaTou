@@ -18,8 +18,25 @@
                 }
         });
         });
+
+        $("#btnGetLot").click(function () {
+            $.ajax({
+                url: "http://api.caipiaokong.com/lottery",
+                data: { name: "scklse", uid: "198219", token: "9dfbe6a28cda05b90bea69688aa17f2aa0dd4b9f", format: "json", num: "2", date: "20160117", order: "sort" },
+                dataType: "jsonp",
+                type: "POST",
+                success: function (data) {
+                    $("#content").text(data);
+                },
+                error:function(e) {
+                    alert(e);
+                }
+            });
+        });
     });
 </script>
 
 <input id="periodId" type="text" value="10"/>
-<input id="btnOpen" type="button"  value="开奖"/>
+<input id="btnOpen" type="button" value="开奖"/>
+<input id="btnGetLot" type="button" value="获取彩票"/>
+<div id="content"></div>

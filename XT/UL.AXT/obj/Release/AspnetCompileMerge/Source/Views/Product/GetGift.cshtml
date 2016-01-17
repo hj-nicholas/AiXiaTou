@@ -69,33 +69,33 @@
                 </div>
 
             </div>
-            @if (UserShare.PeopleNum!=UserShare.RevPeopleNum)
+           
+            @if (!string.IsNullOrEmpty(UserShare.Winner))
             {
-                <div class="orderBB margin_t15 margin_b20 white_bg br4">
-                    <h1 class="tc red padding_b10 padding_t10">已抢到虾仔：@ViewBag.SCode</h1>
+                <div class="orderBM margin_t15 margin_b20 oh">
+                    <div class="orderBMR fr">
+                        <img src="@UserShare.WinPhoto" class="br20 gray3_border1"/>
+                        <p class="tc oh">@UserShare.Winner</p>
+                    </div>
+                    <div class="orderBML fr">
+                        <p class="f12 br4">好开心啦，居然中奖了！！！</p>
+                    </div>
                 </div>
             }
             else
             {
-                if (string.IsNullOrEmpty(UserShare.Winner))
+                if (UserShare.PeopleNum != UserShare.RevPeopleNum || @ViewBag.SCode!="")
                 {
                     <div class="orderBB margin_t15 margin_b20 white_bg br4">
-                        <h1 class="tc red padding_b10 padding_t10">抽奖机会领完了！</h1>
-                       </div>
+                        <h1 class="tc red padding_b10 padding_t10">已抢到虾仔：@ViewBag.SCode</h1>
+                    </div>
                 }
                 else
                 {
-                    <div class="orderBM margin_t15 margin_b20 oh">
-                        <div class="orderBMR fr">
-                            <img src="@UserShare.WinPhoto" class="br20 gray3_border1" />
-                            <p class="tc oh">@UserShare.Winner</p>
-                        </div>
-                        <div class="orderBML fr">
-                            <p class="f12 br4">好开心啦，居然中奖了！！！</p>
-                        </div>
+                    <div class="orderBB margin_t15 margin_b20 white_bg br4">
+                        <h1 class="tc red padding_b10 padding_t10">抽奖机会领完了！</h1>
                     </div>
                 }
-
             }
 
 

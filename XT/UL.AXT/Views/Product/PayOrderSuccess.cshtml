@@ -24,10 +24,24 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/Common/touchwipe.js"></script>
     <script type="text/javascript" src="~/Scripts/Common/common.js"></script>
-
+    
     <script type="text/javascript" src="~/Scripts/MainFrame/MainFrame.js"></script>
 
-    <link href="" rel="stylesheet" type="text/css" id="mediaWidth" />
+    <link href="" rel="stylesheet" type="text/css" id="mediaWidth"/>
+    <script type="text/javascript">
+        $(function() {
+            CheckMenu();
+        });
+        function CheckMenu() {
+            var a_H = $("#shrimp");
+            if (!a_H.hasClass("icon_H")) {
+                a_H.siblings().removeClass("icon_H");
+                a_H.addClass("icon_H");
+                SetCookie("footerBtn", a_H.prop("id"));
+
+            }
+        }
+    </script>
 </head>
 <body class="blueF_bg">
 
@@ -62,7 +76,7 @@
 
       
 </div>
-
+    @RenderPage("~/Views/Shared/_Footer.cshtml")
 </body>
 </html>
 

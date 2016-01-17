@@ -209,6 +209,7 @@ namespace DAL
                     {
                         T_User_Share share = new T_User_Share();
 
+                        share.ShareId = Convert.ToInt32(rdr["ShareId"]);
                         share.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
                         share.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
                         share.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
@@ -248,6 +249,7 @@ namespace DAL
                     {
                         T_User_Share share = new T_User_Share();
 
+                        share.ShareId = Convert.ToInt32(rdr["ShareId"]);
                         share.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
                         share.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
                         share.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
@@ -259,6 +261,8 @@ namespace DAL
                         share.SendUser = Convert.ToString(rdr["SendUser"]);
                         if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             share.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
+                        if (!DBNull.Value.Equals(rdr["WinUserId"]))
+                            share.WinUserId = Convert.ToInt32(rdr["WinUserId"]);
 
                         lstShare.Add(share);
                     }
@@ -297,6 +301,60 @@ namespace DAL
             return result;
         }
 
+        //用户分享，领取虾仔
+        public BaseResult RevShrimp(int shareUserId, int revUserId)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pRevShrimp", strConn);
+                cmd.Parameters["@p_shareUserId"].Value = shareUserId;
+                cmd.Parameters["@p_revUserId"].Value = revUserId;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
+
+        public List<T_Red_Envelope> GetRedEnvelopeByUser(int userId)
+        {
+            List<T_Red_Envelope> lstEnv = new List<T_Red_Envelope>();
+            SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetRedEnvelopeByUser", strConn);
+            cmd.Parameters["@p_userId"].Value = userId;
+            try
+            {
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+
+                    while (rdr.Read())
+                    {
+                        T_Red_Envelope env = new T_Red_Envelope();
+                        env.DonateUserId = Convert.ToInt32(rdr["DonateUserId"]);
+                        env.RevTime = Convert.ToDateTime(rdr["RevTime"]);
+                        env.RevUserName = Convert.ToString(rdr["RevUserName"]);
+                        env.RevUserPhoto = Convert.ToString(rdr["RevUserPhoto"]);
+                        env.DonateUserId = Convert.ToInt32(rdr["DonateUserId"]);
+
+                        lstEnv.Add(env);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                lstEnv = new List<T_Red_Envelope>();
+                throw ex;
+            }
+            return lstEnv;
+        }
     }
 }
 

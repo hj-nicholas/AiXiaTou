@@ -24,10 +24,24 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="~/Scripts/Common/touchwipe.js"></script>
     <script type="text/javascript" src="~/Scripts/Common/common.js"></script>
-
+    
     <script type="text/javascript" src="~/Scripts/MainFrame/MainFrame.js"></script>
 
-    <link href="" rel="stylesheet" type="text/css" id="mediaWidth" />
+    <link href="" rel="stylesheet" type="text/css" id="mediaWidth"/>
+    <script type="text/javascript">
+        $(function() {
+            CheckMenu();
+        });
+        function CheckMenu() {
+            var a_H = $("#shrimp");
+            if (!a_H.hasClass("icon_H")) {
+                a_H.siblings().removeClass("icon_H");
+                a_H.addClass("icon_H");
+                SetCookie("footerBtn", a_H.prop("id"));
+
+            }
+        }
+    </script>
 </head>
 <body class="blueF_bg">
 
@@ -42,7 +56,7 @@
                 <div class="order_submit_shareM white_bg">
                     <div class="index_ML" style="margin-right: 0;">
                         <h3 class="grayC_bg">
-                            <b class="orange_bg block" style="width: 40%;"></b>
+                            <b class="orange_bg block" style="width: @(decimal.Round(Model.JoinedNum*100/Model.ProductPrice, 0))%;"></b>
                         </h3>
 
                         <p class="oh">
@@ -62,7 +76,7 @@
 
       
 </div>
-
+    @RenderPage("~/Views/Shared/_Footer.cshtml")
 </body>
 </html>
 

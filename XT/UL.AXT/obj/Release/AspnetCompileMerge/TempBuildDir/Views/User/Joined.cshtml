@@ -67,7 +67,7 @@
 
     </div>
     <div class="none" id="tagContent1">
-        @foreach (var prod in Model.Where(p => p.UserName != ""))
+        @foreach (var prod in Model.Where(p => p.UserName != "" && p.UserId != @ViewBag.UserId))
         {
             var lot=prod.UserLots;
             <div class="orderB">
@@ -97,7 +97,7 @@
                 <div class="orderBT lh30 oh fn">
                     <i class="flagR_s fl icon_s margin_r5 margin_t5"></i>
                     <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
-                    @if (prod.IsShowOrder == 1)
+                    @if (prod.IsShowOrder == 0)
                     {
                         <a href="Shipping_address.html" class="fr br4 blue_bg white f14">领取奖品</a>
                         <a href="/Product/AddShowOrder?periodId=@prod.PeriodId" class="fr br4 blue_bg white f14">晒单有米</a>

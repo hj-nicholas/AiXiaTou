@@ -76,7 +76,7 @@ namespace UL.AXT.Controllers
             return View(product);
         }
 
-        public JsonResult AddOrder(string lottery, string phone, string email, int periodId, string userName, string addr, int userId)
+        public JsonResult AddOrder(string lottery, string phone, string email, int periodId, string userName, string addr, int userId,int buyNum,int usedYE)
         {
             //发送邮件
             //生成订单
@@ -90,6 +90,8 @@ namespace UL.AXT.Controllers
             orderDto.UserPhone = phone;
             orderDto.UserDesc = "";
             orderDto.UserId = userId;
+            orderDto.BuyNum = buyNum;
+            orderDto.UsedYE = usedYE;
             BLL.Order order = new Order();
             BaseResult br = order.AddOrderDesc(orderDto);
 
@@ -97,7 +99,7 @@ namespace UL.AXT.Controllers
             return Json(br);
         }
 
-        public JsonResult AddGift(int userId, int peopleNum, int giftNum, int periodId)
+        public JsonResult AddGift(int userId, int peopleNum, int giftNum, int periodId,int usedYE)
         {
             T_User_Share shareDto = new T_User_Share();
             shareDto.IsPay = 0;
@@ -105,6 +107,7 @@ namespace UL.AXT.Controllers
             shareDto.PeriodId = periodId;
             shareDto.ShareNum = giftNum;
             shareDto.ShareUserId = userId;
+            shareDto.UsedYE = usedYE;
             BaseResult result = prod.AddGift(shareDto);
 
             return Json(result);
@@ -122,8 +125,7 @@ namespace UL.AXT.Controllers
         public ActionResult PayGiftSuccess( int shareId)
         {
             ProductModel prodModel = new ProductModel();
-
-            bool flag = true;
+           bool flag = true;
             if (Session["UserId"] != null)
             {//分享用户id与接受用户id不一致
                 var userId = Convert.ToInt32(Session["UserId"]);
@@ -145,12 +147,12 @@ namespace UL.AXT.Controllers
                     prodModel = prod.GetProdByShare(shareId);
 
                 List<T_Share_Get> lst = prod.GetRevGiftByShareId(shareId);
-            if (lst.Count > 0)
-            {
-               T_User_Share userShare=  prod.GetShareById(shareId);
-                ViewBag.UserShare = userShare;
+                if (lst.Count > 0)
+                {
+                   T_User_Share userShare=  prod.GetShareById(shareId);
+                    ViewBag.UserShare = userShare;
                     return View("ShareGiftResult", lst);
-            }
+                }
                 
             }
             return View(prodModel);
@@ -201,7 +203,7 @@ namespace UL.AXT.Controllers
         {
             BaseResult br = new BaseResult();
             //判断该用户是否领取过该礼物
-            if (prod.isRevGift(shareId, userId))
+            if (prod.isRevGift(shareId, userId)||userId==0)
             {
                 br.Succeeded = false;
                 br.ErrMsg = "已经领取过礼物";
@@ -214,6 +216,10 @@ namespace UL.AXT.Controllers
                 int restGift = shareDto.ShareNum - shareDto.RevGiftNum - (shareDto.PeopleNum - shareDto.RevPeopleNum)+1;
                 Random rd = new Random();
                 int revNum = rd.Next(1,restGift);
+                if (shareDto.PeopleNum - shareDto.RevPeopleNum == 1)
+                {
+                    revNum = shareDto.ShareNum - shareDto.RevGiftNum;
+                }
                 string codes = GenerateCode(shareDto.PeriodId, revNum);
                 //插入虾仔记录
                 br= prod.UpdRevGiftInfo(shareId, userId, revNum, shareDto.PeriodId, codes);

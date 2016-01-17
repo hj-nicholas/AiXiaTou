@@ -67,7 +67,7 @@
 
     </div>
     <div class="none" id="tagContent1">
-        @foreach (var prod in Model.Where(p => p.UserName != ""))
+        @foreach (var prod in Model.Where(p => p.UserName != "" && p.UserId != @ViewBag.UserId))
         {
             var lot=prod.UserLots;
             <div class="orderB">

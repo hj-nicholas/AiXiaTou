@@ -12,18 +12,21 @@
         <a id="newAddr" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
     </div>
     <div class="addressB">
-        @foreach (var addr in Model)
-        {
-            <a href="#" id="@addr.AddressId" class="block white_bg" name="editAddr">
-                <i class="pen_s icon_s pa margin_t15"></i>
-                <p class="oh lh25">
-                    <b class="fl f16" name="receiver">@addr.Receiver</b><i class="fr f14" name="phone">@addr.Phone</i>
-                </p>
-                <p class="lh20 gray9" name="address">@addr.AddressDesc</p>
-            </a>
-        } 
-       
-       
+        <ul>
+            @foreach (var addr in Model)
+            {
+                <li class="white_bg">
+                    <a href="#" id="@addr.AddressId" class="block" name="editAddr">
+                        <i class="pen_s icon_s pa margin_t15"></i>
+                        <p class="oh lh25">
+                               <b class="fl f16" name="receiver">@addr.Receiver</b><i class="fr f14" name="phone">@addr.Phone</i>
+                        </p>
+                        <p class="lh20 gray9" name="address">@addr.AddressDesc</p><input type="text" name="post" value="@addr.PostCode" style="display:none" />
+                    </a>
+                    </li>
+                    }
+</ul>
+
     </div>
 
 

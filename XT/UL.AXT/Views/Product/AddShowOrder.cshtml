@@ -40,12 +40,13 @@
             $.ajax({
                 url: "/ShowOrder/AddShow",
                 type: "POST",
+                async : false,
                 data: { content: $("#content").val(), periodId: '@ViewBag.Period', userId:getCookie("UserId")},
                 success:function(data) {
                     if (data["Succeeded"]) {
-                        alert("评论成功");
+                        alert("晒单成功");
                     } else {
-                        alert("评论失败");
+                        alert("晒单失败");
                     }
                 }
             });

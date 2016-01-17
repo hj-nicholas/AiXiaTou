@@ -14,11 +14,11 @@
             <div class="index_T">
                 <a class="pa collection_s  icon_s margin_t5"></a>
                 <a href="/Product/ProductDetail?periodId=@prod.PeriodId" class="block oh">
-                    <img src="~/Uploads/ProductPhotos/20151209/img01.jpg" class="fr br4" />
+                    <img src="~/Uploads/@prod.ProductPhoto" class="fr br4" />
                     <p class="oh">
                         <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
-                        <span class="f14 lh25 block gray6 oh "><em class="fl fsn">价值：@prod.ProductPrice 元</em></span>
-                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn">期数：@prod.PeriodNum , @prod.ProductDesc</em></span>
+                        <span class="f14 lh25 block gray6 oh "><em class="fl fsn">抢购价：@prod.ProductPrice 元</em></span>
+                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn">第 @prod.PeriodNum 期, @prod.ProductDesc</em></span>
                     </p>
 
                 </a>

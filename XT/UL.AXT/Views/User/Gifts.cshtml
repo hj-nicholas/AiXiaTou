@@ -27,25 +27,39 @@
                 @foreach (var send in Model)
                 {
                     <li class="white_bg">
-                        <a href="#">
+                        <a href="/User/SendGiftDetail?shareId=@send.ShareId&userId=@ViewBag.UserId">
                             <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">@send.CreateTime</span></p>
-                            @if (string.IsNullOrEmpty(send.LotteryNum))
-                            {
-                                <p class="f16 pr">
-                                    <span class="fl">@send.ProductName</span><i class="fr br4 f12">已抢：@send.RevGiftNum/@send.ShareNum</i>
-                                </p>
-                                <p class="f12 oh">
-                                    <span class="fl gray9">价值：@send.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i>
-                                </p>
-                            }
-                            else
+                            @if (!string.IsNullOrEmpty(send.LotteryNum))
                             {
                                 <p class="f16 pr">
                                     <span class="fl">@send.ProductName</span><i class="fr br4 f12">幸运虾：@send.Winner</i>
                                 </p>
                                 <p class="f12 oh">
-                                    <span class="fl gray9">价格：@send.ProductPrice 虾米</span><i class="fr grayC_bg white br4">已开奖</i>
+                                    <span class="fl gray9">价值：@send.ActualPrice 元</span><i class="fr grayC_bg white br4">已开奖</i>
                                 </p>
+
+                            }
+                            else
+                            {
+                                if (send.RevGiftNum != @send.ShareNum)
+                                {
+                                    <p class="f16 pr">
+                                        <span class="fl">@send.ProductName</span><i class="fr br4 f12">已抢：@send.RevGiftNum/@send.ShareNum</i>
+                                    </p>
+                                    <p class="f12 oh">
+                                        <span class="fl gray9">价值：@send.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="f16 pr">
+                                        <span class="fl">@send.ProductName</span><i class="fr br4 f12">已抢光</i>
+                                    </p>
+                                    <p class="f12 oh">
+                                        <span class="fl gray9">价值：@send.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i>
+                                    </p>
+                                }
+
                             }
 
                         </a>
@@ -64,25 +78,39 @@
                 @foreach (var rev in lstShare)
                 {
                     <li class="white_bg">
-                        <a href="Gift_share1.html">
+                        <a href="/User/RevGiftDetail?shareId=@rev.ShareId&userId=@ViewBag.UserId">
                             <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">@rev.CreateTime</span></p>
-                            @if (!string.IsNullOrEmpty(rev.LotteryNum))
-                            {
-                                <p class="f16 pr">
-                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">幸运虾：@rev.Winner</i>
-                                </p>
-                                    <p class="f12 oh">
-                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">已开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
-                                    </p>
-                            }
-                            else
+                            @if (string.IsNullOrEmpty(rev.LotteryNum))
                             {
                                 <p class="f16 pr">
                                     <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.LotteryNum</i>
                                 </p>
-                                    <p class="f12 oh">
-                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
+                                <p class="f12 oh">
+                                    <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
+                                </p>
+
+                            }
+                            else
+                            {
+                                if (rev.WinUserId != @ViewBag.UserId)
+                                {
+                                    <p class="f16 pr">
+                                        <span class="fl">@rev.ProductName</span><i class="fr br4 f12">幸运虾：@rev.Winner</i>
                                     </p>
+                                    <p class="f12 oh">
+                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">已开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="f16 pr">
+                                        <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.LotteryNum</i>
+                                    </p>
+                                    <p class="f12 oh">
+                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr  red_bg white br4">领取奖品</i><i class="fr orange_bg br4">赠</i><i class="fr orange_bg br4">@rev.SendUser</i>
+                                    </p>
+                                }
+
                             }
 
                         </a>

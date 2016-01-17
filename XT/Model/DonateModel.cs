@@ -14,5 +14,6 @@ namespace Model
         public string UserName { get; set; }
         public DateTime CreateTime { get; set; }
         public int PeriodID { get; set; }
+        public int ShareNum { get; set; }
     }
 }

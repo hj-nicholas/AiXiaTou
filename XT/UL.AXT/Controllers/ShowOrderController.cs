@@ -32,9 +32,20 @@ namespace UL.AXT.Controllers
                 if (userInfo != null)
                 {
                     userDto = business.ChangeUserByWeChatInfo(userInfo);
+                    Session["UserId"] = userDto.UserID;
                 }
             }
-            Session["UserId"] = userDto.UserID;
+            else
+            {
+                if (Session["UserId"] != null)
+                {
+                    BLL.UserInfo user = new BLL.UserInfo();
+                    var userId = Convert.ToInt32(Session["UserId"]);
+                    userDto=user.GetUserInfo(userId);
+                }
+                
+
+            }
             //Session["UserId"] = "6";
 
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
@@ -65,6 +76,7 @@ namespace UL.AXT.Controllers
             ViewBag.CommNum = CommNum;
             ViewBag.SuppNum = suppNum;
             ViewBag.PeriodId = periodId;
+            ViewBag.RootCommId = lstCommentInOrder.Where(c => c.CommentRefID == 0).First().CommentID;
             return View(lstCommentInOrder.Where(c=>c.CommentRefID !=0).ToList());
         }
 

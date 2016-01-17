@@ -95,7 +95,7 @@
                                     <a href="/Product/ProductDetail?periodId=@prod.PeriodId" class="red_bg white block br4 lh30 tc f14 margin_t5">幸运 @prod.ProLotteryNum</a>
                                 </div>
                                 <div class="index_ML">
-                                    <h3 class="grayC_bg"><b class="orange_bg block" style="width: 40%;"></b>
+                                    <h3 class="grayC_bg"><b class="orange_bg block" style="width: @(decimal.Round(prod.JoinedNum*100/prod.ProductPrice,0))%;"></b>
                                     </h3>
 
                                     <p class="oh">

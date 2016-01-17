@@ -470,6 +470,10 @@
     <Content Include="Views\User\PayChargeSuccess.cshtml" />
     <Content Include="Views\Product\AddShowOrder.cshtml" />
     <Content Include="Views\Product\ShareGiftResult.cshtml" />
+    <Content Include="Views\User\RevGiftDetail.cshtml" />
+    <Content Include="Views\User\SendGiftDetail.cshtml" />
+    <Content Include="Views\User\SharePolite.cshtml" />
+    <Content Include="Views\User\Share.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

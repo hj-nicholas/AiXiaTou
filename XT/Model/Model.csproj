@@ -51,6 +51,7 @@
     <Compile Include="T_Product.cs" />
     <Compile Include="T_ProductPeriods.cs" />
     <Compile Include="T_ProductType.cs" />
+    <Compile Include="T_Red_Envelope.cs" />
     <Compile Include="T_Share_Get.cs" />
     <Compile Include="T_UserAddr.cs" />
     <Compile Include="T_UserInfo.cs" />

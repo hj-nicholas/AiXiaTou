@@ -21,11 +21,11 @@
 
     });
     //保存cookie信息
-    function saveToCookie(cookieName, val) {
-        if (val != "") {
-            SetCookie(cookieName, val);
-        }
-    }
+    //function saveToCookie(cookieName, val) {
+    //    if (val != "") {
+    //        SetCookie(cookieName, val);
+    //    }
+    //}
 </script>
 
 <div class="mainM">
@@ -60,13 +60,13 @@
 <p class='fl'> @order.CommentNum </p>
                         </a>
                         @if (order.IsSupp > 0)
-                        { <a class='fl icon_H' href="#">
+                        { <a class='fl icon_H' href="">
                             <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
                             <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
                         </a>
                         }
                         else
-                        { <a class='fl' href="#">
+                        { <a class='fl' href="">
                             <i class='dianzan_s block icon_s fl ' id="@order.PeriodID"></i>
                             <p class='fl'>羡慕</p><p class='fl'> @order.SupportNum </p>
                         </a>

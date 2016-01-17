@@ -7,7 +7,7 @@ $(function () {
     $(".dianzan_s").click( function () {
         var userId = getCookie("UserId");
         var obj = $(this);
-        if(userId != "");
+        if(userId != "0");
         {
             $.ajax({
                 type: "POST",
@@ -32,18 +32,18 @@ $(function () {
         $("#txtCommentId").val($(this).prop("id"));
     });
 
-    $("#commShowUser").click(function() {
-        AlertDiv('#alert_pinglun');
-         $("#txtCommentId").val(0);
-    });
 
     $("#btnReply").click(function () {
         var userId = getCookie("UserId");
+        if (userId == 0) {
+            alert("请重新登录");
+            return;
+        }
         var commRefId = 0;
         var periodId = 0;
-        if ($("#txtCommentId").val() == 0) {
+        if ($("#txtCommentId").val() != 0) {
             periodId = $("#commShowUser").attr("tagPeriod");
-            commRefId = 0;
+            commRefId = $("#txtCommentId").val();
         } else {
             var objCom = $(eval("'#" + $("#txtCommentId").val() + "'"));
             periodId = objCom.attr("tagPeriod");
@@ -58,9 +58,12 @@ $(function () {
                     //$(".dianzan_s").next("p").text(result.ResultId);
                     AlertClose(this);
                     window.location.reload();
-                    //href("/ShowOrder/CommentList?periodId=" + objCom.attr("tagPeriod") + "&commNum=0&suppNum=0");
                     
                 }
+            },
+            error: function (data, status, e) //服务器响应失败处理函数
+            {
+                alert(e);
             }
         });
     });

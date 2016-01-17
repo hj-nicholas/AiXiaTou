@@ -13,7 +13,7 @@ namespace BLL
 
         public UserDTO GetUserInfo(int userId)
         {
-           UserDTO userInfo= user.GetUserInfo(userId);
+            UserDTO userInfo = user.GetUserInfo(userId);
             return userInfo;
         }
 
@@ -58,5 +58,19 @@ namespace BLL
             var lst = user.GetRevGifyByUserId(userId);
             return lst;
         }
+
+        public BaseResult RevShrimp(int shareUserId, int revUserId)
+        {
+
+            var result = user.RevShrimp(shareUserId, revUserId);
+            return result;
+        }
+
+        public List<T_Red_Envelope> GetRedEnvelopeByUser(int userId)
+        {
+            var lst = user.GetRedEnvelopeByUser(userId);
+            return lst;
+        }
+
     }
 }

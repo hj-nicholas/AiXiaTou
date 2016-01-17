@@ -16,7 +16,7 @@
                     $(data).each(function (index) {
                         //alert(data[index].AddressDesc);
                                 html += '<li class="white_bg">';
-                                html += '   <input type="checkbox" class="fl" id="chk' + data[index].AddressId + '"/>';
+                                html += '   <input type="radio" class="fl" name="rdAddr" id="chk' + data[index].AddressId + '"/>';
                                 html += '   <a  class="block">';
                                 html += '    <i class="pen_s icon_s pa margin_t15"></i>';
                                 html += '     <p class="oh lh25"><b class="fl f16" name="receiver">' + data[index].Receiver + '</b><i class="fr f14"  name="phone">' + data[index].Phone + '</i></p>';

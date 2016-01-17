@@ -91,6 +91,16 @@ namespace Model
             set { _createtime = value; }
         }
 
+        /// <summary>
+        /// IsPay
+        /// </summary>		
+        private int _usedYE;
+        public int UsedYE
+        {
+            get { return _usedYE; }
+            set { _usedYE = value; }
+        }
+
     }
 
     public partial class T_User_Share
@@ -113,6 +123,7 @@ namespace Model
         public string PhotoPath { get; set; }
 
         public string WinPhoto { get; set; }
+        public int WinUserId { get; set; }
 
         public decimal ActualPrice { get; set; }
 

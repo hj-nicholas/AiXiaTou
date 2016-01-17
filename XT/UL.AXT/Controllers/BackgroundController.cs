@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,9 +19,15 @@ namespace UL.AXT.Controllers
         public JsonResult OpenLottery(string lotteryTicket,int periodId)
         {
             //根据彩票号码在数据库中查询出中奖号码
-            Product prod = new Product();
-            prod.ConfirmLottery(lotteryTicket, periodId);
+            //Product prod = new Product();
+            //prod.ConfirmLottery(lotteryTicket, periodId);
+            //Process proc = new Process();
+            //proc.StartInfo.FileName = "E:/Bloxy/Bloxy.exe";
+            ////proc.StartInfo.Arguments = "你的参数";
+            //proc.Start();
             return Json("");
         }
+
+        
     }
 }

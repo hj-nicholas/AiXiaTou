@@ -72,6 +72,15 @@ namespace Model
             get { return _createtime; }
             set { _createtime = value; }
         }
+        /// <summary>
+        /// BuyNum
+        /// </summary>		
+        private int _buyNum;
+        public int BuyNum
+        {
+            get { return _buyNum; }
+            set { _buyNum = value; }
+        }
 
     }
 
@@ -80,6 +89,7 @@ namespace Model
         public string UserName { get; set; }
         public string City { get; set; }
         public string PhotoPath { get; set; }
+
     }
 
 }
