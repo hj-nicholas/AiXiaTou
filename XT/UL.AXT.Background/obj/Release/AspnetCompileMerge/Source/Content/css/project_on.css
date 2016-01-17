@@ -1,0 +1,163 @@
+/*********Consign*****************/
+.Consign{ width:100%; height:auto;}
+	.Consign1{ width:98%; height:auto; padding:10px 1% 0;}
+		.Consign1 .search ul li .box_text{width:40%;}
+		.Consign1 .search ul li p{width:40%; padding-right:1%; overflow:hidden; white-space:nowrap;text-overflow:ellipsis }
+		.Consign1 .search ul li{ margin-bottom:15px;}
+		.Consign1 .search{ height:auto;}
+	.Consign2{ width:98%; height:auto; padding:10px 1%; overflow:hidden;}
+		.Consign2 .search { padding-bottom:20px;}
+		.Consign2 .search ul li .box_text{width:50%;}
+		.Consign2 .page{ padding-top:20px;}
+		
+		.Consign2_tab{ width:100%; height:auto;}
+		.Consign2_tab table{ width:49%;}
+		
+/*********Consign*****************/
+/*********Drafts*****************/
+
+.Drafts{ width:100%; height:auto;}
+	.Drafts1{ width:98%; height:27px; padding:10px 1%;}
+		.Drafts1 .search ul li .box_text{width:60%;}
+	.Drafts2{ width:100%; height:auto;}
+		.Drafts2_T{ width:100%; height:25px; padding-bottom:15px;}
+		.Drafts2_T input{ margin-top:8px; margin-right:10px;*margin-top:5px;}
+		.Drafts2_T a{ margin-right:10px;}
+		.Drafts2_T a:hover{background-color:#509ee1}
+			
+		.Drafts2_B{ width:98%; height:auto; padding:10px 1% 20px 1%; margin-bottom:20px; }
+		.Drafts2 b{ font-weight:normal; }
+	.Drafts3{ width:100%; height:auto;}
+		.Drafts3 ul{ padding:10px; width:180px; height:auto;}
+		.Drafts3 ul li{ width:180px; height:auto;}
+		.Drafts3 ul li a{width:180px; height:20px; padding:10px 0; display:block; border-bottom:1px solid #eee;}
+		.Drafts3 ul li a:hover{ color:#03b1dd;}
+		.Drafts3 ul li p{ width:150px; height:20px;line-height:20px; white-space:nowrap;text-overflow:ellipsis; overflow:hidden;}
+		.Drafts3 ul li a span{width:30px; height:20px;line-height:20px;}
+/*********Drafts*****************/
+/*********Inquiry*****************/
+
+.Inquiry{ width:100%; height:auto;}
+	.Inquiry1{ width:100%; padding:10px 0;}
+	.Inquiry1 p{ width:90px; height:27px; line-height:27px; padding-right:5%;}
+	.Inquiry1 .box_text{ width:67%;}
+	
+	.Inquiry2{width:100%; height:auto; padding:10px 0 10px;}
+		.Inquiry2_R1{ width:100%; height:570px; background-color:#999;}
+		.Inquiry2_R2{ width:55%; height:auto;}
+			.Inquiry2_R2 h2{ line-height:30px; padding-top:20px; }
+			.Inquiry2_R2 p{ width:95%; height:auto; line-height:25px; border:1px solid #ccc; padding:10px 2%;}
+			.Inquiry2_R2 a{ margin:15px 1% 0 0}
+		
+		
+		.Inquiry2_L{ width:41%; height:auto; padding:0 2%;}
+		.Inquiry2_L p{ width:100%; height:27px;line-height:27px; margin:20px 0;}
+		.Inquiry2_L p span{ width:70px; height:27px;}
+		.Inquiry2_L p .box_text{ width:70%;}
+		.Inquiry2_L p b{ padding:0 1%; font-weight:normal;}
+		.Inquiry2_L p a{ width:18%; margin-left:2%;}
+		.Inquiry2_L p i{ width:18%; margin-left:2%; color:#999;}
+		.Inquiry2_L p i input{ margin-right:5px;}
+	
+/*********Inquiry*****************/
+/*********project_detail*****************/
+
+.project_detail{ width:100%; height:auto;}
+	
+	.project_detail1{ width:98%; height:auto; padding:0px 1% 10px; overflow:hidden;}
+		table.project_detail1_tab  td{ text-align:left; padding-left:0;}
+		table.project_detail1_tab  th{ font-weight:bold; text-align:left; font-size:14px;}
+		table.project_detail1_tab  tr.alt td { background:#fff;} 
+		table.project_detail1_tab  tr.over td {background:#fff;}
+	.project_detail1 .button{ margin-top:30px;}	
+	
+		
+	.project_detail1_T{width:100%; height:40px; margin-top:10px;}
+	.project_detail1_T h4{ float:left; height:40px; line-height:40px;font-size:14px;}
+	.project_detail1_T a.blue{height:40px; line-height:40px;float:left; margin-left:10px;}
+	.project_detail1_T a.blue:hover{ color:#333; text-decoration:none;}
+	.project_detail1_T .Abutton{ margin-left:10px; margin-top:6px;}
+	
+	
+	.project_detail1 td a.white{ width:40px;}
+	.project_detail1 td a.blue:hover{ color:#333;}
+	.project_detail1 td b{ margin-left:10px;}
+	.project_detail1 td b.red{ margin-left:0px;}
+	
+	.time_line1{ width:10%; height:30px; line-height:30px; left:50%; margin-left:-5%;*margin-left:-7%;}
+	.time_line2{ width:100%; height:auto;}
+		.time_line2 ul li{ width:50%; height:auto; padding:10px 0;}
+		.time_line2 ul li.fl{ margin-left:-1px;border-right:2px  solid #afbbd3;*margin-left:-2px;}
+		.time_line2 ul li.fl .time_re2{right:-15px;}
+		.time_line2 ul li.fl .time_re1 i{right:-20px; top:10px;}
+		.time_line2 ul li.fr{ margin-right:-1px;border-left:2px  solid #afbbd3;}
+		.time_line2 ul li.fr .time_re2{left:-15px;}
+		.time_line2 ul li.fr .time_re1 i{left:-20px;top:10px;}
+		
+		.time_re{ width:100%; height:auto;}
+			.time_re1{ width:88%; height:auto; line-height:25px; background-color:#eee; padding:10px 2%;}
+				.time_re1T{ border-bottom:1px solid #ccc; padding-bottom:5px;}
+				.time_re1T p{ width:auto; margin-right:140px;}
+				.time_re1T p span{ width:100%; height:auto;}
+				.time_re1T b{ width:130px; height:25px;}
+				.time_re1B{ width:100%; height:auto; padding-top:5px;}
+			.time_re2{ width:30px; height:30px; line-height:30px;border-radius:15px; top:5px; }
+
+/*********project_detail*****************/
+/*********project_ingg*****************/
+
+.project_ingg{ width:100%; height:auto;}
+	
+	.project_ing1{ width:98%; height:auto; padding:10px 1%; overflow:hidden;}
+		.project_ing1 .search { padding-bottom:20px;}
+		.project_ing1 .search ul li .box_text{width:60%; min-width:90px;}
+		.project_ing1 .search ul li span{width:auto;height: 27px;line-height: 27px;margin:0 0 0 10%; cursor:pointer; float:left;}
+		.project_ing1 .search ul li i{margin-top:10px; margin-left:5px;}
+		
+		
+		
+		.project_ing1 .page{ padding-top:10px;}
+		
+		.project_ing1_tab{ width:100%; height:auto;}
+		.project_ing1_tab td a{ width:auto; height:20px; line-height:20px; padding:0 5px; margin-left:5px;}
+		#project_ing1_tab_end{ width:150px;}
+
+/*********project_ingg*****************/
+/*********Wdata*****************/
+
+.Wdata{ width:100%; height:auto;}
+	
+	.Wdata1{ width:96%; height:auto; padding:0 2%;}
+		.Wdata1 p{ width:50%; height:27px;line-height:27px; padding:10px 0; float:left;}
+		.Wdata1 p span{ width:75px; height:27px;}
+		.Wdata1 p .box_text{ width:65%;}
+		.Wdata1 p b{ padding:0 1%; font-weight:normal;}
+		.Wdata1 p a{ width:18%; margin-left:2%;}
+		.Wdata1 p i{ width:18%; margin-left:2%; color:#999;}
+		.Wdata1 p i input{ margin-right:5px;}
+		
+	.Wdata2{ width:96%; height:auto; padding:0 2%;}
+		.Wdata2 p{ width:33%; height:27px;line-height:27px; padding:10px 0; float:left;}
+		.Wdata2 p span{ width:55px; height:27px;}
+		.Wdata2 p .box_text{ width:60%;}
+		.Wdata2 p b{ padding:0 1%; font-weight:normal;}
+		.Wdata2 p a{ width:18%; margin-left:2%;}
+		.Wdata2 p i{ width:18%; margin-left:2%; color:#999;}
+		.Wdata2 p i input{ margin-right:5px;}
+	.Wdata3{width:96%; height:auto; padding:0 2%;}	
+		.Wdata3 ul{ overflow:hidden;}
+		.Wdata3 ul li{ width:16%; height:auto; border:1px dashed #ccc; margin:10px 2%; padding:10px 2%; float:left;}
+		.Wdata3 ul li p{ width:100%; height:20px; line-height:20px;}
+		.Wdata3 ul li a{ width:100%; height:25px; line-height:25px; margin-top:10px;}
+		.Wdata3 ul li a:hover{ background-color:#509ee1}
+		.Wdata3 ul li.hover{border:1px solid #a8bdcf;}
+
+/*********Wdata*****************/
+
+
+
+
+
+
+
+

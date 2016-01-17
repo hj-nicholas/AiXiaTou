@@ -1,0 +1,2796 @@
+﻿body {
+	margin:0px;
+	padding:0px;
+}
+
+.x_message_big {
+	font-size:25px; 
+	text-align:center; 
+	margin-top:150px;
+	font-family:"楷体_GB2312";
+}
+.x_message_big1 {
+	font-size:12px; 
+	margin-top:30px;
+	text-align:left;
+	width:90%;
+	font-family:"宋体";
+	line-height:35px;
+	color:#000000;
+	text-align:center;
+}
+/* 表单保存按钮div */
+#_button_area {
+	display:block; 
+	vertical-align:bottom;
+	padding-top:10px;
+	clear:both;
+}
+
+
+/*----------------------------------标记---------------------------------------*/
+#sign
+{
+  font-size:12px;
+	color:red;
+
+}
+
+/* ------------------------------------- 登录页的样式 ----------------------------------------*/
+
+/* 登录项目的标题 */
+.x_index_input_main_title{
+	font-family:"宋体";
+	font-size:12px;
+	font-weight:bold;
+	color:#42413f;
+}
+.x_password_input {
+	font-size:12px;
+	line-height:12px;
+	FONT-FAMILY:Verdana, Arial, Helvetica, sans-serif;
+   	BACKGROUND-COLOR:#ffffff;
+	border:none;
+	height:20px;
+	border-bottom-color: #51504c;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #51504c;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color: #51504c;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color: #51504c;
+	vertical-align:bottom;
+}
+/* 技术支持 */
+.x_index_support{
+	color:#2A2927;
+	text-align:right;
+	font-family:"宋体";
+	font-size:12px;
+}
+/* 版权所有 */
+.x_index_foot_right{
+	color:#7F7E79;
+	margin:inherit;
+}
+/* *************                全局默认的控制样式     ******************* */
+td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+}
+
+/* 动态按钮的样式 包括列表上部和详情的按钮 */
+
+/* 按钮的链接 */
+a.x_button_link:link {
+	TEXT-DECORATION:none;
+	font-size:12px;
+	color:#0000ff;
+}
+a.x_button_link:hover {
+	TEXT-DECORATION: underline;
+	font-size:12px;
+	color:#0000ff;
+}
+a.x_button_link:visited {
+	TEXT-DECORATION: none;
+	font-size:12px;
+	color:#0000ff;
+}
+a.x_button_link:active {
+	TEXT-DECORATION: underline;
+	font-size:12px;
+	color:#0000ff;
+}
+
+/* 按钮div */
+.x_button_div_left {
+	height:20px;
+	float:left;
+	width:6px;
+	background-image:url(/emadmin/images/c2/button/detail_button_left.gif);
+	position:relative;
+}
+.x_button_div_middle {
+	letter-spacing:2px;
+	color:#333333;
+	font-size:12px;
+	white-space:nowrap;
+	overflow:visible;
+	height:20px;
+	line-height:20px;
+	float:left;
+	background-image:url(/emadmin/images/c2/button/detail_button_middle.gif); 
+	background-repeat:repeat-x;
+	TEXT-DECORATION: none;
+	position:relative;
+}.x_button_div_right {
+	float:left;
+	text-align:left;
+	height:20px;
+	width:2px;
+	background-image:url(/emadmin/images/c2/button/detail_button_right.gif);
+	position:relative;
+}
+
+
+/* *************                标题的样式     ******************* */
+.x_center_head_bg {
+	BACKGROUND: url(/emadmin/images/content_head_bg.gif) repeat-x; 
+	HEIGHT: 30px;
+	text-align:center;
+	padding-top:10px;
+}
+.x_center_title {
+	letter-spacing:2px;
+	FONT-SIZE: 18px; 
+	LINE-HEIGHT: 30px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"黑体";
+	font-weight:normal;
+	width:100%;
+	
+}
+/* *************                新增、修改表单的样式     ******************* */
+
+ /* 表单最外层表格的样式 */
+.x_bill_outer_table {
+	width:98%;
+	table-layout:fixed;
+	
+}
+
+ /* 主表的table样式 */
+ 
+.x_bill_main_table {  
+	width:100%;            /* 调整此宽度,必须同时调整详情子表x_bill_detail_sub_bill_table的宽度 */
+	FONT-FAMILY: "宋体";
+	padding:5px;
+	border: 1px solid #d8e2f4;
+	border-bottom:0px solid;
+	
+}
+.x_bill_td_00 {  
+	font-weight:normal;
+	color:#3d7298;
+	TEXT-ALIGN: left;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#d8e2f4;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#d8e2f4;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#d8e2f4;
+	border-right-style:solid;
+	border-right-width:0px;
+	border-right-color:#797874;
+	height:20px;
+	padding-left:15px;
+	width:8%;
+	white-space:nowrap;
+}
+.x_bill_td_01 {  
+	TEXT-ALIGN: left;
+	 border-bottom-style:solid;
+	 border-bottom-width:1px;
+	 border-bottom-color:#d8e2f4;
+	 border-top-style:solid;
+	 border-top-width:0px;
+	 border-top-color:#797874;
+	 border-left-style:solid;
+	 border-left-width:0px;
+	 border-left-color:#797874;
+	 border-right-style:solid;
+	 border-right-width:0px;
+	 border-right-color:#797874;
+	padding-left:15px;
+	width:42%;
+	word-break:break-all;
+}
+.x_bill_td_10 {  
+	 color:#3d7298;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#d8e2f4;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#797874;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#d8e2f4;
+	border-right-style:solid;
+	border-right-width:0px;
+	border-right-color:#797874;
+	 TEXT-ALIGN: left;
+	  font-weight:normal;
+		padding-left:15px;
+	width:8%;
+	white-space:nowrap;
+}
+.x_bill_td_11 {  
+	 BACKGROUND: #ffffff;
+	 TEXT-ALIGN: left; 
+	 border-bottom:1px #d8e2f4 solid;
+	padding-left:15px;
+	width:42%;
+	word-break:break-all;
+}
+
+/*   表单项目-录入框   */
+
+.x_bill_item_input {
+    width:80%;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#f8fcff;
+	height:20px;
+	z-index:100;
+}
+.x_bill_item_input_date_time {
+    width:40%;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#f8fcff;
+	height:20px;
+}
+.x_bill_item_input_date_time_sub {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#f8fcff;
+	height:20px;
+}
+
+.x_bill_item_long_input {
+    width:91%;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#f8fcff;
+	height:20px;
+}
+
+.x_bill_item_input_sub {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR: #f8fcff;
+   
+	height:20px;
+}
+.x_bill_item_input_readonly {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR: Transparent;
+	border:none;
+	height:20px;
+}
+.x_bill_item_input_readonly_sub {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR: Transparent;
+	border:none;
+	height:20px;
+}
+
+/*   表单项目-下拉框    */
+ 
+.x_bill_item_select {
+	BACKGROUND-COLOR: #f8fcff;
+}
+
+/* 表单项目-单选框 */
+
+.x_bill_item_radio {
+}
+
+/* 表单项目-单选框 */
+
+.x_bill_item_radio {
+}
+
+/* 表单项目-复选框 */
+
+.x_bill_item_checkbox {
+
+}
+
+/* 表单项目-大文本 */
+
+.x_bill_item_text {
+    width:100%;
+    BACKGROUND-COLOR:#f8fcff;
+}
+
+/*  ********************************************子表的按钮区域 **************************************  */
+
+.x_bill_sub_table_button {
+	height:50px;
+	width:800px;
+	text-align:left;
+	white-space:nowrap;
+	clear:left
+}
+/* 子表按钮的div,用于控制按钮之间的间隙 */
+.x_bill_sub_table_button_div {
+	padding-right:10px;
+	border:none #FF0000 0px;
+	float:left;
+
+}
+.x_bill_sub_table_button_td {
+}
+.x_bill_sub_table_button_td_div {
+	
+}
+.x_bill_sub_table_title_tm {
+	vertical-align:top;
+	font-weight:bold;
+}
+.x_bill_sub_table_input_tm {
+   	BACKGROUND-COLOR:#ffffff;
+	border:none;
+	height:20px;
+	border-bottom-color: #51504c;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #51504c;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color: #51504c;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color: #51504c;
+}
+
+/* *子表的表单区域* */
+
+.x_bill_sub_bill_table {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#d8e2f4;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#d8e2f4;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#d8e2f4;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#d8e2f4;
+	padding-left: 5px;
+}
+.x_bill_sub_bill_table_header_tr {
+
+}
+.x_bill_sub_bill_table_header_td_hh {   /* 行号的单元格，没有左边的线 */
+	    BACKGROUND-COLOR: #ecf8ff;
+	  	color:#3d7298; 
+	  	TEXT-ALIGN: center;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#d8e2f4;
+		border-left-style:solid;
+		border-left-width:0px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:5px
+}
+.x_bill_sub_bill_table_header_td {
+	    BACKGROUND-COLOR: #ecf8ff; 
+	  	color:#3d7298;
+	    TEXT-ALIGN: center;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#d8e2f4;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#d8e2f4;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:5px;
+}
+.x_sub_table_row_unselected {
+		BACKGROUND: #FAF9F5; 
+}
+.x_sub_table_row_selected{
+		BACKGROUND: #ecf8ff; 
+}
+.x_sub_table_row_td_hh {
+		FONT: 14px 宋体; 
+		HEIGHT: 25px;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#d8e2f4;
+		border-left-style:solid;
+		border-left-width:0px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		padding-left: 5px;
+		white-space:nowrap;
+		overflow:visible;
+}
+.x_sub_table_row_td {
+		FONT: 14px 宋体; 
+		HEIGHT: 25px;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#d8e2f4;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#d8e2f4;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		padding-left: 5px;
+		white-space:nowrap;
+		overflow:visible;
+}
+.x_bill_sub_bill_table_sumrow_td_hh {
+	    BACKGROUND-COLOR: #ecf8ff; 
+	    TEXT-ALIGN: center;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#d8e2f4;
+		border-left-style:solid;
+		border-left-width:0px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:20px;
+		padding-left:5px;
+}
+.x_bill_sub_bill_table_sumrow_td {
+	    BACKGROUND-COLOR: #ecf8ff; 
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#d8e2f4;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#d8e2f4;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:20px;
+		padding-left: 5px;
+}
+.x_bill_sub_area_div {
+		width:100%;
+		position:relative; 
+		border-right-style:solid;
+		border-left-style:solid;  
+		border-color:#d8e2f4;  
+		border-width:1px; 
+		z-index:30;
+		overflow-y: visible; 
+		overflow-x: scroll;
+}
+.x_bill_area_div {
+		width:99%;
+		position:relative; 
+		border-right-style:solid;
+		border-left-style:solid;  
+		border-color:#d8e2f4;  
+		border-width:1px; 
+		z-index:30;
+		overflow-y: visible; 
+		overflow-x: scroll;
+}
+
+/* ****************************  详情的表单 ******************************************* */
+
+/* 表单详情按钮区域的样式 */
+.x_bill_detail_button_div {
+	padding-top:10px;
+	padding-bottom:5px;
+	padding-left:5px;
+	padding-right:5px;
+	text-align:left;
+	height:35px;
+	background-image:url(/emadmin/images/c3/detail_bar.gif);
+}
+.x_bill_detail_title_text {
+	letter-spacing:2px;
+	FONT-SIZE:18px; 
+	height:40px;
+	LINE-HEIGHT: 30px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:bold;
+	width:100%;
+}
+.x_bill_detail_sub_area_div {
+		width:99%;
+		position:relative;
+		right:0px;
+		left:0px; 
+		border-right-style:solid;
+		border-left-style:solid;  
+		border-color:#999999;  
+		border-width:0px; 
+		z-index:30;
+		overflow-y: visible; 
+		overflow-x: scroll;
+}
+
+/* 详情子表的标题 */
+.x_bill_detail_sub_bill_title_div {
+	letter-spacing:2px;
+	FONT-SIZE: 18px; 
+	height:18px;
+	LINE-HEIGHT: 18px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:bold;
+	width:100%;
+	padding-top:20px;
+	padding-bottom:0px;
+}
+.x_bill_detail_sub_bill_table {  
+		margin-top:5px;   
+		width:98%;				/* 调整此宽度,必须同时调整  x_bill_main_table 的宽度 */
+		FONT-SIZE: 12px; 
+		LINE-HEIGHT: 28px; FONT-FAMILY: "宋体";
+		border-bottom-style:solid;
+		border-bottom-width:1px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:0px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:0px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:1px;
+		border-right-color:#797874;
+		padding: 5px;
+}
+
+.x_bill_detail_sub_bill_table_header_td_hh {  
+		BACKGROUND-COLOR: #ecf8ff; 
+		TEXT-ALIGN: center;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:20px;
+		padding: 5px;
+		font-weight:bold;
+		white-space:nowrap;
+}
+.x_bill_detail_sub_bill_table_header_td {
+	  	BACKGROUND-COLOR: #ecf8ff; 
+	    TEXT-ALIGN: center;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:20px;
+		padding: 5px;
+		font-weight:bold;
+		white-space:nowrap;
+}
+.x_bill_detail_sub_table_row_td_hh {
+		FONT: 12px 宋体; 
+		HEIGHT: 20px;
+		BACKGROUND: #FAF9F5; 
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		padding: 5px;
+		white-space:nowrap;
+}
+.x_bill_detail_sub_table_row_td {
+		FONT: 12px 宋体; 
+		HEIGHT: 20px;
+		BACKGROUND: #FAF9F5; 
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		padding: 5px;
+		white-space:nowrap;
+}
+.x_bill_detail_sub_bill_table_sumrow_td_hh {
+	    BACKGROUND-COLOR: #ecf8ff; 
+	    TEXT-ALIGN: center;
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:20px;
+		padding: 5px;
+		white-space:nowrap;
+}
+.x_bill_detail_sub_bill_table_sumrow_td {
+	    BACKGROUND-COLOR: #ecf8ff; 
+		border-bottom-style:solid;
+		border-bottom-width:0px;
+		border-bottom-color:#797874;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#797874;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#797874;
+		border-right-style:solid;
+		border-right-width:0px;
+		border-right-color:#797874;
+		height:20px;
+		padding: 5px;
+		white-space:nowrap;
+}
+
+/* 打印子表的标题 */
+
+.x_bill_print_sub_bill_table { 
+		margin-top:-1px;   
+		width:100%;				/* 调整此宽度,必须同时调整  x_bill_main_table 的宽度 */
+		FONT-SIZE: 13px; 
+		LINE-HEIGHT: 13px; FONT-FAMILY: "宋体";
+		border-color:#000000;
+		border-style:solid;
+		
+		border-bottom-width:2px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:2px;
+}
+
+.x_bill_print_sub_bill_table_header_td_hh {  
+		TEXT-ALIGN: center;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+.x_bill_print_sub_bill_table_header_td {
+	   	TEXT-ALIGN: center;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		white-space:nowrap;
+		padding: 5px;
+}
+.x_bill_print_sub_table_row_td_hh {
+		FONT: 13px 宋体; 
+		HEIGHT: 12px;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+.x_bill_print_sub_table_row_td {
+		FONT: 13px 宋体; 
+		HEIGHT: 12px;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		white-space:nowrap;
+		padding-left: 5px;
+		padding-right: 5px;
+}
+.x_bill_print_sub_bill_table_sumrow_td_hh {
+	   	 TEXT-ALIGN: center;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+.x_bill_print_sub_bill_table_sumrow_td {
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+
+
+
+
+/* 详情按钮单元格 */
+.x_bill_detail_button_td {
+	white-space:nowrap;
+	padding:3px;
+	vertical-align:top;
+}
+
+/* **************************** 详情打印的样式 ******************************************* */
+
+.x_bill_print_title_text {
+	font-family:"黑体";
+	font-size:20px;
+	font-weight:normal;
+	letter-spacing:10px;
+	text-align:center;
+}
+.x_bill_print_main_table{
+	font-size:12px;
+	line-height:15px;
+	
+	
+}
+.x_bill_print_header_table{
+	width:100%;
+}
+.x_bill_print_header_td {
+	font-size:12px;
+	padding-left:5px;
+	padding-right:5px;
+}
+.x_bill_print_body_table1{
+	width:100%;
+	border-style:none;
+	line-height:15px;
+}
+.x_bill_print_body_table2{
+	width:100%;
+	border-top-width:1px;
+	border-left-width:1px;
+	border-right-width:2px;
+	border-bottom-width:2px;
+	border-color:#000000;
+	border-style:solid;
+}
+
+.x_bill_print_body_title_td_1{
+	font-size:12px;
+	width:10%;
+	border-style:none;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:0px;
+	padding-bottom:0px;
+	text-align:left;
+	white-space:nowrap;
+	line-height:15px;
+	
+
+}
+.x_bill_print_body_value_td_1{
+	font-size:12px;
+	border-style:none;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:0px;
+	padding-bottom:0px;
+	text-align:left;
+	line-height:20px;
+}
+.x_bill_print_body_title_td_2{
+	font-size:12px;
+	width:10%;
+	border-top-width:1px;
+	border-left-width:1px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-color:#000000;
+	border-style:solid;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:0px;
+	padding-bottom:0px;
+	text-align:right;
+	white-space:nowrap;
+	line-height:20px;
+}
+.x_bill_print_body_value_td_2{
+	font-size:12px;
+	border-top-width:1px;
+	border-left-width:1px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-color:#000000;
+	border-style:solid;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:0px;
+	padding-bottom:0px;
+	text-align:left;
+	line-height:20px;
+	
+	}
+.x_bill_print_footer_table{
+	width:100%;
+	font-size:12px;
+}
+.x_bill_print_footer_td {
+	font-size:12px;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/* ****************************  列表的样式     ********************************************* */
+ /* 列表最外层表格的样式 */
+.x_list_outer_table {
+	width:100%;
+	margin-top:0px;
+	padding-top:0px;
+}
+/* 列表表头的table */
+.x_list_result_header_table {
+	width:120%;
+	border:none;
+	padding-left:20px;
+}
+
+/* 列表表头的单元格 */
+.x_list_result_header_table_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 18px;		
+	COLOR: #0765db; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:bold;
+	border:none;
+	letter-spacing:2px;
+}
+/* 列表表头过滤条件的单元格 */
+.x_list_result_header_table_filter_title_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:normal;
+	border:none;
+}
+
+/* 列表表头过滤条件的标题格式 */
+.x_list_result_header_filter_title {
+	FONT-SIZE: 13px; 
+	LINE-HEIGHT: 28px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:normal;
+	border:none;
+}
+
+
+/* 列表表头按钮的单元格 */
+.x_list_result_header_table_button_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px;		
+	COLOR: #000000; 
+	text-align:left;
+	font-family:"宋体";
+	font-weight:normal;
+	height:40px;
+	border:none;
+	padding-left:20px;
+	white-space:nowrap;
+}
+
+/* 列表输出结果的table */
+.x_list_result_table {
+	WIDTH: 99%; 
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#55a5d6;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#55a5d6;
+	padding-left:20px;
+	overflow-y: visible; 
+	overflow-x: scroll;
+}
+.x_list_result_table_sxcs {
+	WIDTH: 99%; 
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#55a5d6;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#55a5d6;
+	padding-left:20px;
+}
+/* 列表输出结果-标题行的td */
+
+.x_list_result_title_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #c7d7eb;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#55a5d6;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#55a5d6;
+	padding-left:10px;
+	padding-right:10px;
+}
+/* 列表输出结果-标题行的链接 */
+a.x_list_result_title_link:link {
+	 FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: none;
+}
+a.x_list_result_title_link:hover {
+	 FONT-SIZE: 12px; LINE-HEIGHT: 28px; TEXT-DECORATION: none;
+}
+a.x_list_result_title_link:visited {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: none;
+}
+a.x_list_result_title_link_excel:link {
+	 FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: underline;
+	background-image:url(/emadmin/images/c2/icon/excel.gif); 
+	background-repeat:no-repeat;
+	height:23px;
+	padding-left:25px;
+	  
+	
+}
+a.x_list_result_title_link_excel:hover {
+	 FONT-SIZE: 12px; LINE-HEIGHT: 28px; TEXT-DECORATION:underline;
+	 background-image:url(/emadmin/images/c2/icon/excel.gif); 
+	background-repeat:no-repeat;
+	height:23px;
+	padding-left:25px;
+}
+a.x_list_result_title_link_excel:visited {
+	FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: underline;
+	background-image:url(/emadmin/images/c2/icon/excel.gif); 
+	background-repeat:no-repeat;
+	height:23px;
+	padding-left:25px;
+}
+
+
+/* 列表输出结果-内容的td */
+.x_list_result_td00 {
+	BACKGROUND: #FAF9F5; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 10px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#55a5d6;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#55a5d6;
+	padding-left:10px;
+	padding-right:10px;
+}
+.x_list_result_td01 {
+	BACKGROUND: #FAF9F5; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 10px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#55a5d6;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#55a5d6;
+	padding-left:10px;
+	padding-right:10px;
+}
+.x_list_result_td11 {
+	BACKGROUND: #FAF9F5; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 10px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#55a5d6;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#55a5d6;
+	padding-left:10px;
+	padding-right:10px;
+}
+.x_list_result_td10 {
+	BACKGROUND: #FAF9F5; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 10px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#55a5d6;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#55a5d6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#55a5d6;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#55a5d6;
+	padding-left:10px;
+	padding-right:10px;
+}
+.mouse_over_td {
+	BACKGROUND: #eef6fb; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 10px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#92918D;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#92918D;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#92918D;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#92918D;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+/* 列表输出结果-分页的导航条 */
+.x_list_result_page_nav_table {
+	width:100%;
+	height:24px;
+}
+.x_list_result_page_nav_td1 {
+	width:10%;
+	white-space:nowrap;
+	text-align:left;
+	padding:10px;
+}
+.x_list_result_row_count_number {
+	COLOR: #cc0000;
+}
+.x_list_result_page_nav_td2 {
+	width:90%;
+	white-space:nowrap;
+	text-align:left;
+	padding-left:20px;
+}
+/* 列表输出结果-分页导航条的div */
+.x_page_nav_div {
+	padding-left:15px;
+	text-align:center;
+}
+/* 列表输出结果-分页导航条的链接 */
+
+a.x_page_nav_link:link {
+	FONT-WEIGHT: bolder; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: underline
+}
+a.x_page_nav_link:hover {
+	FONT-WEIGHT: bolder; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: underline
+}
+a.x_page_nav_link:visited {
+	FONT-WEIGHT: bolder; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: underline
+}
+
+/* *************************  列表搜索-搜索条件 ******************************************* */
+.x_list_keyword_search_table{
+	width:120%;
+	margin:0px;
+	padding:0px;
+	cellpadding:0px;
+}
+/*  列表搜索-搜索区域单元格 */
+.x_list_keyword_search_td {
+	white-space:nowrap;
+	background-image:url(/emadmin/images/c2/button/search.gif);
+	padding-left:28px;
+	width:600px;
+	height:54px;
+	
+}
+.x_list_keyword_search_td_1 {
+	white-space:nowrap;
+	background-image:url(/emadmin/images/c2/button/search_right.gif);
+	padding-left:18px;
+	width:1200px;
+	height:2px;
+}
+.x_list_keyword_search_td_right {
+	background-image:url(/emadmin/images/c2/button/search_right.gif);
+	height:54px;
+}
+.x_list_keyword_search_td_right_2 {
+	background-image:url(/emadmin/images/c2/button/search_right.gif);
+	height:2px;
+}
+.x_list_keyword_search_td_right_1 {
+	border:0px;
+	border-bottom:1px;
+}
+/*  列表搜索-关键字的样式 */
+.x_list_keyword_search_keyword_span {
+	font-size:12px;
+	font-weight:bold;
+	line-height:12px;
+	vertical-align:super;
+	color:#3d7298;
+	padding:0px;
+}
+/*  列表搜索-关键字的样式 */
+.x_list_keyword_search_keyword_span1 {
+	font-size:12px;
+	line-height:14px;
+	vertical-align:super;
+	padding:0px;
+}
+.x_list_keyword_search_keyword_span2 {
+	font-size:12px;
+	line-height:14px;
+	vertical-align:top;
+	padding:0px;
+}
+.x_list_keyword_search_keyword_span3 {
+	font-size:12px;
+	line-height:12px;
+	vertical-align:bottom;
+}
+.x_list_keyword_search_keyword_span4 {
+	font-size:12px;
+	line-height:12px;
+	vertical-align:super;
+}
+.x_list_keyword_search_keyword_span5 {
+	font-size:12px;
+	line-height:14px;
+	vertical-align:super;
+	padding:0px;
+}
+/*  列表搜索-关键字录入框的样式 */
+.x_list_keyword_search_keyword_input {
+	vertical-align:top;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 16px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#ffffff;
+   	background:transparent;
+	border:none;
+	height:12px;
+	border-bottom-color: #51504c;
+	border-bottom-style:solid;
+	border-bottom-width:0px;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color: #51504c;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color: #51504c;
+	border-right-style:solid;
+	border-right-width:0px;
+	border-right-color: #51504c;
+}
+.x_list_keyword_search_keyword_input_1 {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 16px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#ffffff;
+   	background:transparent;
+	border:none;
+	height:16px;
+	color:#3d7298;
+	border-bottom-color: #75b3e6;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #75b3e6;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color: #75b3e6;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color: #75b3e6;
+}
+.x_list_keyword_search_keyword_searchbtn {
+	padding-bottom:4px;
+	
+}
+/*  列表搜索-收藏夹下拉的样式 */
+.x_list_search_favorite_select {
+	FONT-SIZE: 12px; 
+	FONT-FAMILY: "宋体";
+}
+/*  列表搜索-热点关键字table */
+
+.x_list_hotlink_search_table {
+	width:120%;
+}
+/*  列表搜索-热点关键字td */
+.x_list_hotlink_search_td {
+	background-image:url(/emadmin/images/c3/list_top_bar.gif);
+	background-repeat: repeat-x;
+	height:35p;
+	padding-left:20px;
+
+	
+}
+/*  列表搜索-热点搜索四个字的样式 */
+.x_list_hotlink_search_text {
+	font-size:12px;
+	color:#3d7298;
+}
+a.x_list_hotlink_search_link:link {
+	font-size:12px; color:#3d7298; padding:0px; LINE-HEIGHT: 36px; TEXT-DECORATION: none;
+}
+a.x_list_hotlink_search_link:hover {
+	font-size:12px; color:#3d7298; padding:0px; LINE-HEIGHT: 36px; TEXT-DECORATION: none;
+}
+a.x_list_hotlink_search_link:visited {
+	font-size:12px; color:#3d7298; padding:0px; LINE-HEIGHT: 36px; TEXT-DECORATION: none;
+}
+
+/* 列表搜索 - 高级搜索项目 table */
+.x_list_search_advance_table {
+	WIDTH: 98%; 
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#c3d6ec;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#c3d6ec;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#c3d6ec;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#c3d6ec;
+	padding: 5px;
+}
+/* 列表搜索 - 高级搜索项目 标题行的单元格 */
+.x_list_search_advance_title_td {
+	background-image:url(/emadmin/images/c3/list_advance_search_bar.gif);
+	text-align:left;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	white-space:nowrap;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#c3d6ec;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#c3d6ec;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#c3d6ec;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#c3d6ec;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+/* 列表搜索 - 高级搜索项目 左单元格 */
+.x_list_search_advance_td1 {
+	width:30%;
+	text-align:right;
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 12px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#c3d6ec;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#c3d6ec;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#c3d6ec;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#c3d6ec;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+
+/* 列表搜索 - 高级搜索项目 右单元格 */
+.x_list_search_advance_td2 {
+	text-align:left;
+	BACKGROUND: #ffffff; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 12px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#c3d6ec;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#c3d6ec;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#c3d6ec;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#c3d6ec;
+	padding-left:10px;
+	padding-right:10px;
+	vertical-align:top;
+}
+.x_list_search_advance_filter_link_str {
+	font-size:12px;
+	line-height:30px;
+	height:12px;
+	vertical-align:top;
+	display:inline-block;
+}
+
+/* 列表搜索 - 高级搜索项目 录入框 */
+.x_list_search_advance_item_input {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 16px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#f8fcff;
+	height:16px;
+	vertical-align:top;
+}
+/* 列表搜索 - 高级搜索项目 下拉框 */
+.x_list_search_advance_item_select {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 17px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#f8fcff;
+	border:none;
+	height:16px;
+	vertical-align:top;
+	margin-left:2px;
+	margin-top:1px;
+}
+
+/* 列表搜索 - 高级搜索项目 多选框的table */
+.x_list_search_advance_item_multi_table {
+	width:100%;
+	border:#333333;
+}
+/* 列表搜索 - 高级搜索项目 多选框的 td */
+.x_list_search_advance_item_multi_td1 {
+	width:60%;
+	white-space:nowrap;
+}
+.x_list_search_advance_item_multi_td2 {
+	text-align:left;
+}
+/* 列表搜索 - 高级搜索项按钮的div */ 
+.x_list_search_advance_button_div {
+	hegith:50px;
+	text-align:right;
+	padding-top:10px;
+}
+
+/* ****************列表搜索 -列表项目选择**************** */ 
+
+.x_list_item_select_table {
+	WIDTH: 100%; 
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding: 5px;
+}
+.x_list_item_select_title_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	FONT-WEIGHT: bolder;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #eef6fb;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+}
+.x_list_item_select_title_td_select {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #ab0404;
+	FONT-WEIGHT: bolder;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #eef6fb;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+}
+.x_list_item_select_value_td {
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding:0px;
+}
+.x_list_item_select_select_td {
+	WIDTH: 100%;
+	border:none;
+}
+.x_list_item_select_button_td {
+	WIDTH: 150px; 
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	text-align:center;
+}
+
+.x_list_item_select_button_div {
+	text-align:center;
+	padding:20px;
+} 
+
+/* *************************************  列表打印和导出  ********************************* */
+.x_list_export_result_table {
+	WIDTH: 95%; 
+	height:284px;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#54A5D7;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#54A5D7;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#54A5D7;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#54A5D7;
+	text-align:center;
+}
+.x_list_export_result_title_td {
+	background-color:#E8F6FF;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#E8F6FF;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#E8F6FF;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#E8F6FF;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#E8F6FF;
+	text-align:center;
+	padding: 10px;
+}
+
+/* 打印和导出的链接 */
+a.x_list_print_link:link {
+	letter-spacing:1px;FONT-WEIGHT: bolder; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: none
+}
+a.x_list_print_link:hover {
+	letter-spacing:1px;FONT-WEIGHT: bolder; FONT-SIZE: 12px; LINE-HEIGHT: 28px; TEXT-DECORATION: none
+}
+a.x_list_print_link:visited {
+	letter-spacing:1px;FONT-WEIGHT: bolder; FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 28px; TEXT-DECORATION: none
+}
+
+
+/* *************************************  相关单据列表  ********************************* */
+/* 标题行 */
+.x_relate_list_title_div {
+	letter-spacing:1px;
+	FONT-SIZE: 18px; 
+	LINE-HEIGHT: 18px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:bold;
+	width:100%;
+	padding:10px;
+}
+/* 单元格 */
+.x_relate_list_result_td {
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	text-align:center;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+/* 合计行 */
+.x_relate_relate_list_sum_div {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 14px;		
+	padding:20px;
+	width:96%;
+	text-align:right;
+}
+
+/* *************************************  弹出窗口的样式  ********************************* */
+
+/* 列表单元格的td,注意这里不能包含背景颜色，背景颜色有tr控制 */
+.x_pop_list_result_td {
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	text-align:center;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.x_pop_list_result_tr {
+	BACKGROUND: #f8fbfc; 
+}
+/* 选中的行的背景色 */
+.x_pop_list_result_tr_selected {
+	BACKGROUND: #eef6fb; 
+
+}
+.x_pop_keyword_button_div {
+	float:left;
+	font-size:12px;
+	font-weight:bold;
+}
+/* 弹出窗口挂新增 */
+.x_pop_add_button_div {
+	border:solid #FF0000 0px;
+	float:left;
+	padding-left:30px;
+}
+
+/* ****************************  统计的样式   ********************************************* */
+
+.x_countd_keyword_search_td {
+	white-space:nowrap;
+	background:url(/emadmin/images/c3/tongji_bar.gif) ;
+	background-repeat:repeat-x;
+	padding-top:3px;
+	background-color:#eef6fb;
+}/* 按钮区域的span样式 */
+.x_count_keyword_search_keyword_text {
+	font-size:12px;
+	line-height:20px;
+	display:inline-block;
+	padding-left:20px;
+	vertical-align:top;
+	padding-top:3px;
+}
+.x_count_keyword_search_keyword_text1 {
+	font-size:12px;
+	font-weight:bold;
+	line-height:12px;
+	vertical-align:top;
+	padding-top:10px;
+}
+/* 选择表头分类的样式 */
+.x_count_item_select_header_td {
+	height:30px;
+	font-size:12px;
+	font-weight:bold;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+/* 特殊选项的table样式 */
+.x_count_item_special_select_table {
+	width:100%;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding:10px;
+	display:none;
+}
+/* 图形选择的表格 */
+.x_count_chart_table {
+	width:500px;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#99bbe8;
+	border-left-style:none;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding:10px;
+}
+/* 统计结果的表格-标题 */
+.x_count_result_main_header_div {
+    PADDING-TOP: 5px;
+    PADDING-bottom: 10px;
+	FONT-SIZE:14px; 
+	LINE-HEIGHT: 20px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:bold;
+	border:none;
+	letter-spacing:2px;
+}
+.x_count_result_sub_header_div {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 14px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:normal;
+	border:none;
+	letter-spacing:2px;
+}
+
+/* 结果的表格-table  */
+.x_count_result_table {
+	width:99%;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:none;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:none;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding:10px;
+	align:center;
+}
+.x_count_result_title_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 12px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #eef6fb;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.x_count_result_td {
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	LINE-HEIGHT: 12px; 
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+/* 按钮的链接 */
+a.x_count_result_link:link {
+	TEXT-DECORATION:none;
+	font-size:12px;
+	color:#0000ff;
+}
+a.x_count_result_link:hover {
+	TEXT-DECORATION: underline;
+	font-size:12px;
+	color:#0000ff;
+}
+a.x_count_result_link:visited {
+	TEXT-DECORATION: none;
+	font-size:12px;
+	color:#0000ff;
+}
+a.x_count_result_link:active {
+	TEXT-DECORATION: none;
+	font-size:12px;
+	color:#0000ff;
+}
+
+/* -------------------------------------------- 系统维护的样式  -------------------------------------- */
+.x_xtwh_yh_online_td {
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 12px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+}
+/* -----------------------------------------  基础资料 - 仓库存货对照 ------------------------------------- */
+.x_ck_ch_search_span1 {
+	font-weight:bold;
+}
+.x_ck_ch_search_ck_select {
+}
+.x_ck_ch_search_chbm_input {
+	vertical-align:top;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 16px; 
+	FONT-FAMILY: "宋体";
+   	BACKGROUND-COLOR:#ffffff;
+	border:none;
+	height:16px;
+	border-bottom-color: #51504c;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color: #51504c;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color: #51504c;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color: #51504c;
+}
+.x_ck_ch_table {
+	WIDTH: 100%; 
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding: 5px;
+}
+.x_ck_ch_out_table_title_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	FONT-WEIGHT: bolder;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #eef6fb;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding:5px;
+}
+.x_ck_ch_out_table_lx_td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	FONT-WEIGHT: bolder;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #cedef3;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding:5px;
+	letter-spacing:2px;
+}
+.x_ck_ch_out_table_ch_td {
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding:5px;
+}
+.x_ck_ch_inner_table_tr0 {
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	padding:5px;
+	border:none;
+}
+.x_ck_ch_inner_table_tr1 {
+	BACKGROUND: #ffffff; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	padding:5px;
+	border:none;
+}
+/* ---------------------------------  错误提示页 ----------------------------------- */
+.x_message_table {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-style:solid;
+	border-width:1px;
+	border-color:#55a5d6;
+	margin-top:30px;
+	width:95%
+}
+.x_message_title_td {
+	BACKGROUND-COLOR: #e8f6ff;
+}
+.x_message_message_td {
+	BACKGROUND-COLOR: #e8f6ff;
+	padding:15px;
+	vertical-align:middle;
+	font-size:14px; 
+	margin-top:30px;
+	font-family:"宋体";
+	line-height:35px;
+	color:#000000;
+	font-weight:bold;
+
+}
+
+/* ------------------------------------------ Excel导入页面样式  --------------------------------------*/
+
+.x_excel_area_title_div {
+	width:95%;
+	text-align:left;
+	padding:10px;
+	display:block;
+	vertical-align:top;
+}
+.x_excel_area_content_div {
+	width:95%;
+	text-align:left;
+	padding:10px;
+	display:none;
+	vertical-align:bottom;
+	font-size:12px;
+}
+.x_excel_area_content_div_disp {
+	width:95%;
+	text-align:left;
+	padding:10px;
+	display:block;
+	vertical-align:bottom;
+	font-size:12px;
+	font-weight:bold;
+}
+.x_excel_content_line_div {
+	vertical-align:bottom;
+	height:50px;
+	padding-left:30px;
+}
+.x_excel_alert_message {
+	font-size:12px;
+	font-familay:"宋体";
+	color:#F80707;
+}
+
+.x_tixing_outer{
+
+
+background-color:#ecedef;
+background:url(/emadmin/images/c2/tixing_bg1.jpg);
+background-repeat:repeat;
+
+}
+
+
+.x_tixing_inner{
+background-color:#ecedef;
+margin-left:1px;
+margin-top:10px;
+margin-right:10px;
+
+}
+.x_tixing_outer_tr{
+background-image:url(/emadmin/images/c2/tixing_h2.jpg); 0 0 repeat-x; height:35px;line-height:30px;font-size:14px;text-align:center;width:608px;
+color:ffffff;
+}
+.x_tixing_font{
+margin-top:5px;
+font-family:"宋体";
+font-size:12px;
+margin-left:5px;
+color:#3d7298;
+
+}
+.x_jsb_header{
+text-align:center;font-size:14px;height:41px;line-height:40px;
+font-family:"宋体";
+font-size:16px;
+font-weight:bold;
+background:url(/emadmin/images/c2/jeimian_bg1.jpg); 0 0 repeat-x;
+}
+
+.x_jsb_banner_left{
+background:url(/emadmin/images/c2/jeimian_bg2_left.jpg);padding-top:47px;
+text-align:center;
+height:86px;
+background-repeat:no-repeat;
+}
+.x_jsb_banner_right{
+background:url(/emadmin/images/c2/jeimian_bg2_right.jpg);padding-top:47px;padding-left:10px;
+text-align:left;
+height:86px;
+background-repeat:no-repeat;
+}
+.x_jsb_search_left{
+height:12px;background:url(/emadmin/images/c2/jeimian_bg3_left.jpg) ;
+background-repeat:no-repeat;
+text-align:left;
+}
+.x_jsb_search_middle{
+height:12px;
+
+background-image:url(/emadmin/images/c2/jeimian_bg3_middle.jpg);
+background-repeat:repeat-x;
+}
+.x_jsb_search_right{
+height:12px;background:url(/emadmin/images/c2/jeimian_bg3_right.jpg) ;
+background-repeat:no-repeat;
+text-align:right;
+}
+.x_jsb_button_left_onmouse{
+
+}
+.x_jsb_button_middle_onmouse{
+
+}
+.x_jsb_button_right_onmouse{
+}
+.x_jsb_button_left{
+background:url(/emadmin/images/c2/button/detail_button_left.gif) no-repeat;
+height:20px;
+width:5px;
+}
+.x_jsb_button_middle{
+height:20px;
+text-align:center;
+padding:0px;
+background:url(/emadmin/images/c2/button/detail_button_middle.gif) repeat-x;
+}
+.x_jsb_button_right{
+background:url(/emadmin/images/c2/button/detail_button_right.gif) no-repeat;
+height:20px;
+width:2px;
+}
+
+
+
+.x_jsb_bottom{
+height:12px;
+background:url(/emadmin/images/c2/jeimian_bg4.jpg) 0 0 no-repeat;
+
+}
+.x_jsb_addcontent{
+vertical-align:middle;
+border:0;
+width:649px;
+height:289px;
+padding:10px;
+background:url(/emadmin/images/c2/jeimian_bg6.jpg);
+background-repeat:no-repeat;
+background-color:#FF0000;
+}
+.list_table{
+	WIDTH: 100%; 
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:0px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:0px;
+	border-left-color:#99bbe8;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color:#99bbe8;
+	padding: 5px;
+}
+.list_div1{
+  	PADDING-TOP: 5px;
+	FONT-SIZE: 18px; 
+	LINE-HEIGHT: 18px;		
+	COLOR: #000000; 
+	text-align:center;
+	font-family:"宋体";
+	font-weight:bold;
+	border:none;
+	letter-spacing:2px;
+}
+.list_title_td0{
+border-right-style:none;
+	
+border-right-width:0px;
+}
+.list_title_td1{
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+	COLOR: #000000;
+	FONT-WEIGHT: bolder;
+	text-align:center;
+	white-space:nowrap;
+	BACKGROUND-COLOR: #cedef3;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.list_content_td0{
+	BACKGROUND: #f8fbfc; 
+	COLOR: #000000; 
+	WHITE-SPACE: nowrap; 
+	HEIGHT: 22px;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-bottom-color:#99bbe8;
+	border-top-style:solid;
+	border-top-width:1px;
+	border-top-color:#99bbe8;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-left-color:#99bbe8;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-right-color:#99bbe8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	
+}
+/* ---------------------------------  index.jsp ----------------------------------- */
+a{TEXT-DECORATION:none}
+.x_index_top_bg{
+background:url(/emadmin/images/c3/login_top.png);
+background-repeat:no-repeat;
+width:1024px;
+height:227px;
+
+}
+.x_index_left{
+background:url(/emadmin/images/c3/login_left.png);
+background-repeat:repeat-x;
+height:765px;
+}
+
+.x_index_right{
+background:url(/emadmin/images/c3/login_right.png);
+background-repeat:repeat-x;
+height:765px;
+}
+
+.x_index_middle{
+background:url(/emadmin/resource/crm/login_middle.png);
+background-repeat:no-repeat;
+width:1024px;
+height:88px;
+
+}
+.x_index_middle_bottom{
+background:url(/emadmin/images/c3/login_middle_bottom.png);
+background-repeat:no-repeat;
+width:1024px;
+height:216px;
+
+}
+
+.x_index_bottom{
+background:url(/emadmin/images/c3/login_bottom.png);
+background-repeat:no-repeat;
+width:1024px;
+height:238px;
+
+}
+.x_index_bottoms{
+background:url(/emadmin/images/c3/login_bottoms.png);
+background-repeat:repeat-y;
+width:1024px;
+
+}
+.x_index_bottoms_left{
+background:url(/emadmin/images/c3/login_bottoms_left.png);
+background-repeat:repeat;
+}
+.x_index_bottoms_right{
+background:url(/emadmin/images/c3/login_bottoms_right.png);
+background-repeat:repeat;
+}
+.x_index_input {
+    width:145px;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 12px; 
+	FONT-FAMILY: "宋体";
+	border:none;
+	z-index:100;
+	background:transparent;
+
+}
+.x_index_input_yz{
+     width:90px;
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 12px; 
+   	BACKGROUND-COLOR:#ffffff;
+	border:none;
+	height:12px;
+	border-bottom-color: #51504c;
+	border-bottom-style:none;
+	border-bottom-width:0px;
+	border-top-style:none;
+	border-top-width:0px;
+	border-top-color: #51504c;
+	border-left-style:none;
+	border-left-width:0px;
+	border-left-color: #51504c;
+	border-right-style:none;
+	border-right-width:0px;
+	border-right-color: #51504c;
+	z-index:100;
+	background:transparent;
+	
+
+}
+/* ---------------------------------  index1.jsp ----------------------------------- */
+#menu {
+	BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; DISPLAY: none; BACKGROUND: #fff; BORDER-LEFT: #999 1px solid; WIDTH: 140px; BORDER-BOTTOM: #999 1px solid; HEIGHT: 70px
+}
+#menu_ul {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px
+}
+#menu_ul LI {
+	DISPLAY: inline; FLOAT: left
+}
+#menu_right_ul LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 4px; PADDING-BOTTOM: 0px; WIDTH: 90px; PADDING-TOP: 2px; WHITE-SPACE: nowrap; HEIGHT: 22px
+}
+#menu_left {
+	BACKGROUND: #9cf; OVERFLOW: hidden; WIDTH: 24px; HEIGHT: 68px
+}
+.x_index1_top_left{
+	background-image:url(/emadmin/images/c3/index1_top_left.gif);
+	background-repeat: no-repeat;
+	width:366px;
+	height:29px;
+}
+.x_index1_top_middle{
+	background-image:url(/emadmin/images/c3/index1_top_center.gif);
+	background-repeat: repeat-x;
+	height:29px;
+}
+.x_index1_top_right{
+	background-image:url(/emadmin/images/c3/index1_top_right.gif);
+	background-repeat: no-repeat;
+	width:600px;
+	height:29px;
+	text-align:right;
+}
+.index1_font{
+	size:2px;
+	color:#3d7298;
+}
+.x_index1_banner_left{
+	background-image:url(/emadmin/resource/crm/index1_banner_left.png);
+	background-repeat: no-repeat;
+	width:500px;
+	height:47px;
+}
+.x_index1_banner_middle{
+	background-image:url(/emadmin/images/c3/index1_banner_center.gif);
+	background-repeat: repeat-x;
+	height:47px;
+}
+.x_index1_banner_right{
+	background-image:url(/emadmin/images/c3/index1_banner_right.gif);
+	background-repeat: no-repeat;
+	width:233px;
+	height:47px;
+	text-align:right;
+}
+.x_index1_bar_left{
+	background-image:url(/emadmin/images/c3/index1_op_bar_left.gif);
+	background-repeat: no-repeat;
+	width:12px;
+	height:44px;
+}
+.x_index1_bar_middle{
+	background-image:url(/emadmin/images/c3/index1_op_bar_center.gif);
+	background-repeat: repeat-x;
+	height:44px;
+	text-align:left;
+}
+.x_index1_bar_right{
+	background-image:url(/emadmin/images/c3/index1_op_bar_right.gif);
+	background-repeat: no-repeat;
+	width:12px;
+	height:44px;
+}
+.x_index1_footer_left{
+	background-image:url(/emadmin/images/c3/index1_footer_left.gif);
+	background-repeat: no-repeat;
+	width:259px; 
+	height:29px;
+}
+.x_index1_footer_middle{
+	background-image:url(/emadmin/images/c3/index1_footer_center.gif);
+	background-repeat: repeat-x;
+	height:29px;
+	text-align:center;
+}
+.x_index1_footer_right{
+	background-image:url(/emadmin/images/c3/index1_footer_right.gif);
+	background-repeat: no-repeat;
+	width:300px;
+	height:29px;
+}
+/* ---------------------------------  tree.jsp ----------------------------------- */
+.x_tree_top_left{
+	background-image:url(/emadmin/images/c3/tree_top_left.gif);
+	background-repeat: no-repeat;
+	width:28px;
+	height:24px;
+}
+.x_tree_top_middle{
+	background-image:url(/emadmin/images/c3/tree_top_center.gif);
+	background-repeat: repeat-x;
+	height:24px;
+	text-align:center;
+	vertical-align:middle;
+}
+.x_tree_top_right{
+	background-image:url(/emadmin/images/c3/tree_top_right.gif);
+	background-repeat: no-repeat;
+	width:34px;
+	height:24px;
+}
+.tree_font{
+	font-size:12px;
+	FONT-STYLE: normal;
+	FONT-FAMILY: "宋体";
+	color:#feac1c;
+}
+
+.tree_bar_unselected{
+	background-image:url(/emadmin/images/c3/tree_bar_left.png);
+	background-repeat: no-repeat;
+	width:19px;
+}
+.tree_bar_unselected_middle{
+	background-image:url(/emadmin/images/c3/tree_bar_center.png);
+	background-repeat: repeat-x;
+}
+.tree_bar_unselected_right{
+	background-image:url(/emadmin/images/c3/tree_bar_right.png);
+	background-repeat: no-repeat;
+	width:13px;
+}
+.tree_bg_left{
+	background-image:url(/emadmin/images/c3/tree_bg_left.png);
+	background-repeat: repeat-y;
+	width:11px;
+	height:100%;
+}
+.tree_bg_right{
+	background-image:url(/emadmin/images/c3/tree_bg_right.png);
+	background-repeat: repeat-y;
+	width:11px;
+	height:100%;
+}
+.tree_bg_top_left{
+	background-image:url(/emadmin/images/c3/tree_bg_top_left.png);
+		background-position:bottom;
+	background-repeat: no-repeat;
+	width:19px;
+	height:14px;
+	font-size:0px;
+}
+.tree_bg_top_center{
+	background-image:url(/emadmin/images/c3/tree_bg_top_center.png);
+		background-position:bottom;
+	background-repeat: repeat-x;
+	height:14px;
+	font-size:0px;
+}
+.tree_bg_top_right{
+	background-image:url(/emadmin/images/c3/tree_bg_top_right.png);
+	background-position:bottom;
+	background-repeat: no-repeat;
+	width:16px;
+	height:14px;
+	font-size:0px;
+}
+/* ---------------------------------  xt_alert_add.jsp ----------------------------------- */
+
+.x_xt_alert_bar_left{
+	background-image:url(/emadmin/images/c3/xt_alert_add_bar_left.gif);
+	background-repeat: no-repeat;
+	width:203px;
+	height:28px;
+}
+.x_xt_alert_bar_middle{	
+	background-image:url(/emadmin/images/c3/xt_alert_add_bar_center.gif);
+	background-repeat:  repeat-x;
+	height:28px;
+}
+.x_xt_alert_bar_right{
+	background-image:url(/emadmin/images/c3/xt_alert_add_bar_right.gif);
+	background-repeat: no-repeat;
+	width:17px;
+	height:28px;
+}
+
+.x_xt_alert_top_left{
+	background-image:url(/emadmin/images/c3/xt_alert_add_top_left.gif);
+	background-repeat: no-repeat;
+	width:139px;
+	height:45px;
+}
+.x_xt_alert_top_middle{
+	background-image:url(/emadmin/images/c3/xt_alert_add_top_center.gif);
+	background-repeat:  repeat-x;
+	height:45px;
+}
+.x_xt_alert_top_right{
+	background-image:url(/emadmin/images/c3/xt_alert_add_top_right.gif);
+	background-repeat: no-repeat;
+	width:16px;
+	height:45px;
+}
+.x_xt_alert_message_top_left{
+	background-image:url(/emadmin/images/c3/xt_alert_message_bar_left.gif);
+	background-repeat: no-repeat;
+	width:220px;
+	height:46px;
+}
+.x_xt_alert_message_top_middle{
+	background-image:url(/emadmin/images/c3/xt_alert_message_bar_center.gif);
+	background-repeat:  repeat-x;
+	height:46px;
+}
+.x_xt_alert_message_top_right{
+	background-image:url(/emadmin/images/c3/xt_alert_message_bar_right.gif);
+	background-repeat: no-repeat;
+	width:249px;
+	height:46px;
+}
+.x_xt_alert_left{
+	background-image:url(/emadmin/images/c3/xt_alert_add_left.gif);
+	background-repeat: repeat-y;
+	width:8px;
+}
+.x_xt_alert_right{
+	background-image:url(/emadmin/images/c3/xt_alert_add_right.gif);
+	background-repeat: repeat-y;
+	width:9px;
+}
+.x_xt_alert_bottom_left{
+	background-image:url(/emadmin/images/c3/xt_alert_add_bottom_left.gif);
+	background-repeat: no-repeat;
+	width:138px;
+	height:39px;
+}
+.x_xt_alert_bottom_middle{
+	background-repeat:  repeat-x;	
+	background-image:url(/emadmin/images/c3/xt_alert_add_bottom_center.gif);
+	height:39px;
+}
+.x_xt_alert_bottom_right{
+	background-image:url(/emadmin/images/c3/xt_alert_add_bottom_right.gif);
+	background-repeat: no-repeat;
+	width:66px;
+	height:39px;
+}
+
+/* ---------------------------------  import_kh_yxkh.jsp ----------------------------------- */
+
+.x_import_kh_left{
+	background-image:url(/emadmin/images/c3/main_common_bar_top_left.gif);
+	background-repeat: no-repeat;
+	font-weight: bold;
+	width:341px;
+	height:33px;
+}
+.x_import_kh_right{
+	background-image:url(/emadmin/images/c3/main_common_bar_top_right.gif);
+	background-repeat: repeat-x;
+	font-weight: bold;
+	height:33px;
+}
+
+/* ---------------------------------  welcome.jsp ----------------------------------- */
+
+.x_welcome_top{
+	background-image:url(../images/tab_05.gif);
+	background-repeat:repeat-x;
+	font-weight: bold;
+	color:#3d7298	;
+	height:25px;
+}
+.x_welcome_middle{
+	background-image:url(/emadmin/images/c3/welcome_middle.gif);
+	background-repeat:repeat-x;
+	font-weight: bold;
+	color:#3d7298;
+	height:30px;
+}
+.x_welcome_bottom{
+	background-image:url(/emadmin/images/c3/welcome_bottom.gif);
+	background-repeat:repeat-x;
+	height:7px;
+}
+.x_welcome_td{
+	padding-top:0px;
+	padding-left:10px;
+	background-color:#edeeee;
+	width:20px;
+	height:2px;
+}
+.x_welcome_td_1{
+	padding-top:0px;
+	padding-left:10px;
+	color:#3d7298;
+	height:10px;
+}
+/* ---------------------------------  自动完成功能 ----------------------------------- */
+
+	.x_dr_table_tr_yes {
+		background:#0000ff;
+	}
+	.x_dr_table_tr_no {
+		background:#ffffff;
+	}
+	.x_dr_table_style {
+		width:100%;
+		border-bottom-style:solid;
+		border-bottom-width:1px;
+		border-bottom-color:#99bbe8;
+		border-top-style:solid;
+		border-top-width:1px;
+		border-top-color:#99bbe8;
+		border-left-style:solid;
+		border-left-width:1px;
+		border-left-color:#99bbe8;
+		border-right-style:solid;
+		border-right-width:1px;
+		border-right-color:#99bbe8;
+		background-color:#ffffff;
+	}
+

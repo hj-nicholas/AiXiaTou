@@ -1,0 +1,35 @@
+.Company{ width:100%; height:auto;}
+	.CompanyL{ width:23%; height:auto; padding:10px 1%; }
+		.CompanyL img{ display:block; width:71%; padding:20px 14%; border:1px solid #ccc;}
+		.CompanyL p{ width:91%; padding:10px 4%; height:20px; line-height:20px; border:1px solid #ccc; border-top-width:0;}
+		.CompanyL span{ float:left;}
+		.CompanyL b{ float:right;}
+	.CompanyR{ width:73%; height:auto; margin-left:2%;}
+		.CompanyR_T{ width:100%; height:auto; padding-bottom:20px;}
+			.CompanyR_T img{ width:96%; padding:0 2%; max-height:300px;}
+			.CompanyR_T h1{ width:96%; padding:0 2%; line-height:60px; height:60px; font-size:24px;}
+			.CompanyR_T h4{ width:96%; padding:0 2%; line-height:20px; text-indent:2em; font-weight:normal;}
+			.CompanyR_T p{ width:96%; padding:20px 2%; margin-top:40px; line-height:20px; border-top:1px solid #ccc; border-bottom:1px solid #ccc;}
+			.CompanyR_T p span{ padding-left:10px;}
+		
+		.CompanyR_B{ width:100%; height:auto; margin:20px 0; padding:20px 0 40px;}
+			.CompanyR_B h1{ width:100%; height:auto;border-bottom:1px solid #ccc; padding-bottom:10px;}
+				.CompanyR_B h1 a{ width:90px; height:30px; line-height:30px; margin-right:20px; font-size:12px; font-weight:normal;}
+				.CompanyR_B h1 a:hover{ background-color:#0090d9}
+			.CompanyR_B ul{ width:100%; height:auto; display:block;}
+			.CompanyR_B ul li{width:96%; padding:10px 2%; border-bottom:1px solid #ccc;}
+				.CompanyR_Blist{ width:100%; height:auto;} 
+					.CompanyR_Blist img{ width:60px; height:60px; border-radius:40px;}
+					.CompanyR_Blist b{ width:auto; height:20px; line-height:20px; margin:20px 15px 0 15px;}
+					.CompanyR_Blist i{ margin-top:20px;}
+			.CompanyR_B p{ line-height:20px; margin:10px 0;}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		

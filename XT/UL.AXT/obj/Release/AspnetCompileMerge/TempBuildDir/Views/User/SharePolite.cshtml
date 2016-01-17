@@ -1,0 +1,44 @@
+﻿@model List<Model.T_Red_Envelope>
+@{
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<div class="mainM share">
+    <div class="share_T white_bg pr">
+        <img src="~/Content/images/share_img03.png" class="pa" />
+        <p>
+            1.点击右上角向朋友发送爱虾头邀请。<br />2.您的朋友通过您分享的连接注册爱虾头，他获得一只虾米，你也将免费获赠虾米一只。<br />3.虾米可以直接提现
+            、抵扣现金、参与微信红包抽奖活动。
+        </p>
+        <img src="~/Content/images/share_img02.png" style="width:100%;" />
+
+    </div>
+    <div class="share_M">
+
+    </div>
+    <div class="detail grayC_border white_bg">
+        <div class="detailT">
+            <a class="oh"><i class="share_s fl  icon_s margin_r5"></i><span class="fl lh20 f14">谁为我赚了虾米</span></a>
+        </div>
+        <div class="detailM">
+            <div class="record">
+                <ul>
+                    @foreach (var env in Model)
+                    {
+                        <li class="pr">
+                            <img src="@env.RevUserPhoto" class="fl" />
+                            <p class="oh"><span class="fl">@env.RevUserName</span><span class="fr">1只</span></p>
+                            <p class="gray9">@env.RevTime</p>
+                            <i class="yuanx pa icon"></i>
+                        </li>
+                    }
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")

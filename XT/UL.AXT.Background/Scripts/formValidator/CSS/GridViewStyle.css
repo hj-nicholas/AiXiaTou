@@ -1,0 +1,101 @@
+﻿a { color: #000000; text-decoration: none}
+a:hover { color:#E78a29; text-decoration: none}
+.GridViewStyle 
+{   
+	/*border-color:#bde3fb;
+    border-width:1px;
+    border-right: 2px solid #A7A6AA; 
+    border-bottom: 2px solid #A7A6AA; 
+    border-left: 2px solid white; 
+    border-top: 2px solid white; */
+    border:1px solid #bde3fb;
+    padding: 4px; 
+} 
+
+.GridViewStyle a 
+{ 
+    color:Blue; 
+} 
+
+.GridViewHeaderStyle th 
+{ 
+    border:1px solid #bde3fb;
+    font-weight: bold; 
+   /* border-color:#bde3fb;
+    border-width:1px;*/
+    text-align:center;
+} 
+
+.GridViewHeaderStyle 
+{ 
+    font-size: 12px; 
+    color:Black;
+    background:url(../Images/GridViewHeader.gif);
+    font-family:宋体; 
+    text-align: center; 
+    padding: 4px 4px 4px 4px; 
+    border-collapse:collapse;  
+    border-width:1px; 
+    height:26px;
+} 
+
+.GridViewFooterStyle 
+{ 
+	background:url(../Images/tab_19.gif);
+    /*background-color: #5D7B9D; 
+    font-weight: bold; 
+    color: White; */
+} 
+
+.GridViewRowStyle 
+{ 
+    background-color: #ffffff; 
+    /*color: #333333;*/ 
+} 
+
+.GridViewAlternatingRowStyle 
+{ 
+    /*background-color: #bde3fb; 
+    /*color: #284775; */
+} 
+
+.GridViewRowStyle td, .GridViewAlternatingRowStyle td 
+{ 
+	/*background-color:#FFFFFF;*/
+	border:1px solid #bde3fb;
+   /* border-color:#bde3fb;
+    border-width:1px;*/
+    text-align:center;
+    font-size: 12px; 
+} 
+
+.GridViewSelectedRowStyle 
+{ 
+    background-color: #bde3fb; 
+    font-weight: bold; 
+    /*color: #333333; */
+} 
+.GridViewPagerStyle 
+{ 
+    background:url(../Images/tab_19.gif);
+    color: #000000; 
+} 
+.GridViewPagerStyle table,.GridViewPagerStyle td
+{ 
+    border:0px;
+    color: #000000; 
+} 
+.GridViewPagerStyle table /* to center the paging links*/ 
+{ 
+    margin: 0 auto 0 auto; 
+} 
+/*
+<asp:GridView CssClass="GridViewStyle" runat="server" > 
+    <FooterStyle CssClass="GridViewFooterStyle" /> 
+    <RowStyle CssClass="GridViewRowStyle" />    
+    <SelectedRowStyle CssClass="GridViewSelectedRowStyle" /> 
+    <PagerStyle CssClass="GridViewPagerStyle" /> 
+    <AlternatingRowStyle CssClass="GridViewAlternatingRowStyle" /> 
+    <HeaderStyle CssClass="GridViewHeaderStyle" /> 
+</asp:GridView> 
+*/

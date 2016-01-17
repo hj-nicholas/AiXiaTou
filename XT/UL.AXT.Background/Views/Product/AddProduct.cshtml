@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/MainBg.cshtml";
+}
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+<script src="~/Scripts/ajaxfileupload.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnAddProduct").click(function () {
+            $.ajax({
+                url: "/Product/AddProdStock",
+                type: "POST",
+                data: { prodType: $("#prodType").val(), prodName: $("#productName").val(), stockPrice: $("#stockPrice").val(), stockNum: $("#stockNum").val(), productUrl: $("#productUrl").val(), prodDesc: $("#prodDesc").val() },
+                success: function (data) {
+                    if (data["Succeeded"]) {
+                        $("#btnProdId").val(data["ResultId"]);
+                        alert("添加成功");
+                    } else {
+                        alert("添加失败");
+                    }
+                }
+
+            });
+        });
+        $("#btnUpload").click(function () {
+
+            $.ajaxFileUpload
+               (
+                   {
+                       url: '/Product/UpdPic', //用于文件上传的服务器端请求地址
+                       secureuri: false, //是否需要安全协议，一般设置为false
+                       fileElementId: 'file1', //文件上传域的ID
+                       dataType: 'json', //返回值类型 一般设置为json
+                       data: { prodId: $("#btnProdId").val(), picType: '2' },
+                       success: function (data, status) //服务器成功响应处理函数
+                       {
+                           if (data["Succeeded"]) {
+
+                               $("#picList").append("<li><img src=" + data.imgPath1 + " /> </li>");
+
+                           } else {
+                               alert(data["errMsg"]);
+                           }
+
+                       },
+                       error: function(data, status, e) //服务器响应失败处理函数
+                       {
+                           alert(e);
+                       }
+                   }
+               );
+            return false;
+        });
+    });
+</script>
+<div class="main_con">
+    <div class="project_ingg">
+        <div class="box b_shadow br4 white_bg">
+
+            <div class="bot_B">
+                <div class="project_ing1">
+                    <div class="Vsearch">
+                        <ul class="oh">
+                            <li>
+                                <p>商品性质</p><select id="prodType" class="box_text"><option value="1">实物</option><option value="2">虚拟</option></select></li>
+                            <li>
+                                <p>商品名称</p><input class="box_text" type="text" id="productName"/></li>
+                            <li>
+                                <p>进货价格</p><input class="box_text" type="text" id="stockPrice"/></li>
+                            <li>
+                                <p>数量</p><input class="box_text" type="text" id="stockNum"/></li>
+                            <li>
+                                <p>介绍连接</p><input class="box_text" type="text" id="productUrl"/></li>
+                            <li>
+                                <p>商品描述</p><input class="box_text" type="text" id="prodDesc"/>
+                            </li>
+                            <li><input type="file" id="file1" name="file" /><a class="f14 pr block tc " id="btnUpload">上传图片</a></li>
+                            <li><a class="fl dblue_bg white tc" id="btnAddProduct" href="#">添加商品</a></li>
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+                <ul class="oh" id="picList">
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <input id="btnProdId" value="" type="text" style="display:none"/>
+</div>
+

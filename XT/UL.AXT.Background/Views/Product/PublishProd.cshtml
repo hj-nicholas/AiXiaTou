@@ -1,0 +1,99 @@
+﻿@model List<Model.T_Product>
+@{
+    ViewBag.Title = "PublishProd";
+    Layout = "~/Views/Shared/MainBg.cshtml";
+}
+<script type="text/javascript">
+    $(function() {
+        $("#btnPublishProd").click(function () {
+            var prodId = $("input[type='checkbox']:checked").attr("id");
+            $.ajax({
+                url: "/Product/PublishProdData",
+                type: "POST",
+                data: { totalPrice: $("#totalPrice").val(), unitPrice: $("#unitPrice").val(), needNum: $("#needNum").val(), prodAC: $("#prodAC").val(), prodType: $("#prodType").val(), prodId: prodId },
+                success:function(data) {
+                    if (data["Succeeded"]) {
+                        alert("添加成功");
+                    } else {
+                        alert("添加失败");
+                    }
+                }
+            });
+        });
+    });
+</script>
+<div class="main_con">
+    <div class="project_ingg">
+        <div class="box b_shadow br4 white_bg">
+
+            <div class="bot_B">
+                <div class="project_ing1">
+                    <div class="search">
+                        <ul class="oh">
+                            <li style="width:30%"><p class="tc">项目类别</p><select name="" class="box_text fl" id="prodType"><option value="1" selected>一元购</option><option value="2">千元投</option><option value="3">房产众筹</option><option value="4">送礼物</option></select></li>
+                            <li style="width:15%"><input class="fl box_text Ntext" type="text" style="width:90%;"  id="totalPrice"/><input type="hidden" value="抢购价格" /></li>
+                            <li style="width:15%"><input class="fl box_text Ntext" type="text" style="width:90%;" id="unitPrice" /><input type="hidden" value="购买单价" /></li>
+                            <li style="width:15%"><input class="fl box_text Ntext" type="text" style="width:90%;" id="needNum" /><input type="hidden" value="总需数量" /></li>
+                            <li style="width:15%"><input class="fl box_text Ntext" type="text" style="width:90%;" id="prodAC" /><input type="hidden" value="价值" /></li>
+                            <li style="width:10%;*width:9%;"><a class="fl dblue_bg white tc" id="btnPublishProd" href="#">发布</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="project_ing1_tab">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table2 fl">
+
+
+                            <tr>
+                                <th>选择</th>
+                                <th>商品编号</th>
+                                <th>商品名称</th>
+                                <th>商品性质</th>
+                                <th>进货价格</th>
+                                <th>总数</th>
+                                <th>库存</th>
+                                <th>一元购（销售）</th>
+                                <th>图片</th>
+                                <th>介绍</th>
+
+                            </tr>
+                            @foreach (var prod in Model)
+                            {
+                                <tr>
+                                    <td><input name="" type="checkbox" value="" id="@prod.ProductId"/></td>
+                                    <td>@prod.ProductNO</td>
+                                    <td>@prod.ProductName</td>
+                                    @if (prod.IsActual==1)
+                                    {
+                                    <td>实物</td>
+                                    }
+                                    else
+                                    {
+                                    <td>虚拟</td>
+                                    }
+                                    
+                                    <td>@prod.IncomingPrice</td>
+                                    <td>@prod.InventoryNum</td>
+                                    <td>@prod.InventoryNum</td>
+                                    <td>@prod.InventoryNum</td>
+                                    <td><img /></td>
+                                    <td><a class="blue" id="@prod.ProductId">查看</a></td>
+
+                                </tr>
+                            }
+                            
+
+                        </table>
+
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

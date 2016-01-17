@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+/*	.project_ing1_tab table td a{ width:80px; float:none; display:block;}
+	#project_ing1_tab_end{ width:80px;}*/
+	
+	
+	
+	.E_index ul li a p b{ width:7px; height:7px; top:12px;}
+	.E_index ul li a h1 strong{font-size:24px; }
+	.E_index ul li a h1 span{font-size:16px;text-align:left; margin-left:0; }
+	.E_index ul li a:hover span{ margin-left:2px;}
+	
+	.user_l a span{ width:68px; height:40px; right:10px; top:0;}
+	.user_l a p{ width:auto; height:40px; margin:0 78px 0 30px; }
+	.Statistics1024_L{ width:450px; height:300px;float:left;}
+    .Statistics1024_R{width:auto; margin-left:450px; padding-top:50px; float:none;}

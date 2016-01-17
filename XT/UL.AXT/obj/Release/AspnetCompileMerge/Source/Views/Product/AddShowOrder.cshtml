@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "AddShowOrder";
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<script src="~/Scripts/ajaxfileupload.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#btnUpload").click(function() {
+            $.ajaxFileUpload
+            (
+                {
+                    url: '/Product/UpdPic', //用于文件上传的服务器端请求地址
+                    secureuri: false, //是否需要安全协议，一般设置为false
+                    fileElementId: 'file1', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json
+                    data:{period:'@ViewBag.Period',picType:'1'},
+                    success: function (data, status) //服务器成功响应处理函数
+                    {
+                        if (data["Succeeded"]) {
+
+                            $("#picList").append("<li><img src=" + data.imgPath1 + " /> </li>");
+
+                        } else {
+                            alert(data["errMsg"]);
+                        }
+                        
+                    },
+                    error: function(data, status, e) //服务器响应失败处理函数
+                    {
+                        alert(e);
+                    }
+                }
+            );
+            return false;
+        });
+
+        $("#btnPublish").click(function() {
+            $.ajax({
+                url: "/ShowOrder/AddShow",
+                type: "POST",
+                async : false,
+                data: { content: $("#content").val(), periodId: '@ViewBag.Period', userId:getCookie("UserId")},
+                success:function(data) {
+                    if (data["Succeeded"]) {
+                        alert("晒单成功");
+                    } else {
+                        alert("晒单失败");
+                    }
+                }
+            });
+        });
+    });
+</script>
+<div class="mainM commentX">
+    <textarea id="content">不得超过140个字</textarea>
+    
+    @*<input id="btnUpload" type="button" value="上传"/>*@
+    <ul class="oh" id="picList">
+        <li><a class="f24 pr"><i class="pa grayC_bg"></i><b class="pa grayC_bg"></b></a><input type="file" id="file1" name="file" /></li>
+        <li  ><a class="f14 pr block tc " id="btnUpload">上传图片</a></li>
+</ul>
+    <a class="orange_bg block lh30 br4 tc f14" id="btnPublish" href="#">发布</a>
+    <p class="f12">
+        注意：优质评论可获得意外随机虾米奖励。<br />
+        我们一直坚信着，做的多有回报的高端大气理念！
+    </p>
+</div>
+
+
+

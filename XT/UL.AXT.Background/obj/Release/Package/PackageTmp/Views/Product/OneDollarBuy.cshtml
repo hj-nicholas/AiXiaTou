@@ -1,0 +1,210 @@
+﻿@model List<Model.T_Product>
+@{
+    ViewBag.Title = "OneDollarBuy";
+    Layout = "~/Views/Shared/MainBg.cshtml";
+}
+<script type="text/javascript">
+    $(function() {
+        $("a[name='openLot']").click(function() {
+            var pid = $(this).attr("tag");
+            $("#periodId").val(pid);
+            AlertDiv("#a1");
+
+
+        });
+
+        $("a[name='xEdit']").click(function() {
+            var pid = $(this).attr("tag");
+            $("#xPeriodId").val(pid);
+            AlertDiv("#a2");
+
+
+        });
+    });
+
+    function OpenLot() {
+        $.ajax({
+            url: "/Product/OpenLot",
+            type: "POST",
+            data: { periodId: $("#periodId").val(), lotteryNo: $("#lotteryNo").val() },
+            success: function(data) {
+                if (data["Succeeded"]) {
+                    alert("开奖");
+                    AlertClose("#a1");
+                } else {
+                    alert("失败");
+                }
+            }
+        });
+    }
+
+    function AddXNum() {
+        $.ajax({
+            url: "/Product/AddXNum",
+            type: "POST",
+            data: { periodId: $("#xPeriodId").val(), xnum: $("#xNum").val() },
+            success: function (data) {
+                if (data["Succeeded"]) {
+                    $("#txtXcode").val(data["ResultId"]);
+                } else {
+                    alert("添加失败");
+                }
+            }
+        });
+    }
+</script>
+<div class="main_con">
+    <div class="project_ingg">
+        <div class="box b_shadow br4 white_bg">
+
+            <div class="bot_B">
+                <div class="project_ing1">
+
+                    <div class="project_ing1_tab">
+                        <table cellpadding="0" cellspacing="0" border="0" class="tableA table2">
+
+                            <tr>
+                                <th>商品类型</th>
+                                <th>期数总计</th>
+                                <th>商品名称</th>
+                                <th>抢购均价</th>
+                                <th>已购总数</th>
+                                <th>用户数</th>
+                                <th>X总数</th>
+                                <th>X比例</th>
+                                <th>X用户数</th>
+                                <th>S总数</th>
+                                <th>S用户数</th>
+                                <th>S领取数</th>
+                                <th>点击总数</th>
+                                <th>收藏总数</th>
+                            </tr>
+                            @foreach (var prod in Model)
+                            {
+                                <tr>
+                                    <td>A @prod.ProductNO</td>
+                                    <td>@prod.prodPeriods.Count()</td>
+                                    <td><a class="blue">@prod.ProductName</a></td>
+                                    <td>2500</td>
+                                    <td>10000</td>
+                                    <td>5000</td>
+                                    <td>3000</td>
+                                    <td>30%</td>
+                                    <td>1000</td>
+                                    <td>200</td>
+                                    <td>20</td>
+                                    <td>100</td>
+                                    <td>12550</td>
+                                    <td>2000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="14">
+                                        <table cellpadding="0" cellspacing="0" border="0" class="table table2">
+                                            <tr>
+                                                <th>期数</th>
+                                                <th>抢购单价</th>
+                                                <th>购买单价</th>
+                                                <th>总需数量</th>
+                                                <th>已购数量</th>
+                                                <th>用户数</th>
+                                                <th>X数量</th>
+                                                <th>X比例</th>
+                                                <th>X用户数</th>
+                                                <th>S总数</th>
+                                                <th>S用户数</th>
+                                                <th>S领取数</th>
+                                                <th>点击数</th>
+                                                <th>收藏数</th>
+                                                <th>幸运虾</th>
+                                                <th>开奖号码</th>
+                                                <th>快递单号</th>
+                                                <th>状态</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            @foreach (var period in @prod.prodPeriods)
+                                            {
+                                                <tr>
+                                                    <td>0001</td>
+                                                    <td>2500元</td>
+                                                    <td>1元</td>
+                                                    <td>2500</td>
+                                                    <td>2000</td>
+                                                    <td><a class="blue">1500</a></td>
+                                                    <td>1000</td>
+                                                    <td>50%</td>
+                                                    <td><a class="blue">500</a></td>
+                                                    <td>100</td>
+                                                    <td>5</td>
+                                                    <td>90</td>
+                                                    <td>1100</td>
+                                                    <td>325</td>
+                                                    <td>未开奖</td>
+                                                    <td>未开奖</td>
+                                                    <td>无</td>
+                                                    <td>正常</td>
+                                                    <td>
+                                                        <a class=" green_bg fl white tc br2">编辑</a>
+                                                        <a class=" green_bg fl white tc br2" tag="@period.PeriodID" name="openLot" href="#">开奖</a>
+                                                        <a class=" green_bg fl white tc br2"  tag="@period.PeriodID" name="xEdit" href="#">X编辑</a>
+                                                        <a class=" green_bg fl white tc br2">中奖</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+ 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="alert" id="a1">
+    <div class="alertZ"></div>
+    <div class="alertC" style="width: 600px;">
+        <div class="alertCT oh">
+            <p class="fl f16">提交成功</p>
+            <i class="icon alert_close fr Animate_rotateIn" onclick="AlertClose(this)"></i>
+        </div>
+        <div class="alertCB alertCB_S">
+
+            <input id="lotteryNo" type="text" value=""/>
+            <input id="periodId" type="text" value="" style="display: none"/>
+        </div>
+        <div class="alertCM">
+            <div class="button">
+                <a class="fr mblue_bg white tc br2" onclick="OpenLot()">保存</a>
+                <a class="fr gray_bg white tc br2" onclick="AlertClose(this)">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert" id="a2">
+    <div class="alertZ"></div>
+    <div class="alertC" style="width:600px;">
+        <div class="alertCT oh">
+            <p class="fl f16">提交成功</p>
+            <i class="icon alert_close fr Animate_rotateIn" onclick="AlertClose(this)"></i>
+        </div>
+        <div class="alertCB alertCB_S">
+
+            购买数量<input id="xNum" type="text" value="" />
+            <input id="xPeriodId" type="text" value="" style="display: none"/>
+            购买的虾仔
+            <input type="text"  onscroll="true" value="" id="txtXcode"/>
+        </div>
+        <div class="alertCM">
+            <div class="button">
+                <a class="fr mblue_bg white tc br2" onclick="AddXNum()">保存</a>
+                <a class="fr gray_bg white tc br2" onclick="AlertClose(this)">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
