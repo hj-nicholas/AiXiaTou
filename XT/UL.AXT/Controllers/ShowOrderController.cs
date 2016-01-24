@@ -41,14 +41,23 @@ namespace UL.AXT.Controllers
                 {
                     BLL.UserInfo user = new BLL.UserInfo();
                     var userId = Convert.ToInt32(Session["UserId"]);
-                    userDto=user.GetUserInfo(userId);
+                    userDto = user.GetUserInfo(userId);
                 }
-                
+
 
             }
+
+            //WeChatBusiness business = new WeChatBusiness();
             //Session["UserId"] = "6";
 
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
+            //userDto = new BLL.UserInfo().GetUserInfo(Convert.ToInt32(6));
+
+            //Session["UserId"] = "8";
+
+            //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwrLCdkbv2v54M-bdbu5itKw");
+            //userDto = new BLL.UserInfo().GetUserInfo(Convert.ToInt32(8));
+
             //userDto = business.ChangeUserByWeChatInfo(userInfo);
             //Log.WriteLog("username:", userDto.UserName);
             ViewBag.UserInfo = userDto;

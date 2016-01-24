@@ -12,7 +12,7 @@ $(function () {
             $.ajax({
                 type: "POST",
                 url: "/ShowOrder/AddSupport",
-                data: { userId: userId, periodId: $(this).prop("id") },
+                data: { userId: userId, periodId: obj.prop("id") },
                 success: function (result) {
                     if (result != null) {
                         obj.next("p").next("p").text(result.ResultId);

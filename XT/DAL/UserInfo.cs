@@ -259,6 +259,7 @@ namespace DAL
                         share.Winner = Convert.ToString(rdr["Winner"]);
                         share.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
                         share.SendUser = Convert.ToString(rdr["SendUser"]);
+                        share.GetLotNum = Convert.ToString(rdr["GetLotNum"]);
                         if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             share.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
                         if (!DBNull.Value.Equals(rdr["WinUserId"]))
@@ -355,6 +356,35 @@ namespace DAL
             }
             return lstEnv;
         }
+
+        //保存奖品
+        public BaseResult SaveAward(int userId, int periodId, int type, string awardNo, int addrId)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pSaveAward", strConn);
+                cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@p_type"].Value = type;
+                cmd.Parameters["@p_awardNo"].Value = awardNo;
+                cmd.Parameters["@p_addrId"].Value = addrId;
+                
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
+
+       
+
     }
 }
 

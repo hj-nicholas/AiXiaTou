@@ -235,6 +235,9 @@
     <Compile Include="Common\WeChat\WxPayApi\HttpService.cs" />
     <Compile Include="Common\WeChat\WxPayApi\JsApiPay.cs" />
     <Compile Include="Common\WeChat\WxPayApi\Log.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\PayForWeiXinHelp.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\PayWeiXin.cs" />
+    <Compile Include="Common\WeChat\WxPayApi\ReturnResult.cs" />
     <Compile Include="Common\WeChat\WxPayApi\WxPayApi.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BackgroundController.cs" />
@@ -294,6 +297,7 @@
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="cert\apiclient_cert.p12" />
     <None Include="Properties\PublishProfiles\AiXiaTou.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Common\common.js" />
@@ -474,6 +478,7 @@
     <Content Include="Views\User\SendGiftDetail.cshtml" />
     <Content Include="Views\User\SharePolite.cshtml" />
     <Content Include="Views\User\Share.cshtml" />
+    <Content Include="Views\Product\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

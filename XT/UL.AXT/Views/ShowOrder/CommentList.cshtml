@@ -32,7 +32,8 @@
                                 <p class="oh"><span class="fl gray9">@comment.CommentDate</span></p>
                             @*<a class="pa br2" href="#" name="showReply" id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">回复</a>*@
                             <a class="block" name="showReply"  id="@comment.CommentID" tagCommref="@comment.CommentID" tagPeriod="@comment.PeriodID">
-                                @{if (comment.CommentRefID == 0)
+                                @{
+                                    if (comment.CommentRefID == @ViewBag.RootCommId)
                                     {
                                         <b class="fn block">@comment.CommentContent</b>
                                     }
@@ -51,10 +52,14 @@
             </ul>
         </div>
         <div class="commentB oh padding_b10 pf white_bg">
-            <a class="fl" id="commShowUser" tagPeriod="@ViewBag.PeriodId"><i class="liaotian_s block icon_s fl "></i>
-                <p class="fl">评论 @ViewBag.CommNum</p></a>
-            <a class="fl"><i class="dianzan_s block icon_s fl "></i>
-                <p class="fl">羡慕 @ViewBag.SuppNum</p></a>
+            <a class="fl" id="commShowUser" tagPeriod="@ViewBag.PeriodId">
+                <i class="liaotian_s block icon_s fl "></i>
+                <p class="fl">评论 @ViewBag.CommNum</p>
+            </a>
+            <a class="fl">
+                <i class="dianzan_s block icon_s fl "></i>
+                <p class="fl">羡慕 @ViewBag.SuppNum</p>
+            </a>
         </div>
     </div>
 </div>

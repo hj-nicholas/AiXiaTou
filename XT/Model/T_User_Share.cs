@@ -127,6 +127,7 @@ namespace Model
 
         public decimal ActualPrice { get; set; }
 
+        public string GetLotNum { get; set; }
 
     }
 }

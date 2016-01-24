@@ -37,6 +37,11 @@ namespace Model
         public string ProductUrl { get; set; }
         //产品图片
         public string ProductPhoto { get; set; }
-
+        //是否实物
+        public int IsActual { get; set; }
+        //领奖地址Id
+        public int AwardAddrId { get; set; }
+        //奖券号
+        public string AwardNo { get; set; }
     }
 }

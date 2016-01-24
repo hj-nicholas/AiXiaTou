@@ -20,6 +20,26 @@
 
 
         });
+        
+        $("a[name='prizeInfo']").click(function () {
+            var pid = $(this).attr("tag");
+            //$("#xPeriodId").val(pid);
+            //AlertDiv("#a2");
+
+            $.ajax({
+                url: "/Product/OpenLot",
+                type: "POST",
+                data: { periodId: pid },
+                success: function (data) {
+                    if (data["Succeeded"]) {
+                        alert("开奖");
+                        AlertClose("#a1");
+                    } else {
+                        alert("失败");
+                    }
+                }
+            });
+        });
     });
 
     function OpenLot() {
@@ -146,7 +166,7 @@
                                                         <a class=" green_bg fl white tc br2">编辑</a>
                                                         <a class=" green_bg fl white tc br2" tag="@period.PeriodID" name="openLot" href="#">开奖</a>
                                                         <a class=" green_bg fl white tc br2"  tag="@period.PeriodID" name="xEdit" href="#">X编辑</a>
-                                                        <a class=" green_bg fl white tc br2">中奖</a>
+                                                        <a class=" green_bg fl white tc br2"  tag="@period.PeriodID" name="prizeInfo" proType="@period">中奖</a>
                                                     </td>
                                                 </tr>
                                             }

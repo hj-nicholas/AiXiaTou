@@ -77,6 +77,7 @@ namespace UL.AXT.Controllers
             var userInfo = user.GetUserInfo(userId);
             var accInfo = user.GetAccountByUserId(userId);
             ViewBag.Account = userInfo.AccountBalance;
+            ViewBag.UserId = userInfo.UserID;
             return View(accInfo);
         }
 
@@ -96,9 +97,10 @@ namespace UL.AXT.Controllers
             return View(sendGift);
         }
 
-        public ActionResult Recharge()
+        public ActionResult Recharge(int userId)
         {
-            return View();
+            var userInfo = user.GetUserInfo(userId);
+            return View(userInfo);
         }
 
         public ActionResult PayRecharge(int chargeNum, string userOpenId)
@@ -152,13 +154,34 @@ namespace UL.AXT.Controllers
 
         public ActionResult SendGiftDetail(int shareId, int userId)
         {
+            //页面能够分享给其他用户
+            List<T_Share_Get> lstGet = prod.GetRevGiftByShareId(shareId);
+            bool flag = true;
+            if (Session["UserId"] != null)
+            {//分享用户id与接受用户id不一致
+                var tempUserId = Convert.ToInt32(Session["UserId"]);
+                T_User_Share share = prod.GetShareById(shareId);
+                flag = share.ShareUserId == tempUserId ? true : false;
+            }
+            if (Session["UserId"] == null || !flag)
+            {
+                //HOO Test-2
+                Common.WeChatBusiness weChat = new Common.WeChatBusiness();
+                string url = weChat.GetAuthCodeUrl("http://www.ixiatou.cn/Product/GetGift?shareId=" + shareId);
+                //string url = "http://localhost:54726/Product/GetGift?shareId=" + shareId;
+                Response.Redirect(url);
+            }
+            else
+            {
+            
+
             ViewBag.UserInfo = user.GetUserInfo(userId);
             ViewBag.ShareId = shareId;
 
             //抢虾仔
             //BaseResult br = RevGift(shareId, userDto.UserID);
 
-            List<T_Share_Get> lstGet = prod.GetRevGiftByShareId(shareId);
+            //List<T_Share_Get> lstGet = prod.GetRevGiftByShareId(shareId);
             T_User_Share userShare = prod.GetShareById(shareId);
             ViewBag.UserShare = userShare;
 
@@ -167,27 +190,28 @@ namespace UL.AXT.Controllers
                 ViewBag.SCode = lst[0].LotNum;
             else
                 ViewBag.SCode = "";
+            }
             return View(lstGet);
         }
 
         public ActionResult SharePolite(int shareUserId)
         {
-            //if (Session["UserId"] != null)
-            //{
-            //    var loginUser = Convert.ToInt32(Session["UserId"]);
-            //    if (loginUser != shareUserId)
-            //    {
-            //        //领取虾仔
-            //        //return View("/Share?shareUserId=" + shareUserId);
-            //        Response.Redirect("/User/Share?shareUserId=" + shareUserId);
-            //    }
-            //}
-            //else
-            //{
-            //    Common.WeChatBusiness weChat = new Common.WeChatBusiness();
-            //    string url = weChat.GetAuthCodeUrl("http://www.ixiatou.cn/User/Share?shareUserId=" + shareUserId);
-            //    Response.Redirect(url);
-            //}
+            if (Session["UserId"] != null)
+            {
+                var loginUser = Convert.ToInt32(Session["UserId"]);
+                if (loginUser != shareUserId)
+                {
+                    //领取虾仔
+                    //return View("/Share?shareUserId=" + shareUserId);
+                    Response.Redirect("/User/Share?shareUserId=" + shareUserId);
+                }
+            }
+            else
+            {
+                Common.WeChatBusiness weChat = new Common.WeChatBusiness();
+                string url = weChat.GetAuthCodeUrl("http://www.ixiatou.cn/User/Share?shareUserId=" + shareUserId);
+                Response.Redirect(url);
+            }
             var lst = user.GetRedEnvelopeByUser(shareUserId);
             return View(lst);
         }
@@ -210,9 +234,10 @@ namespace UL.AXT.Controllers
                 }
             }
 
-
+            UserDTO shareUser = user.GetUserInfo(shareUserId);
             ViewBag.UserInfo = userDto;
             ViewBag.ShareUserId = shareUserId;
+            ViewBag.ShareUser = shareUser;
             return View();
         }
 
@@ -222,6 +247,14 @@ namespace UL.AXT.Controllers
             return Json(result);
         }
 
-       
+        public JsonResult SaveAward(int userId, int periodId, int type, string awardNo, int addrId)
+        {
+            BaseResult result = new BaseResult();
+            result = user.SaveAward(userId, periodId, type, awardNo, addrId);
+            return Json(result);
+        }
+
+      
+
     }
 }

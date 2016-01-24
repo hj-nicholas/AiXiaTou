@@ -8,9 +8,10 @@
 <script src="~/Scripts/formValidator/formValidator-4.1.3.js"></script>
 <script src="~/Scripts/formValidator/formValidatorRegex.js"></script>
 <script type="text/javascript">
+    var usedYE = 0;
     $(function() {
         var openId = getCookie("OpenId");
-        var usedYE = 0;
+        
         //获取用户信息
         //alert(openId);
         //$("#PayUser").text(getCookie("UserName"));
@@ -34,12 +35,16 @@
                 $("#probability").text(perProp * $("#portionNum").val() + " %概率");
             }
             $("#needPay").text($("#portionNum").val());
+
+            userYE();
+            GenerateCode();
         });
 
         $("#portionNum").change(function() {
             var perProp = Math.round(@(1/Model.ProductPrice*100));
             $("#probability").text(perProp * $("#portionNum").val() + " %概率");
-            $("#needPay").text($("#portionNum").val());
+            //$("#needPay").text($("#portionNum").val());
+            userYE();
             GenerateCode();
         });
 
@@ -49,9 +54,23 @@
             if (!$.formValidator.pageIsValid('1'))
                 return false;
 
+            $.ajax({
+                url: "/Product/GetRestShrimpNum",
+                type: "POST",
+                data: {periodId:'@Model.PeriodId'},
+                success: function(data) {
+                    if (data["Succeeded"]) {
+                        if (parseInt(data["ResultId"]) < parseInt($("#portionNum").val())) {
+                            alert("超出活动购买数量，请刷新页面重新提交！");
+                            return false;
+                        }
+                    }
+                }
+            });
+
             var lotterys = $("#txtLotterys").val();
-            var tel = $("#txtPhone").val();
-            var email = $("#txtMail").val();
+            var tel = "";// $("#txtPhone").val();
+            var email ="";// $("#txtMail").val();
             //window.location.href = "/Product/PayOrder?lottery=" + lotterys + "&phone=" + tel + "&email=" + email;
             $.ajax({
                 url: "/Product/AddOrder",
@@ -73,7 +92,8 @@
 
         //使用余额支付
         $("#useYE").change(function() {
-            var ded = Math.round('@ViewBag.UserInfo.AccountBalance');
+            userYE();
+            @*var ded = Math.round('@ViewBag.UserInfo.AccountBalance');
             var totalPay = Math.round($("#portionNum").val());
             if ($("#useYE").prop("checked")) {
                 if (ded >= totalPay) {
@@ -90,7 +110,7 @@
                 $("#deduction").text(0);
                 $("#needPay").text(totalPay);
                 usedYE = 0;
-            }
+            }*@
         });
 
         $("#btnEditAddr").click(function() {
@@ -177,7 +197,7 @@
             AlertDiv('#alert_address');
         });
 
-
+        GenerateCode();
     });
 
     function GenerateCode() {
@@ -191,6 +211,7 @@
             }
         });
     }
+
     function EdidAddress(type) {
         //校验填写信息
         if (!$.formValidator.pageIsValid('2'))
@@ -224,16 +245,38 @@
         });
     }
 
+    function userYE() {
+        var ded = Math.round('@ViewBag.UserInfo.AccountBalance');
+        var totalPay = Math.round($("#portionNum").val());
+        if ($("#useYE").prop("checked")) {
+            if (ded >= totalPay) {
+                $("#deduction").text(totalPay);
+                $("#needPay").text(0);
+                usedYE = totalPay;
+            } else {
+                $("#deduction").text(ded);
+                $("#needPay").text(totalPay - ded);
+                usedYE = ded;
+            }
+
+        } else {
+            $("#deduction").text(0);
+            $("#needPay").text(totalPay);
+            usedYE = 0;
+        }
+    }
+
+
 </script>
 <script type="text/javascript">
     var restShp=0;
     $(function() {
-         restShp=@(Model.ProductPrice - Model.JoinedNum);
+        restShp=@(Model.ProductPrice - Model.JoinedNum);
         //验证提示
         $.formValidator.initConfig({ validatorGroup: "1", formID: "form1", onError: function() { alert("请查看错误信息"); } });
         $("#portionNum").formValidator({ validatorGroup: "1", onShow: "", onCorrect: "", empty: false }).regexValidator({ regExp: "intege1", dataType: "enum", onError: "整数格式不正确" }).functionValidator({ fun: checkInt });
-        $("#txtMail").formValidator({ validatorGroup: "1", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "email", dataType: "enum", onError: "email格式不正确" });
-        $("#txtPhone").formValidator({ validatorGroup: "1", onShow: "", onfocus: "", onCorrect: "", empty: true }).functionValidator({ fun: checkPhone }); //.regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
+        //$("#txtMail").formValidator({ validatorGroup: "1", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "email", dataType: "enum", onError: "email格式不正确" });
+        //$("#txtPhone").formValidator({ validatorGroup: "1", onShow: "", onfocus: "", onCorrect: "", empty: true }).functionValidator({ fun: checkPhone }); //.regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
 
         $.formValidator.initConfig({ validatorGroup: "2", formID: "form2", onError: function() { alert("请查看错误信息"); } });
         $("#txtPhoneEdit").formValidator({ validatorGroup: "2", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
@@ -281,7 +324,7 @@
                         <img src="~/Uploads/CommentPhotos/20151209/img01.jpg" class="fr br4" />
                         <p class="oh">
                             <b class="f18 lh30 h30 block fn oh" id="proName">@Model.ProductName</b>
-                            <span class="f14 lh25 block gray6 oh "><em class="fl fsn" id="proPrice">价值：@Model.ProductPrice 元</em></span>
+                            <span class="f14 lh25 block gray6 oh "><em class="fl fsn" id="proPrice">抢购价：@Model.ProductPrice 元</em></span>
                             <span class="f12 lh25 block gray6 oh"><em class="fl fsn" id="proDesc">@Model.ProductDesc</em></span>
                         </p>
 
@@ -305,8 +348,8 @@
                 <a class="button orange_bg tc fr gray3_border br4 pa" id="btnGenerate">随机生成</a>
                 <input type="text" class="block Ntext h30 lh30" id="txtLotterys"  readonly="readonly"/><input type="hidden" value="虾仔，五位数字" />
             </li>
-            <li class="white_bg f14"><input type="text" class="block Ntext h30 lh30" id="txtMail" /><input type="hidden" value="联系邮箱，将用于接收项目全部虾仔" /></li>
-            <li class="white_bg f14"><input type="text" class="block Ntext h30 lh30" id="txtPhone" /><input type="hidden" value="推荐人手机号（选填）" /></li>
+            @*<li class="white_bg f14"><input type="text" class="block Ntext h30 lh30" id="txtMail" /><input type="hidden" value="联系邮箱，将用于接收项目全部虾仔" /></li>
+            <li class="white_bg f14"><input type="text" class="block Ntext h30 lh30" id="txtPhone" /><input type="hidden" value="推荐人手机号（选填）" /></li>*@
             <li class="white_bg oh f14">
                 <span class="fl f16">账户余额可支付 @ViewBag.UserInfo.AccountBalance 只</span>
                 <input type="checkbox" class="fr h20 lh20 tc" id="useYE"/>
@@ -315,7 +358,7 @@
         <p class="h20 lh20 red"><div id="portionNumTip"></div><div id="txtMailTip"></div> <div id="txtPhoneTip"></div>  </p>
     </div>
 
-    <div class="addressB">
+    <div class="addressB" style="display:none">
         <ul>
 @{
     var addrs = (List<T_UserAddr>)ViewBag.Addrs;
@@ -349,11 +392,12 @@
         </ul>
 
     </div>
-    <div class="addressT white_bg">
+    <div class="addressT white_bg"  style="display:none">
         <a class="oh block"  id="alertRevAddrs"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f14 lh20">收货地址(选填)</span></a>
     </div>
     <div class="pf pay white_bg">
-        已抵扣￥<p class="fl gray9 f12" id="deduction">0</p>
+        <p class="fl gray9 f12">已抵扣￥</p>
+        <p class="fl gray9 f12" id="deduction">0</p>
         <a class="orange_bg tc fr f16" id="submitOrder">提交订单</a>
         <p class="fr f18 red" id="needPay">1</p>
         <p class="fr gray6 f14">待支付￥</p>

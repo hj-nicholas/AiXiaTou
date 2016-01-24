@@ -44,7 +44,7 @@
                 data: { content: $("#content").val(), periodId: '@ViewBag.Period', userId:getCookie("UserId")},
                 success:function(data) {
                     if (data["Succeeded"]) {
-                        alert("晒单成功");
+                        window.location.href = "/ShowOrder/Index";
                     } else {
                         alert("晒单失败");
                     }

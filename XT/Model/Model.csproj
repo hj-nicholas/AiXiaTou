@@ -55,6 +55,7 @@
     <Compile Include="T_Share_Get.cs" />
     <Compile Include="T_UserAddr.cs" />
     <Compile Include="T_UserInfo.cs" />
+    <Compile Include="T_User_Award.cs" />
     <Compile Include="T_User_Enshrine.cs" />
     <Compile Include="T_User_Order.cs" />
     <Compile Include="T_User_Order_Desc.cs" />

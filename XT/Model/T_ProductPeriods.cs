@@ -121,7 +121,7 @@ namespace Model
 
     public partial class T_ProductPeriods
     {
-
+        public int IsActual { get; set; }
     }
 }
 

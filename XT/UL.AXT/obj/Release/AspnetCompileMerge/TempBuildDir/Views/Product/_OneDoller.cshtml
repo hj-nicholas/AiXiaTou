@@ -2,8 +2,18 @@
 
 <script type="text/javascript">
     $(function() {
-       
+        checkMenu();
     });
+
+    function checkMenu() {
+        var a_H = $("#shrimp");
+        if (!a_H.hasClass("icon_H")) {
+            a_H.siblings().removeClass("icon_H");
+            a_H.addClass("icon_H");
+            SetCookie("footerBtn", a_H.prop("id"));
+
+        }
+    }
 </script>
 <div class="index">
     <ul>

@@ -15,16 +15,20 @@ namespace Hoo.WeChat.WxPayAPI
         * MCHID：商户号（必须配置）
         * KEY：商户支付密钥，参考开户邮件设置（必须配置）
         * APPSECRET：公众帐号secert（仅JSAPI支付的时候需要配置）
+        NICKNAME:商户昵称
+        SENDNAME：发送者名称
         */
         public const string APPID = "wxc2f9b0e146533762";
         public const string MCHID = "1291399301";
         public const string KEY = "56A23BC66UUUlink888VC223MIdanG99";
         public const string APPSECRET = "a783530c3617187dd3f02690c98add75";
+        public const string NICKNAME = "爱虾投";
+        public const string SENDNAME = "爱虾投";
 
         //=======【证书路径设置】===================================== 
         /* 证书路径,注意应该填写绝对路径（仅退款、撤销订单时需要）
         */
-        public const string SSLCERT_PATH = "cert/apiclient_cert.p12";
+        public const string SSLCERT_PATH = "F:/XiaTou/Project/AiXiaTou.git/XT/UL.AXT/cert/apiclient_cert.p12";
         public const string SSLCERT_PASSWORD = "1233410002";
 
 

@@ -21,10 +21,13 @@ namespace UL.AXT.Controllers
             //根据彩票号码在数据库中查询出中奖号码
             //Product prod = new Product();
             //prod.ConfirmLottery(lotteryTicket, periodId);
-            //Process proc = new Process();
-            //proc.StartInfo.FileName = "E:/Bloxy/Bloxy.exe";
-            ////proc.StartInfo.Arguments = "你的参数";
-            //proc.Start();
+            string path =  "/UL.AXT.TimerTask.exe";
+            string PhysicalPath = Server.MapPath(path);
+
+            Process proc = new Process();
+            proc.StartInfo.FileName = PhysicalPath;
+            proc.StartInfo.Arguments = "9";
+            proc.Start();
             return Json("");
         }
 

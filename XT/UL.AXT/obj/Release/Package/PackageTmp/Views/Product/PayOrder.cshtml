@@ -8,17 +8,24 @@
 
 
         $("#btnPay").click(function() {
-
             @*$.ajax({
-                url: "/Product/UpdOrderSts",
+                url: "/Product/PayOrderSuccess",
                 type: "POST",
-                data:{orderId:'@ViewBag.OrderId',sts:1},
+                data:{orderId:'@ViewBag.OrderId'},
                 sucess:function(data) {
                     if (data["Succeeded"]) {
                         window.location.href = "/Product/PaySuccess";
                     }
                 }
             });*@
+
+            //HOO Test-5
+            //window.location.href = "/Product/PayOrderSuccess?orderId="+@ViewBag.OrderId;
+
+            if (@ViewBag.NeedPay == 0) {
+                window.location.href = "http://www.ixiatou.cn/Product/PayOrderSuccess?orderId="+@ViewBag.OrderId;
+                
+            }
 
             if (typeof WeixinJSBridge == "undefined") {
                 if (document.addEventListener) {
@@ -76,9 +83,9 @@
             <li class="white_bg">
                 <input type="text" class="block h30 lh30" value="虾仔：@ViewBag.Lottery" />
             </li>
-            <li class="white_bg"><span class="fl">联系邮箱：@ViewBag.Email</span></li>
-            <li class="white_bg"><span class="fl">联系手机号：@ViewBag.Phone</span></li>
-            <li class="white_bg"><span class="fl">待支付：@ViewBag.NeedPay 元</span></li>
+            @*<li class="white_bg"><span class="fl">联系邮箱：@ViewBag.Email</span></li>
+            <li class="white_bg"><span class="fl">联系手机号：@ViewBag.Phone</span></li>*@
+            <li class="white_bg  oh f14"><span class="fl">待支付：@ViewBag.NeedPay 元</span></li>
         </ul>
 
         <p class="h20 lh20 f12" style="height:auto;">项目完成后将会把<b class="red">全部参与的虾仔发送到你的邮箱，以此体现本平台的公平性。</b>如获得礼品，虾兵（工作人员）会即刻联系您，协助处理相关事宜。</p>

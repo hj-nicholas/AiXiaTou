@@ -80,10 +80,10 @@
                     <li class="white_bg">
                         <a href="/User/RevGiftDetail?shareId=@rev.ShareId&userId=@ViewBag.UserId">
                             <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">@rev.CreateTime</span></p>
-                            @if (string.IsNullOrEmpty(rev.LotteryNum))
+                            @if (string.IsNullOrEmpty(rev.GetLotNum))
                             {
                                 <p class="f16 pr">
-                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.LotteryNum</i>
+                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.GetLotNum</i>
                                 </p>
                                 <p class="f12 oh">
                                     <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
@@ -104,7 +104,7 @@
                                 else
                                 {
                                     <p class="f16 pr">
-                                        <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.LotteryNum</i>
+                                        <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.GetLotNum</i>
                                     </p>
                                     <p class="f12 oh">
                                         <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr  red_bg white br4">领取奖品</i><i class="fr orange_bg br4">赠</i><i class="fr orange_bg br4">@rev.SendUser</i>

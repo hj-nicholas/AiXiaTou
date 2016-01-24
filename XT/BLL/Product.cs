@@ -156,5 +156,18 @@ namespace BLL
             var result = pro.AddLotByXUser(userId, addNum, periodId, lotteryNO);
             return result;
         }
+
+        public BaseResult IsBuyOver(int periodId)
+        {
+            var result = pro.IsBuyOver(periodId);
+            return result;
+
+        }
+
+        public BaseResult GetRestShrimpNum(int periodId)
+        {
+            var result = pro.GetRestShrimpNum(periodId);
+            return result;
+        }
     }
 }

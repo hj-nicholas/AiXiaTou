@@ -87,6 +87,9 @@ namespace DAL
                         prod.UserName = Convert.ToString(rdr["UserName"]);
                         prod.ProductUrl = Convert.ToString(rdr["ProductUrl"]);
                         prod.ProductPhoto = Convert.ToString(rdr["PhotoPath"]);
+                        prod.IsActual = Convert.ToInt32(rdr["IsActual"]);
+                        prod.AwardAddrId = Convert.ToInt32(rdr["AwardAddrId"]);
+                        prod.AwardNo = Convert.ToString(rdr["AwardNo"]);
                         if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             prod.ActualPrice = Convert.ToInt32(rdr["ActualPrice"]);
                         if (!DBNull.Value.Equals(rdr["IsShowOrder"]))
@@ -592,6 +595,7 @@ namespace DAL
                     {
 
                         shareDto.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        shareDto.ProductName = Convert.ToString(rdr["ProductName"]);
                         shareDto.PeopleNum = Convert.ToInt32(rdr["PeopleNum"]);
                         shareDto.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
                         shareDto.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
@@ -872,7 +876,30 @@ namespace DAL
             return lstShareDto;
         }
 
-       #region 照片
+        public BaseResult GetRestShrimpNum(int periodId)
+        {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetRestShrimpNum", strConn);
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@o_count"].Value = periodId;
+
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.ResultId = cmd.Parameters["@o_count"].Value.ToString();
+                br.Succeeded = true;
+
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+
+        #region 照片
         public BaseResult AddPic(int periodId, string picPath,int picType)
         {
             BaseResult br = new BaseResult();
@@ -922,7 +949,32 @@ namespace DAL
             }
             return br;
         }
-        #endregion
+
+        //判断是否购买完成
+       public BaseResult IsBuyOver(int periodId)
+       {
+            BaseResult br = new BaseResult();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pIsBuyOver", strConn);
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@o_count"].Value = -1;
+
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                br.ResultId = cmd.Parameters["@o_count"].Value.ToString();
+                br.Succeeded = true;
+
+            }
+            catch (Exception ex)
+            {
+                br.Succeeded = false;
+                br.ErrMsg = ex.Message;
+            }
+            return br;
+        }
+
+       #endregion
     }
 
 }

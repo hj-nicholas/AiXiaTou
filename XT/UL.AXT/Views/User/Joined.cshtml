@@ -3,8 +3,153 @@
     ViewBag.Title = "Joined";
     Layout = "~/Views/Shared/Main.cshtml";
 }
+
+<script src="~/Scripts/formValidator/formValidator-4.1.3.js"></script>
+<script src="~/Scripts/formValidator/formValidatorRegex.js"></script>
 <script type="text/javascript">
-   
+    $(function () {
+        $("a[name='AwardNo']").click(function() {
+            var obj = $(this);
+            alert("领奖编号："+ obj.attr("tag"));
+
+            
+            //AlertDiv("#AwardNo");
+        });
+        $("#btnSaveAwardNo").click(function () {
+            saveAward(2);
+        });
+
+        $("a[name='awardAddr']").click(function () {
+            var obj = $(this);
+            $("#periodId").val(obj.attr("tag"));
+
+            $("#addrList").remove();
+            $.ajax({
+                url: "/User/GetAddrs",
+                type: "POST",
+                data: { userId: getCookie("UserId") },
+                success: function (data) {
+
+                    var html = '';
+                    if (data != null) {
+                        html += ' <div class="addressB" id="addrList"> <ul>';
+                        $(data).each(function (index) {
+                            //alert(data[index].AddressDesc);
+                            html += '<li class="white_bg">';
+                            html += '   <input type="radio" class="fl" name="rdAddr" id="chk' + data[index].AddressId + '"/>';
+                            html += '   <a  class="block">';
+                            html += '    <i class="pen_s icon_s pa margin_t15"></i>';
+                            html += '     <p class="oh lh25"><b class="fl f16" name="receiver">' + data[index].Receiver + '</b><i class="fr f14"  name="phone">' + data[index].Phone + '</i></p>';
+                            html += '   <p class="lh20 gray9"  name="addressDesc">' + data[index].AddressDesc + '</p>';
+                            html += '   </a> </li>';
+
+                        });
+
+                        html += ' </ul></div>';
+                        $("#addrsMain").append(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+
+            AlertDiv("#alert_address");
+        });
+        $("#btnConfirmAddr").click(function () {
+            var chk = $(".addressB").find("input[type='radio']:checked");
+            if (chk.length == 0) {
+                AlertClose("#alert_address");
+                return false;
+            }
+            var addrId = chk.attr("id").substring(3);
+
+            $("#addrId").val(addrId);
+            saveAward(1);
+        });
+
+
+        $("#newAddr").click(function () {
+            AlertClose("#alert_address");
+            AlertDiv("#alert_address_new");
+        });
+
+        $("#btnAddNewAddr").click(function () {
+            //校验填写信息
+            if (!$.formValidator.pageIsValid('3'))
+                return false;
+
+            $.ajax({
+                url: "/User/EditAddr",
+                type: "POST",
+                data: { AddressId: $("#txtAddrIdN").val(), AddressDesc: $("#txtAddrEditN").val(), Receiver: $("#txtRecieverEditN").val(), Phone: $("#txtPhoneEditN").val(), PostCode: $("#txtPostCodeEditN").val(), type: 0, UserID: getCookie("UserId") },
+                success: function (data) {
+
+                    AlertClose("#alert_address_new");
+                }
+            });
+
+            $("#addrList").remove();
+            $.ajax({
+                url: "/User/GetAddrs",
+                type: "POST",
+                data: { userId: getCookie("UserId") },
+                success: function (data) {
+
+                    var html = '';
+                    if (data != null) {
+                        html += ' <div class="addressB" id="addrList"> <ul>';
+                        $(data).each(function (index) {
+                            //alert(data[index].AddressDesc);
+                            html += '<li class="white_bg">';
+                            html += '   <input type="radio" class="fl" name="rdAddr" id="chk' + data[index].AddressId + '"/>';
+                            html += '   <a  class="block">';
+                            html += '    <i class="pen_s icon_s pa margin_t15"></i>';
+                            html += '     <p class="oh lh25"><b class="fl f16" name="receiver">' + data[index].Receiver + '</b><i class="fr f14"  name="phone">' + data[index].Phone + '</i></p>';
+                            html += '   <p class="lh20 gray9"  name="addressDesc">' + data[index].AddressDesc + '</p>';
+                            html += '   </a> </li>';
+
+                        });
+
+                        html += ' </ul></div>';
+                        $("#addrsMain").append(html);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+
+            AlertDiv('#alert_address');
+        });
+
+        $.formValidator.initConfig({ validatorGroup: "3", formID: "form3", onError: function () { alert("请查看错误信息"); } });
+        $("#txtPhoneEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
+        $("#txtRecieverEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        $("#txtAddrEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
+        $("#txtPostCodeEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
+    });
+
+    function saveAward(type) {
+        $.ajax({
+            url: "/User/SaveAward",
+            type: "POST",
+            data: { userId: getCookie("UserId"), periodId: $("#periodId").val(), type: type, awardNo: $("#awardNo").val(), addrId: $("#addrId").val() },
+            success: function (data) {
+                if (data["Succeeded"]) 
+                    {
+                        alert("成功");
+                        AlertClose("#AwardNo");
+                        window.location.href = "/User/Joined?userId="+getCookie("UserId");
+                    }
+                else
+                    {
+                    alert("失败");
+                    }
+                
+            }
+        });
+    }
 </script>
 <div class="mainT orderT h40 white_bg">
     <ul class="oh" id="tags">
@@ -32,6 +177,7 @@
         <div class="orderBT lh30 oh fn">
             <i class="flagY_s fl icon_s margin_r5 margin_t5"></i>
             <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
+            <a href="#" class="fr br4 grayC_bg white f14">9只虾码</a>
             @if (prod.ProductPrice == prod.JoinedNum )
             {
                 <h3 class="fr fn">开奖中</h3>
@@ -74,6 +220,7 @@
                 <div class="orderBT lh30 oh fn">
                     <i class="flagB_s fl icon_s margin_r5 margin_t5"></i>
                     <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
+                    <a href="" class="fr br4 grayC_bg white f14">9只虾码</a>
                     <h3 class="fr fn">已开奖</h3>
                 </div>
                 <div class="orderBB">
@@ -97,17 +244,39 @@
                 <div class="orderBT lh30 oh fn">
                     <i class="flagR_s fl icon_s margin_r5 margin_t5"></i>
                     <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
+                    
+                    @if (prod.IsActual == 1)
+                    {
+                        if (prod.AwardAddrId==0)
+                        {
+                            <a name="awardAddr" tag="@prod.PeriodId" class="fr br4 blue_bg white f14">收货地址</a>
+                        }
+                        else
+                        {
+                            <a  class="fr br4 grayC_bg white f14">收货地址</a>
+                        }
+                    }
+                    else
+                    {
+                        <a name="AwardNo" tag="@prod.AwardNo" class="fr br4 blue_bg white f14">领取奖品</a>
+                        @*if (string.IsNullOrEmpty( prod.AwardNo))
+                        {
+                            <a name="AwardNo" tag="@prod.PeriodId" class="fr br4 blue_bg white f14">领取奖品</a>
+                        }
+                        else
+                        {
+                            <a  class="fr br4 grayC_bg white f14">领取奖品</a>
+                        }*@
+                        }
+
                     @if (prod.IsShowOrder == 0)
                     {
-                        <a href="Shipping_address.html" class="fr br4 blue_bg white f14">领取奖品</a>
                         <a href="/Product/AddShowOrder?periodId=@prod.PeriodId" class="fr br4 blue_bg white f14">晒单有米</a>
                     }
                     else
                     {
-                        <a href="/User/ReceiveAddrs?userId=@ViewBag.UserId" class="fr br4 grayC_bg white f14">收货地址</a>
                         <a href="/User/HomePage?userId=@ViewBag.UserId" class="fr br4 grayC_bg white f14">我的晒单</a>
                     }
-
                 </div>
                 <div class="orderBB">
                     <a class="block oh padding_b5">
@@ -121,9 +290,100 @@
                 </div>
             </div>
         }
-       <input type="text" value="" id="userId" style="display:none"/>
+        <input type="text" value="" id="userId" style="display: none"/>
+        <input type="text" value="" id="periodId" style="display: none"/>
+        <input type="text" value="0" id="addrId" style="display:none" />
     </div>
 </div>
 
+
+
+<div class="alert" id="AwardNo">
+    <div class="mainM address">
+        <div class="order_submit">
+          <label>领奖号码：</label> <input type="text" id="awardNo" value=""/>
+        </div>
+
+        <div class="mineB">
+            <ul class="white_bg">
+                <li>
+                    <a id="btnSaveAwardNo" class="oh block">
+                        <i class="right_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">保存</p>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="AlertClose(this)" class="oh block">
+                        <i class="wrong_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">取消</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="alert" id="alert_address">
+
+    <div class="alertCT oh">
+        <p class="fl f16">选择地址</p>
+        <i class="icon alert_close fr wrong" onclick="AlertClose(this)"></i>
+    </div>
+    <div class="alertCB">
+        <div class="address" id="addrsMain">
+            <div class="addressT white_bg">
+                <a id="newAddr" class="oh block"><i class="plus_s fl icon_s margin_r10"></i><span class="fl f16 lh20">新增地址</span></a>
+            </div>
+            <div class="addressB" id="addrList">
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="alertCM">
+        <a class="fr orange_bg br2 f16 tc" id="btnConfirmAddr">确认</a>
+        <a class="fr br2 tc" onclick="AlertClose(this)">取消</a>
+    </div>
+
+</div>
+
+<div class="alert" id="alert_address_new">
+    <div class="mainM address">
+        <div class="order_submit">
+            <ul>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtRecieverEditN" /><input type="hidden" value="收货人姓名" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPhoneEditN" /><input type="hidden" value="手机号码" /></li>
+
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtAddrEditN" /><input type="hidden" value="详细地址" /></li>
+                <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtPostCodeEditN" /><input type="hidden" value="邮政编码" /></li>
+
+            </ul>
+            <p class="h20 lh20 red"><div id="txtPhoneEditNTip"></div><div id="txtRecieverEditNTip"></div><div id="txtAddrEditNTip"></div><div id="txtPostCodeEditNTip"></div></p>
+            <input type="text" style="display:none" id="txtAddrIdN" />
+        </div>
+
+        <div class="mineB">
+            <ul class="white_bg">
+                <li>
+                    <a id="btnAddNewAddr" class="oh block">
+                        <i class="right_s icon_s fl margin_r10"></i>
+                        <p class="fl f16">保存修改</p>
+                    </a>
+                </li>
+                @*<li>
+                        <a onclick="EdidAddress(2)" class="oh block">
+                            <i class="wrong_s icon_s fl margin_r10"></i>
+                            <p class="fl f16">删除此地址</p>
+                        </a>
+                    </li>*@
+
+            </ul>
+        </div>
+    </div>
+
+</div>
 
 @RenderPage("~/Views/Shared/_Footer.cshtml")

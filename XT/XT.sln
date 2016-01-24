@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UL.AXT", "UL.AXT\UL.AXT.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UL.AXT.Background", "UL.AXT.Background\UL.AXT.Background.csproj", "{165FB83D-3925-4780-8CC1-39A5BE603577}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UL.AXT.TimerTask", "UL.AXT.TimerTask\UL.AXT.TimerTask.csproj", "{032EC16F-F014-4841-8647-394B1F8BB1FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{165FB83D-3925-4780-8CC1-39A5BE603577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{165FB83D-3925-4780-8CC1-39A5BE603577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{165FB83D-3925-4780-8CC1-39A5BE603577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032EC16F-F014-4841-8647-394B1F8BB1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032EC16F-F014-4841-8647-394B1F8BB1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032EC16F-F014-4841-8647-394B1F8BB1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032EC16F-F014-4841-8647-394B1F8BB1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

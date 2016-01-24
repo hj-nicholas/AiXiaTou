@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 using BLL;
 using Hoo.WeChat.WxPayAPI;
 using Model;
+using Newtonsoft.Json;
 using UL.AXT.Common;
 
 namespace UL.AXT.Controllers
@@ -118,7 +121,11 @@ namespace UL.AXT.Controllers
             ProductModel prodModel = new ProductModel();
             BaseResult br = order.updOrderSts(orderId, 1);
             if (br.Succeeded)
+            {
                 prodModel = prod.GetProdByOrder(orderId);
+                OpenLottery(prodModel.PeriodId);
+
+            }
             return View(prodModel);
         }
 
@@ -212,6 +219,12 @@ namespace UL.AXT.Controllers
             {
                 //查询该礼物分享的信息
                 T_User_Share shareDto = prod.GetShareById(shareId);
+                if (shareDto.ShareNum - shareDto.RevGiftNum == 0)
+                {
+                    br.Succeeded = false;
+                    br.ErrMsg = "礼物已领取完";
+                    return br;
+                }
                 //用户接受分享礼物,随机生成礼物数量（一个用户可以同时接受到多个虾仔）
                 int restGift = shareDto.ShareNum - shareDto.RevGiftNum - (shareDto.PeopleNum - shareDto.RevPeopleNum)+1;
                 Random rd = new Random();
@@ -224,6 +237,11 @@ namespace UL.AXT.Controllers
                 //插入虾仔记录
                 br= prod.UpdRevGiftInfo(shareId, userId, revNum, shareDto.PeriodId, codes);
                 //br.Succeeded = true;
+                if (br.Succeeded)
+
+                {
+                    OpenLottery(shareDto.PeriodId);
+                }
             }
             return br;
         }
@@ -278,23 +296,31 @@ namespace UL.AXT.Controllers
             ViewBag.NeedPay = needPay;
             ViewBag.OrderId = orderId;
 
-            //若传递了相关参数，则调统一下单接口，获得后续相关接口的入口参数
-            JsApiPay jsApiPay = new JsApiPay();
-            //jsApiPay.openid = "ooSaOwsnQbC52N-srS25TaEV-DeU";
-            jsApiPay.openid = userOpenId;
-            jsApiPay.total_fee = needPay;
-            ////JSAPI支付预处理
-            try
+            if (needPay != 0)
             {
-                WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult("购买虾投", needPay.ToString() + "只", "一元夺宝");
-                string wxJsApiParam = jsApiPay.GetJsApiParameters();//获取H5调起JS API参数   
-                ViewBag.WxJSParam = wxJsApiParam;
+                //若传递了相关参数，则调统一下单接口，获得后续相关接口的入口参数
+                JsApiPay jsApiPay = new JsApiPay();
+                //jsApiPay.openid = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+                jsApiPay.openid = userOpenId;
+                jsApiPay.total_fee = needPay;
+                //JSAPI支付预处理
+                try
+                {
+                    WxPayData unifiedOrderResult = jsApiPay.GetUnifiedOrderResult("购买虾投", needPay.ToString() + "只",
+                        "一元夺宝");
+                    string wxJsApiParam = jsApiPay.GetJsApiParameters(); //获取H5调起JS API参数   
+                    ViewBag.WxJSParam = wxJsApiParam;
 
+                }
+                catch (Exception ex)
+                {
+                    //Response.Write("<span style='color:#FF0000;font-size:20px'>" + "下单失败，请返回重试" + "</span>");
+                    //submit.Visible = false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                //Response.Write("<span style='color:#FF0000;font-size:20px'>" + "下单失败，请返回重试" + "</span>");
-                //submit.Visible = false;
+                ViewBag.WxJSParam = "TEMP";
             }
             return View();
         }
@@ -303,9 +329,10 @@ namespace UL.AXT.Controllers
         {
             ViewBag.NeedPay = needPay;
             ViewBag.ShareId = shareId;
-
-            //若传递了相关参数，则调统一下单接口，获得后续相关接口的入口参数
-            JsApiPay jsApiPay = new JsApiPay();
+            if (needPay != 0)
+            {
+                //若传递了相关参数，则调统一下单接口，获得后续相关接口的入口参数
+                JsApiPay jsApiPay = new JsApiPay();
             //jsApiPay.openid = "ooSaOwsnQbC52N-srS25TaEV-DeU";
             jsApiPay.openid = userOpenId;
             jsApiPay.total_fee = needPay;
@@ -321,6 +348,11 @@ namespace UL.AXT.Controllers
             {
                 //Response.Write("<span style='color:#FF0000;font-size:20px'>" + "下单失败，请返回重试" + "</span>");
                 //submit.Visible = false;
+            }
+            }
+            else
+            {
+                ViewBag.WxJSParam = "TEMP";
             }
             return View();
         }
@@ -389,15 +421,82 @@ namespace UL.AXT.Controllers
                 {
                     Directory.CreateDirectory(path);
                 }
-                imgPath = strUploadPath+relPath + hfc[0].FileName;
+                //imgPath = strUploadPath+relPath + hfc[0].FileName;
+                string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".jpg";
+                imgPath = strUploadPath + relPath + fileName;
                 string PhysicalPath = Server.MapPath(imgPath);
                 hfc[0].SaveAs(PhysicalPath);
 
                 //添加照片
-                result = prod.AddPic(period, relPath+ hfc[0].FileName, 1);
+                result = prod.AddPic(period, relPath+ fileName, 1);
             }
             return Json(new { Succeeded=result.Succeeded,errMsg=result.ErrMsg, imgPath1 = imgPath }, "text/html", JsonRequestBehavior.AllowGet);
 
+        }
+
+        #region 测试
+        public ActionResult Test()
+        {
+            return View();
+        }
+
+        public JsonResult TX()
+        {
+            string result = "";
+            PayWeiXin model = new PayWeiXin();
+            PayForWeiXinHelp PayHelp = new PayForWeiXinHelp();
+            //传入OpenId
+            //string openId = context.Request.Form["openId"].ToString();
+            //传入红包金额(单位分)
+            string amount = "2";
+            //接叐收红包的用户 用户在wxappid下的openid 
+            model.re_openid = "ooSaOwsnQbC52N-srS25TaEV-DeU";
+            //付款金额，单位分 
+            model.total_amount = int.Parse(amount);
+            //最小红包金额，单位分 
+            model.min_value = int.Parse(amount);
+            //最大红包金额，单位分 
+            model.max_value = int.Parse(amount);
+            //调用方法
+            string postData = PayHelp.DoDataForPayWeiXin(model);
+            try
+            {
+                result = PayHelp.PayForWeiXin(postData);
+            }
+            catch (Exception ex)
+            {
+                //写日志
+            }
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(result);
+            string jsonResult = JsonConvert.SerializeXmlNode(doc);
+
+            return Json(jsonResult);
+        }
+
+        #endregion
+
+        public void OpenLottery(int periodId)
+        {
+            BaseResult result = new BaseResult();
+            result = prod.IsBuyOver(periodId);
+            //自动获取彩票
+            if (result.ResultId=="0")
+            {
+                string path = "/LotteryExe/UL.AXT.TimerTask.exe";
+                string PhysicalPath = Server.MapPath(path);
+
+                Process proc = new Process();
+                proc.StartInfo.FileName = PhysicalPath;
+                proc.StartInfo.Arguments = periodId.ToString();
+                proc.Start();
+            }
+        }
+
+        public JsonResult GetRestShrimpNum(int periodId)
+        {
+            BaseResult result = prod.GetRestShrimpNum(periodId);
+            return Json(result);
         }
     }
 }

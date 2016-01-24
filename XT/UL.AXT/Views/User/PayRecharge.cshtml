@@ -1,6 +1,5 @@
 ﻿
 @{
-    ViewBag.Title = "PayRecharge";
     Layout = "~/Views/Shared/Main.cshtml";
 }
 <script type="text/javascript">
@@ -49,6 +48,19 @@
     );
     }
 </script>
-<h2>PayRecharge</h2>
 
-<input type="button" id="btnPay" value="确认支付"/>
+<div class="mainM">
+
+    <div class="order_submit">
+        <ul>
+            <li class="white_bg"><span class="fl">待支付：@ViewBag.ChargeNum 元</span></li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="user_caseB oh margin_t20 margin_b20">
+        <a href="#" class="button orange_bg tc block gray3_border br4" id="btnPay">支付</a>
+    </div>
+</div>

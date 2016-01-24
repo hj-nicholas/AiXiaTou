@@ -72,5 +72,11 @@ namespace BLL
             return lst;
         }
 
+        public BaseResult SaveAward(int userId, int periodId, int type, string awardNo, int addrId)
+        {
+            var result = user.SaveAward(userId, periodId,type,awardNo,addrId);
+            return result;
+        }
+
     }
 }
