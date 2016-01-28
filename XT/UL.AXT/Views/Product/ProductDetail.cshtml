@@ -46,11 +46,11 @@
                 {
                     if (i == 0)
                     {
-                        <a class="orange_bg gray3_border1 h20 lh20 br4 fl">第 @lstPeriod[i].PeriodNum 期进行中</a>
+                        <a class="orange_bg gray3_border1 h20 lh20 br4 fl" href="/Product/ProductDetail?periodId=@lstPeriod[i].PeriodID ">第 @lstPeriod[i].PeriodNum 期进行中</a>
                     }
                     else
                     {
-                        <a class=" gray3_border1 h20 lh20 br4 fl">第 @lstPeriod[i].PeriodNum 期已开奖</a>
+                        <a class=" gray3_border1 h20 lh20 br4 fl" href="/Product/ProductDetail?periodId=@lstPeriod[i].PeriodID ">第 @lstPeriod[i].PeriodNum 期已开奖</a>
                     }
 
 

@@ -78,5 +78,28 @@ namespace BLL
             return result;
         }
 
+        public List<UserDTO> GetUserByType(int type)
+        {
+            var lstUser = user.GetUserByType(type);
+            return lstUser;
+        }
+
+        public BaseResult UpdUserAcc(int accNum, int userId)
+        {
+            var result = user.UpdUserAcc(accNum, userId);
+            return result;
+        }
+
+        public T_UserAddr GetAwardAddr(int periodId)
+        {
+            var addr = user.GetAwardAddr(periodId);
+            return addr;
+        }
+
+        public BaseResult AddAwardInfo(int periodId, string awardNo)
+        {
+            var result = user.AddAwardInfo(periodId, awardNo);
+            return result;
+        }
     }
-}
+    }

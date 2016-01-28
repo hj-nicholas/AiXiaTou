@@ -9,7 +9,7 @@
 <script type="text/javascript">
     var usedYE = 0;
     $(function() {
-       
+
         //使用余额支付
         $("#useYE").change(function() {
             var ded = Math.round('@ViewBag.UserInfo.AccountBalance');
@@ -42,16 +42,39 @@
             if (!$.formValidator.pageIsValid('1'))
                 return false;
 
+            var flag=false;
             $.ajax({
-                url: "/Product/AddGift",
+                url: "/Product/GetRestShrimpNum",
                 type: "POST",
-                data: { peopleNum: $("#peopleNum").val(), giftNum: $("#buyPortion").val(), periodId: '@Model.PeriodId', userId: getCookie("UserId"),usedYE:usedYE },
+                async:false,
+                data: {periodId:'@Model.PeriodId'},
                 success: function(data) {
                     if (data["Succeeded"]) {
-                        window.location.href = "/Product/PayGift?shareId=" + data["ResultId"] + "&needPay=" + $("#needPay").text() + "&userOpenId=" + getCookie("OpenId");
+                        if (parseInt(data["ResultId"]) >= parseInt($("#buyPortion").val())) {
+                           
+                            flag = true;
+                        } else {
+                            alert("超出活动购买数量，请刷新页面重新提交！");
+                            //return false;
+                            flag=false;
+                        }
                     }
                 }
             });
+            //余量足够才能购买
+            if (flag) {
+                $.ajax({
+                    url: "/Product/AddGift",
+                    type: "POST",
+                    data: { peopleNum: $("#peopleNum").val(), giftNum: $("#buyPortion").val(), periodId: '@Model.PeriodId', userId: getCookie("UserId"),usedYE:usedYE },
+                    success: function(data) {
+                        if (data["Succeeded"]) {
+                            window.location.href = "/Product/PayGift?shareId=" + data["ResultId"] + "&needPay=" + $("#needPay").text() + "&userOpenId=" + getCookie("OpenId");
+                        }
+                    }
+                }); 
+            }
+           
         });
     });
 

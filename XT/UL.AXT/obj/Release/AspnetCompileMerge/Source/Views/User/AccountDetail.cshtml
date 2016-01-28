@@ -8,7 +8,7 @@
     <div class="user_caseT white_bg br4 oh">
         <h3 class="gray9 fn">当前数量<a class="fr"><span class="fr">余额说明</span><i class="question_s fr icon_s "></i></a></h3>
         <h2 class="red">@ViewBag.Account<i class="gray6"> 只</i><span class="gray9">（可提现 @ViewBag.Account 元）</span></h2>
-        <a href="#" class="button orange_bg tc fl gray3_border br4">提现</a>
+        <a href="/User/Withdraw?userId=@ViewBag.UserId" class="button orange_bg tc fl gray3_border br4">提现</a>
         <a href="/User/Recharge?userId=@ViewBag.UserId" class="button orange_bg tc fr gray3_border br4">充值</a>
     </div>
     <div class="user_caseM white_bg">

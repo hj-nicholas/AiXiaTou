@@ -11,7 +11,7 @@
     var usedYE = 0;
     $(function() {
         var openId = getCookie("OpenId");
-        
+
         //获取用户信息
         //alert(openId);
         //$("#PayUser").text(getCookie("UserName"));
@@ -54,28 +54,35 @@
             if (!$.formValidator.pageIsValid('1'))
                 return false;
 
+             var flag=false;
             $.ajax({
                 url: "/Product/GetRestShrimpNum",
                 type: "POST",
-                data: {periodId:'@Model.PeriodId'},
+                async:false,
+                data: {periodId:'@Model.PeriodId' },
                 success: function(data) {
                     if (data["Succeeded"]) {
-                        if (parseInt(data["ResultId"]) < parseInt($("#portionNum").val())) {
+                        if (parseInt(data["ResultId"]) >= parseInt($("#portionNum").val())) {
+
+                            flag = true;
+                        } else {
                             alert("超出活动购买数量，请刷新页面重新提交！");
-                            return false;
+                            //return false;
+                            flag = false;
                         }
                     }
                 }
             });
-
-            var lotterys = $("#txtLotterys").val();
-            var tel = "";// $("#txtPhone").val();
-            var email ="";// $("#txtMail").val();
-            //window.location.href = "/Product/PayOrder?lottery=" + lotterys + "&phone=" + tel + "&email=" + email;
-            $.ajax({
-                url: "/Product/AddOrder",
-                type: "POST",
-                data: { lottery: lotterys, phone: tel, email: email, periodId: '@Model.PeriodId', userName: getCookie("UserName"), addr: "", userId: getCookie("UserId"), buyNum: $("#portionNum").val(),usedYE:usedYE },
+            //余量足够才能购买
+            if (flag) {
+                var lotterys = $("#txtLotterys").val();
+                var tel = ""; // $("#txtPhone").val();
+                var email = ""; // $("#txtMail").val();
+                //window.location.href = "/Product/PayOrder?lottery=" + lotterys + "&phone=" + tel + "&email=" + email;
+                $.ajax({
+                    url: "/Product/AddOrder",
+                    type: "POST",
+                    data: { lottery: lotterys, phone: tel, email: email, periodId: '@Model.PeriodId', userName: getCookie("UserName"), addr: "", userId: getCookie("UserId"), buyNum: $("#portionNum").val(),usedYE:usedYE },
                 //data:{payFee:$("#needPay").val(),userOpenId:getCookie("OpenId")},
                 success: function(data) {
                     if (data["Succeeded"]) {
@@ -83,6 +90,7 @@
                     }
                 }
             });
+                }
         });
 
 

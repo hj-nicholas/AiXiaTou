@@ -297,7 +297,6 @@
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="cert\apiclient_cert.p12" />
     <None Include="Properties\PublishProfiles\AiXiaTou.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Common\common.js" />
@@ -479,9 +478,11 @@
     <Content Include="Views\User\SharePolite.cshtml" />
     <Content Include="Views\User\Share.cshtml" />
     <Content Include="Views\Product\Test.cshtml" />
+    <Content Include="Views\User\Withdraw.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="cert\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

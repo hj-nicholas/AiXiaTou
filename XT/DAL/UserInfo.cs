@@ -383,8 +383,113 @@ namespace DAL
             return result;
         }
 
-       
+        public List<UserDTO> GetUserByType(int type)
+        {
+            List<UserDTO> lstUser = new List<UserDTO>();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetUserInfo", strConn);
+                cmd.Parameters["@p_type"].Value = type;
+                
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        UserDTO userInfo = new UserDTO();
+                        userInfo.UserID = Convert.ToInt32(rdr["UserID"]);
+                        userInfo.UserName = Convert.ToString(rdr["UserName"]);
+                        userInfo.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
+                        userInfo.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
+                        userInfo.DonateNum = Convert.ToInt32(rdr["DonateNum"]);
+                        userInfo.Cellphone = Convert.ToString(rdr["Cellphone"]);
+                        userInfo.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
 
+                        lstUser.Add(userInfo);
+                    }
+                }
+
+                return lstUser;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult UpdUserAcc(int accNum, int userId)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pUpdUserAcc", strConn);
+                cmd.Parameters["@p_AccNum"].Value = accNum;
+                cmd.Parameters["@p_userId"].Value = userId;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
+
+        public T_UserAddr GetAwardAddr(int periodId)
+        {
+            T_UserAddr addr = new T_UserAddr();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetAwardAddrById", strConn);
+                cmd.Parameters["@p_periodId"].Value = periodId;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        addr.UserID = Convert.ToInt32(rdr["UserID"]);
+                        addr.AddressId = Convert.ToInt32(rdr["AddressId"]);
+                        addr.AddressDesc = Convert.ToString(rdr["AddressDesc"]);
+                        addr.Receiver = Convert.ToString(rdr["Receiver"]);
+                        addr.Phone = Convert.ToString(rdr["Phone"]);
+                        addr.PostCode = Convert.ToString(rdr["PostCode"]);
+                      
+                    }
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return addr;
+        }
+        
+            public BaseResult AddAwardInfo(int periodId, string awardNo)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddAwardInfo", strConn);
+                cmd.Parameters["@p_periodId"].Value = periodId;
+                cmd.Parameters["@p_awardNo"].Value = awardNo;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+
+                result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
     }
 }
 

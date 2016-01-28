@@ -53,10 +53,10 @@ namespace UL.AXT.Controllers
             //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwsnQbC52N-srS25TaEV-DeU");
             //userDto = new BLL.UserInfo().GetUserInfo(Convert.ToInt32(6));
 
-            //Session["UserId"] = "8";
+            //Session["UserId"] = "9";
 
-            //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwrLCdkbv2v54M-bdbu5itKw");
-            //userDto = new BLL.UserInfo().GetUserInfo(Convert.ToInt32(8));
+            //Hoo.Common.WeChat.UserInfo userInfo = new Hoo.Common.WeChat.UserInfo("ooSaOwvwiW_Do1cN3w0TGRMIRNrk");
+            //userDto = new BLL.UserInfo().GetUserInfo(Convert.ToInt32(9));
 
             //userDto = business.ChangeUserByWeChatInfo(userInfo);
             //Log.WriteLog("username:", userDto.UserName);

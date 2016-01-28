@@ -122,6 +122,28 @@ namespace Model
     public partial class T_ProductPeriods
     {
         public int IsActual { get; set; }
+
+        //已购总数
+        public int BuyTotalNum { get; set; }
+        //参与人数
+        public int OrderUserNum { get; set; }
+        //已购X总数
+        public int BuyXNum { get; set; }
+        //参与X人数
+        public int XUserNum { get; set; }
+        //已购S总数
+        public int BuySNum { get; set; }
+        //参与S人数
+        public int SUserNum { get; set; }
+        //S领取数
+        public int RevSNum { get; set; }
+        //点击数量
+        public int ClickNum { get; set; }
+        //收藏数量
+        public int Enshrine { get; set; }
+        public decimal ActualPrice { get; set; }
+        //中奖者
+        public string Winner { get; set; }
     }
 }
 

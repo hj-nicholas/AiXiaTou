@@ -80,7 +80,7 @@
                     <li class="white_bg">
                         <a href="/User/RevGiftDetail?shareId=@rev.ShareId&userId=@ViewBag.UserId">
                             <p class="f14 oh"><i class="yuan_s fl icon_s"></i><span class="gray9 f12 fl">@rev.CreateTime</span></p>
-                            @if (string.IsNullOrEmpty(rev.GetLotNum))
+                            @if (string.IsNullOrEmpty(rev.LotteryNum))
                             {
                                 <p class="f16 pr">
                                     <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.GetLotNum</i>

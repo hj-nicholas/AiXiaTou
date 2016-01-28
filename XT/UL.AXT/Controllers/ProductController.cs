@@ -23,8 +23,9 @@ namespace UL.AXT.Controllers
         // GET: Product
         public ActionResult Index(int proType = 1)
         {
-
+            Common.Log.WriteLog("test:", "1");
             List<ProductModel> lst = prod.GetProducts(proType, 0).ToList();
+            Common.Log.WriteLog("test:", "2");
             return View(lst);
         }
 

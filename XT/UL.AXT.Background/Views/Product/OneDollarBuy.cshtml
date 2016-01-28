@@ -23,25 +23,50 @@
         
         $("a[name='prizeInfo']").click(function () {
             var pid = $(this).attr("tag");
-            //$("#xPeriodId").val(pid);
-            //AlertDiv("#a2");
-
-            $.ajax({
-                url: "/Product/OpenLot",
-                type: "POST",
-                data: { periodId: pid },
-                success: function (data) {
-                    if (data["Succeeded"]) {
-                        alert("开奖");
-                        AlertClose("#a1");
-                    } else {
-                        alert("失败");
+            var proType = $(this).attr("proType");
+            
+            if (proType == 1) {
+                $.ajax({
+                    url: "/Product/GetAwardAddr",
+                    type: "POST",
+                    data: { periodId: pid },
+                    success: function (data) {
+                        if (data["AddressId"]!=null) {
+                            var info = "";
+                            info += " 收货人：" + data["Receiver"];
+                            info += " 收货地址：" + data["AddressDesc"];
+                            info += " 电话：" + data["Phone"];
+                            info += " 邮编：" + data["PostCode"];
+                            alert(info);
+                        } else {
+                            alert("获取信息失败");
+                        }
                     }
-                }
-            });
+                });
+            } else if (proType == 2) {
+                $("#txtPeriodId").val(pid);
+                AlertDiv("#a3");
+            }
+           
         });
-    });
 
+       
+    });
+    function SaveAward() {
+        $.ajax({
+            url: "/Product/AddAwardInfo",
+            type: "POST",
+            data: { periodId: $("#txtPeriodId").val(), awardNo: $("#awardInfo").val() },
+            success: function (data) {
+                if (data["Succeeded"]) {
+                    alert("信息保存成功");
+                    AlertClose("#a3");
+                } else {
+                    alert(data["ErrMsg"]);
+                }
+            }
+        });
+    }
     function OpenLot() {
         $.ajax({
             url: "/Product/OpenLot",
@@ -105,17 +130,22 @@
                                     <td>A @prod.ProductNO</td>
                                     <td>@prod.prodPeriods.Count()</td>
                                     <td><a class="blue">@prod.ProductName</a></td>
-                                    <td>2500</td>
-                                    <td>10000</td>
-                                    <td>5000</td>
-                                    <td>3000</td>
-                                    <td>30%</td>
-                                    <td>1000</td>
-                                    <td>200</td>
-                                    <td>20</td>
-                                    <td>100</td>
-                                    <td>12550</td>
-                                    <td>2000</td>
+                                    <td>@(prod.TotalProdPrice/prod.TotalPeriodNum)</td>
+                                    <td>@prod.BuyTotalNum</td>
+                                    <td>@prod.OrderUserNum</td>
+                                    <td>@prod.BuyXNum</td>
+                                    @if (prod.BuyTotalNum != 0)
+                                    {
+                                        <td>@(prod.BuyXNum*100 / prod.OrderUserNum)%</td>
+                                    }
+                                    else
+                                    { <td>0</td>}
+                                    <td>@prod.XUserNum</td>
+                                    <td>@prod.BuySNum</td>
+                                    <td>@prod.SUserNum</td>
+                                    <td>@prod.RevSNum</td>
+                                    <td>@prod.ClickNum</td>
+                                    <td>@prod.Enshrine</td>
                                 </tr>
                                 <tr>
                                     <td colspan="14">
@@ -144,29 +174,48 @@
                                             @foreach (var period in @prod.prodPeriods)
                                             {
                                                 <tr>
-                                                    <td>0001</td>
-                                                    <td>2500元</td>
-                                                    <td>1元</td>
-                                                    <td>2500</td>
-                                                    <td>2000</td>
-                                                    <td><a class="blue">1500</a></td>
-                                                    <td>1000</td>
-                                                    <td>50%</td>
-                                                    <td><a class="blue">500</a></td>
-                                                    <td>100</td>
-                                                    <td>5</td>
-                                                    <td>90</td>
-                                                    <td>1100</td>
-                                                    <td>325</td>
-                                                    <td>未开奖</td>
-                                                    <td>未开奖</td>
-                                                    <td>无</td>
-                                                    <td>正常</td>
+                                                    <td>@period.PeriodNum</td>
+                                                    <td>@period.ProductPrice 元</td>
+                                                    <td>@period.UnitPrice 元</td>
+                                                    <td>@period.ProductPrice</td>
+                                                    <td>@period.BuyTotalNum</td>
+                                                    <td><a class="blue">@period.OrderUserNum</a></td>
+                                                    <td>@period.BuyXNum</td>
+                                                    @if (period.BuyTotalNum != 0)
+                                                    {
+                                                        <td>@(period.BuyXNum*100/period.BuyTotalNum) %</td>
+                                                    }
+                                                    else
+                                                    {
+                                                       <td>0</td>
+                                                    }
+
+                                                    <td><a class="blue">@period.XUserNum</a></td>
+                                                    <td>@period.BuySNum</td>
+                                                    <td>@period.SUserNum</td>
+                                                    <td>@period.RevSNum</td>
+                                                    <td>@period.ClickNum</td>
+                                                    <td>@period.Enshrine</td>
+                                                    @if (string.IsNullOrEmpty(period.ProLotteryNum))
+                                                    {
+                                                        <td>未开奖</td>
+                                                        <td>未开奖</td>
+                                                        <td>无</td>
+                                                        <td>正常</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>@period.Winner</td>
+                                                        <td>@period.ProLotteryNum</td>
+                                                        <td>无</td>
+                                                        <td>已开奖</td>
+                                                    }
+
                                                     <td>
                                                         <a class=" green_bg fl white tc br2">编辑</a>
                                                         <a class=" green_bg fl white tc br2" tag="@period.PeriodID" name="openLot" href="#">开奖</a>
                                                         <a class=" green_bg fl white tc br2"  tag="@period.PeriodID" name="xEdit" href="#">X编辑</a>
-                                                        <a class=" green_bg fl white tc br2"  tag="@period.PeriodID" name="prizeInfo" proType="@period">中奖</a>
+                                                        <a class=" green_bg fl white tc br2"  tag="@period.PeriodID" name="prizeInfo" proType="@prod.IsActual">中奖</a>
                                                     </td>
                                                 </tr>
                                             }
@@ -208,21 +257,43 @@
 
 <div class="alert" id="a2">
     <div class="alertZ"></div>
-    <div class="alertC" style="width:600px;">
+    <div class="alertC" style="width: 600px;">
         <div class="alertCT oh">
             <p class="fl f16">提交成功</p>
             <i class="icon alert_close fr Animate_rotateIn" onclick="AlertClose(this)"></i>
         </div>
         <div class="alertCB alertCB_S">
 
-            购买数量<input id="xNum" type="text" value="" />
+            购买数量<input id="xNum" type="text" value=""/>
             <input id="xPeriodId" type="text" value="" style="display: none"/>
             购买的虾仔
-            <input type="text"  onscroll="true" value="" id="txtXcode"/>
+            <input type="text" onscroll="true" value="" id="txtXcode"/>
         </div>
         <div class="alertCM">
             <div class="button">
                 <a class="fr mblue_bg white tc br2" onclick="AddXNum()">保存</a>
+                <a class="fr gray_bg white tc br2" onclick="AlertClose(this)">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert" id="a3">
+    <div class="alertZ"></div>
+    <div class="alertC" style="width:600px;">
+        <div class="alertCT oh">
+            <p class="fl f16"></p>
+            <i class="icon alert_close fr Animate_rotateIn" onclick="AlertClose(this)"></i>
+        </div>
+        <div class="alertCB alertCB_S">
+
+            奖品信息<input id="awardInfo" type="text" value="" />
+            <input id="txtPeriodId" type="text" value="" style="display: none" />
+           
+        </div>
+        <div class="alertCM">
+            <div class="button">
+                <a class="fr mblue_bg white tc br2" onclick="SaveAward()">保存</a>
                 <a class="fr gray_bg white tc br2" onclick="AlertClose(this)">取消</a>
             </div>
         </div>

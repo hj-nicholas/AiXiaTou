@@ -106,5 +106,7 @@ namespace Model
         public int IsSupp { get; set; }
        
         public string City { get; set; }
+
+        public DateTime ShowOrderTime  { get; set; }
     }
 }

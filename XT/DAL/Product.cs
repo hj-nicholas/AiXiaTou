@@ -43,6 +43,7 @@ namespace DAL
                         showOrder.UserImage = Convert.ToString(rdr["PhotoPath"]);
                         showOrder.IsSupp = Convert.ToInt32(rdr["IsSupp"]);
                         showOrder.City = Convert.ToString(rdr["City"]);
+                        //showOrder.ShowOrderTime = Convert.ToDateTime(rdr["CreateTime"]);
                         //照片信息
                         showOrder.Photos = GetImageByType(1, showOrder.PeriodID).ToList();
 
@@ -99,7 +100,11 @@ namespace DAL
                         if (!DBNull.Value.Equals(rdr["OpenTime"]))
                             prod.OpenTime = Convert.ToDateTime(rdr["OpenTime"]);
                         if (userId!=0)
+                        { 
                             prod.UserLots = GetLotterysByUid(prod.PeriodId, userId).ToList();
+                            prod.UserLotStr = string.Join(",", prod.UserLots.ToArray());
+                            
+                        }
                         lstProd.Add(prod);
                     }
                 }
@@ -108,6 +113,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                Log.WriteLog("test1-1:", ex.Message);
                 throw ex;
             }
         }
@@ -297,6 +303,8 @@ namespace DAL
                         prod.ProductPhoto = Convert.ToString(rdr["PhotoPath"]);
                         if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             prod.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
+                        if (!DBNull.Value.Equals(rdr["OpenTime"]))
+                            prod.OpenTime = Convert.ToDateTime(rdr["OpenTime"]);
 
                     }
                 }
@@ -772,6 +780,18 @@ namespace DAL
                         prod.ProductNO = Convert.ToString(rdr["ProductNO"]);
                         prod.InventoryNum = Convert.ToInt32(rdr["InventoryNum"]);
 
+                        prod.BuyTotalNum = Convert.ToInt32(rdr["BuyTotalNum"]);
+                        prod.OrderUserNum = Convert.ToInt32(rdr["OrderUserNum"]);
+                        prod.BuyXNum = Convert.ToInt32(rdr["BuyXNum"]);
+                        prod.XUserNum = Convert.ToInt32(rdr["XUserNum"]);
+                        prod.BuySNum = Convert.ToInt32(rdr["BuySNum"]);
+                        prod.SUserNum = Convert.ToInt32(rdr["SUserNum"]);
+                        prod.RevSNum = Convert.ToInt32(rdr["RevSNum"]);
+                        prod.ClickNum = Convert.ToInt32(rdr["ClickNum"]);
+                        prod.Enshrine = Convert.ToInt32(rdr["Enshrine"]);
+                        prod.TotalProdPrice = Convert.ToInt32(rdr["TotalProdPrice"]);
+                        prod.TotalPeriodNum = Convert.ToInt32(rdr["TotalPeriodNum"]);
+
                         prod.prodPeriods = GetAllPeriodsById(prod.ProductId);
                         lstProd.Add(prod);
                     }
@@ -806,6 +826,17 @@ namespace DAL
                         prod.UnitPrice = Convert.ToInt32(rdr["UnitPrice"]);
                         prod.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
                         prod.PeriodID = Convert.ToInt32(rdr["PeriodID"]);
+
+                        prod.BuyTotalNum = Convert.ToInt32(rdr["BuyTotalNum"]);
+                        prod.OrderUserNum = Convert.ToInt32(rdr["OrderUserNum"]);
+                        prod.BuyXNum = Convert.ToInt32(rdr["BuyXNum"]);
+                        prod.XUserNum = Convert.ToInt32(rdr["XUserNum"]);
+                        prod.BuySNum = Convert.ToInt32(rdr["BuySNum"]);
+                        prod.SUserNum = Convert.ToInt32(rdr["SUserNum"]);
+                        prod.RevSNum = Convert.ToInt32(rdr["RevSNum"]);
+                        prod.ClickNum = Convert.ToInt32(rdr["ClickNum"]);
+                        prod.Enshrine = Convert.ToInt32(rdr["Enshrine"]);
+                        prod.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
 
                         lstProd.Add(prod);
                     }
@@ -883,7 +914,7 @@ namespace DAL
             {
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetRestShrimpNum", strConn);
                 cmd.Parameters["@p_periodId"].Value = periodId;
-                cmd.Parameters["@o_count"].Value = periodId;
+                cmd.Parameters["@o_count"].Value = 0;
 
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
@@ -925,8 +956,8 @@ namespace DAL
         #endregion
 
         #region X用户操作
-        //后台用户购买操作
-        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO)
+        //后台用户购买操作/未分享完的记录
+        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO,int userType)
         {
             BaseResult br = new BaseResult();
             try
@@ -936,6 +967,7 @@ namespace DAL
                 cmd.Parameters["@p_RevNum"].Value = addNum;
                 cmd.Parameters["@p_periodId"].Value = periodId;
                 cmd.Parameters["@p_LotteryNO"].Value = lotteryNO;
+                cmd.Parameters["@p_userType"].Value = userType;
 
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
@@ -974,7 +1006,38 @@ namespace DAL
             return br;
         }
 
-       #endregion
+        public List<T_User_Share> GetRestShare(int periodId)
+        {
+            List<T_User_Share> lstShareDto = new List<T_User_Share>();
+            try
+            {
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetRestShare", strConn);
+                cmd.Parameters["@p_periodId"].Value = periodId;
+
+                using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
+                {
+                    while (rdr.Read())
+                    {
+                        T_User_Share shareDto = new T_User_Share();
+                        shareDto.PeriodId = Convert.ToInt32(rdr["PeriodId"]);
+                        //shareDto.ProductName = Convert.ToString(rdr["ProductName"]);
+                        //shareDto.PeopleNum = Convert.ToInt32(rdr["PeopleNum"]);
+                        shareDto.ShareUserId = Convert.ToInt32(rdr["ShareUserId"]);
+                        shareDto.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
+                        //shareDto.RevPeopleNum = Convert.ToInt32(rdr["RevPeopleNum"]);
+                        shareDto.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
+                        
+                        lstShareDto.Add(shareDto);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lstShareDto = new List<T_User_Share>();
+            }
+            return lstShareDto;
+        }
+        #endregion
     }
 
 }

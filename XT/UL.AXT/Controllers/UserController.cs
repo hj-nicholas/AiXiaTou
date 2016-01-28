@@ -4,9 +4,11 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 using BLL;
 using Hoo.WeChat.WxPayAPI;
 using Model;
+using Newtonsoft.Json;
 
 namespace UL.AXT.Controllers
 {
@@ -128,7 +130,7 @@ namespace UL.AXT.Controllers
 
         public ActionResult PayChargeSuccess(int userId,int chargeNum)
         {
-            //var result = user.RechargeAcc(userId, chargeNum);
+            var result = user.RechargeAcc(userId, chargeNum);
             return Redirect("AccountDetail?userId="+userId);
         }
 
@@ -243,7 +245,17 @@ namespace UL.AXT.Controllers
 
         public JsonResult RevRedEnvelope(int shareUserId, int revUserId)
         {
-            BaseResult result = user.RevShrimp(shareUserId, revUserId);
+            BaseResult result = new BaseResult();
+            if (revUserId == 0)
+            {
+                result.Succeeded = true;
+                result.ErrMsg = "用户信息丢失，请重新登录";
+            }
+            else
+            {
+                result = user.RevShrimp(shareUserId, revUserId);
+
+            }
             return Json(result);
         }
 
@@ -254,7 +266,97 @@ namespace UL.AXT.Controllers
             return Json(result);
         }
 
-      
+        public ActionResult Withdraw(int userId)
+        {
+            UserDTO userDto = user.GetUserInfo(userId);
+            return View(userDto);
+        }
+
+        public JsonResult TX(int money,string openId,int userId)
+        {
+            SortedDictionary<string, object> m_values = new SortedDictionary<string, object>();
+            BaseResult br = new BaseResult();
+            string result = "";
+//                @"
+
+//<xml>
+//<return_code><![CDATA[SUCCESS]]></return_code>
+//<return_msg><![CDATA[发放成功.]]></return_msg>
+//<result_code><![CDATA[SUCCESS]]></result_code>
+//<err_code><![CDATA[0]]></err_code>
+//<err_code_des><![CDATA[发放成功.]]></err_code_des>
+//<mch_billno><![CDATA[0010010404201411170000046545]]></mch_billno>
+//<mch_id> 10010404 </mch_id>
+//<wxappid><![CDATA[wx6fa7e3bab7e15415]]></wxappid>
+//<re_openid><![CDATA[onqOjjmM1tad - 3ROpncN - yUfa6uI]]></re_openid>
+//<total_amount> 1 </total_amount>
+//<send_listid> 100000000020150520314766074200 </send_listid>
+//<send_time> 20150520102602 </send_time>
+//</xml>
+//";
+            PayWeiXin model = new PayWeiXin();
+            PayForWeiXinHelp PayHelp = new PayForWeiXinHelp();
+            //传入OpenId
+            //string openId = context.Request.Form["openId"].ToString();
+            //传入红包金额(单位分)
+            int amount = money * 100;
+            //接叐收红包的用户 用户在wxappid下的openid 
+            model.re_openid = openId;
+            //付款金额，单位分 
+            model.total_amount = amount;
+            //最小红包金额，单位分 
+            model.min_value = amount;
+            //最大红包金额，单位分 
+            model.max_value = amount;
+            //调用方法
+            string postData = PayHelp.DoDataForPayWeiXin(model);
+            try
+            {
+                result = PayHelp.PayForWeiXin(postData);
+                //Common.Log.WriteLog("tx:", result);
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(result);
+                XmlNode xmlNode = doc.FirstChild;//获取到根节点<xml>
+                XmlNodeList nodes = xmlNode.ChildNodes;
+                foreach (XmlNode xn in nodes)
+                {
+                    XmlElement xe = (XmlElement)xn;
+                    m_values[xe.Name] = xe.InnerText;//获取xml的键值对到WxPayData内部的数据中
+                }
+
+                if (m_values["result_code"].ToString() == "SUCCESS")
+                {
+                    //红包提取成功
+                    br.Succeeded = true;
+                    br.ErrMsg = m_values["return_msg"].ToString();
+                    //更新用户账户
+                    user.UpdUserAcc(money, userId);
+                }
+                else if(m_values["result_code"].ToString() == "FAIL")
+                {
+                    br.Succeeded = false;
+                    br.ErrMsg = m_values["err_code_des"].ToString();
+                }
+                else 
+                {
+                    br.Succeeded = false;
+                    br.ErrMsg = "提现失败";
+                }
+
+                //Common.Log.WriteLog("TX result_code:", m_values["result_code"].ToString());
+            }
+            catch (Exception ex)
+            {
+                //写日志
+                br.Succeeded = false;
+                br.ErrMsg = "提现失败";
+            }
+            
+            
+
+            
+            return Json(br);
+        }
 
     }
 }

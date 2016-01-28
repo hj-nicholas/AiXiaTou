@@ -43,5 +43,9 @@ namespace Model
         public int AwardAddrId { get; set; }
         //奖券号
         public string AwardNo { get; set; }
+
+        //用户购买的虾仔码
+        //public List<UserOrderDTO> LstOrder { get; set; }
+        public string UserLotStr { get; set; }
     }
 }

@@ -123,6 +123,11 @@
             AlertDiv('#alert_address');
         });
 
+        $("a[name='shrimpNums']").click(function() {
+            var obj = $(this);
+            alert("虾码：" + obj.attr("tag"));
+        });
+
         $.formValidator.initConfig({ validatorGroup: "3", formID: "form3", onError: function () { alert("请查看错误信息"); } });
         $("#txtPhoneEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false }).regexValidator({ regExp: "mobile", dataType: "enum", onError: "手机号码格式不正确" });
         $("#txtRecieverEditN").formValidator({ validatorGroup: "3", onShow: "", onfocus: "", onCorrect: "", empty: false });
@@ -177,7 +182,7 @@
         <div class="orderBT lh30 oh fn">
             <i class="flagY_s fl icon_s margin_r5 margin_t5"></i>
             <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
-            <a href="#" class="fr br4 grayC_bg white f14">9只虾码</a>
+            <a href="#" class="fr br4 grayC_bg white f14" name="shrimpNums" tag="@prod.UserLotStr">@prod.UserLots.Count 只虾码</a>
             @if (prod.ProductPrice == prod.JoinedNum )
             {
                 <h3 class="fr fn">开奖中</h3>
@@ -220,7 +225,7 @@
                 <div class="orderBT lh30 oh fn">
                     <i class="flagB_s fl icon_s margin_r5 margin_t5"></i>
                     <h3 class="fl f18 fn">期数：@prod.PeriodNum</h3>
-                    <a href="" class="fr br4 grayC_bg white f14">9只虾码</a>
+                    <a href="#" class="fr br4 grayC_bg white f14"  name="shrimpNums"  tag="@prod.UserLotStr">@prod.UserLots.Count 只虾码</a>
                     <h3 class="fr fn">已开奖</h3>
                 </div>
                 <div class="orderBB">

@@ -15,6 +15,7 @@ namespace UL.AXT.Background.Controllers
         // GET: Product
 
         private BLL.Product prod = new Product();
+        private BLL.UserInfo user = new UserInfo();
         private string strUploadPath = ConfigurationManager.AppSettings["UploadFilePath"].ToString();
         private string XUserId= ConfigurationManager.AppSettings["XUserId"].ToString();
 
@@ -57,6 +58,20 @@ namespace UL.AXT.Background.Controllers
         public JsonResult OpenLot(int periodId,string lotteryNo)
         {
             BaseResult result = new BaseResult();
+            //未分享完全部返还给分享者
+            List<T_User_Share> lst = prod.GetRestShare(periodId);
+            foreach (var shareDto in lst)
+            {
+                var num = shareDto.ShareNum - shareDto.RevGiftNum;
+                string codes = GenerateCode(periodId, num);
+
+                result = prod.AddLotByXUser(shareDto.ShareUserId, num, periodId, codes,1);
+                if (!result.Succeeded)
+                {
+                    return Json(result);
+                }
+            }
+
             result = prod.OpenLot(periodId, lotteryNo);
             return Json(result);
         }
@@ -100,7 +115,8 @@ namespace UL.AXT.Background.Controllers
             BaseResult result = new BaseResult();
             string codes = GenerateCode(periodId, xnum);
             int userId = Convert.ToInt32(XUserId);
-            result = prod.AddLotByXUser(userId, xnum, periodId, codes);
+            
+            result = prod.AddLotByXUser(userId, xnum, periodId, codes,2);
             if (result.Succeeded)
                 result.ResultId = codes;
             return Json(result);
@@ -134,6 +150,18 @@ namespace UL.AXT.Background.Controllers
             BLL.Order order = new Order();
             bool flag = order.IsExistsLottery(code, periodId);
             return flag;
+        }
+
+        public JsonResult GetAwardAddr(int periodId)
+        {
+           T_UserAddr addr= user.GetAwardAddr(periodId);
+            return Json(addr);
+        }
+
+        public JsonResult AddAwardInfo(int periodId,string awardNo)
+        {
+            BaseResult result = user.AddAwardInfo(periodId, awardNo);
+            return Json(result);
         }
     }
 }

@@ -13,16 +13,16 @@
       <publishTime>12/09/2015 19:40:14</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>01/17/2016 21:34:31</publishTime>
+      <publishTime>01/28/2016 21:39:22</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>01/17/2016 21:34:31</publishTime>
+      <publishTime>01/28/2016 21:39:22</publishTime>
     </File>
     <File Include="bin/BLL.dll">
-      <publishTime>01/17/2016 21:33:05</publishTime>
+      <publishTime>01/28/2016 21:33:05</publishTime>
     </File>
     <File Include="bin/DAL.dll">
-      <publishTime>01/17/2016 21:33:05</publishTime>
+      <publishTime>01/28/2016 21:33:05</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>12/09/2015 19:41:02</publishTime>
@@ -73,7 +73,7 @@
       <publishTime>12/09/2015 19:40:31</publishTime>
     </File>
     <File Include="bin/Model.dll">
-      <publishTime>01/17/2016 21:33:05</publishTime>
+      <publishTime>01/28/2016 11:59:18</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>12/09/2015 19:40:59</publishTime>
@@ -139,7 +139,7 @@
       <publishTime>12/10/2015 20:33:22</publishTime>
     </File>
     <File Include="bin/UL.AXT.Background.dll">
-      <publishTime>01/17/2016 21:34:28</publishTime>
+      <publishTime>01/28/2016 21:39:19</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>12/09/2015 19:41:01</publishTime>
@@ -535,7 +535,7 @@
       <publishTime>01/14/2016 15:24:24</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/17/2016 21:34:29</publishTime>
+      <publishTime>01/28/2016 21:39:20</publishTime>
     </File>
     <File Include="Scripts/ajaxfileupload.js">
       <publishTime>01/16/2016 16:01:40</publishTime>
@@ -910,7 +910,7 @@
       <publishTime>01/14/2016 17:11:28</publishTime>
     </File>
     <File Include="Views/Product/OneDollarBuy.cshtml">
-      <publishTime>01/17/2016 18:56:50</publishTime>
+      <publishTime>01/28/2016 11:39:16</publishTime>
     </File>
     <File Include="Views/Product/PublishProd.cshtml">
       <publishTime>01/15/2016 20:36:48</publishTime>

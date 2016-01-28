@@ -28,8 +28,8 @@ namespace Hoo.WeChat.WxPayAPI
         //=======【证书路径设置】===================================== 
         /* 证书路径,注意应该填写绝对路径（仅退款、撤销订单时需要）
         */
-        public const string SSLCERT_PATH = "F:/XiaTou/Project/AiXiaTou.git/XT/UL.AXT/cert/apiclient_cert.p12";
-        public const string SSLCERT_PASSWORD = "1233410002";
+        public const string SSLCERT_PATH = "E:/WebSite/AiXiaTou/cert/apiclient_cert.p12";
+        public const string SSLCERT_PASSWORD = "1291399301";
 
 
 

@@ -151,9 +151,9 @@ namespace BLL
             return lst;
         }
 
-        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO)
+        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO, int userType)
         {
-            var result = pro.AddLotByXUser(userId, addNum, periodId, lotteryNO);
+            var result = pro.AddLotByXUser(userId, addNum, periodId, lotteryNO, userType);
             return result;
         }
 
@@ -169,5 +169,12 @@ namespace BLL
             var result = pro.GetRestShrimpNum(periodId);
             return result;
         }
+
+        public List<T_User_Share> GetRestShare(int periodId)
+        {
+            var lst = pro.GetRestShare(periodId);
+            return lst;
+        }
+
     }
 }

@@ -11,7 +11,8 @@
 
         $("#btnPay").click(function() {
 
-           //window.location.href = "/Product/PaySuccess?shareId="+@ViewBag.ShareId;
+            //HOO Test-6
+            //window.location.href = "/Product/PayGiftSuccess?shareId="+@ViewBag.ShareId;
 
             if (@ViewBag.NeedPay == 0) {
                 window.location.href = "/Product/PayGiftSuccess?shareId="+'@ViewBag.ShareId';
