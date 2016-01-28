@@ -1,0 +1,62 @@
+﻿@model Model.UserDTO
+@{
+    Layout = "~/Views/Shared/Main.cshtml";
+}
+
+<script src="~/Scripts/formValidator/formValidator-4.1.3.js"></script>
+<script src="~/Scripts/formValidator/formValidatorRegex.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#btnWithdraw").click(function () {
+            if (!$.formValidator.pageIsValid('1'))
+                return false;
+
+            $.ajax({
+                url:"/User/TX",
+                type:"POST",
+                async:false,
+                data: { money: $("#txtMoney").val(), openId: getCookie("OpenId"), userId: getCookie("UserId") },
+                success:function(data) {
+                    if (data["Succeeded"]) {
+                        alert(data["ErrMsg"]);
+                        window.location.href = "/User/Index?userId=@Model.UserID";
+                    } else {
+                        alert(data["ErrMsg"]);
+                    }
+
+                }
+            });
+        });
+
+        $.formValidator.initConfig({ validatorGroup: "1", formID: "form1", onError: function () { alert("请查看错误信息"); } });
+        $("#txtMoney").formValidator({ validatorGroup: "1", onShow: "", onCorrect: "", empty: false }).regexValidator({ regExp: "intege1", dataType: "enum", onError: "整数格式不正确" }).functionValidator({ fun: checkInt });
+
+    });
+
+    //输入值的校验func
+    function checkInt(val, elem) {
+
+        if ($(elem).val() > @Model.AccountBalance || $(elem).val() <= 0)
+            return "虾仔数不能小于0或者超过" + @Model.AccountBalance;
+        else
+            return true;
+    }
+</script>
+<div class="order_submit">
+    <h3 class="fn">可提现金额：<i class="red">@Model.AccountBalance 元</i></h3>
+    <ul>
+        <li class="white_bg"><input type="text" class="block Ntext h30 lh30" id="txtMoney" /><input type="hidden" value="请输入提现金额" /></li>
+        
+    </ul>
+    <p class="h20 lh20 red"><div id="txtMoneyTip"></div></p>
+</div>
+<div class="user_caseB white_bg oh">
+    <p class="f20 margin_t10 fb">1-3个工作日处理完成</p>
+    <p class="f12 gray6">银行处理可能会有延迟，具体以到账时间为准。</p>
+    <p class="f12 red margin_t20" style="height: auto;">注意：为了你的账户安全，平台将在第一次提现成功后将更新并锁定该账户真实姓名。</p>
+    <a href="#" class="button orange_bg tc block gray3_border br4" id="btnWithdraw">提现</a>
+    <p class="f14 tc">每日可提现一次</p>
+</div>
+
+
+@RenderPage("~/Views/Shared/_Footer.cshtml")

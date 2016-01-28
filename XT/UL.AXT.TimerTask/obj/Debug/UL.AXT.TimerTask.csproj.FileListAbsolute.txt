@@ -1,0 +1,17 @@
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\UL.AXT.TimerTask.exe.config
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.Form1.resources
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.Properties.Resources.resources
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.csproj.GenerateResource.Cache
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\UL.AXT.TimerTask.exe
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\UL.AXT.TimerTask.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.exe
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.csprojResolveAssemblyReference.cache
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\JsonObject.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\BLL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\Model.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\DAL.dll
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\BLL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\Model.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\bin\Debug\DAL.pdb
+F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.TimerTask\obj\Debug\UL.AXT.TimerTask.AddShrimpRD.resources

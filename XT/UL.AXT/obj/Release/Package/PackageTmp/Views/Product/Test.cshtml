@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#btnTX").click(function() {
+                $.ajax({
+                    url: "/Product/TX",
+                    data: {  },
+                    type: "POST",
+                    success: function () {
+
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <input type="button" value="提现" id="btnTX"/>
+</div>
+</body>
+</html>
