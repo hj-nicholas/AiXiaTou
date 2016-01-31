@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;//"~/Views/Shared/MainBg.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnLogin").click(function() {
+            $.ajax({
+                url: "/Product/Login",
+                type: "POST",
+                async: false,
+                data: { loginUser: $("#loginUser").val(), loginPwd: $("#loginPwd").val() },
+                success: function (data) {
+                    if (data["Succeeded"]) {
+                        window.location.href = "/Product/Index";
+                    } else {
+                        alert(data["ErrMsg"]);
+                    }
+                }
+            });
+        });
+        
+    });
+</script>
+
+<div>
+    <label>用户名</label><input id="loginUser" type="text" value="" /><br />
+    <label>密码</label><input id="loginPwd" type="password" value=""/><br />
+    <input type="button" value="登录" id="btnLogin" />
+</div>

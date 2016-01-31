@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainBg.cshtml";
+}
+<script type="text/javascript">
+    $(function() {
+        $.ajax({
+            url: "/Account/Login",
+            type: "POST",
+            async: false,
+            data: { loginUser: $("#loginUser").val(), loginPwd: $("#loginPwd").val() },
+            success:function(data) {
+                if (data["Succeeded"]) {
+                    window.location.href = "/Product/Index";
+                } else {
+                    alert(data["ErrMsg"]);
+                }
+            }
+    });
+    });
+</script>
+
+<div>
+    <label>用户名</label><input id="loginUser" type="text" value=""/><br/>
+    <label>密码</label><input id="loginPwd" type="password" value=""  />
+</div>

@@ -1,0 +1,12 @@
+2016/1/30 星期六 14:07:31 path:
+日志类型：操作日志
+详情：F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.Background/LotteryExe/UL.AXT.TimerTask.exe
+----------------------------------------
+2016/1/30 星期六 14:10:38 path:
+日志类型：操作日志
+详情：F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.Background/LotteryExe/UL.AXT.TimerTask.exe
+----------------------------------------
+2016/1/30 星期六 14:10:38 path:
+日志类型：操作日志
+详情：F:\XiaTou\Project\AiXiaTou.git\XT\UL.AXT.Background/LotteryExe/UL.AXT.TimerTask.exe
+----------------------------------------
