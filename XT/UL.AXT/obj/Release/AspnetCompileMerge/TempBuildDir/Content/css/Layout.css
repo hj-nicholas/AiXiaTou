@@ -319,4 +319,5 @@ input {vertical-align: middle;line-height: normal;}
 	.DalertCB p{ width:200px; height:auto; line-height:25px; font-size:14px;}
 	
 	
-	
+.loading{ width:100%; height:10000px; position:fixed; background-color:#000; opacity:0.9;   z-index:999999; left:0; top:0;}
+.loading img{ width:80px; left:50%; margin-left:-45px; top:150px; border-radius:10px;}	

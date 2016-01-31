@@ -15,7 +15,7 @@ namespace UL.AXT.TimerTask
   public  class LotteryRequest
     {
        
-      public string GetLottery()
+      public LotPerModel GetLottery()
       {
             string appkey = "488b6613d9dfc91e507e99eaba27bfb6e1dd5e65"; //配置您申请的appkey
 
@@ -36,9 +36,13 @@ namespace UL.AXT.TimerTask
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(result);
             string lotCot = doc.ChildNodes[1].ChildNodes[0].InnerText;
-            lotCot = lotCot.Replace(",","");
 
-          return lotCot;
+          LotPerModel model = new LotPerModel();
+            model.dateline= doc.ChildNodes[1].ChildNodes[0].Attributes["dateline"].Value;
+            model.LotPer= doc.ChildNodes[1].ChildNodes[0].Attributes["id"].Value;
+            model.number  = lotCot.Replace(",","");
+
+          return model;
 
 
           //List<Dictionary<string, LotPerModel>> lst =   JSONHelp.Instance().FromJson<List<Dictionary<string, LotPerModel>>>(result1);
@@ -222,6 +226,7 @@ namespace UL.AXT.TimerTask
     {
         public string number { get; set; }
         public string dateline { get; set; }
+        public string LotPer { get; set; }
     }
 }
 

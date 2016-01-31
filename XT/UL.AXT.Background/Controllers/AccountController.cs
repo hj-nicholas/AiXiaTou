@@ -5,10 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using BLL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using UL.AXT.Background.Models;
+using Model;
 
 namespace UL.AXT.Background.Controllers
 {
@@ -481,5 +483,17 @@ namespace UL.AXT.Background.Controllers
             }
         }
         #endregion
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public JsonResult Login(string loginUser,string loginPwd)
+        {
+            UserInfo user = new UserInfo();
+            BaseResult result = user.Login(loginUser, loginPwd);
+            return Json(result);
+        }
     }
 }

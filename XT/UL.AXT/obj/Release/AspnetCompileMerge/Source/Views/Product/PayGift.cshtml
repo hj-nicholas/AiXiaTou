@@ -13,7 +13,7 @@
 
             //HOO Test-6
             //window.location.href = "/Product/PayGiftSuccess?shareId="+@ViewBag.ShareId;
-
+            $(".loading").show();
             if (@ViewBag.NeedPay == 0) {
                 window.location.href = "/Product/PayGiftSuccess?shareId="+'@ViewBag.ShareId';
 
@@ -30,6 +30,9 @@
             else {
                 jsApiCall();
             }
+
+            $(".loading").hide();
+            
         });
     });
 
@@ -75,7 +78,8 @@
             <li class="white_bg  oh f14"><span class="fl">待支付：@ViewBag.NeedPay 元</span></li>
         </ul>
 
-        <p class="h20 lh20 f12" style="height:auto;">项目完成后将会把<b class="red">全部参与的虾仔发送到你的邮箱，以此体现本平台的公平性。</b>如获得礼品，虾兵（工作人员）会即刻联系您，协助处理相关事宜。</p>
+        <p class="h20 lh20 f12" style="height: auto;">项目完成后将会把<b class="red">全部参与的虾仔发送到你的邮箱，以此体现本平台的公平性。</b>如获得礼品，虾兵（工作人员）会即刻联系您，协助处理相关事宜。
+        </p>
     </div>
 
 
@@ -83,6 +87,11 @@
     <div class="user_caseB oh margin_t20 margin_b20">
         <a href="#" class="button orange_bg tc block gray3_border br4" id="btnPay">支付</a>
     </div>
+</div>
+
+
+<div class="loading" style="display:none">
+    <img src="~/Content/images/loading_1.gif" class="pa" />
 </div>
 @RenderPage("~/Views/Shared/_Footer.cshtml")
 

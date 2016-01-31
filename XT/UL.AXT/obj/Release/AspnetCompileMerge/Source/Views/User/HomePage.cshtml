@@ -6,8 +6,8 @@
 
 <div class="mainM user0">
     <div class="user0T orange_bg pr">
-        <img src="images/banner01.jpg" class="br20" />
-        <img src="@ViewBag.UserInfo.PhotoPath" class="" />
+        <img src="@ViewBag.UserInfo.PhotoPath" class="br20"/>
+        <img src="~/Content/images/user0T_bg.png" class="" />
         <p class="tc"><span class="lh30 f18">@ViewBag.UserInfo.UserName</span><br /><span class="lh25 f12">注册时间：2015年11月30日</span></p>
     </div>
     <div class="user0M white_bg">
@@ -26,7 +26,7 @@
             </li>
             <li>
                 <a class="red pr" onClick="selectTag('tagContent3',this,'tags','tagContent')"
-                   href="javascript:void(0)">消息<i class="red_bg pa br20 white tc f12"></i></a>
+                   href="javascript:void(0)">消息<i class="pa br20 white tc f12"></i></a>
             </li>
         </ul>
     </div>
@@ -45,7 +45,7 @@
                                     <p class="oh">
                                         <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
                                         <span class="f14 lh25 block gray6 oh "><em class="fl fsn">价值：@prod.ProductPrice 元</em></span>
-                                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn">期数：@prod.PeriodNum , @prod.ProductDesc</em></span>
+                                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn">第 @prod.PeriodNum 期, @prod.ProductDesc</em></span>
                                     </p>
 
                                 </a>
@@ -85,7 +85,7 @@
 <p class="oh">
                                         <b class="f16 lh30 h30 block fn oh">@prod.ProductName</b>
                                         <span class="f14 lh25 block gray6 oh "><em class="fl fsn">价值：@prod.ProductPrice 元</em></span>
-                                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn red">@prod.PeriodNum 已结束，中奖人：@prod.UserName</em></span>
+                                        <span class="f12 lh25 block gray6 oh"><em class="fl fsn red">第 @prod.PeriodNum 期 已结束，中奖人：@prod.UserName</em></span>
                                     </p>
 
                                 </a>

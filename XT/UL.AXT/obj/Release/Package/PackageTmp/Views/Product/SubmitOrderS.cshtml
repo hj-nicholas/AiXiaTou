@@ -63,6 +63,11 @@
             });
             //余量足够才能购买
             if (flag) {
+                if (getCookie("UserId") == "") {
+                    alert("信息丢失，请重新登录。");
+                    return false;
+                }
+
                 $.ajax({
                     url: "/Product/AddGift",
                     type: "POST",

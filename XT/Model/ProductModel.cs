@@ -47,5 +47,9 @@ namespace Model
         //用户购买的虾仔码
         //public List<UserOrderDTO> LstOrder { get; set; }
         public string UserLotStr { get; set; }
+
+        public string LotPeriod { get; set; }
+
+        public int IsRevRed { get; set; }
     }
 }

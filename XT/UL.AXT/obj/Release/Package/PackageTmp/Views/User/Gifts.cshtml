@@ -83,7 +83,7 @@
                             @if (string.IsNullOrEmpty(rev.LotteryNum))
                             {
                                 <p class="f16 pr">
-                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.GetLotNum</i>
+                                    <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾码：@rev.GetLotNum</i>
                                 </p>
                                 <p class="f12 oh">
                                     <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr grayC_bg white br4">未开奖</i><i class="fr grayC_bg white br4">赠</i><i class="fr grayC_bg white br4">@rev.SendUser</i>
@@ -104,10 +104,10 @@
                                 else
                                 {
                                     <p class="f16 pr">
-                                        <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾仔：@rev.GetLotNum</i>
+                                        <span class="fl">@rev.ProductName</span><i class="fr br4 f12">虾码：@rev.GetLotNum</i>
                                     </p>
                                     <p class="f12 oh">
-                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><i class="fr  red_bg white br4">领取奖品</i><i class="fr orange_bg br4">赠</i><i class="fr orange_bg br4">@rev.SendUser</i>
+                                        <span class="fl gray9">价值：@rev.ActualPrice 元</span><a><i class="fr  red_bg white br4">领取奖品</i></a><i class="fr orange_bg br4">赠</i><i class="fr orange_bg br4">@rev.SendUser</i>
                                     </p>
                                 }
 

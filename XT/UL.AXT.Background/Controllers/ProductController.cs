@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -110,15 +111,25 @@ namespace UL.AXT.Background.Controllers
 
         }
 
-        public JsonResult AddXNum(int periodId, int xnum)
+        public JsonResult AddXNum(int periodId, int xnum,decimal rate)
         {
             BaseResult result = new BaseResult();
-            string codes = GenerateCode(periodId, xnum);
-            int userId = Convert.ToInt32(XUserId);
+            result.Succeeded = true;
+            //string codes = GenerateCode(periodId, xnum);
+            //int userId = Convert.ToInt32(XUserId);
             
-            result = prod.AddLotByXUser(userId, xnum, periodId, codes,2);
-            if (result.Succeeded)
-                result.ResultId = codes;
+            //result = prod.AddLotByXUser(userId, xnum, periodId, codes,2);
+            //if (result.Succeeded)
+            //    result.ResultId = codes;
+
+            string path = "/BgAddLot/UL.AXT.TimerTask.exe";
+            string PhysicalPath = Server.MapPath(path);
+
+            Process proc = new Process();
+            proc.StartInfo.FileName = PhysicalPath;
+            proc.StartInfo.Arguments = periodId.ToString()+" "+ rate.ToString();
+            proc.Start();
+
             return Json(result);
         }
 
@@ -161,6 +172,18 @@ namespace UL.AXT.Background.Controllers
         public JsonResult AddAwardInfo(int periodId,string awardNo)
         {
             BaseResult result = user.AddAwardInfo(periodId, awardNo);
+            return Json(result);
+        }
+
+        public ActionResult LoginPage()
+        {
+            return View();
+        }
+
+        public JsonResult Login(string loginUser, string loginPwd)
+        {
+            UserInfo user = new UserInfo();
+            BaseResult result = user.Login(loginUser, loginPwd);
             return Json(result);
         }
     }

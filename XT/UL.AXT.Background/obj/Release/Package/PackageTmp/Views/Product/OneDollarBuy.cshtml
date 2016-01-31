@@ -87,10 +87,11 @@
         $.ajax({
             url: "/Product/AddXNum",
             type: "POST",
-            data: { periodId: $("#xPeriodId").val(), xnum: $("#xNum").val() },
+            data: { periodId: $("#xPeriodId").val(), xnum: $("#xNum").val(), rate: $("#Xrate").val() },
             success: function (data) {
                 if (data["Succeeded"]) {
-                    $("#txtXcode").val(data["ResultId"]);
+                    //$("#txtXcode").val(data["ResultId"]);
+                    $("#txtXcode").val("");
                 } else {
                     alert("添加失败");
                 }
@@ -264,10 +265,12 @@
         </div>
         <div class="alertCB alertCB_S">
 
-            购买数量<input id="xNum" type="text" value=""/>
+            @*购买数量*@<input id="xNum" type="text" value="1" style="display:none"/>
             <input id="xPeriodId" type="text" value="" style="display: none"/>
-            购买的虾仔
-            <input type="text" onscroll="true" value="" id="txtXcode"/>
+            @*购买的虾仔*@
+            <input type="text" onscroll="true" value="" id="txtXcode"  style="display: none"/>
+            购买比率
+            <input type="text"  value="" id="Xrate" />
         </div>
         <div class="alertCM">
             <div class="button">

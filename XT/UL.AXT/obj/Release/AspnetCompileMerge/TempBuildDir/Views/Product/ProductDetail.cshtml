@@ -13,7 +13,14 @@
         $("#shareFriends").click(function() {
             window.location.href = "/Product/SubmitOrderS?periodId=@Model.PeriodId" + "&userId=" + getCookie("UserId");
         });
+
+        setCss();
     });
+
+    function setCss() {
+        //$(".detailXB").children("a").removeClass("orange_bg");
+        $("#@Model.PeriodId").addClass("orange_bg");
+    }
 </script>
 <div class="mainM">
     <div class="detailX white_bg">
@@ -45,12 +52,12 @@
                 for (int i = 0; i < lstPeriod.Count; i++)
                 {
                     if (i == 0)
-                    {
-                        <a class="orange_bg gray3_border1 h20 lh20 br4 fl" href="/Product/ProductDetail?periodId=@lstPeriod[i].PeriodID ">第 @lstPeriod[i].PeriodNum 期进行中</a>
+                    {//orange_bg
+                        <a class=" gray3_border1 h20 lh20 br4 fl" href="/Product/ProductDetail?periodId=@lstPeriod[i].PeriodID " id="@lstPeriod[i].PeriodID">第 @lstPeriod[i].PeriodNum 期进行中</a>
                     }
                     else
                     {
-                        <a class=" gray3_border1 h20 lh20 br4 fl" href="/Product/ProductDetail?periodId=@lstPeriod[i].PeriodID ">第 @lstPeriod[i].PeriodNum 期已开奖</a>
+                        <a class=" gray3_border1 h20 lh20 br4 fl" href="/Product/ProductDetail?periodId=@lstPeriod[i].PeriodID " id="@lstPeriod[i].PeriodID">第 @lstPeriod[i].PeriodNum 期已开奖</a>
                     }
 
 
@@ -128,9 +135,10 @@
         </div>
         <div class="detailM">
             <div class="rule">
-                <p>1. 购买该理财产品即可获得四位数字的虾仔。</p>
-                <p>2. 投资名额抢完后，当天将把全部虾仔发送至投资人预留邮箱。</p>
-                <p>3. 赠送礼品将在确定幸运号码之后直接发货，用户资金将在理财产品到期后返还到虾投账号。</p>
+                <p>1.本商品购买以众筹的形式，购买一只虾码就有一份获得该商品的机会，即每个用户最低只需1元就有机会获得该商品。虾码在用户购买的时候随机生成。</p>
+                <p>2.该期商品的虾码在全部抢购完毕之后，采用该时间的下一期“重庆时时彩”开奖号码计算幸运虾码。重庆时时彩开奖结果可参考百度彩票：http://baidu.lecai.com/lottery/draw/view/200</p>
+                <p>3.在确定幸运虾码之后，实体商品通过物流派送，虚拟商品会提供卡密，红包商品则通过虾米红包方式发放，中奖信息可查看“我的”-参与 或 礼物。</p>
+                <p>4.重庆时时彩的开奖时间科普。06:00-10:00销售当天第一期，10:00统一开奖。10:00-22:00(10分钟一期，共72期)，22:00-02:00(5分钟一期,共48期)，02:00-06:00暂停销售，全天共计120期。故爱虾头在当天02：00-10：00之间无法快速开奖，请谅解并耐心等待。</p>
             </div>
         </div>
     </div>
@@ -140,8 +148,9 @@
         </div>
         <div class="detailM">
             <div class="rule">
-                <p>1. 投资名额抢完后（当天不计入内），第二天起最新一期的双色球开奖号码，如（12、25、30、32、16、09、11），幸运虾仔即取每对数字的尾数，如（2502691）。</p>
-                <p>2. 如无此号码则取最近号码，如距离一样则取较大号码为幸运号码。</p>
+                <p>1.以该期商品的虾码全部抢购完的时间为节点，获取下一期开奖的重庆时时彩的5位数字（如11点25分33秒抢完所有虾码，则取11点30分开奖的时时彩）作为幸运号。</p>
+                <p>2.如：重庆时时彩第20160130035期开奖号码52749时，把所有虾码与中奖号码数字对比，取最近的号码为幸运码，如距离一样则取较大虾码为幸运码。</p>
+                <p>3.特别提醒，使用“送给朋友”方式购买的用户，成功购买后请尽快赠送给朋友，如在开奖前还未赠送完，剩余部分即默认为用户本人领取。</p>
             </div>
         </div>
     </div>

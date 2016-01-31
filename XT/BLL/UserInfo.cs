@@ -101,5 +101,11 @@ namespace BLL
             var result = user.AddAwardInfo(periodId, awardNo);
             return result;
         }
+
+        public BaseResult Login(string loginUserId, string loginPwd)
+        {
+            var result = user.Login(loginUserId, loginPwd);
+            return result;
+        }
     }
     }

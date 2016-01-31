@@ -4,12 +4,13 @@
     Layout = "../Shared/Main.cshtml";
 }
 <script type="text/javascript" src="~/Scripts/ShowingOrder/ShowingOrder.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 
-    $(function() {
+    $(function () {
 
         //if (@ViewBag.UserInfo != null) {
-        
+
         saveToCookie("UserName", '@ViewBag.UserInfo.UserName');
         saveToCookie("UserId", '@ViewBag.UserInfo.UserID');
         saveToCookie("OpenId", '@ViewBag.UserInfo.OpenId');
@@ -26,6 +27,52 @@
     //        SetCookie(cookieName, val);
     //    }
     //}
+
+    //微信分享测试
+    @*wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: 'wxc2f9b0e146533762', // 必填，公众号的唯一标识
+        timestamp: '@ViewBag.timestamp', // 必填，生成签名的时间戳
+        nonceStr: '@ViewBag.nonceStr', // 必填，生成签名的随机串
+        signature: '@ViewBag.signature',// 必填，签名，见附录1
+        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+
+    wx.ready(function () {
+
+        wx.onMenuShareAppMessage({
+
+            title: '用c#开发微信 系列汇总',
+
+            desc: '网上开发微信开发的教程很多，但c#相对较少。这里列出了我所有c#开发微信的文章，方便自己随时查阅。如果可能，我尽量附上源码，这样就可以直接发布运行看效果，更好地理解原理。',
+
+            link: "www.baidu.com",
+
+            imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
+
+            trigger: function (res) {
+
+            },
+
+            success: function (res) {
+
+                //friendcallback(res);
+
+            },
+
+            cancel: function (res) {
+
+            },
+
+            fail: function (res) {
+
+                //alert(JSON.stringify(res));
+
+            }
+
+        });
+
+    });*@
 </script>
 
 <div class="mainM">
@@ -40,24 +87,24 @@
                     <div class='commentT'>
                         <img src='@order.UserImage' class='fl' />
                         <p class='oh'><span class='fl'> @order.UserName </span><span class='fr'>  @order.City</span></p>
-                        <p class='oh'><span class='fl red'> @order.ProductName   @order.PeriodNum </span><span class='fr gray9'>@order.CommentDate  </span></p>
+                        <p class='oh'><span class='fl red'>奖品：@order.ProductName  第 @order.PeriodNum 期 </span><span class='fr gray9'>@order.CommentDate  </span></p>
                     </div>
 
                     <div class='commentM oh'>
                         <p class='block'> @order.CommentContent </p>
                         @foreach (var photo in order.Photos)
                         {
-                            var imgPath=@ViewBag.UploadPath+ @photo.PhotoPath;
+                            var imgPath = @ViewBag.UploadPath + @photo.PhotoPath;
 
-                                    <a class='fl'><img src=@imgPath /></a>
+                            <a class='fl' href="@imgPath"><img src=@imgPath /></a>
                         }
-                        
+
                     </div>
                     <div class='commentB oh'>
                         <a class='fl' href='/ShowOrder/CommentList?periodId=@order.PeriodID'>
                             <i class='liaotian_s block icon_s fl '></i>
                             <p class='fl'>评论</p>
-<p class='fl'> @order.CommentNum </p>
+                            <p class='fl'> @order.CommentNum </p>
                         </a>
                         @if (order.IsSupp > 0)
                         { <a class='fl icon_H' href="#">
@@ -72,7 +119,7 @@
                         </a>
 
                         }
-                       
+
                     </div>
                 </li>
 

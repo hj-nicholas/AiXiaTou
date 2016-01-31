@@ -32,18 +32,18 @@ namespace DAL
                         userInfo.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
                         userInfo.DonateNum = Convert.ToInt32(rdr["DonateNum"]);
                         userInfo.Cellphone = Convert.ToString(rdr["Cellphone"]);
-                        userInfo.PhotoPath= Convert.ToString(rdr["PhotoPath"]);
+                        userInfo.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
                     }
                 }
 
-                    return userInfo;
-                }
+                return userInfo;
+            }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        
+
 
         public IList<T_UserAddr> GetReceiveAddrs(int userId)
         {
@@ -90,7 +90,7 @@ namespace DAL
                 cmd.Parameters["@p_PhotoPath"].Value = userDto.PhotoPath;
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
-                    
+
                     while (rdr.Read())
                     {
                         user.UserID = Convert.ToInt32(rdr["UserId"]);
@@ -163,16 +163,16 @@ namespace DAL
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lstAcc = new List<T_Account>();
                 throw ex;
             }
             return lstAcc;
-           
+
         }
 
-        public BaseResult RechargeAcc(int userId,int chargeNum)
+        public BaseResult RechargeAcc(int userId, int chargeNum)
         {
             BaseResult result = new BaseResult();
             try
@@ -218,7 +218,7 @@ namespace DAL
                         share.LotteryNum = Convert.ToString(rdr["LotteryNum"]);
                         share.Winner = Convert.ToString(rdr["Winner"]);
                         share.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
-                        if(!DBNull.Value.Equals(rdr["ActualPrice"]))
+                        if (!DBNull.Value.Equals(rdr["ActualPrice"]))
                             share.ActualPrice = Convert.ToDecimal(rdr["ActualPrice"]);
 
                         lstShare.Add(share);
@@ -279,7 +279,7 @@ namespace DAL
 
         }
 
-        public BaseResult AddShow(string content,int periodId,int userId)
+        public BaseResult AddShow(string content, int periodId, int userId)
         {
             BaseResult result = new BaseResult();
             try
@@ -369,7 +369,7 @@ namespace DAL
                 cmd.Parameters["@p_type"].Value = type;
                 cmd.Parameters["@p_awardNo"].Value = awardNo;
                 cmd.Parameters["@p_addrId"].Value = addrId;
-                
+
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 result.Succeeded = true;
@@ -388,9 +388,9 @@ namespace DAL
             List<UserDTO> lstUser = new List<UserDTO>();
             try
             {
-                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetUserInfo", strConn);
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetUserByType", strConn);
                 cmd.Parameters["@p_type"].Value = type;
-                
+
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     while (rdr.Read())
@@ -399,8 +399,8 @@ namespace DAL
                         userInfo.UserID = Convert.ToInt32(rdr["UserID"]);
                         userInfo.UserName = Convert.ToString(rdr["UserName"]);
                         userInfo.AccountBalance = Convert.ToInt32(rdr["AccountBalance"]);
-                        userInfo.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
-                        userInfo.DonateNum = Convert.ToInt32(rdr["DonateNum"]);
+                        //userInfo.JoinedNum = Convert.ToInt32(rdr["JoinedNum"]);
+                        //userInfo.DonateNum = Convert.ToInt32(rdr["DonateNum"]);
                         userInfo.Cellphone = Convert.ToString(rdr["Cellphone"]);
                         userInfo.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
 
@@ -456,11 +456,11 @@ namespace DAL
                         addr.Receiver = Convert.ToString(rdr["Receiver"]);
                         addr.Phone = Convert.ToString(rdr["Phone"]);
                         addr.PostCode = Convert.ToString(rdr["PostCode"]);
-                      
+
                     }
                 }
 
-               
+
             }
             catch (Exception ex)
             {
@@ -468,8 +468,8 @@ namespace DAL
             }
             return addr;
         }
-        
-            public BaseResult AddAwardInfo(int periodId, string awardNo)
+
+        public BaseResult AddAwardInfo(int periodId, string awardNo)
         {
             BaseResult result = new BaseResult();
             try
@@ -481,6 +481,37 @@ namespace DAL
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 result.Succeeded = true;
+            }
+
+            catch (Exception ex)
+            {
+                result.Succeeded = false;
+                result.ErrMsg = ex.Message;
+            }
+            return result;
+        }
+
+        public BaseResult Login(string loginUserId,string loginPwd)
+        {
+            BaseResult result = new BaseResult();
+            try
+            {
+
+                SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pLogin", strConn);
+                cmd.Parameters["@p_loginUserId"].Value = loginUserId;
+                cmd.Parameters["@p_loginPwd"].Value = loginPwd;
+                cmd.Parameters["@o_count"].Value = 0;
+                SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
+               int count=Convert.ToInt32( cmd.Parameters["@o_count"].Value);
+                if (count > 0)
+                {
+                    result.Succeeded = true;
+                }
+                else
+                {
+                    result.Succeeded = false;
+                    result.ErrMsg = "帐号或密码错误";
+                }
             }
 
             catch (Exception ex)

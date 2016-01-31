@@ -16,7 +16,7 @@ namespace UL.AXT.Background
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Product", action = "LoginPage", id = UrlParameter.Optional }
             );
         }
     }

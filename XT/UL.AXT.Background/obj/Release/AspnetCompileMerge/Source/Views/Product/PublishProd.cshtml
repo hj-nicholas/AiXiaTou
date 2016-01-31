@@ -67,11 +67,14 @@
                                     {
                                     <td>实物</td>
                                     }
-                                    else
+                                    else if(prod.IsActual==2)
                                     {
                                     <td>虚拟</td>
                                     }
-                                    
+                                    else if (prod.IsActual ==3)
+                                    {
+                                        <td>红包</td>
+                                    }
                                     <td>@prod.IncomingPrice</td>
                                     <td>@prod.InventoryNum</td>
                                     <td>@prod.InventoryNum</td>

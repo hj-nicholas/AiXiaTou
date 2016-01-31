@@ -53,7 +53,7 @@
             //校验填写信息
             if (!$.formValidator.pageIsValid('1'))
                 return false;
-
+            
              var flag=false;
             $.ajax({
                 url: "/Product/GetRestShrimpNum",
@@ -75,10 +75,15 @@
             });
             //余量足够才能购买
             if (flag) {
+                
                 var lotterys = $("#txtLotterys").val();
                 var tel = ""; // $("#txtPhone").val();
                 var email = ""; // $("#txtMail").val();
                 //window.location.href = "/Product/PayOrder?lottery=" + lotterys + "&phone=" + tel + "&email=" + email;
+                if (getCookie("UserId") == "") {
+                    alert("信息丢失，请重新登录。");
+                    return false;
+                }
                 $.ajax({
                     url: "/Product/AddOrder",
                     type: "POST",
@@ -329,7 +334,7 @@
                 <div class="index_T">
                     <a class="pa collection_s  icon_s margin_t5"></a>
                     <a class="block oh">
-                        <img src="~/Uploads/CommentPhotos/20151209/img01.jpg" class="fr br4" />
+                        <img src="~/Uploads/@Model.ProductPhoto" class="fr br4" />
                         <p class="oh">
                             <b class="f18 lh30 h30 block fn oh" id="proName">@Model.ProductName</b>
                             <span class="f14 lh25 block gray6 oh "><em class="fl fsn" id="proPrice">抢购价：@Model.ProductPrice 元</em></span>
@@ -343,7 +348,7 @@
         </ul>
     </div>
     <div class="order_submit">
-        <p class="h20 lh20 gray9">*一只虾仔，成就更多可能！</p>
+        <p class="h20 lh20 gray9"></p>
         <ul>
             <li class="white_bg oh f14">
                 <span class="fl margin_r10"> 份数</span>
@@ -522,3 +527,7 @@
 
         </div>
     </div>
+
+<div class="loading" style="display:none">
+    <img src="~/Content/images/loading_1.gif" class="pa" />
+</div>

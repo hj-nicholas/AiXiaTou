@@ -8,13 +8,37 @@
 <script src="~/Scripts/formValidator/formValidatorRegex.js"></script>
 <script type="text/javascript">
     $(function () {
-        $("a[name='AwardNo']").click(function() {
+        $("a[name='AwardNum']").click(function() {
+
             var obj = $(this);
             alert("领奖编号："+ obj.attr("tag"));
 
-            
+
             //AlertDiv("#AwardNo");
         });
+
+        $("a[name='AwardRed']").click(function() {
+            var obj = $(this);
+            var userId = getCookie("UserId");
+            if (obj.attr("tagRed") == 0 && userId != "") {
+                $.ajax({
+                    url: "/User/RevRed",
+                    type: "POST",
+                    async: false,
+                    data: { money: obj.attr("tag"), openId: getCookie("OpenId"), userId: userId, periodId: obj.attr("tagPeriod") },
+                    success: function(data) {
+                        if (data["Succeeded"]) {
+                            alert(data["ErrMsg"]);
+                            window.location.href = "/User/Joined?userId=" + userId;
+                        } else {
+                            alert(data["ErrMsg"]);
+                        }
+
+                    }
+                });
+            } 
+        });
+
         $("#btnSaveAwardNo").click(function () {
             saveAward(2);
         });
@@ -141,7 +165,7 @@
             type: "POST",
             data: { userId: getCookie("UserId"), periodId: $("#periodId").val(), type: type, awardNo: $("#awardNo").val(), addrId: $("#addrId").val() },
             success: function (data) {
-                if (data["Succeeded"]) 
+                if (data["Succeeded"])
                     {
                         alert("成功");
                         AlertClose("#AwardNo");
@@ -151,7 +175,7 @@
                     {
                     alert("失败");
                     }
-                
+
             }
         });
     }
@@ -196,7 +220,12 @@
         <div class="orderBB">
             <a class="block oh padding_b5">
                 <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
-                <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：@lot[0]</em></span>
+                <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾码：@lot[0]</em>
+                @if(prod.ProductPrice - prod.JoinedNum==0)
+                {<em class="fl fsn">开奖期数：@prod.LotPeriod</em>
+
+                }
+                </span>
 
             </a>
             <div class="index_M">
@@ -231,7 +260,7 @@
                 <div class="orderBB">
                     <a class="block oh padding_b5">
                         <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
-                        <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾仔：@lot[0]</em></span>
+                        <span class="f14 lh25 block gray6 oh"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">虾码：@lot[0]</em><em class="fl fsn">开奖期数：@prod.LotPeriod</em></span>
                         <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em><em class="fr fsn">获得者：@prod.UserName</em></span>
                         <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：@prod.OpenTime</em></span>
 
@@ -261,9 +290,9 @@
                             <a  class="fr br4 grayC_bg white f14">收货地址</a>
                         }
                     }
-                    else
+                    else if(prod.IsActual==2)
                     {
-                        <a name="AwardNo" tag="@prod.AwardNo" class="fr br4 blue_bg white f14">领取奖品</a>
+                        <a name="AwardNum" href="#" tag="@prod.AwardNo" class="fr br4 blue_bg white f14">领取奖品</a>
                         @*if (string.IsNullOrEmpty( prod.AwardNo))
                         {
                             <a name="AwardNo" tag="@prod.PeriodId" class="fr br4 blue_bg white f14">领取奖品</a>
@@ -272,7 +301,19 @@
                         {
                             <a  class="fr br4 grayC_bg white f14">领取奖品</a>
                         }*@
+                    }
+                    else if (prod.IsActual == 3)
+                    {
+                        if (prod.IsRevRed == 0)
+                        {
+                            <a name="AwardRed" tag="@prod.ProductPrice" tagPeriod="@prod.PeriodId" tagRed="@prod.IsRevRed" class="fr br4 blue_bg white f14">领取红包</a>
                         }
+                        else
+                        {
+                            <a name="AwardRed" tag="@prod.ProductPrice" tagPeriod="@prod.PeriodId" tagRed="@prod.IsRevRed" class="fr br4 grayC_bg white f14">领取红包</a>
+                        }
+
+                    }
 
                     @if (prod.IsShowOrder == 0)
                     {
@@ -286,7 +327,7 @@
                 <div class="orderBB">
                     <a class="block oh padding_b5">
                         <span class="f14 lh25 block gray6 oh"><i class="gift_s fl icon_s margin_r5"></i><em class="fl fsn">@prod.ProductName</em></span>
-                        <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em></span>
+                        <span class="f14 lh25 block gray6 oh icon_H"><i class="xiazi_s fl icon_s margin_r5"></i><em class="fl fsn">幸运虾仔：@prod.ProLotteryNum</em> <em class="fl fsn">开奖期数：@prod.LotPeriod</em></span>
                         <span class="f12 lh25 block gray6 oh"><i class="time_s fl icon_s margin_r5"></i><em class="fl fsn">揭晓时间：@prod.OpenTime</em></span>
 
                         <span class="f14 lh25 block gray6 oh"><i class="transport_s fl icon_s margin_r5"></i><em class="fl fsn">物流单号：顺丰5215248865</em></span>
@@ -301,7 +342,9 @@
     </div>
 </div>
 
-
+<div class="loading" style="display:none">
+    <img src="~/Content/images/loading_1.gif" class="pa" />
+</div>
 
 <div class="alert" id="AwardNo">
     <div class="mainM address">

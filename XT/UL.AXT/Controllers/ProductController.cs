@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
@@ -8,10 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 using BLL;
+using Hoo.Common.WeChat;
 using Hoo.WeChat.WxPayAPI;
 using Model;
 using Newtonsoft.Json;
 using UL.AXT.Common;
+using UserInfo = BLL.UserInfo;
 
 namespace UL.AXT.Controllers
 {
@@ -121,8 +124,10 @@ namespace UL.AXT.Controllers
             BLL.Order order = new Order();
             ProductModel prodModel = new ProductModel();
             BaseResult br = order.updOrderSts(orderId, 1);
+            Common.Log.WriteLog("buy:", "1");
             if (br.Succeeded)
             {
+                Common.Log.WriteLog("buy:", "2");
                 prodModel = prod.GetProdByOrder(orderId);
                 OpenLottery(prodModel.PeriodId);
 
@@ -163,6 +168,15 @@ namespace UL.AXT.Controllers
                 }
                 
             }
+
+            //js分享功能
+            JSSDK jssdk = new JSSDK();
+            Hashtable ht = jssdk.getSignPackage();
+            ViewBag.timestamp = ht["timestamp"].ToString();
+            ViewBag.nonceStr = ht["nonceStr"].ToString();
+            ViewBag.signature = ht["signature"].ToString();
+            ViewBag.appId = ht["appId"].ToString();
+
             return View(prodModel);
         }
 
@@ -479,14 +493,16 @@ namespace UL.AXT.Controllers
 
         public void OpenLottery(int periodId)
         {
+            Common.Log.WriteLog("buy:", "3");
             BaseResult result = new BaseResult();
             result = prod.IsBuyOver(periodId);
             //自动获取彩票
             if (result.ResultId=="0")
             {
+                Common.Log.WriteLog("buy:", "3");
                 string path = "/LotteryExe/UL.AXT.TimerTask.exe";
                 string PhysicalPath = Server.MapPath(path);
-
+                Common.Log.WriteLog("PhysicalPath:", PhysicalPath);
                 Process proc = new Process();
                 proc.StartInfo.FileName = PhysicalPath;
                 proc.StartInfo.Arguments = periodId.ToString();

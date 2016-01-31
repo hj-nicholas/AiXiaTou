@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -21,6 +22,13 @@ namespace UL.AXT.Controllers
         // GET: ShowOrder
         public ActionResult Index(string code = "")
         {
+            //js分享功能
+            //JSSDK jssdk = new JSSDK();
+            //Hashtable ht= jssdk.getSignPackage();
+            //ViewBag.timestamp = ht["timestamp"].ToString();
+            //ViewBag.nonceStr = ht["nonceStr"].ToString();
+            //ViewBag.signature = ht["signature"].ToString();
+
             //HOO Test-1
             //code = "0211e2a86877e52f073a3dad2042c25b";
             //获取登录微信用户信息

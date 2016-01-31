@@ -437,6 +437,8 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\PublishProd.cshtml" />
     <Content Include="Views\Product\OneDollarBuy.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Product\LoginPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

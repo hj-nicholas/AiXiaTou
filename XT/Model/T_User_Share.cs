@@ -129,6 +129,8 @@ namespace Model
 
         public string GetLotNum { get; set; }
 
+        public string ProductPhoto { get; set; }
+
     }
 }
 

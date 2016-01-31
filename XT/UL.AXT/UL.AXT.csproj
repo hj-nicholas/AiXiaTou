@@ -194,6 +194,7 @@
     <Compile Include="Common\WeChat\ErrorMessage.cs" />
     <Compile Include="Common\WeChat\HttpHelper.cs" />
     <Compile Include="Common\WeChat\IParsable.cs" />
+    <Compile Include="Common\WeChat\JSsdkHelper.cs" />
     <Compile Include="Common\WeChat\Message.cs" />
     <Compile Include="Common\WeChat\OAuthAccessToken.cs" />
     <Compile Include="Common\WeChat\RequestBaseMessage.cs" />
@@ -273,6 +274,7 @@
     <Content Include="Content\images\icon.png" />
     <Content Include="Content\images\img01.jpg" />
     <Content Include="Content\images\img02.jpg" />
+    <Content Include="Content\images\loading_1.gif" />
     <Content Include="Content\images\pay.png" />
     <Content Include="Content\images\play.png" />
     <Content Include="Content\images\share_img01.jpg" />

@@ -10,6 +10,7 @@
         $("#btnWithdraw").click(function () {
             if (!$.formValidator.pageIsValid('1'))
                 return false;
+            $(".loading").show();
 
             $.ajax({
                 url:"/User/TX",
@@ -24,8 +25,14 @@
                         alert(data["ErrMsg"]);
                     }
 
+                    $(".loading").hide();
+                },
+                error:function() {
+                    $(".loading").hide();
                 }
             });
+
+            $(".loading").hide();
         });
 
         $.formValidator.initConfig({ validatorGroup: "1", formID: "form1", onError: function () { alert("请查看错误信息"); } });
@@ -58,5 +65,9 @@
     <p class="f14 tc">每日可提现一次</p>
 </div>
 
+
+<div class="loading" style="display:none">
+    <img src="~/Content/images/loading_1.gif" class="pa" />
+</div>
 
 @RenderPage("~/Views/Shared/_Footer.cshtml")

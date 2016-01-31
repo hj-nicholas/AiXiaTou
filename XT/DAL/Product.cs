@@ -11,13 +11,13 @@ using Model;
 
 namespace DAL
 {
-   public class Product
+    public class Product
     {
         private string strConn = ConfigurationManager.ConnectionStrings["conStr"].ConnectionString;
-        
+
         //晒单数据
-        public IList<ShowOrderModel> GetShowingOrders(int productId,int userId,int ViewUserId)
-       {
+        public IList<ShowOrderModel> GetShowingOrders(int productId, int userId, int ViewUserId)
+        {
             try
             {
                 IList<ShowOrderModel> lstShowOrder = new List<ShowOrderModel>();
@@ -60,7 +60,7 @@ namespace DAL
         }
 
         //产品列表
-        public IList<ProductModel> GetProducts(int proType,int userId=0)
+        public IList<ProductModel> GetProducts(int proType, int userId = 0)
         {
             try
             {
@@ -99,11 +99,40 @@ namespace DAL
                             prod.UserId = Convert.ToInt32(rdr["UserID"]);
                         if (!DBNull.Value.Equals(rdr["OpenTime"]))
                             prod.OpenTime = Convert.ToDateTime(rdr["OpenTime"]);
-                        if (userId!=0)
-                        { 
+                        if (userId != 0)
+                        {
                             prod.UserLots = GetLotterysByUid(prod.PeriodId, userId).ToList();
                             prod.UserLotStr = string.Join(",", prod.UserLots.ToArray());
-                            
+                            prod.IsRevRed = Convert.ToInt32(rdr["IsRevRed"]);
+                        }
+                        if (prod.ProductPrice == prod.JoinedNum)
+                        {
+                            int per = 0;
+                            //开奖规律06:00 - 10:00销售当天第一期，10:00统一开奖。10:00 - 22:00(10分钟一期，共72期)，22:00 - 02:00(5分钟一期, 共48期)，02:00 - 06:00暂停销售，全天共计120期。
+                            var openTime = prod.OpenTime;
+                            int hour = openTime.Hour;
+
+                            int min = openTime.Minute;
+
+                            if (hour >= 0 && hour < 2)
+                            {
+                                per = (hour * 12 + min / 5 + 1);
+                            }
+                            else if (hour >= 2 && hour < 10)
+                            {
+                                per = 24;
+                            }
+                            else if (hour >= 10 && hour < 22)
+                            {
+                                per = 24 + ((hour - 10) * 6 + min / 10 + 1);
+                            }
+                            else if (hour >= 22 && hour < 24)
+                            {
+                                per = 96 + ((hour - 22) * 12 + min / 5 + 1);
+                            }
+
+
+                            prod.LotPeriod = string.Format("{0:yyyyMMdd}", openTime) + per.ToString().PadLeft(3, '0');
                         }
                         lstProd.Add(prod);
                     }
@@ -113,7 +142,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                Log.WriteLog("test1-1:", ex.Message);
                 throw ex;
             }
         }
@@ -124,10 +152,10 @@ namespace DAL
 
             try
             {
-               
+
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetProdByOrder", strConn);
                 cmd.Parameters["@p_orderId"].Value = orderId;
-                
+
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     while (rdr.Read())
@@ -153,7 +181,7 @@ namespace DAL
                     }
                 }
 
-               
+
             }
             catch (Exception ex)
             {
@@ -187,6 +215,7 @@ namespace DAL
                         prod.ProductPrice = Convert.ToDecimal(rdr["ProductPrice"]);
                         prod.ProLotteryNum = Convert.ToString(rdr["ProLotteryNum"]);
                         prod.UserName = Convert.ToString(rdr["UserName"]);
+                        prod.ProductPhoto = Convert.ToString(rdr["PhotoPath"]);
                         if (!DBNull.Value.Equals(rdr["IsShowOrder"]))
                             prod.IsShowOrder = Convert.ToInt32(rdr["IsShowOrder"]);
                         if (!DBNull.Value.Equals(rdr["UserID"]))
@@ -217,7 +246,7 @@ namespace DAL
                 {
                     while (rdr.Read())
                     {
-                       string lot = Convert.ToString(rdr["LotteryNum"]);
+                        string lot = Convert.ToString(rdr["LotteryNum"]);
                         //prod.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
                         //prod.ProductId = Convert.ToInt32(rdr["ProductId"]);
                         //prod.ProductType = Convert.ToInt32(rdr["ProductType"]);
@@ -247,7 +276,7 @@ namespace DAL
                 IList<ProductModel> lstProd = new List<ProductModel>();
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetProductsByProId", strConn);
                 cmd.Parameters["@p_productId"].Value = productId;
-                
+
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     while (rdr.Read())
@@ -381,7 +410,7 @@ namespace DAL
         }
 
         //查询产品某期评论点赞数量
-        public BaseResult GetRelPeriodInfo(int periodId,out int suppNum,out int commNum)
+        public BaseResult GetRelPeriodInfo(int periodId, out int suppNum, out int commNum)
         {
             BaseResult br = new BaseResult();
             try
@@ -395,7 +424,7 @@ namespace DAL
                 suppNum = (int)cmd.Parameters["@o_suppNum"].Value;
                 commNum = (int)cmd.Parameters["@o_commNum"].Value;
                 br.Succeeded = true;
-                
+
             }
             catch (Exception ex)
             {
@@ -414,7 +443,7 @@ namespace DAL
                 IList<UserOrderDTO> lstOrder = new List<UserOrderDTO>();
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetOrderList", strConn);
                 cmd.Parameters["@p_periodId"].Value = periodId;
-               
+
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     while (rdr.Read())
@@ -425,7 +454,7 @@ namespace DAL
                         order.UserName = Convert.ToString(rdr["UserName"]);
                         order.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
                         order.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
-                        if(!DBNull.Value.Equals(rdr["BuyNum"]))
+                        if (!DBNull.Value.Equals(rdr["BuyNum"]))
                             order.BuyNum = Convert.ToInt32(rdr["BuyNum"]);
                         if (!DBNull.Value.Equals(rdr["CreateTime"]))
                             order.CreateTime = Convert.ToDateTime(rdr["CreateTime"]);
@@ -475,7 +504,7 @@ namespace DAL
         }
 
         //产品列表
-        public IList<ProductModel> GetEnshrineProducts(int  userId = 0)
+        public IList<ProductModel> GetEnshrineProducts(int userId = 0)
         {
             try
             {
@@ -513,8 +542,8 @@ namespace DAL
         }
 
         //确认中奖号码
-       public UserOrderDTO ConfirmLottery(string lotteryTicket, int periodId)
-       {
+        public UserOrderDTO ConfirmLottery(string lotteryTicket, int periodId)
+        {
             try
             {
                 UserOrderDTO userOrder = new UserOrderDTO();
@@ -526,8 +555,8 @@ namespace DAL
                 {
                     while (rdr.Read())
                     {
-                       
-                        userOrder.PeriodID= Convert.ToInt32(rdr["PeriodID"]);
+
+                        userOrder.PeriodID = Convert.ToInt32(rdr["PeriodID"]);
                         userOrder.LotteryNum = Convert.ToString(rdr["LotteryNum"]);
                     }
                 }
@@ -589,9 +618,9 @@ namespace DAL
             return br;
         }
 
-       public T_User_Share GetShareById(int shareId)
-       {
-           T_User_Share shareDto = new T_User_Share();
+        public T_User_Share GetShareById(int shareId)
+        {
+            T_User_Share shareDto = new T_User_Share();
             try
             {
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetShareById", strConn);
@@ -613,6 +642,7 @@ namespace DAL
                         shareDto.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
                         shareDto.Winner = Convert.ToString(rdr["Winner"]);
                         shareDto.WinPhoto = Convert.ToString(rdr["WinPhoto"]);
+                        shareDto.ProductPhoto = Convert.ToString(rdr["ProductPhoto"]);
                     }
                 }
             }
@@ -623,8 +653,8 @@ namespace DAL
             return shareDto;
         }
 
-       public bool isRevGift(int shareId, int userId)
-       {
+        public bool isRevGift(int shareId, int userId)
+        {
             bool flag = true;
             try
             {
@@ -633,7 +663,7 @@ namespace DAL
                 cmd.Parameters["@p_userId"].Value = userId;
 
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
-                int count =Convert.ToInt32(cmd.Parameters["@o_count"].Value);
+                int count = Convert.ToInt32(cmd.Parameters["@o_count"].Value);
                 if (count == 0)
                     flag = false;
             }
@@ -641,10 +671,10 @@ namespace DAL
             {
                 flag = true;
             }
-           return flag;
-       }
+            return flag;
+        }
 
-        public BaseResult UpdRevGiftInfo(int shareId, int userId,int RevNum,int periodId,string lotteryNO)
+        public BaseResult UpdRevGiftInfo(int shareId, int userId, int RevNum, int periodId, string lotteryNO)
         {
             BaseResult br = new BaseResult();
             try
@@ -669,9 +699,9 @@ namespace DAL
             return br;
         }
 
-      
 
-        public BaseResult AddProdStock(int prodType, string prodName, decimal stockPrice, int stockNum,string productUrl, string prodDesc)
+
+        public BaseResult AddProdStock(int prodType, string prodName, decimal stockPrice, int stockNum, string productUrl, string prodDesc)
         {
             BaseResult br = new BaseResult();
             try
@@ -698,13 +728,13 @@ namespace DAL
             return br;
         }
 
-       public List<T_Product> GetAllProds()
-       {
-           List<T_Product> lstProd = new List<T_Product>();
+        public List<T_Product> GetAllProds()
+        {
+            List<T_Product> lstProd = new List<T_Product>();
             try
             {
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pGetAllProd", strConn);
-                
+
                 using (SqlDataReader rdr = SQLHelper.Instance().ExecuteReader(strConn, cmd))
                 {
                     while (rdr.Read())
@@ -729,11 +759,11 @@ namespace DAL
                 lstProd = new List<T_Product>();
             }
 
-           return lstProd;
-       }
+            return lstProd;
+        }
 
-       public BaseResult PublishProdData(decimal totalPrice, int unitPrice, int needNum, decimal prodAC, int prodType, int prodId)
-       {
+        public BaseResult PublishProdData(decimal totalPrice, int unitPrice, int needNum, decimal prodAC, int prodType, int prodId)
+        {
             BaseResult br = new BaseResult();
             try
             {
@@ -744,7 +774,7 @@ namespace DAL
                 cmd.Parameters["@p_prodAC"].Value = prodAC;
                 cmd.Parameters["@p_prodType"].Value = prodType;
                 cmd.Parameters["@p_prodId"].Value = prodId;
-                
+
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 br.Succeeded = true;
@@ -806,8 +836,8 @@ namespace DAL
             return lstProd;
         }
 
-       public List<T_ProductPeriods> GetAllPeriodsById(int productId)
-       {
+        public List<T_ProductPeriods> GetAllPeriodsById(int productId)
+        {
             List<T_ProductPeriods> lstProd = new List<T_ProductPeriods>();
             try
             {
@@ -859,7 +889,7 @@ namespace DAL
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pConfirmLottery", strConn);
                 cmd.Parameters["@p_periodId"].Value = periodId;
                 cmd.Parameters["@p_lotteryTicket"].Value = lotteryNo;
-                
+
                 SQLHelper.Instance().ExecuteNonQuery(strConn, cmd);
 
                 br.Succeeded = true;
@@ -873,8 +903,8 @@ namespace DAL
             return br;
         }
 
-       public List<T_Share_Get> GetRevGiftByShareId(int shareId)
-       {
+        public List<T_Share_Get> GetRevGiftByShareId(int shareId)
+        {
             List<T_Share_Get> lstShareDto = new List<T_Share_Get>();
             try
             {
@@ -891,7 +921,7 @@ namespace DAL
                         shareDto.ShareId = Convert.ToInt32(rdr["ShareId"]);
                         shareDto.UserName = Convert.ToString(rdr["UserName"]);
                         if (!DBNull.Value.Equals(rdr["RevTime"]))
-                             shareDto.RevTime = Convert.ToDateTime(rdr["RevTime"]);
+                            shareDto.RevTime = Convert.ToDateTime(rdr["RevTime"]);
                         shareDto.LotNum = Convert.ToString(rdr["LotNum"]);
                         shareDto.PhotoPath = Convert.ToString(rdr["PhotoPath"]);
 
@@ -931,7 +961,7 @@ namespace DAL
         }
 
         #region 照片
-        public BaseResult AddPic(int periodId, string picPath,int picType)
+        public BaseResult AddPic(int periodId, string picPath, int picType)
         {
             BaseResult br = new BaseResult();
             try
@@ -957,13 +987,13 @@ namespace DAL
 
         #region X用户操作
         //后台用户购买操作/未分享完的记录
-        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO,int userType)
+        public BaseResult AddLotByXUser(int userId, int addNum, int periodId, string lotteryNO, int userType)
         {
             BaseResult br = new BaseResult();
             try
             {
                 SqlCommand cmd = SQLHelper.Instance().CreateSqlCommand("pAddLotByXUser", strConn);
-               cmd.Parameters["@p_userId"].Value = userId;
+                cmd.Parameters["@p_userId"].Value = userId;
                 cmd.Parameters["@p_RevNum"].Value = addNum;
                 cmd.Parameters["@p_periodId"].Value = periodId;
                 cmd.Parameters["@p_LotteryNO"].Value = lotteryNO;
@@ -983,8 +1013,8 @@ namespace DAL
         }
 
         //判断是否购买完成
-       public BaseResult IsBuyOver(int periodId)
-       {
+        public BaseResult IsBuyOver(int periodId)
+        {
             BaseResult br = new BaseResult();
             try
             {
@@ -1026,7 +1056,7 @@ namespace DAL
                         shareDto.ShareNum = Convert.ToInt32(rdr["ShareNum"]);
                         //shareDto.RevPeopleNum = Convert.ToInt32(rdr["RevPeopleNum"]);
                         shareDto.RevGiftNum = Convert.ToInt32(rdr["RevGiftNum"]);
-                        
+
                         lstShareDto.Add(shareDto);
                     }
                 }
